@@ -85,7 +85,7 @@ function plugins(
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(cwd, 'public/index.html.ejs'),
-      title: `Verdigris by Collabnet VersionOne${env === 'development' ? ' - DEV' : ''}`,
+      title: `Verdigris Component Library${env === 'development' ? ' - DEV' : ''}`,
       // favicon: path.join(
       //   cwd,
       //   `public/favicon${env === 'development' ? '-dev' : ''}.ico`,

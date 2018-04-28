@@ -5,6 +5,7 @@
   "author": "Andrew Smith <andrew@andrew.codes>",
   "license": "MIT",
   "scripts": {
+    "bootstrap": "yarn lerna bootstrap",
     "start": "cd website && yarn start && cd ../"
   },
   "devDependencies": {
