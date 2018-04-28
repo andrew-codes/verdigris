@@ -8,7 +8,8 @@ const createConfig = require('../src/createConfig.js');
 const HOST = 'localhost';
 const PORT = +process.env.PORT || 9000;
 
-runDevServer().catch(console.log);
+runDevServer()
+  .catch(error => process.exit(error));
 
 async function runDevServer() {
   const [entry] = process.argv.slice(2);
