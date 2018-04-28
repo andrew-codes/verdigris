@@ -10,7 +10,7 @@ const PORT = +process.env.PORT || 9000;
 
 runDevServer().catch(console.log);
 
-function runDevServer() {
+async function runDevServer() {
   const [entry] = process.argv.slice(2);
   const report = !!process.argv.find(arg => arg.startsWith('--report'));
   const env = 'development';
