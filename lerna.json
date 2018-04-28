@@ -1,0 +1,11 @@
+{
+  "lerna": "2.11.0",
+  "npmClient": "yarn",
+  "hoist": true,
+  "packages": [
+    "build/*",
+    "packages/*",
+    "website"
+  ],
+  "version": "0.0.0"
+}

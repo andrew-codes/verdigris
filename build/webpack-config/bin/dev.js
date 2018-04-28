@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+const historyApiFallback = require('connect-history-api-fallback');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const createConfig = require('../src/createConfig.js');
+
+const HOST = 'localhost';
+const PORT = +process.env.PORT || 9000;
+
+runDevServer().catch(console.log);
+
+function runDevServer() {
+  const [entry] = process.argv.slice(2);
+  const report = !!process.argv.find(arg => arg.startsWith('--report'));
+  const env = 'development';
+
+  const config = createConfig({
+    entry,
+    host: HOST,
+    port: PORT,
+    env,
+    report,
+  });
+  const compiler = webpack(config);
+  const server = new WebpackDevServer(compiler, {
+    compress: true,
+    historyApiFallback: true,
+    overlay: true,
+    stats: {
+      colors: true,
+      assets: true,
+      version: false,
+      hash: false,
+      timings: false,
+      chunks: false,
+      chunkModules: true,
+    },
+  });
+  return new Promise((resolve, reject) => {
+    server.listen(PORT, HOST, err => {
+      if (err) {
+        console.log(err.stack || err);
+        return reject(1);
+      }
+
+      server.use(
+        historyApiFallback({
+          disableDotRule: true,
+          htmlAcceptHeaders: ['text/html'],
+        }),
+      );
+    });
+  });
+}
