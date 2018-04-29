@@ -1,0 +1,7 @@
+{
+  "extends": "../.eslintrc.json",
+  "rules": {
+    "import/extensions": "off",
+    "import/no-dynamic-require": "off"
+  }
+}
