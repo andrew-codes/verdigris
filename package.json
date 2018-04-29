@@ -11,6 +11,7 @@
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint **/*.js",
     "test": "yarn jest",
     "test:changed": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest",
+    "test:changed:watch": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest --watch",
     "start": "cd website && yarn start && cd ../",
     "new-component": "scripts/bin/new-component.sh"
   },
