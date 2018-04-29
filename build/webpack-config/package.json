@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@verdigris/webpack-config",
+  "description": "Webpack configuration for running dev server and building Verdigris website.",
   "version": "0.0.0",
   "license": "MIT",
   "bin": {
