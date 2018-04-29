@@ -40,5 +40,5 @@ mkdir -p packages/$name/src/__tests__
 echo "import $componentName from '../';
 
 test('the component is exported', () => {
-  expect($componentName).toBeDefined();
+  throw new Error('Test not implemented.');
 });" > packages/$name/src/__tests__/index.test.js
