@@ -8,7 +8,8 @@
     "bootstrap": "yarn lerna bootstrap",
     "lint": "yarn lint:eslint",
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint **/*.js",
-    "start": "cd website && yarn start && cd ../"
+    "start": "cd website && yarn start && cd ../",
+    "new-component": "scripts/bin/new-component.sh"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -21,6 +22,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "chalk-cli": "^4.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
