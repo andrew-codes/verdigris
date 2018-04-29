@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "@verdigris/jest-config",
+  "version": "0.0.0",
+  "description": "Scripts and configuration for running tests in Verdigris",
+  "license": "MIT",
+  "dependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-when": "^1.1.0",
+    "raf-stub": "^2.0.2"
+  }
+}

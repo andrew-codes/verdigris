@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "@verdigris/git",
+  "version": "0.0.0",
+  "description": "Get related revision/commit information for the Verdigris repository.",
+  "license": "MIT",
+  "dependencies": {
+    "projector-spawn": "^1.0.1"
+  }
+}

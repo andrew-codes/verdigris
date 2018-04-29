@@ -71,6 +71,9 @@
         "**/__tests__/**/*.js",
         "**/*.test.js"
       ],
+      "globals": {
+        "when": true
+      },
       "env": {
         "jest": true
       }
