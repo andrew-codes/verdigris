@@ -18,4 +18,4 @@ Please ensure you have the proper software installed.
 - Tour of the code base (structure, conventions, and norms)
 - Contributing
 - Publishing
-- License
+- [License](./LICENSE)
