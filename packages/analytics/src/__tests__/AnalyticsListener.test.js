@@ -4,7 +4,6 @@ import { noop } from 'lodash';
 import * as PropTypes from 'prop-types';
 import AnalyticsListener from '../AnalyticsListener';
 
-
 test('it renders', () => {
   const wrapper = shallow(
     <AnalyticsListener onEvent={noop}>
