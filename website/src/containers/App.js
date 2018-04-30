@@ -70,10 +70,10 @@ const AppContent = styled.div`
   flex: 1 1 auto;
 `;
 
-export default function App() {
+export default function App(props) {
   const {
     gaId,
-  } = this.props;
+  } = props;
   return (
     <BrowserRouter>
       <GoogleAnalyticsListener gaId={gaId}>
