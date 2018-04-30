@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "@verdigris/packages",
+  "version": "0.0.0",
+  "description": "Collection of scripts to get information about component packages within Verdigris",
+  "license": "MIT",
+  "dependencies": {
+    "lerna-get-packages": "^1.0.0"
+  }
+}

@@ -1,15 +1,17 @@
 {
   "presets": [
-    [
-      "env",
-      {
-        "modules": false
-      }
-    ],
+    "env",
     "react"
   ],
   "plugins": [
     "transform-class-properties",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    [
+      "babel-plugin-styled-components",
+      {
+        "minify": false,
+        "uglifyPure": false
+      }
+    ]
   ]
 }

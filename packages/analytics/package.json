@@ -1,0 +1,21 @@
+{
+  "name": "@verdigris/analytics",
+  "version": "0.0.0",
+  "description": "Component level analytics.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "verdigris": {
+    "name": "Analytics"
+  },
+  "peerDependencies": {
+    "react": "^16.3.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "lodash": "^4.17.10"
+  }
+}

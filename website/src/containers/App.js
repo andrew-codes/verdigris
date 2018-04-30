@@ -1,20 +1,41 @@
 import React, { Component } from 'react';
-import styled, { injectGlobal } from 'styled-components';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import ReactGA from 'react-ga';
+import styled from 'styled-components';
+import { AnalyticsContext, AnalyticsListener } from '@verdigris/analytics';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import * as PropTypes from 'prop-types';
 
 import Home from '../pages/Home';
-import GoogleAnalyticsListener from '../components/GoogleAnalyticsListener';
+import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
 import PageNotFound from '../pages/PageNotFound';
 import { GOOGLE_ANALYTICS_ID } from '../constants';
 
-const SiteAnalytics = ({ children }) => {
-  return (
-    <GoogleAnalyticsListener gaId={GOOGLE_ANALYTICS_ID}>
-      {children}
-    </GoogleAnalyticsListener>
-  );
-};
+const handleAnalyticsEvent = event => {
+  ReactGA.pageview(event.payload.location.pathname);
+}
+
+class SiteAnalytics extends Component {
+  static propTypes = {
+    gaId: PropTypes.string,
+  };
+
+  constructor(props) {
+    super(props);
+    ReactGA.initialize(props.gaId);
+  }
+
+  render() {
+    const { children } = this.props;
+    return (
+      <AnalyticsListener channel="navigate" onEvent={handleAnalyticsEvent}>
+        <RouteAnalyticsListener>
+          {children}
+        </RouteAnalyticsListener>
+      </AnalyticsListener>
+    );
+  }
+}
 
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
@@ -38,7 +59,7 @@ class RouteBoundary extends Component {
   }
 
   render() {
-    let { hasError } = this.state;
+    const { hasError } = this.state;
     if (hasError) {
       return <PageNotFound />;
     }
@@ -53,7 +74,7 @@ const AppContent = styled.div`
 export default function App() {
   return (
     <BrowserRouter>
-      <SiteAnalytics>
+      <SiteAnalytics gaId={GOOGLE_ANALYTICS_ID}>
         <Route>
           <ScrollHandler />
         </Route>
