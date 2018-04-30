@@ -63,3 +63,75 @@ test('cannot be fired more than once', () => {
   expect(handler1).toHaveBeenCalledTimes(1);
   expect(handler2).toHaveBeenCalledTimes(1);
 });
+
+test('updating an event with a object shallow merges object into the event payload', () => {
+  const analyticsEvent = new UIAnalyticsEvent(eventArg);
+  analyticsEvent.update({ newValue: 'a new value', action: 'a new action' });
+
+  analyticsEvent.fire();
+  expect(handler1).toBeCalledWith({
+    ...analyticsEvent,
+    payload: {
+      action: 'a new action',
+      newValue: 'a new value',
+    }
+  }, undefined);
+});
+
+test('can update an event payload with a function', () => {
+  const analyticsEvent = new UIAnalyticsEvent(eventArg);
+  analyticsEvent.update(payload => ({
+    ...payload,
+    newValue: 'a new value',
+    action: 'a new action',
+  }));
+
+  analyticsEvent.fire();
+  expect(handler1).toBeCalledWith({
+    ...analyticsEvent,
+    payload: {
+      action: 'a new action',
+      newValue: 'a new value',
+    }
+  }, undefined);
+});
+
+test('updating returns the updated analytics event', () => {
+  const analyticsEvent = new UIAnalyticsEvent(eventArg);
+  const updatedEvent = analyticsEvent.update(payload => ({
+    ...payload,
+    newValue: 'a new value',
+    action: 'a new action',
+  }));
+
+  expect(updatedEvent).toEqual({
+    ...analyticsEvent,
+    payload: {
+      action: 'a new action',
+      newValue: 'a new value',
+    }
+  });
+});
+
+test('update does not happen once event is fired', () => {
+  const analyticsEvent = new UIAnalyticsEvent(eventArg);
+  analyticsEvent.update(payload => ({
+    ...payload,
+    newValue: 'a new value',
+    action: 'a new action',
+  }));
+  analyticsEvent.fire();
+  analyticsEvent.update(payload => ({
+    ...payload,
+    newValue: 'a new value again',
+    action: 'a new action again',
+  }));
+
+  expect(analyticsEvent).toEqual({
+    ...analyticsEvent,
+    payload: {
+      action: 'a new action',
+      newValue: 'a new value',
+    }
+  });
+});

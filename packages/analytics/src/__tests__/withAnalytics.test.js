@@ -175,7 +175,6 @@ describe('map event to props', () => {
     wrapper.find(Button).simulate('click');
     wrapper.find(Button).simulate('click');
     const analyticsEventPayloadsAreUpdated = analyticsEvents.reduce((prev, analyticsEvent, index, events) => prev && (index === 0 || analyticsEvent.payload.time > events[index - 1].payload.time), true);
-
     expect(analyticsEventPayloadsAreUpdated).toBeTruthy();
   });
 });
