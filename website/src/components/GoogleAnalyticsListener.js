@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import ReactGA from 'react-ga';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 let mounted = 0;
 

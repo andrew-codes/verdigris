@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import styled, { injectGlobal } from 'styled-components';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import Home from '../pages/Home';
@@ -38,7 +38,7 @@ class RouteBoundary extends Component {
   }
 
   render() {
-    let { hasError } = this.state;
+    const { hasError } = this.state;
     if (hasError) {
       return <PageNotFound />;
     }
