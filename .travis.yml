@@ -1,0 +1,21 @@
+language: node_js
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+jobs:
+  include:
+    - # require the branch name to be master
+      if: branch = master
+      env: NODE_ENV=test
+      script:
+        - yarn lint
+        - yarn test
+  include:
+    - # require branch is PR
+      if: type IN (push, pull_request)
+      env: NODE_ENV=test
+      script:
+        - yarn lint
+        - yarn test:changed
