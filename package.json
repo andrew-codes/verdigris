@@ -40,12 +40,11 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
-    "html-webpack-plugin": "^3.2.0",
     "jest": "^22.4.3",
     "jest-when": "^1.1.0",
     "lerna": "^2.11.0",
     "prettier": "^1.12.1",
     "resolve-from": "^4.0.0",
-    "uglifyjs-webpack-plugin": "^1.2.5"
+    "yallist": "^3.0.2"
   }
 }

@@ -1,0 +1,27 @@
+language: node_js
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+jobs:
+  include:
+    - # require the branch name to be master
+      if: branch = master
+      env: NODE_ENV=test
+      before_install:
+        - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
+        - export PATH="$HOME/.yarn/bin:$PATH"
+      script:
+        - yarn lint
+        - yarn test
+  include:
+    - # require branch is PR
+      if: type IN (pull_request)
+      env: NODE_ENV=test
+      before_install:
+        - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
+        - export PATH="$HOME/.yarn/bin:$PATH"
+      script:
+        - yarn lint
+        - yarn test:changed
