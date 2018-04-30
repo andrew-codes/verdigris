@@ -43,9 +43,6 @@ function ContextConsumer(
   };
   return <button onClick={contextConsumerOnClick} />;
 };
-ContextConsumer.propTypes = {
-  onClick: PropTypes.func.isRequired,
-}
 ContextConsumer.contextTypes = {
   getAnalyticsEventHandlers: PropTypes.func.isRequired,
 };
