@@ -9,7 +9,6 @@ import * as PropTypes from 'prop-types';
 import Home from '../pages/Home';
 import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
 import PageNotFound from '../pages/PageNotFound';
-import { GOOGLE_ANALYTICS_ID } from '../constants';
 
 class GoogleAnalyticsListener extends Component {
   static propTypes = {
@@ -72,9 +71,12 @@ const AppContent = styled.div`
 `;
 
 export default function App() {
+  const {
+    gaId,
+  } = this.props;
   return (
     <BrowserRouter>
-      <GoogleAnalyticsListener gaId={GOOGLE_ANALYTICS_ID}>
+      <GoogleAnalyticsListener gaId={gaId}>
         <Route>
           <ScrollHandler />
         </Route>
