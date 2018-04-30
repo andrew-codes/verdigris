@@ -4,6 +4,7 @@ const {
   STEP_INDEX,
   STEPS,
 } = process.env;
+const { log } = console;
 
 const config = {
   testMatch: [`${__dirname}/**/__tests__/**/*.js`],
@@ -53,16 +54,16 @@ if (PARALLELIZE_TESTS) {
   const endIdx = startIdx + filesPerJob;
   config.testMatch = allTests.slice(startIdx, startIdx + filesPerJob);
 
-  console.log('Running jest tests in parallel.');
-  console.log(`Parallel step ${String(STEP_INDEX)} of ${String(STEPS)}`);
-  console.log('Total test files', allTests.length);
-  console.log(`Running files: ${startIdx}-${endIdx}`);
+  log('Running jest tests in parallel.');
+  log(`Parallel step ${String(STEP_INDEX)} of ${String(STEPS)}`);
+  log('Total test files', allTests.length);
+  log(`Running files: ${startIdx}-${endIdx}`);
 }
 
 if (config.testMatch.length === 0) {
   config.testMatch = ['DONT-RUN-ANYTHING'];
   if (process.stdout.isTTY) {
-    console.log('No packages were changed, so no tests should be run.');
+    log('No packages were changed, so no tests should be run.');
   }
 }
 
