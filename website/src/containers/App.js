@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 import styled from 'styled-components';
-import { AnalyticsContext, AnalyticsListener } from '@verdigris/analytics';
+import { AnalyticsListener } from '@verdigris/analytics';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import * as PropTypes from 'prop-types';
@@ -11,11 +11,7 @@ import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
 import PageNotFound from '../pages/PageNotFound';
 import { GOOGLE_ANALYTICS_ID } from '../constants';
 
-const handleAnalyticsEvent = event => {
-  ReactGA.pageview(event.payload.location.pathname);
-}
-
-class SiteAnalytics extends Component {
+class GoogleAnalyticsListener extends Component {
   static propTypes = {
     gaId: PropTypes.string,
   };
@@ -28,12 +24,16 @@ class SiteAnalytics extends Component {
   render() {
     const { children } = this.props;
     return (
-      <AnalyticsListener channel="navigate" onEvent={handleAnalyticsEvent}>
+      <AnalyticsListener channel="navigate" onEvent={this.handleAnalyticsEvent}>
         <RouteAnalyticsListener>
           {children}
         </RouteAnalyticsListener>
       </AnalyticsListener>
     );
+  }
+
+  handleAnalyticsEvent = event => {
+    ReactGA.pageview(event.payload.location.pathname);
   }
 }
 
@@ -74,7 +74,7 @@ const AppContent = styled.div`
 export default function App() {
   return (
     <BrowserRouter>
-      <SiteAnalytics gaId={GOOGLE_ANALYTICS_ID}>
+      <GoogleAnalyticsListener gaId={GOOGLE_ANALYTICS_ID}>
         <Route>
           <ScrollHandler />
         </Route>
@@ -91,7 +91,7 @@ export default function App() {
             </RouteBoundary>
           </Route>
         </Switch>
-      </SiteAnalytics>
+      </GoogleAnalyticsListener>
     </BrowserRouter>
   );
 }
