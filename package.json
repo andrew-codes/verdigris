@@ -14,6 +14,7 @@
     "test:changed:watch": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest --watch",
     "prestart": "yarn",
     "start": "cd website && yarn start && cd ../",
+    "build:website": "cd website && yarn build && cd ../",
     "new-component": "scripts/bin/new-component.sh"
   },
   "devDependencies": {
