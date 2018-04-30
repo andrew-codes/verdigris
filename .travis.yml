@@ -14,7 +14,7 @@ jobs:
         - yarn test
   include:
     - # require branch is PR
-      if: type IN (push, pull_request)
+      if: type IN (pull_request)
       env: NODE_ENV=test
       script:
         - yarn lint
