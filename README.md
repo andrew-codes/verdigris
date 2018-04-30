@@ -15,7 +15,7 @@ Please ensure you have the proper software installed.
 2. `yarn start` and navigate to [http://localhost:9000](http://localhost:9000)
 
 ## Other Topics
-- Tour of the code base (structure, conventions, and norms)
+- [Tour of the code base](./docs/tour-of-the-code-base.md) (structure, conventions, and norms)
 - Contributing
 - Publishing
 - [License](./LICENSE)
