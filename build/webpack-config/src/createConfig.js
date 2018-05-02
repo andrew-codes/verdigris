@@ -47,7 +47,7 @@ module.exports = (
       {
         test: /\.md$/,
         exclude: /node_modules/,
-        loader: require.resolve('raw-loader'),
+        loader: ['babel-loader', '@mdx-js/loader'],
       },
       {
         test: /\.js$/,

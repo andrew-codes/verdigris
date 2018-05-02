@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
-import styled from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 import { AnalyticsListener } from '@verdigris/analytics';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import * as PropTypes from 'prop-types';
 
+import AsyncRoute from '../components/AsyncRoute';
 import Home from '../pages/Home';
-import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
+import Nav from './Nav';
+import Page from '../components/Page';
 import PageNotFound from '../pages/PageNotFound';
+import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
 
 class GoogleAnalyticsListener extends Component {
   static propTypes = {
@@ -70,6 +73,12 @@ const AppContent = styled.div`
   flex: 1 1 auto;
 `;
 
+injectGlobal`
+body {
+  margin: 0px;
+  font-family: Roboto,Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+`;
 export default function App(props) {
   const {
     gaId,
@@ -84,11 +93,20 @@ export default function App(props) {
           <Route>
             <RouteBoundary>
               <AppContent>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/error" component={PageNotFound} />
-                  <Route component={PageNotFound} />
-                </Switch>
+                <Page nav={() => (
+                  <Switch>
+                    <Route path="/" component={Nav} />
+                  </Switch>
+                )}>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/packages/:packageName" component={AsyncRoute({
+                      loader: () => import('../../../packages/analytics/README.md')
+                    })} />
+                    <Route path="/error" component={PageNotFound} />
+                    <Route component={PageNotFound} />
+                  </Switch>
+                </Page>
               </AppContent>
             </RouteBoundary>
           </Route>
