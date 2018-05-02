@@ -37,5 +37,3 @@ Component packages all follow the same directory structure and general guideline
     ├── package.json
     └── README.md
 ```
-
-#### Component Declarations (Class versus Function)

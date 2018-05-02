@@ -16,6 +16,6 @@ Please ensure you have the proper software installed.
 
 ## Other Topics
 - [Tour of the code base](./docs/tour-of-the-code-base.md) (structure, conventions, and norms)
-- Contributing
-- Publishing
+- [Contributing](./docs/contributing.md)
+- [Publishing](./docs/publishing.md)
 - [License](./LICENSE)
