@@ -6,9 +6,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import * as PropTypes from 'prop-types';
 
-import AsyncRoute from '../components/AsyncRoute';
 import Home from '../pages/Home';
 import Nav from './Nav';
+import PackagePage from '../pages/PackagePage';
 import Page from '../components/Page';
 import PageNotFound from '../pages/PageNotFound';
 import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
@@ -79,6 +79,7 @@ body {
   font-family: Roboto,Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 `;
+
 export default function App(props) {
   const {
     gaId,
@@ -100,9 +101,7 @@ export default function App(props) {
                 )}>
                   <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/packages/:packageName" component={AsyncRoute({
-                      loader: () => import('../../../packages/analytics/README.md')
-                    })} />
+                    <Route path="/packages/:packageName" component={PackagePage} />
                     <Route path="/error" component={PageNotFound} />
                     <Route component={PageNotFound} />
                   </Switch>
