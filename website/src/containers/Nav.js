@@ -19,6 +19,9 @@ function Nav() {
           <Link to="/">Home</Link>
         </li>
         <li>
+          <Link to="/docs/tour-of-the-code-base">Tour of the Code base</Link>
+        </li>
+        <li>
           <Link to="/packages/analytics">Analytics</Link>
         </li>
       </ol>
