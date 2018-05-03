@@ -47,7 +47,7 @@ module.exports = (
       {
         test: /\.md$/,
         exclude: /node_modules/,
-        loader: require.resolve('raw-loader'),
+        loader: ['babel-loader', '@mdx-js/loader'],
       },
       {
         test: /\.js$/,
@@ -78,10 +78,6 @@ function plugins(
   },
 ) {
   const plugins = [
-    new webpack.NamedChunksPlugin(
-      chunk =>
-        chunk.name && path.isAbsolute(chunk.name) ? chunk.id : chunk.name,
-    ),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(cwd, 'public/index.html.ejs'),
