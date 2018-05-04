@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as PropTypes from 'prop-types';
-import { docs } from '../siteData';
+import { docs, pkgs } from '../siteData';
 
 export default Nav;
 
@@ -51,7 +51,10 @@ function Nav({ location: { pathname } }) {
           <nav>
             <NavigationList>
               {docs().map(({ id, title }) => (
-                <NavigationListItem isSelected={`/docs/${id}` === pathname}>
+                <NavigationListItem
+                  isSelected={`/docs/${id}` === pathname}
+                  key={id}
+                >
                   <Link to={`/docs/${id}`}>{title}</Link>
                 </NavigationListItem>
               ))}
@@ -62,11 +65,14 @@ function Nav({ location: { pathname } }) {
           <NavigationSectionHeading>Components</NavigationSectionHeading>
           <nav>
             <NavigationList>
-              <NavigationListItem
-                isSelected={`/packages/analytics` === pathname}
-              >
-                <Link to="/packages/analytics">Analytics</Link>
-              </NavigationListItem>
+              {pkgs().map(({ id, title }) => (
+                <NavigationListItem
+                  isSelected={`/packages/${id}` === pathname}
+                  key={id}
+                >
+                  <Link to={`/packages/${id}`}>{title}</Link>
+                </NavigationListItem>
+              ))}
             </NavigationList>
           </nav>
         </div>
