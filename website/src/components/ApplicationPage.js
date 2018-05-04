@@ -6,14 +6,14 @@ import * as PropTypes from 'prop-types';
 export default Page;
 
 const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-min-height: 100%;
-width: 100%;
-`
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+`;
 const NavAndPageContent = styled.div`
-display: flex;
-flex: 1 1 auto;
+  display: flex;
+  flex: 1 1 auto;
 `;
 const Navigation = styled.div`
   position: relative;
@@ -26,17 +26,12 @@ const Content = styled.div`
   min-width: 0;
 `;
 function Page(props) {
-  const {
-    children,
-    nav,
-  } = props;
+  const { children, nav } = props;
 
   return (
     <Wrapper>
       <NavAndPageContent>
-        <Navigation>
-          {nav()}
-        </Navigation>
+        <Navigation>{nav()}</Navigation>
         <Content>{children}</Content>
       </NavAndPageContent>
     </Wrapper>
@@ -48,4 +43,4 @@ Page.propTypes = {
 };
 Page.defaultProps = {
   nav: noop,
-}
+};

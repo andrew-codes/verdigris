@@ -13,7 +13,7 @@ export default function Document({ match: { params: { docId } } }) {
   }
 
   const Content = Loadable({
-    loader: () => import(`../../../docs/tour-of-the-code-base.md`),
+    loader: () => import(`../../../docs/${docId}.md`),
     loading: Loading,
     render(mdContent) {
       if (mdContent) {

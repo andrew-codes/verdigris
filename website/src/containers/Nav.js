@@ -1,30 +1,81 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import * as PropTypes from 'prop-types';
+import { docs } from '../siteData';
 
 export default Nav;
 
 const Navigation = styled.aside`
-background: lightgray;
-box-sizing: border-box;
-height: 100vh;
-padding: 1.5rem;
-width: 300px;
+  background: #dde2e9;
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  width: 300px;
 `;
-function Nav() {
+const SiteNavigation = styled.div`
+  background: #dde2e9;
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+`;
+const NavigationSectionHeading = styled.div`
+  color: #474c54;
+  font-weight: 600;
+`;
+const NavigationList = styled.ol`
+  list-style: none;
+  padding: 0;
+`;
+const NavigationListItem = styled.li`
+  background: ${p => (p.isSelected ? 'rgba(255, 255, 255, 0.5)' : 'none')};
+  border-radius: 3px;
+  a:active,
+  a:link,
+  a:visited {
+    color: #474c54;
+    display: block;
+    padding: 0.65rem;
+    text-decoration: none;
+  }
+  a:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+`;
+function Nav({ location: { pathname } }) {
   return (
     <Navigation>
-      <ol>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/docs/tour-of-the-code-base">Tour of the Code base</Link>
-        </li>
-        <li>
-          <Link to="/packages/analytics">Analytics</Link>
-        </li>
-      </ol>
+      <SiteNavigation>
+        <div>
+          <NavigationSectionHeading>Documentation</NavigationSectionHeading>
+          <nav>
+            <NavigationList>
+              {docs().map(({ id, title }) => (
+                <NavigationListItem isSelected={`/docs/${id}` === pathname}>
+                  <Link to={`/docs/${id}`}>{title}</Link>
+                </NavigationListItem>
+              ))}
+            </NavigationList>
+          </nav>
+        </div>
+        <div>
+          <NavigationSectionHeading>Components</NavigationSectionHeading>
+          <nav>
+            <NavigationList>
+              <NavigationListItem
+                isSelected={`/packages/analytics` === pathname}
+              >
+                <Link to="/packages/analytics">Analytics</Link>
+              </NavigationListItem>
+            </NavigationList>
+          </nav>
+        </div>
+      </SiteNavigation>
     </Navigation>
   );
 }
+Nav.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+};
