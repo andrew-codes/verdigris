@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`a code string without a language is rendered with a generic language formatting 1`] = `
+<SyntaxHighlighter
+  lineNumberStyle={Object {}}
+  renderer={[Function]}
+  startingLineNumber={1}
+  wrapLines={true}
+>
+  ls -a
+</SyntaxHighlighter>
+`;
+
+exports[`can apply a style object to each line 1`] = `
+<SyntaxHighlighter
+  lineNumberStyle={
+    Object {
+      "color": "blue",
+    }
+  }
+  renderer={[Function]}
+  startingLineNumber={1}
+  wrapLines={true}
+>
+  ls -a
+</SyntaxHighlighter>
+`;
+
+exports[`can apply styles via a callback for each line 1`] = `
+<SyntaxHighlighter
+  lineNumberStyle={[Function]}
+  startingLineNumber={1}
+  wrapLines={true}
+>
+  ls -a
+</SyntaxHighlighter>
+`;
+
+exports[`component can be configured to render a specific language 1`] = `
+<SyntaxHighlighter
+  language="bash"
+  lineNumberStyle={Object {}}
+  renderer={[Function]}
+  startingLineNumber={1}
+  wrapLines={true}
+>
+  ls -a
+</SyntaxHighlighter>
+`;
+
+exports[`defaults to starting line number at 1 1`] = `
+<SyntaxHighlighter
+  language="bash"
+  lineNumberStyle={Object {}}
+  renderer={[Function]}
+  showLineNumbers={true}
+  startingLineNumber={1}
+  wrapLines={true}
+>
+  ls -a
+</SyntaxHighlighter>
+`;
+
+exports[`optionally render line numbers 1`] = `
+<SyntaxHighlighter
+  language="bash"
+  lineNumberStyle={Object {}}
+  renderer={[Function]}
+  showLineNumbers={true}
+  startingLineNumber={1}
+  wrapLines={true}
+>
+  ls -a
+</SyntaxHighlighter>
+`;
+
+exports[`optionally start at line numbers at a given number 1`] = `
+<SyntaxHighlighter
+  language="bash"
+  lineNumberStyle={Object {}}
+  renderer={[Function]}
+  showLineNumbers={true}
+  startingLineNumber={10}
+  wrapLines={true}
+>
+  ls -a
+</SyntaxHighlighter>
+`;
