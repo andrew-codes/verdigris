@@ -4,7 +4,7 @@
   "description": "Component for rendering code blocks",
   "license": "MIT",
   "main": "./dist/index.js",
-  "verdigris:src": "./index.js",
+  "verdigris:src": "./src/index.js",
   "verdigris": {
     "name": "Code"
   },
