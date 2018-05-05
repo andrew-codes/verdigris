@@ -22,7 +22,7 @@ echo "{
   \"description\": \"$description\",
   \"license\": \"MIT\",
   \"main\": \"./dist/index.js\",
-  \"verdigris:src\": \"./index.js\",
+  \"verdigris:src\": \"./src/index.js\",
   \"verdigris\": {
     \"name\": \"$componentName\"
   }
