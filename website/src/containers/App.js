@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
-import styled, { injectGlobal } from 'styled-components';
+import styled, { injectGlobal } from 'react-emotion';
 import { AnalyticsListener } from '@verdigris/analytics';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
