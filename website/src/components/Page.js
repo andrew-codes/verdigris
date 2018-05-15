@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'react-emotion';
 
 const containerWidth = {
   small: '480px',
@@ -6,7 +6,7 @@ const containerWidth = {
   large: '980px',
 };
 
-const Page = styled.main`
+const Page = styled('main') `
   max-width: ${p =>
     containerWidth[p.width] ? containerWidth[p.width] : containerWidth.medium};
   margin: 2rem auto;

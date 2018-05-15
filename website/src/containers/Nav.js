@@ -1,33 +1,33 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
 import * as PropTypes from 'prop-types';
 import { docs, pkgs } from '../siteData';
 
 export default Nav;
 
-const Navigation = styled.aside`
+const Navigation = styled('aside') `
   background: #dde2e9;
   box-sizing: border-box;
   display: flex;
   height: 100vh;
   width: 300px;
 `;
-const SiteNavigation = styled.div`
+const SiteNavigation = styled('div') `
   background: #dde2e9;
   box-sizing: border-box;
   padding: 1rem;
   width: 100%;
 `;
-const NavigationSectionHeading = styled.div`
+const NavigationSectionHeading = styled('div') `
   color: #474c54;
   font-weight: 600;
 `;
-const NavigationList = styled.ol`
+const NavigationList = styled('ol') `
   list-style: none;
   padding: 0;
 `;
-const NavigationListItem = styled.li`
+const NavigationListItem = styled('li') `
   background: ${p => (p.isSelected ? 'rgba(255, 255, 255, 0.5)' : 'none')};
   border-radius: 3px;
   a:active,

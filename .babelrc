@@ -7,12 +7,6 @@
     "dynamic-import-webpack",
     "transform-class-properties",
     "transform-object-rest-spread",
-    [
-      "babel-plugin-styled-components",
-      {
-        "minify": false,
-        "uglifyPure": false
-      }
-    ]
+    "babel-plugin-emotion"
   ]
 }

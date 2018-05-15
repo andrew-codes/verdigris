@@ -1,25 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import { noop } from 'lodash';
 import * as PropTypes from 'prop-types';
 
 export default Page;
 
-const Wrapper = styled.div`
+const Wrapper = styled('div') `
   display: flex;
   flex-direction: column;
   min-height: 100%;
   width: 100%;
 `;
-const NavAndPageContent = styled.div`
+const NavAndPageContent = styled('div') `
   display: flex;
   flex: 1 1 auto;
 `;
-const Navigation = styled.div`
+const Navigation = styled('div') `
   position: relative;
   z-index: 2;
 `;
-const Content = styled.div`
+const Content = styled('div') `
   flex: 1 1 auto;
   position: relative;
   z-index: 1;
