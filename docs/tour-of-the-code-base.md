@@ -27,7 +27,7 @@ Component packages all follow the same directory structure and general guideline
 
 #### Component Package Directory Structure
 
-```
+```bash
 .
 └── packageName
     ├── src
