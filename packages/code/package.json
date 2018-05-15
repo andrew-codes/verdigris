@@ -1,0 +1,22 @@
+{
+  "name": "@verdigris/code",
+  "version": "0.0.0",
+  "description": "Component for rendering code blocks",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "verdigris": {
+    "name": "Code"
+  },
+  "peerDependencies": {
+    "react": "^16.3.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react-syntax-highlighter": "^7.0.4",
+    "react-syntax-highlighter-virtualized-renderer": "^1.1.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0"
+  }
+}

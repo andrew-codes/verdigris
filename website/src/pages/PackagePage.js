@@ -2,6 +2,7 @@ import Loadable from 'react-loadable';
 import React from 'react';
 
 import Loading from '../components/Loading';
+import Page from '../components/Page';
 
 const getReadMe = (packageName) => Loadable({
   loader: () => {
@@ -13,5 +14,9 @@ const getReadMe = (packageName) => Loadable({
 
 export default ({ match }) => {
   const ReadMe = getReadMe(match.params.packageName);
-  return <ReadMe />;
+  return (
+    <Page>
+      <ReadMe />
+    </Page>
+  );
 };

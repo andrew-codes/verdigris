@@ -6,10 +6,11 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import * as PropTypes from 'prop-types';
 
+import Document from '../pages/Document';
 import Home from '../pages/Home';
 import Nav from './Nav';
 import PackagePage from '../pages/PackagePage';
-import Page from '../components/Page';
+import ApplicationPage from '../components/ApplicationPage';
 import PageNotFound from '../pages/PageNotFound';
 import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
 
@@ -94,18 +95,19 @@ export default function App(props) {
           <Route>
             <RouteBoundary>
               <AppContent>
-                <Page nav={() => (
+                <ApplicationPage nav={() => (
                   <Switch>
                     <Route path="/" component={Nav} />
                   </Switch>
                 )}>
                   <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route path="/docs/:docId" component={Document} />
                     <Route path="/packages/:packageName" component={PackagePage} />
                     <Route path="/error" component={PageNotFound} />
                     <Route component={PageNotFound} />
                   </Switch>
-                </Page>
+                </ApplicationPage>
               </AppContent>
             </RouteBoundary>
           </Route>

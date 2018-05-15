@@ -12,6 +12,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^0.8.1",
     "@verdigris/analytics": "^0.0.0",
+    "@verdigris/code": "^0.0.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
