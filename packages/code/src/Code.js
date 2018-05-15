@@ -34,7 +34,7 @@ export default function Code({
 Code.propTypes = {
   children: PropTypes.string,
   height: PropTypes.string,
-  lineNumberStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  lineNumberStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   language: PropTypes.oneOf(supportedLanguages),
   shouldShowLineNumbers: PropTypes.bool,
   startingLineNumber: PropTypes.number,
