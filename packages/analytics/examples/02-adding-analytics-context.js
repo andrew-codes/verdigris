@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
-import { AnalyticsContext, AnalyticsListener, withAnalytics } from '../src/index';
+import {
+  AnalyticsContext,
+  AnalyticsListener,
+  withAnalytics
+} from '../src/index';
 
 class SaveButtonBase extends Component {
   static propTypes = {
