@@ -10,6 +10,9 @@ const Wrapper = styled('div') `
   box-sizing: border-box;
   display: flex;
 `;
+const BreadcrumbNavigation = styled('div') `
+  display: block;
+`;
 const Title = styled('h1') `
   display: inline-block;
 `;
@@ -73,6 +76,9 @@ export default ({ match }) => {
 
   return (
     <Page width="xlarge">
+      <BreadcrumbNavigation>
+        <Link to={`/packages/${match.params.packageName}`}>back to docs</Link>
+      </BreadcrumbNavigation>
       <Title>{title}</Title>
       <SubTitle>examples</SubTitle>
       <Wrapper>
