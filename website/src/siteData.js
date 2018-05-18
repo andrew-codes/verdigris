@@ -1,5 +1,7 @@
 import AnalyticsExample01 from '@verdigris/analytics/examples/01-create-and-fire-analytics-events';
 import AnalyticsExample01Raw from '!raw-loader!@verdigris/analytics/examples/01-create-and-fire-analytics-events';
+import AnalyticsExample02 from '@verdigris/analytics/examples/02-adding-analytics-context';
+import AnalyticsExample02Raw from '!raw-loader!@verdigris/analytics/examples/02-adding-analytics-context';
 
 export const docs = () => [
   { id: 'contributing', title: 'Contributing' },
@@ -18,7 +20,14 @@ const examples = [
     Component: AnalyticsExample01,
     pkgId: 'analytics',
     title: 'creating and firing analytics events',
-  }
+  },
+  {
+    id: 2,
+    code: AnalyticsExample02Raw.replace(/'\.\.\/src\/index/, '@verdigris/analytics'),
+    Component: AnalyticsExample02,
+    pkgId: 'analytics',
+    title: 'adding analytics context',
+  },
 ];
 
 export const getExamples = (pkgId, exampleId = 1) => {
