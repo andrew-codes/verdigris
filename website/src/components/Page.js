@@ -4,9 +4,12 @@ const containerWidth = {
   small: '480px',
   medium: '640px',
   large: '980px',
+  xlarge: '1660px'
 };
 
 const Page = styled('main') `
+  box-sizing: border-box;
+  max-height: 100vh;
   max-width: ${p =>
     containerWidth[p.width] ? containerWidth[p.width] : containerWidth.medium};
   margin: 2rem auto;

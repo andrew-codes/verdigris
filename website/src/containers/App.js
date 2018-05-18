@@ -11,6 +11,7 @@ import Home from '../pages/Home';
 import Nav from './Nav';
 import PackagePage from '../pages/PackagePage';
 import ApplicationPage from '../components/ApplicationPage';
+import PackageExamples from '../pages/PackageExamples';
 import PageNotFound from '../pages/PageNotFound';
 import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
 
@@ -103,7 +104,8 @@ export default function App(props) {
                   <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/docs/:docId" component={Document} />
-                    <Route path="/packages/:packageName" component={PackagePage} />
+                    <Route path="/packages/:packageName/examples/:exampleId/:exampleType" component={PackageExamples} />
+                    <Route path="/packages/:packageName" component={PackagePage} exact />
                     <Route path="/error" component={PageNotFound} />
                     <Route component={PageNotFound} />
                   </Switch>
