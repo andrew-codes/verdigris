@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import { AnalyticsListener, withAnalytics } from '../src/index';
 
-class SaveButton extends Component {
+class SaveButtonBase extends Component {
   static propTypes = {
     createAnalyticsEvent: PropTypes.func,
   };
@@ -19,9 +19,9 @@ class SaveButton extends Component {
   }
 }
 
-const SaveButtonWithAnalytics = withAnalytics()(SaveButton);
+const SaveButton = withAnalytics()(SaveButtonBase);
 
-export default class LoginForm extends Component {
+export default class App extends Component {
   handleAnalyticsEvent = analyticsEvt => {
     console.log(analyticsEvt.context, analyticsEvt.payload);
   }
@@ -29,7 +29,7 @@ export default class LoginForm extends Component {
   render() {
     return (
       <AnalyticsListener channel="Workitem" onEvent={this.handleAnalyticsEvent}>
-        <SaveButtonWithAnalytics />
+        <SaveButton />
       </AnalyticsListener>
     )
   }
