@@ -2,34 +2,34 @@ import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import { AnalyticsListener, withAnalytics } from '../src/index';
 
-class LoginButton extends Component {
+class SaveButton extends Component {
   static propTypes = {
     createAnalyticsEvent: PropTypes.func,
   };
 
   handleClick = () => {
-    const evt = this.props.createAnalyticsEvent({ action: 'LoginButtonClick' });
-    evt.fire('Login');
+    const evt = this.props.createAnalyticsEvent({ action: 'Save' });
+    evt.fire('Workitem');
   }
 
   render() {
     return (
-      <button onClick={this.handleClick}>Login</button>
+      <button onClick={this.handleClick}>Save</button>
     );
   }
 }
 
-const LoginButtonWithAnalytics = withAnalytics()(LoginButton);
+const SaveButtonWithAnalytics = withAnalytics()(SaveButton);
 
 export default class LoginForm extends Component {
   handleAnalyticsEvent = analyticsEvt => {
-    console.log(analyticsEvt);
+    console.log(analyticsEvt.context, analyticsEvt.payload);
   }
 
   render() {
     return (
-      <AnalyticsListener channel="Login" onEvent={this.handleAnalyticsEvent}>
-        <LoginButtonWithAnalytics />
+      <AnalyticsListener channel="Workitem" onEvent={this.handleAnalyticsEvent}>
+        <SaveButtonWithAnalytics />
       </AnalyticsListener>
     )
   }
