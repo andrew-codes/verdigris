@@ -60,11 +60,14 @@ const ExampleTabs = styled('div') ``
   ;
 
 export default ({ match }) => {
+  const {
+    exampleType,
+    packageName,
+  } = match.params;
   const packages = pkgs();
-  const pkgId = match.params.packageName;
-  const { title } = packages.find(pkg => pkg.id === pkgId);
+  const { title } = packages.find(pkg => pkg.id === packageName);
   const currentExampleId = +match.params.exampleId;
-  const { example, examples } = getExamples(pkgId, currentExampleId);
+  const { example, examples } = getExamples(packageName, currentExampleId);
 
   const ExampleComponent = example.Component;
 
@@ -77,7 +80,7 @@ export default ({ match }) => {
           <NavigationList>
             {examples.map(example => (
               <NavigationListItem isSelected={example.isSelected} key={example.id}>
-                <Link to={`/packages/${pkgId}/examples/${example.id}/component`}>{example.title}</Link>
+                <Link to={`/packages/${packageName}/examples/${example.id}/${exampleType}`}>{example.title}</Link>
               </NavigationListItem>
             ))}
           </NavigationList>
@@ -86,10 +89,10 @@ export default ({ match }) => {
           <ExampleTabs>
             <NavigationList horizontal>
               <NavigationListItem isSelected={match.params.exampleType === 'component'}>
-                <Link to={`/packages/${pkgId}/examples/${example.id}/component`}>component</Link>
+                <Link to={`/packages/${packageName}/examples/${example.id}/component`}>component</Link>
               </NavigationListItem>
               <NavigationListItem isSelected={match.params.exampleType === 'code'}>
-                <Link to={`/packages/${pkgId}/examples/${example.id}/code`}>code</Link>
+                <Link to={`/packages/${packageName}/examples/${example.id}/code`}>code</Link>
               </NavigationListItem>
             </NavigationList>
             <Route path="/packages/:packageName/examples/:exampleId/component" component={() => (
