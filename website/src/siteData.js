@@ -2,6 +2,8 @@ import AnalyticsExample01 from '@verdigris/analytics/examples/01-create-and-fire
 import AnalyticsExample01Raw from '!raw-loader!@verdigris/analytics/examples/01-create-and-fire-analytics-events';
 import AnalyticsExample02 from '@verdigris/analytics/examples/02-adding-analytics-context';
 import AnalyticsExample02Raw from '!raw-loader!@verdigris/analytics/examples/02-adding-analytics-context';
+import AnalyticsExample03 from '@verdigris/analytics/examples/03-passing-events-in-callbacks';
+import AnalyticsExample03Raw from '!raw-loader!@verdigris/analytics/examples/03-passing-events-in-callbacks';
 
 export const docs = () => [
   { id: 'contributing', title: 'Contributing' },
@@ -27,6 +29,13 @@ const examples = [
     Component: AnalyticsExample02,
     pkgId: 'analytics',
     title: 'adding analytics context',
+  },
+  {
+    id: 3,
+    code: AnalyticsExample03Raw.replace(/'\.\.\/src\/index/, '@verdigris/analytics'),
+    Component: AnalyticsExample03,
+    pkgId: 'analytics',
+    title: 'passing events in callbacks',
   },
 ];
 
