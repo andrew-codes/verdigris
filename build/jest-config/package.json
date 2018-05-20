@@ -4,6 +4,10 @@
   "version": "0.0.0",
   "description": "Scripts and configuration for running tests in Verdigris",
   "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",

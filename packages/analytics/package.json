@@ -5,6 +5,10 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "verdigris": {
     "name": "Analytics"
   },
@@ -15,6 +19,7 @@
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
+    "@verdigris/docs": "^0.0.0",
     "enzyme": "^3.3.0",
     "lodash": "^4.17.10"
   }

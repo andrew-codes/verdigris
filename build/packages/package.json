@@ -4,6 +4,10 @@
   "version": "0.0.0",
   "description": "Collection of scripts to get information about component packages within Verdigris",
   "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "lerna-get-packages": "^1.0.0"
   }
