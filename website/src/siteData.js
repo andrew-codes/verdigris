@@ -4,6 +4,8 @@ import AnalyticsExample02 from '@verdigris/analytics/examples/02-adding-analytic
 import AnalyticsExample02Raw from '!raw-loader!@verdigris/analytics/examples/02-adding-analytics-context';
 import AnalyticsExample03 from '@verdigris/analytics/examples/03-passing-events-in-callbacks';
 import AnalyticsExample03Raw from '!raw-loader!@verdigris/analytics/examples/03-passing-events-in-callbacks';
+import AnalyticsExample04 from '@verdigris/analytics/examples/04-updating-events';
+import AnalyticsExample04Raw from '!raw-loader!@verdigris/analytics/examples/04-updating-events';
 
 export const docs = () => [
   { id: 'contributing', title: 'Contributing' },
@@ -18,26 +20,37 @@ export const pkgs = () => [
 const examples = [
   {
     id: 1,
-    code: AnalyticsExample01Raw.replace(/'\.\.\/src\/index/, '@verdigris/analytics'),
+    code: AnalyticsExample01Raw,
     Component: AnalyticsExample01,
     pkgId: 'analytics',
     title: 'creating and firing analytics events',
   },
   {
     id: 2,
-    code: AnalyticsExample02Raw.replace(/'\.\.\/src\/index/, '@verdigris/analytics'),
+    code: AnalyticsExample02Raw,
     Component: AnalyticsExample02,
     pkgId: 'analytics',
     title: 'adding analytics context',
   },
   {
     id: 3,
-    code: AnalyticsExample03Raw.replace(/'\.\.\/src\/index/, '@verdigris/analytics'),
+    code: AnalyticsExample03Raw,
     Component: AnalyticsExample03,
     pkgId: 'analytics',
     title: 'passing events in callbacks',
   },
-];
+  {
+    id: 4,
+    code: AnalyticsExample04Raw,
+    Component: AnalyticsExample04,
+    pkgId: 'analytics',
+    title: 'updating events',
+  },
+]
+  .map(example => ({
+    ...example,
+    code: example.code.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${example.pkgId}$';`),
+  }));
 
 export const getExamples = (pkgId, exampleId = 1) => {
   const pkgExamples = examples
