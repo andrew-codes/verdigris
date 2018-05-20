@@ -5,6 +5,10 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "verdigris": {
     "name": "Code"
   },
@@ -17,6 +21,7 @@
     "react-syntax-highlighter-virtualized-renderer": "^1.1.0"
   },
   "devDependencies": {
+    "@verdigris/docs": "^0.0.0",
     "enzyme": "^3.3.0"
   }
 }

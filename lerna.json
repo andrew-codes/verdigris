@@ -1,7 +1,7 @@
 {
   "lerna": "2.11.0",
   "npmClient": "yarn",
-  "hoist": true,
+  "useWorkspaces": true,
   "packages": [
     "build/*",
     "packages/*",

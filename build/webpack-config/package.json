@@ -4,6 +4,11 @@
   "description": "Webpack configuration for running dev server and building Verdigris website.",
   "version": "0.0.0",
   "license": "MIT",
+  "files": [
+    "bin",
+    "dist",
+    "src"
+  ],
   "bin": {
     "webpack-dev": "bin/dev.js"
   },

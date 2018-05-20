@@ -10,25 +10,21 @@ class SaveButtonBase extends Component {
     createAnalyticsEvent: PropTypes.func,
   };
 
-  handleClick = () => {
-    const evt = this.props.createAnalyticsEvent({ action: 'Save' });
-    evt.fire('Workitem');
-  }
-
   render() {
     return (
       <button onClick={this.handleClick}>Save</button>
     );
+  }
+
+  handleClick = () => {
+    const analyticsEvt = this.props.createAnalyticsEvent({ action: 'Save' });
+    analyticsEvt.fire('Workitem');
   }
 }
 
 const SaveButton = withAnalytics()(SaveButtonBase);
 
 export default class App extends Component {
-  handleAnalyticsEvent = analyticsEvt => {
-    console.log(analyticsEvt.context, analyticsEvt.payload);
-  }
-
   render() {
     return (
       <AnalyticsListener channel="Workitem" onEvent={this.handleAnalyticsEvent}>
@@ -36,4 +32,9 @@ export default class App extends Component {
       </AnalyticsListener>
     )
   }
+
+  handleAnalyticsEvent = analyticsEvt => {
+    console.log(analyticsEvt.context, analyticsEvt.payload);
+  }
+
 }

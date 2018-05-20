@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import {
-  AnalyticsContext,
   AnalyticsListener,
   withAnalytics
 } from '../src/index';
@@ -17,29 +16,47 @@ class SaveButtonBase extends Component {
     );
   }
 
-  handleClick = () => {
+  handleClick = evt => {
     const analyticsEvt = this.props.createAnalyticsEvent({ action: 'Save' });
-    analyticsEvt.fire('Workitem');
+    this.props.onClick(evt, analyticsEvt);
   }
 }
 
+
 const SaveButton = withAnalytics()(SaveButtonBase);
+
+const WorkitemForm = () => {
+  const handleClick = (evt, analyticsEvt) => {
+    analyticsEvt.update({
+      updatedViaValue: true,
+    });
+    analyticsEvt.update(value => ({
+      ...value,
+      updatedViaFunc: true,
+    }));
+    analyticsEvt.fire('Workitem');
+    analyticsEvt.update({
+      cannotUpdateAfterFiringEvent: 'warning message in console.',
+    });
+  };
+
+  return (
+    <div>
+      <SaveButton onClick={handleClick} />
+    </div>
+  );
+}
 
 export default class App extends Component {
   render() {
     return (
       <AnalyticsListener channel="Workitem" onEvent={this.handleAnalyticsEvent}>
-        <AnalyticsContext data={{ oid: 'Workitem:1' }}>
-          <AnalyticsContext data={{ room: 'Room:2' }}>
-            <SaveButton />
-          </AnalyticsContext>
-        </AnalyticsContext>
-      </AnalyticsListener >
+        <WorkitemForm />
+      </AnalyticsListener>
     )
   }
 
   handleAnalyticsEvent = analyticsEvt => {
     console.log(analyticsEvt.context, analyticsEvt.payload);
   }
-
 }
