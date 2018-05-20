@@ -13,10 +13,12 @@ export default function Code({
   shouldShowLineNumbers,
   startingLineNumber,
   style,
+  theme,
 }) {
   return (
     <SyntaxHighlighter
       customStyle={{
+        ...style,
         height,
       }}
       language={language}
@@ -24,7 +26,7 @@ export default function Code({
       renderer={height ? virtualizedRenderer() : undefined}
       showLineNumbers={shouldShowLineNumbers}
       startingLineNumber={startingLineNumber}
-      style={style}
+      style={theme}
       wrapLines
     >
       {children}
@@ -39,8 +41,10 @@ Code.propTypes = {
   shouldShowLineNumbers: PropTypes.bool,
   startingLineNumber: PropTypes.number,
   style: PropTypes.object,
+  theme: PropTypes.object,
 };
 Code.defaultProps = {
   startingLineNumber: 1,
-  style: ghcolors,
+  style: {},
+  theme: ghcolors,
 };
