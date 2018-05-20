@@ -9,6 +9,7 @@ import { getExamples, getPkgs } from '../siteData';
 const Wrapper = styled('div') `
   box-sizing: border-box;
   display: flex;
+  flex: 1;
 `;
 const BreadcrumbNavigation = styled('div') `
   display: block;
@@ -49,7 +50,9 @@ const NavigationListItem = styled('li') `
   }
 `;
 const ExampleWrapper = styled('div') `
+  display: flex;
   flex: 1;
+  flex-direction: column;
 `;
 const ExampleComponentWrapper = styled('div') `
   border: 1px solid gray;
@@ -59,8 +62,11 @@ const ExampleComponentWrapper = styled('div') `
 const ExampleCodeWrapper = styled('div') `
   flex: 1;
 `;
-const ExampleTabs = styled('div') ``
-  ;
+const ExampleTabs = styled('div') `
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
 
 export default ({ match }) => {
   const {
@@ -107,7 +113,7 @@ export default ({ match }) => {
               </ExampleComponentWrapper>
             )} />
             <Route path="/packages/:packageName/examples/:exampleId/code" component={() => (
-              <Code height="500px" language="javascript">{example.code}</Code>
+              <Code height="500px" language="javascript" style={{ flex: 1 }}>{example.code}</Code>
             )} />
           </ExampleTabs>
         </ExampleWrapper>

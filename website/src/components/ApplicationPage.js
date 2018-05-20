@@ -24,6 +24,8 @@ const Content = styled('div') `
   position: relative;
   z-index: 1;
   min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
 `;
 function Page(props) {
   const { children, nav } = props;
