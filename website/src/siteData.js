@@ -58,7 +58,7 @@ const examples = [
 ]
   .map(example => ({
     ...example,
-    code: example.code.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${example.pkgId}$';`),
+    code: example.code.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${example.pkgId}';`),
   }));
 
 export const getExamples = (pkgId, exampleId = 1) => {
