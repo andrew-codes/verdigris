@@ -11,8 +11,8 @@ class SaveButtonBase extends Component {
   };
 
   handleClick = () => {
-    const evt = this.props.createAnalyticsEvent({ action: 'Save' });
-    evt.fire('Workitem');
+    const analyticsEvt = this.props.createAnalyticsEvent({ action: 'Save' });
+    analyticsEvt.fire('Workitem');
   }
 
   render() {
