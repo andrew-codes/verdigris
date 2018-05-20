@@ -10,17 +10,18 @@ class SaveButtonBase extends Component {
     createAnalyticsEvent: PropTypes.func,
   };
 
-  handleClick = evt => {
-    const analyticsEvt = this.props.createAnalyticsEvent({ action: 'Save' });
-    this.props.onClick(evt, analyticsEvt);
-  }
-
   render() {
     return (
       <button onClick={this.handleClick}>Save</button>
     );
   }
+
+  handleClick = evt => {
+    const analyticsEvt = this.props.createAnalyticsEvent({ action: 'Save' });
+    this.props.onClick(evt, analyticsEvt);
+  }
 }
+
 
 const SaveButton = withAnalytics()(SaveButtonBase);
 
@@ -47,15 +48,15 @@ const WorkitemForm = () => {
 }
 
 export default class App extends Component {
-  handleAnalyticsEvent = analyticsEvt => {
-    console.log(analyticsEvt.context, analyticsEvt.payload);
-  }
-
   render() {
     return (
       <AnalyticsListener channel="Workitem" onEvent={this.handleAnalyticsEvent}>
         <WorkitemForm />
       </AnalyticsListener>
     )
+  }
+
+  handleAnalyticsEvent = analyticsEvt => {
+    console.log(analyticsEvt.context, analyticsEvt.payload);
   }
 }
