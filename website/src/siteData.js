@@ -1,3 +1,4 @@
+import analyticsPkg from '@verdigris/analytics/package.json';
 import AnalyticsExample01 from '@verdigris/analytics/examples/01-create-and-fire-analytics-events';
 import AnalyticsExample01Raw from '!raw-loader!@verdigris/analytics/examples/01-create-and-fire-analytics-events';
 import AnalyticsExample02 from '@verdigris/analytics/examples/02-adding-analytics-context';
@@ -9,14 +10,17 @@ import AnalyticsExample04Raw from '!raw-loader!@verdigris/analytics/examples/04-
 import AnalyticsExample05 from '@verdigris/analytics/examples/05-async-event-firing';
 import AnalyticsExample05Raw from '!raw-loader!@verdigris/analytics/examples/05-async-event-firing';
 
-export const docs = () => [
+import codePkg from '@verdigris/code/package.json';
+
+const docs = [
   { id: 'contributing', title: 'Contributing' },
   { id: 'tour-of-the-code-base', title: 'Tour of the Code Base' },
   { id: 'publishing', title: 'Publishing' },
 ];
-export const pkgs = () => [
-  { id: 'analytics', title: 'Analytics' },
-  { id: 'code', title: 'Code Highlighter' },
+
+const pkgs = [
+  { id: 'analytics', title: analyticsPkg.verdigris.name, description: analyticsPkg.description },
+  { id: 'code', title: codePkg.verdigris.name, description: codePkg.description },
 ];
 
 const examples = [
@@ -61,6 +65,8 @@ const examples = [
     code: example.code.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${example.pkgId}';`),
   }));
 
+export const getDocs = () => docs;
+export const getPkgs = () => pkgs;
 export const getExamples = (pkgId, exampleId = 1) => {
   const pkgExamples = examples
     .filter(example => example.pkgId === pkgId)
@@ -82,3 +88,4 @@ export const getExamples = (pkgId, exampleId = 1) => {
     examples: pkgExamples,
   };
 };
+export const getPackage = pkgId => pkgs.find(pkg => pkg.id === pkgId);

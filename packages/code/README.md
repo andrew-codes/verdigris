@@ -1,3 +1,3 @@
 # Code
 
-Component for rendering code blocks
+Component for rendering code blocks.

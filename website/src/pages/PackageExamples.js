@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import Page from '../components/Page';
-import { pkgs, getExamples } from '../siteData';
+import { getExamples, getPkgs } from '../siteData';
 
 const Wrapper = styled('div') `
   box-sizing: border-box;
@@ -67,7 +67,7 @@ export default ({ match }) => {
     exampleType,
     packageName,
   } = match.params;
-  const packages = pkgs();
+  const packages = getPkgs();
   const { title } = packages.find(pkg => pkg.id === packageName);
   const currentExampleId = +match.params.exampleId;
   const { example, examples } = getExamples(packageName, currentExampleId);

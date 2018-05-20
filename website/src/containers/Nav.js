@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
 import * as PropTypes from 'prop-types';
-import { docs, pkgs } from '../siteData';
+import { getDocs, getPkgs } from '../siteData';
 
 export default Nav;
 
@@ -50,7 +50,7 @@ function Nav({ location: { pathname } }) {
           <NavigationSectionHeading>Documentation</NavigationSectionHeading>
           <nav>
             <NavigationList>
-              {docs().map(({ id, title }) => (
+              {getDocs().map(({ id, title }) => (
                 <NavigationListItem
                   isSelected={`/docs/${id}` === pathname}
                   key={id}
@@ -65,7 +65,7 @@ function Nav({ location: { pathname } }) {
           <NavigationSectionHeading>Components</NavigationSectionHeading>
           <nav>
             <NavigationList>
-              {pkgs().map(({ id, title }) => (
+              {getPkgs().map(({ id, title }) => (
                 <NavigationListItem
                   isSelected={`/packages/${id}` === pathname}
                   key={id}
