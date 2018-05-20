@@ -5,14 +5,12 @@
   "author": "Andrew Smith <andrew@andrew.codes>",
   "license": "MIT",
   "scripts": {
-    "postinstall": "yarn bootstrap",
     "bootstrap": "yarn lerna bootstrap",
     "lint": "yarn lint:eslint",
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint **/*.js",
     "test": "yarn jest",
     "test:changed": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest",
     "test:changed:watch": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest --watch",
-    "prestart": "yarn",
     "start": "cd website && yarn start && cd ../",
     "build:website": "cd website && yarn build && cd ../",
     "new-component": "scripts/bin/new-component.sh"
@@ -21,6 +19,11 @@
     "node": "^8.5.0 || ^10.0.0",
     "yarn": "^1.3.2"
   },
+  "workspaces": [
+    "build/*",
+    "packages/*",
+    "website"
+  ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
