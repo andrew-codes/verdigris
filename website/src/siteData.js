@@ -6,6 +6,8 @@ import AnalyticsExample03 from '@verdigris/analytics/examples/03-passing-events-
 import AnalyticsExample03Raw from '!raw-loader!@verdigris/analytics/examples/03-passing-events-in-callbacks';
 import AnalyticsExample04 from '@verdigris/analytics/examples/04-updating-events';
 import AnalyticsExample04Raw from '!raw-loader!@verdigris/analytics/examples/04-updating-events';
+import AnalyticsExample05 from '@verdigris/analytics/examples/05-async-event-firing';
+import AnalyticsExample05Raw from '!raw-loader!@verdigris/analytics/examples/05-async-event-firing';
 
 export const docs = () => [
   { id: 'contributing', title: 'Contributing' },
@@ -45,6 +47,13 @@ const examples = [
     Component: AnalyticsExample04,
     pkgId: 'analytics',
     title: 'updating events',
+  },
+  {
+    id: 5,
+    code: AnalyticsExample05Raw,
+    Component: AnalyticsExample05,
+    pkgId: 'analytics',
+    title: 'async event firing',
   },
 ]
   .map(example => ({
