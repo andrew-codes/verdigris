@@ -34,29 +34,11 @@ const NavigationListItem = styled('li') `
     background: rgba(255, 255, 255, 0.5);
   }
 `;
-const getPackageLandingDoc = packageName => Loadable({
-  loader: () => import(`../../../packages/${packageName}/docs/intro`),
-  loading: Loading,
-  timeout: 3000,
-});
-const getUsagePage = packageName => Loadable({
-  loader: () => import(`../../../packages/${packageName}/docs/usage.md`),
-  loading: Loading,
-  timeout: 3000,
-});
-const getStylePage = packageName => Loadable({
-  loader: () => import(`../../../packages/${packageName}/docs/style.md`),
-  loading: Loading,
-  timeout: 3000,
-});
 
 export default ({ match, location: { pathname } }) => {
   const pkgId = match.params.packageName;
   const pkg = getPackage(pkgId);
   const { examples } = getExamples(pkgId);
-  const PackageLandingDoc = getPackageLandingDoc(pkgId);
-  const Usage = getUsagePage(pkgId);
-  const Style = getStylePage(pkgId);
 
   return (
     <Page width="xlarge">
@@ -65,12 +47,16 @@ export default ({ match, location: { pathname } }) => {
         <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}$`))}>
           <Link to={`/packages/${pkgId}`}>code</Link>
         </NavigationListItem>
-        <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/usage$`))}>
-          <Link to={`/packages/${pkgId}/usage`}>usage</Link>
-        </NavigationListItem>
-        <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/style$`))}>
-          <Link to={`/packages/${pkgId}/style`}>style</Link>
-        </NavigationListItem>
+        {pkg.usage && (
+          <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/usage$`))}>
+            <Link to={`/packages/${pkgId}/usage`}>usage</Link>
+          </NavigationListItem>
+        )}
+        {pkg.style && (
+          <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/style$`))}>
+            <Link to={`/packages/${pkgId}/style`}>style</Link>
+          </NavigationListItem>
+        )}
         {examples.length > 0 && (
           <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/examples/.*`))}>
             <Link to={`/packages/${pkgId}/examples/1/component`}>examples</Link>
@@ -79,10 +65,10 @@ export default ({ match, location: { pathname } }) => {
       </NavigationList>
 
       <Switch>
-        <Route exact path={`/packages/${pkgId}`} component={PackageLandingDoc} />
+        <Route exact path={`/packages/${pkgId}`} component={pkg.intro} />
         <Route path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
-        <Route exact path="/packages/:packageName/usage" component={Usage} />
-        <Route exact path="/packages/:packageName/style" component={Style} />
+        {pkg.usage && <Route exact path="/packages/:packageName/usage" component={pkg.usage} />}
+        {pkg.style && <Route exact path="/packages/:packageName/style" component={pkg.style} />}
         <Route path="/packages/:packageName/examples/:exampleId/:exampleType" component={PackageExamples} />
       </Switch>
     </Page >

@@ -1,4 +1,9 @@
 import analyticsPkg from '@verdigris/analytics/package.json';
+import AnalyticsIntro from '@verdigris/analytics/docs/intro';
+import AnalyticsUsage from '@verdigris/analytics/docs/usage.md';
+import CodeIntro from '@verdigris/code/docs/intro';
+import CodeStyle from '@verdigris/code/docs/style.md';
+import CodeUsage from '@verdigris/code/docs/usage.md';
 import AnalyticsExample01 from '@verdigris/analytics/examples/01-create-and-fire-analytics-events';
 import AnalyticsExample01Raw from '!raw-loader!@verdigris/analytics/examples/01-create-and-fire-analytics-events';
 import AnalyticsExample02 from '@verdigris/analytics/examples/02-adding-analytics-context';
@@ -36,13 +41,55 @@ const pkgs = [
     docs: [{
       id: '01-custom-components',
       title: 'Custom Components'
-    }]
+    }],
+    examples: [
+      {
+        id: 1,
+        code: AnalyticsExample01Raw,
+        Component: AnalyticsExample01,
+        title: 'creating and firing analytics events',
+      },
+      {
+        id: 2,
+        code: AnalyticsExample02Raw,
+        Component: AnalyticsExample02,
+        title: 'adding analytics context',
+      },
+      {
+        id: 3,
+        code: AnalyticsExample03Raw,
+        Component: AnalyticsExample03,
+        title: 'passing events in callbacks',
+      },
+      {
+        id: 4,
+        code: AnalyticsExample04Raw,
+        Component: AnalyticsExample04,
+        title: 'updating events',
+      },
+      {
+        id: 5,
+        code: AnalyticsExample05Raw,
+        Component: AnalyticsExample05,
+        title: 'async event firing',
+      },
+    ]
+      .map(example => ({
+        ...example,
+        code: example.code.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${example.pkgId}';`),
+      })),
+    intro: AnalyticsIntro,
+    style: null,
+    usage: AnalyticsUsage,
   },
   {
     id: 'code',
     title: codePkg.verdigris.name,
     description: codePkg.description,
-    docs: []
+    docs: [],
+    intro: CodeIntro,
+    style: CodeStyle,
+    usage: CodeUsage,
   },
 ];
 
