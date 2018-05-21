@@ -4,7 +4,7 @@ export default () => md`
 
 ## Usage
 
-There are two primary use cases for this package; using [analytics enabled Verdigris components](#analytics-with-verdigris-components) and enabling [analytics with custom components](./docs/analytics-with-custom-components).
+There are two primary use cases for this package; using [analytics enabled Verdigris components](#analytics-with-verdigris-components) and enabling [analytics with custom components](./analytics/docs/01-analytics-with-custom-components).
 
 ### Analytics with Verdigris Components
 

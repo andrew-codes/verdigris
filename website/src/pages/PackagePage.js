@@ -1,8 +1,9 @@
 import Loadable from 'react-loadable';
 import React from 'react';
 import styled from 'react-emotion';
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Loading from '../components/Loading';
+import PackageDocPage from './PackageDocPage';
 import Page from '../components/Page';
 import { getExamples, getPackage } from '../siteData';
 
@@ -29,7 +30,11 @@ export default ({ match }) => {
       {examples.length === 0 && <Spacer />}
       <Title>{pkg.title}</Title>
       <Summary>{pkg.description}</Summary>
-      <PackageLandingDoc />
+
+      <Switch>
+        <Route exact path={`/packages/${pkgId}`} component={PackageLandingDoc} />
+        <Route path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
+      </Switch>
     </Page>
   );
 };
