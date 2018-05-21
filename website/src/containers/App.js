@@ -105,7 +105,7 @@ export default function App(props) {
                     <Route exact path="/" component={Home} />
                     <Route path="/docs/:docId" component={Document} />
                     <Route path="/packages/:packageName/examples/:exampleId/:exampleType" component={PackageExamples} />
-                    <Route path="/packages/:packageName" component={PackagePage} exact />
+                    <Route path="/packages/:packageName" component={PackagePage} />
                     <Route path="/error" component={PageNotFound} />
                     <Route component={PageNotFound} />
                   </Switch>

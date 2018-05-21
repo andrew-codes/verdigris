@@ -4,19 +4,25 @@ import styled from 'react-emotion';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import Page from '../components/Page';
-import { pkgs, getExamples } from '../siteData';
+import { getExamples, getPkgs } from '../siteData';
 
 const Wrapper = styled('div') `
   box-sizing: border-box;
   display: flex;
+  flex: 1;
 `;
 const BreadcrumbNavigation = styled('div') `
   display: block;
+`;
+const Header = styled('header') `
+  display: flex;
+  flex-direction: row;
 `;
 const Title = styled('h1') `
   display: inline-block;
 `;
 const SubTitle = styled('h2') `
+  align-self: center;
   color: #474c54;
   display: inline-block;
   margin: 0;
@@ -49,7 +55,9 @@ const NavigationListItem = styled('li') `
   }
 `;
 const ExampleWrapper = styled('div') `
+  display: flex;
   flex: 1;
+  flex-direction: column;
 `;
 const ExampleComponentWrapper = styled('div') `
   border: 1px solid gray;
@@ -59,15 +67,18 @@ const ExampleComponentWrapper = styled('div') `
 const ExampleCodeWrapper = styled('div') `
   flex: 1;
 `;
-const ExampleTabs = styled('div') ``
-  ;
+const ExampleTabs = styled('div') `
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
 
 export default ({ match }) => {
   const {
     exampleType,
     packageName,
   } = match.params;
-  const packages = pkgs();
+  const packages = getPkgs();
   const { title } = packages.find(pkg => pkg.id === packageName);
   const currentExampleId = +match.params.exampleId;
   const { example, examples } = getExamples(packageName, currentExampleId);
@@ -79,8 +90,10 @@ export default ({ match }) => {
       <BreadcrumbNavigation>
         <Link to={`/packages/${match.params.packageName}`}>back to docs</Link>
       </BreadcrumbNavigation>
-      <Title>{title}</Title>
-      <SubTitle>examples</SubTitle>
+      <Header>
+        <Title>{title}</Title>
+        <SubTitle>examples</SubTitle>
+      </Header>
       <Wrapper>
         <ExamplesNavigation>
           <NavigationList>
@@ -107,7 +120,7 @@ export default ({ match }) => {
               </ExampleComponentWrapper>
             )} />
             <Route path="/packages/:packageName/examples/:exampleId/code" component={() => (
-              <Code height="500px" language="javascript">{example.code}</Code>
+              <Code height="500px" language="javascript" style={{ flex: 1 }}>{example.code}</Code>
             )} />
           </ExampleTabs>
         </ExampleWrapper>

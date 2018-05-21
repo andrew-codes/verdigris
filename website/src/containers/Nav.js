@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
 import * as PropTypes from 'prop-types';
-import { docs, pkgs } from '../siteData';
+import { getDocs, getPkgs } from '../siteData';
 
 export default Nav;
 
@@ -42,6 +42,11 @@ const NavigationListItem = styled('li') `
     background: rgba(255, 255, 255, 0.5);
   }
 `;
+const SubNavigationList = styled('ol') `
+  list-style: none;
+  padding: 0;
+  margin-left: 1rem;
+`;
 function Nav({ location: { pathname } }) {
   return (
     <Navigation>
@@ -50,10 +55,10 @@ function Nav({ location: { pathname } }) {
           <NavigationSectionHeading>Documentation</NavigationSectionHeading>
           <nav>
             <NavigationList>
-              {docs().map(({ id, title }) => (
+              {getDocs().map(({ id, title }) => (
                 <NavigationListItem
                   isSelected={`/docs/${id}` === pathname}
-                  key={id}
+                  key={`doc-${id}`}
                 >
                   <Link to={`/docs/${id}`}>{title}</Link>
                 </NavigationListItem>
@@ -65,13 +70,26 @@ function Nav({ location: { pathname } }) {
           <NavigationSectionHeading>Components</NavigationSectionHeading>
           <nav>
             <NavigationList>
-              {pkgs().map(({ id, title }) => (
-                <NavigationListItem
-                  isSelected={`/packages/${id}` === pathname}
-                  key={id}
-                >
-                  <Link to={`/packages/${id}`}>{title}</Link>
-                </NavigationListItem>
+              {getPkgs().map(({ docs, id, title }) => (
+                <div key={`package-${id}`}>
+                  <NavigationListItem
+                    isSelected={pathname.match(new RegExp(`/packages/${id}$`))}
+                  >
+                    <Link to={`/packages/${id}`}>{title}</Link>
+                  </NavigationListItem>
+                  {docs.length > 0 && pathname.match(new RegExp(`/packages/${id}`)) && (
+                    <SubNavigationList>
+                      {docs.map(doc => (
+                        <NavigationListItem
+                          isSelected={pathname.match(new RegExp(`/packages/${id}/docs/${doc.id}`))}
+                          key={doc.id}
+                        >
+                          <Link to={`/packages/${id}/docs/${doc.id}`}>{doc.title}</Link>
+                        </NavigationListItem>
+                      ))}
+                    </SubNavigationList>
+                  )}
+                </div>
               ))}
             </NavigationList>
           </nav>
