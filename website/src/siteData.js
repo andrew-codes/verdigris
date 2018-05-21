@@ -19,8 +19,21 @@ const docs = [
 ];
 
 const pkgs = [
-  { id: 'analytics', title: analyticsPkg.verdigris.name, description: analyticsPkg.description },
-  { id: 'code', title: codePkg.verdigris.name, description: codePkg.description },
+  {
+    id: 'analytics',
+    title: analyticsPkg.verdigris.name,
+    description: analyticsPkg.description,
+    docs: [{
+      id: '01-custom-components',
+      title: 'Custom Components'
+    }]
+  },
+  {
+    id: 'code',
+    title: codePkg.verdigris.name,
+    description: codePkg.description,
+    docs: []
+  },
 ];
 
 const examples = [
