@@ -13,9 +13,19 @@ import AnalyticsExample05Raw from '!raw-loader!@verdigris/analytics/examples/05-
 import codePkg from '@verdigris/code/package.json';
 
 const docs = [
-  { id: 'contributing', title: 'Contributing' },
-  { id: 'tour-of-the-code-base', title: 'Tour of the Code Base' },
-  { id: 'publishing', title: 'Publishing' },
+  {
+    id: '01-getting-started', title: 'Getting Started', pages: [
+      { id: '01-designers', title: 'Designers' },
+      { id: '02-developers', title: 'Developers' },
+    ]
+  },
+  {
+    id: '02-guides', title: 'Guides', pages: [
+      { id: '01-contributing', title: 'Contributing' },
+      { id: '02-tour-of-the-code-base', title: 'Tour of the Code Base' },
+      { id: '03-publishing', title: 'Publishing' },
+    ]
+  },
 ];
 
 const pkgs = [

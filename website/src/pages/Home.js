@@ -4,7 +4,7 @@ import Page from '../components/Page';
 
 export default function Home() {
   return (
-    <Page>
+    <Page width="large">
       <h1>Verdigris Heading</h1>
       <Link to="/error">Error page</Link>
     </Page>

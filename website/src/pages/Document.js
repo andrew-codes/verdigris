@@ -7,13 +7,13 @@ import Markdown from '../components/Markdown';
 import Page from '../components/Page';
 import PageNotFound from './PageNotFound';
 
-export default function Document({ match: { params: { docId } } }) {
-  if (!docId) {
+export default function Document({ match: { params: { docId, docSectionId } } }) {
+  if (!docId || !docSectionId) {
     return PageNotFound;
   }
 
   const Content = Loadable({
-    loader: () => import(`../../../docs/${docId}.md`),
+    loader: () => import(`../../../docs/${docSectionId}/${docId}.md`),
     loading: Loading,
     render(mdContent) {
       if (mdContent) {
@@ -24,7 +24,7 @@ export default function Document({ match: { params: { docId } } }) {
   });
 
   return (
-    <Page>
+    <Page width="large">
       <Content />
     </Page>
   );

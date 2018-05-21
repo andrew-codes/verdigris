@@ -52,19 +52,23 @@ function Nav({ location: { pathname } }) {
     <Navigation>
       <SiteNavigation>
         <div>
-          <NavigationSectionHeading>Documentation</NavigationSectionHeading>
-          <nav>
-            <NavigationList>
-              {getDocs().map(({ id, title }) => (
-                <NavigationListItem
-                  isSelected={`/docs/${id}` === pathname}
-                  key={`doc-${id}`}
-                >
-                  <Link to={`/docs/${id}`}>{title}</Link>
-                </NavigationListItem>
-              ))}
-            </NavigationList>
-          </nav>
+          {getDocs().map(({ id, title, pages }) => (
+            <React.Fragment key={id}>
+              <NavigationSectionHeading>{title}</NavigationSectionHeading>
+              <nav>
+                <NavigationList>
+                  {pages.map(docPage => (
+                    <NavigationListItem
+                      isSelected={`/docs/${docPage.id}` === pathname}
+                      key={`doc-${docPage.id}`}
+                    >
+                      <Link to={`/docs/${id}/${docPage.id}`}>{docPage.title}</Link>
+                    </NavigationListItem>
+                  ))}
+                </NavigationList>
+              </nav>
+            </React.Fragment>
+          ))}
         </div>
         <div>
           <NavigationSectionHeading>Components</NavigationSectionHeading>
