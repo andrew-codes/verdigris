@@ -1,7 +1,7 @@
 {
   "name": "@verdigris/analytics",
   "version": "0.0.0",
-  "description": "Capture UI interactions, state, and contextual data from UI interactions.",
+  "description": "Capture UI interactions, state, and contextual data from components.",
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
