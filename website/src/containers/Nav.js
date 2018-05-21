@@ -11,7 +11,6 @@ const Navigation = styled('aside') `
   box-sizing: border-box;
   display: flex;
   height: 100vh;
-  width: 300px;
 `;
 const SiteNavigation = styled('div') `
   background: #dde2e9;

@@ -11,7 +11,6 @@ const Page = styled('main') `
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 4rem);
   max-width: ${p =>
     containerWidth[p.width] ? containerWidth[p.width] : containerWidth.medium};
   margin: 2rem auto;
