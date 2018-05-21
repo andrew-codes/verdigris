@@ -34,8 +34,18 @@ const NavigationListItem = styled('li') `
     background: rgba(255, 255, 255, 0.5);
   }
 `;
-const getPackageLandingDoc = (packageName) => Loadable({
-  loader: () => import(`../../../packages/${packageName}/docs/00-intro`),
+const getPackageLandingDoc = packageName => Loadable({
+  loader: () => import(`../../../packages/${packageName}/docs/intro`),
+  loading: Loading,
+  timeout: 3000,
+});
+const getUsagePage = packageName => Loadable({
+  loader: () => import(`../../../packages/${packageName}/docs/usage.md`),
+  loading: Loading,
+  timeout: 3000,
+});
+const getStylePage = packageName => Loadable({
+  loader: () => import(`../../../packages/${packageName}/docs/style.md`),
   loading: Loading,
   timeout: 3000,
 });
@@ -45,6 +55,8 @@ export default ({ match, location: { pathname } }) => {
   const pkg = getPackage(pkgId);
   const { examples } = getExamples(pkgId);
   const PackageLandingDoc = getPackageLandingDoc(pkgId);
+  const Usage = getUsagePage(pkgId);
+  const Style = getStylePage(pkgId);
 
   return (
     <Page width="xlarge">
@@ -69,6 +81,8 @@ export default ({ match, location: { pathname } }) => {
       <Switch>
         <Route exact path={`/packages/${pkgId}`} component={PackageLandingDoc} />
         <Route path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
+        <Route exact path="/packages/:packageName/usage" component={Usage} />
+        <Route exact path="/packages/:packageName/style" component={Style} />
         <Route path="/packages/:packageName/examples/:exampleId/:exampleType" component={PackageExamples} />
       </Switch>
     </Page >

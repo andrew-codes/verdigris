@@ -3,7 +3,7 @@ import React from 'react';
 import Loading from '../components/Loading';
 
 const getPackageDoc = (packageName, docId) => Loadable({
-  loader: () => import(`../../../packages/${packageName}/docs/${docId}`),
+  loader: () => import(`../../../packages/${packageName}/docs/docs/${docId}`),
   loading: Loading,
   timeout: 3000,
 });
