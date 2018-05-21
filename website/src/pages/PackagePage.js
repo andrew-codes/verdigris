@@ -24,7 +24,7 @@ export default ({ match }) => {
   const PackageLandingDoc = getPackageLandingDoc(pkgId);
 
   return (
-    <Page>
+    <Page width="large">
       {examples.length > 0 && <Link to={`/packages/${match.params.packageName}/examples/1/component`}>examples</Link>}
       {examples.length === 0 && <Spacer />}
       <Title>{pkg.title}</Title>
