@@ -14,10 +14,15 @@ const Wrapper = styled('div') `
 const BreadcrumbNavigation = styled('div') `
   display: block;
 `;
+const Header = styled('header') `
+  display: flex;
+  flex-direction: row;
+`;
 const Title = styled('h1') `
   display: inline-block;
 `;
 const SubTitle = styled('h2') `
+  align-self: center;
   color: #474c54;
   display: inline-block;
   margin: 0;
@@ -85,8 +90,10 @@ export default ({ match }) => {
       <BreadcrumbNavigation>
         <Link to={`/packages/${match.params.packageName}`}>back to docs</Link>
       </BreadcrumbNavigation>
-      <Title>{title}</Title>
-      <SubTitle>examples</SubTitle>
+      <Header>
+        <Title>{title}</Title>
+        <SubTitle>examples</SubTitle>
+      </Header>
       <Wrapper>
         <ExamplesNavigation>
           <NavigationList>
