@@ -67,7 +67,7 @@ function Nav({ location: { pathname } }) {
             <NavigationList>
               {getPkgs().map(({ id, title }) => (
                 <NavigationListItem
-                  isSelected={`/packages/${id}` === pathname}
+                  isSelected={pathname.match(new RegExp(`/packages/${id}`))}
                   key={id}
                 >
                   <Link to={`/packages/${id}`}>{title}</Link>
