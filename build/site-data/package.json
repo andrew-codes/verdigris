@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@verdigris/site-data",
+  "version": "0.0.0",
+  "description": "Webpack plugin to scrape component and document meta data from packages.",
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "globby": "^8.0.1",
+    "loader-utils": "^1.1.0"
+  }
+}

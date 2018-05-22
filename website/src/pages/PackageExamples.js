@@ -1,9 +1,11 @@
+import Loadable from 'react-loadable';
 import Code from '@verdigris/code';
+import Loading from '../components/Loading';
 import React from 'react';
 import styled from 'react-emotion';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
-import { getExamples, getPkgs } from '../siteData';
+import { getPackage } from '../siteData';
 
 const Wrapper = styled('div') `
   box-sizing: border-box;
@@ -52,22 +54,33 @@ const ExampleTabs = styled('div') `
   flex-direction: column;
 `;
 
-export default ({ match }) => {
+export default ({ match, location: { pathname } }) => {
   const {
     exampleType,
     packageName,
   } = match.params;
-  const currentExampleId = +match.params.exampleId;
-  const { example, examples } = getExamples(packageName, currentExampleId);
+  const currentExampleId = match.params.exampleId;
+  const { examples } = getPackage(packageName);
+  const currentExample = examples.find(ex => ex.id === currentExampleId);
 
-  const ExampleComponent = example.Component;
+  const ExampleComponent = Loadable({
+    loader: () => currentExample.exports(),
+    loading: Loading,
+  });
+  const ExampleCode = Loadable({
+    loader: () => currentExample.contents(),
+    loading: Loading,
+    render(contents) {
+      return <Code language="javascript" style={{ flex: 1 }}>{contents.default.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${packageName}';`)}</Code>
+    },
+  });
 
   return (
     <Wrapper>
       <ExamplesNavigation>
         <NavigationList>
           {examples.map(example => (
-            <NavigationListItem isSelected={example.isSelected} key={example.id}>
+            <NavigationListItem isSelected={pathname === `/packages/${packageName}/examples/${example.id}/${exampleType}`} key={example.id}>
               <Link to={`/packages/${packageName}/examples/${example.id}/${exampleType}`}>{example.title}</Link>
             </NavigationListItem>
           ))}
@@ -77,10 +90,10 @@ export default ({ match }) => {
         <ExampleTabs>
           <NavigationList horizontal>
             <NavigationListItem isSelected={match.params.exampleType === 'component'}>
-              <Link to={`/packages/${packageName}/examples/${example.id}/component`}>component</Link>
+              <Link to={`/packages/${packageName}/examples/${currentExample.id}/component`}>component</Link>
             </NavigationListItem>
             <NavigationListItem isSelected={match.params.exampleType === 'code'}>
-              <Link to={`/packages/${packageName}/examples/${example.id}/code`}>code</Link>
+              <Link to={`/packages/${packageName}/examples/${currentExample.id}/code`}>code</Link>
             </NavigationListItem>
           </NavigationList>
           <Route path="/packages/:packageName/examples/:exampleId/component" component={() => (
@@ -89,7 +102,7 @@ export default ({ match }) => {
             </ExampleComponentWrapper>
           )} />
           <Route path="/packages/:packageName/examples/:exampleId/code" component={() => (
-            <Code language="javascript" style={{ flex: 1 }}>{example.code}</Code>
+            <ExampleCode />
           )} />
         </ExampleTabs>
       </ExampleWrapper>
