@@ -8,11 +8,13 @@ import * as PropTypes from 'prop-types';
 
 import Document from '../pages/Document';
 import Home from '../pages/Home';
+import Loading from '../components/Loading';
 import Nav from './Nav';
 import PackagePage from '../pages/PackagePage';
 import ApplicationPage from '../components/ApplicationPage';
 import PageNotFound from '../pages/PageNotFound';
 import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
+import { getDocs, getPackage } from '../siteData';
 
 class GoogleAnalyticsListener extends Component {
   static propTypes = {
@@ -103,7 +105,14 @@ export default function App(props) {
                 )}>
                   <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/docs/:docSectionId/:docId" component={Document} />
+                    <Route exact path="/docs/:docSectionId/:docId" component={Document} />
+                    <Route path="/docs/:docSectionId/:docId/edit" component={({ match: { params: { docId, docSectionId } } }) => {
+                      const docSections = getDocs();
+                      const docSection = docSections.find(d => d.id === docSectionId);
+                      const routeDoc = docSection.pages.find(d => d.id === docId);
+                      window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/docs/${docSection.name}/${routeDoc.name}`;
+                      return <Loading />;
+                    }} />
                     <Route path="/packages/:packageName" component={PackagePage} />
                     <Route path="/error" component={PageNotFound} />
                     <Route component={PageNotFound} />

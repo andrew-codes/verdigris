@@ -7,10 +7,12 @@ const docs = SITE_DATA.children
   .filter(item => item.type === 'dir')
   .reduce((prev, docItem) => prev.concat([{
     id: fixId(docItem.id),
+    name: docItem.id,
     title: extractTitle(docItem.id),
     pages: docItem.children.map(page => ({
       ...page,
       id: fixId(page.id),
+      name: page.id,
       title: extractTitle(page.id),
     }))
   }]), []);
@@ -44,6 +46,7 @@ const pkgs = SITE_DATA.children
         .map(doc => ({
           ...doc,
           id: fixId(doc.id),
+          name: doc.id,
           title: extractTitle(doc.id),
         })),
       examples: samples
@@ -59,6 +62,7 @@ const pkgs = SITE_DATA.children
         .map(sample => ({
           ...sample,
           id: fixId(sample.id),
+          name: sample.id,
           title: extractSampleTitle(sample.id),
         })),
       intro: mainDocs.find(item => fixId(item.id) === 'intro'),
