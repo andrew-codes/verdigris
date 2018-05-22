@@ -1,5 +1,5 @@
 import Loadable from 'react-loadable';
-import CodeBlock from '@verdigris/code';
+import { CodeBlock } from '@verdigris/code';
 import Loading from '../components/Loading';
 import React from 'react';
 import styled from 'react-emotion';
