@@ -1,6 +1,6 @@
-import Code from '../';
-import codeSrc from '../Code';
+import CodeBlock from '../';
+import CodeBlockSrc from '../CodeBlock';
 
-test('a Code component is exported', () => {
-  expect(Code).toEqual(codeSrc);
+test('a CodeBlock component is exported', () => {
+  expect(CodeBlock).toEqual(CodeBlockSrc);
 });

@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import { ghcolors } from 'react-syntax-highlighter/styles/prism';
 import supportedLanguages from './supportedLanguages';
 
-export default function Code({
+export default function CodeBlock({
   children,
   height,
   language,
@@ -33,7 +33,7 @@ export default function Code({
     </SyntaxHighlighter>
   );
 }
-Code.propTypes = {
+CodeBlock.propTypes = {
   children: PropTypes.string,
   height: PropTypes.string,
   lineNumberStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
@@ -43,7 +43,7 @@ Code.propTypes = {
   style: PropTypes.object,
   theme: PropTypes.object,
 };
-Code.defaultProps = {
+CodeBlock.defaultProps = {
   startingLineNumber: 1,
   style: {},
   theme: ghcolors,

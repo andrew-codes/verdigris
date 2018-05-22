@@ -1,5 +1,5 @@
 import Loadable from 'react-loadable';
-import Code from '@verdigris/code';
+import CodeBlock from '@verdigris/code';
 import Loading from '../components/Loading';
 import React from 'react';
 import styled from 'react-emotion';
@@ -71,7 +71,7 @@ export default ({ match, location: { pathname } }) => {
     loader: () => currentExample.contents(),
     loading: Loading,
     render(contents) {
-      return <Code language="javascript" style={{ flex: 1 }}>{contents.default.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${packageName}';`)}</Code>
+      return <CodeBlock language="javascript" style={{ flex: 1 }}>{contents.default.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${packageName}';`)}</CodeBlock>
     },
   });
 

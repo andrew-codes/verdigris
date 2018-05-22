@@ -1,3 +1,3 @@
-import Code from './Code';
+import CodeBlock from './CodeBlock';
 
-export default Code;
+export default CodeBlock;
