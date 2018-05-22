@@ -71,7 +71,7 @@ export default ({ match, location: { pathname } }) => {
     loader: () => currentExample.contents(),
     loading: Loading,
     render(contents) {
-      return <CodeBlock language="javascript" style={{ flex: 1 }}>{contents.default.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${packageName}';`)}</CodeBlock>
+      return <CodeBlock language="javascript">{contents.default.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${packageName}';`)}</CodeBlock>
     },
   });
 
@@ -101,9 +101,7 @@ export default ({ match, location: { pathname } }) => {
               <ExampleComponent />
             </ExampleComponentWrapper>
           )} />
-          <Route path="/packages/:packageName/examples/:exampleId/code" component={() => (
-            <ExampleCode />
-          )} />
+          <Route path="/packages/:packageName/examples/:exampleId/code" component={ExampleCode} />
         </ExampleTabs>
       </ExampleWrapper>
     </Wrapper>

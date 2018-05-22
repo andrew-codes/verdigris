@@ -37,6 +37,7 @@ const NavigationListItem = styled('li') `
 
 export default ({ match, location: { pathname } }) => {
   const pkgId = match.params.packageName;
+  const isExamplesRoute = pathname.match(new RegExp(`/packages/${pkgId}/examples/.*`));
   const pkg = getPackage(pkgId);
   const intro = Loadable({
     loader: () => pkg.intro.exports(),
@@ -51,7 +52,7 @@ export default ({ match, location: { pathname } }) => {
     loading: Loading,
   });
   return (
-    <Page width="large">
+    <Page width={isExamplesRoute ? 'xlarge' : 'large'}>
       <Title>{pkg.title}</Title>
       <NavigationList horizontal>
         <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}$`))}>
@@ -68,7 +69,7 @@ export default ({ match, location: { pathname } }) => {
           </NavigationListItem>
         )}
         {pkg.examples.length > 0 && (
-          <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/examples/.*`))}>
+          <NavigationListItem isSelected={isExamplesRoute}>
             <Link to={`/packages/${pkgId}/examples/${pkg.examples[0].id}/component`}>examples</Link>
           </NavigationListItem>
         )}
