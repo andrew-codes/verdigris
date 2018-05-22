@@ -11,7 +11,7 @@ Please ensure you have the proper software installed.
 ### Running the Docs Site Locally
 1. `git clone git@github.com:andrew-codes/verdigris.git` to clone repository
 2. `cd verdigris` to change directory into root of project
-1. `yarn` to install and bootstrap dependencies.
+1. `yarn && yarn bootstrap` to install and bootstrap dependencies.
 2. `yarn start` and navigate to [http://localhost:9000](http://localhost:9000)
 
 ## Other Topics

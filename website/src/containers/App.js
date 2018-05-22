@@ -78,6 +78,7 @@ injectGlobal`
 body {
   margin: 0px;
   font-family: Roboto,Helvetica,Arial,"Lucida Grande",sans-serif;
+  line-height: 1.5;
 }
 `;
 

@@ -1,3 +1,2 @@
-import Code from './Code';
-
-export default Code;
+export { default as CodeBlock } from './CodeBlock';
+export { default as InlineCode } from './InlineCode';
