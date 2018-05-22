@@ -5,6 +5,15 @@ const docs = SITE_DATA.children
   .find(item => item.id === 'docs')
   .children
   .filter(item => item.type === 'dir')
+  .sort((a, b) => {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  })
   .reduce((prev, docItem) => prev.concat([{
     id: fixId(docItem.id),
     name: docItem.id,
