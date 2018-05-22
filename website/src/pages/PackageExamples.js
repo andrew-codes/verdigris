@@ -1,4 +1,6 @@
+import Loadable from 'react-loadable';
 import Code from '@verdigris/code';
+import Loading from '../components/Loading';
 import React from 'react';
 import styled from 'react-emotion';
 import { Route } from 'react-router';
@@ -57,10 +59,21 @@ export default ({ match, location: { pathname } }) => {
     exampleType,
     packageName,
   } = match.params;
-  const currentExampleId = +match.params.exampleId;
-  const { examples, } = getPackage(packageName);
+  const currentExampleId = match.params.exampleId;
+  const { examples } = getPackage(packageName);
   const currentExample = examples.find(ex => ex.id === currentExampleId);
-  const ExampleComponent = currentExample.Component;
+
+  const ExampleComponent = Loadable({
+    loader: () => currentExample.exports(),
+    loading: Loading,
+  });
+  const ExampleCode = Loadable({
+    loader: () => currentExample.contents(),
+    loading: Loading,
+    render(contents) {
+      return <Code language="javascript" style={{ flex: 1 }}>{contents.default.replace(/'\.\.\/src\/?(index)';/, `'@verdigris/${packageName}';`)}</Code>
+    },
+  });
 
   return (
     <Wrapper>
@@ -89,7 +102,7 @@ export default ({ match, location: { pathname } }) => {
             </ExampleComponentWrapper>
           )} />
           <Route path="/packages/:packageName/examples/:exampleId/code" component={() => (
-            <Code language="javascript" style={{ flex: 1 }}>{currentExample.code}</Code>
+            <ExampleCode />
           )} />
         </ExampleTabs>
       </ExampleWrapper>

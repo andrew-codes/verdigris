@@ -38,7 +38,18 @@ const NavigationListItem = styled('li') `
 export default ({ match, location: { pathname } }) => {
   const pkgId = match.params.packageName;
   const pkg = getPackage(pkgId);
-
+  const intro = Loadable({
+    loader: () => pkg.intro.exports(),
+    loading: Loading,
+  });
+  const usage = Loadable({
+    loader: () => pkg.usage.exports(),
+    loading: Loading,
+  });
+  const style = Loadable({
+    loader: () => pkg.style.exports(),
+    loading: Loading,
+  });
   return (
     <Page width="xlarge">
       <Title>{pkg.title}</Title>
@@ -58,16 +69,16 @@ export default ({ match, location: { pathname } }) => {
         )}
         {pkg.examples.length > 0 && (
           <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/examples/.*`))}>
-            <Link to={`/packages/${pkgId}/examples/1/component`}>examples</Link>
+            <Link to={`/packages/${pkgId}/examples/${pkg.examples[0].id}/component`}>examples</Link>
           </NavigationListItem>
         )}
       </NavigationList>
 
       <Switch>
-        <Route exact path={`/packages/${pkgId}`} component={pkg.intro} />
+        <Route exact path={`/packages/${pkgId}`} component={intro} />
         <Route path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
-        {pkg.usage && <Route exact path="/packages/:packageName/usage" component={pkg.usage} />}
-        {pkg.style && <Route exact path="/packages/:packageName/style" component={pkg.style} />}
+        {pkg.usage && <Route exact path="/packages/:packageName/usage" component={usage} />}
+        {pkg.style && <Route exact path="/packages/:packageName/style" component={style} />}
         <Route path="/packages/:packageName/examples/:exampleId/:exampleType" component={PackageExamples} />
       </Switch>
     </Page >

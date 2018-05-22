@@ -6,6 +6,18 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 
+
+function createGlob(glob) {
+  return [
+    `${glob}/docs/**/*.+(js|md)`,
+    // `${glob}/package.json`,
+    // `${glob}/CHANGELOG.md`,
+    `${glob}/examples/*.js`,
+  ];
+}
+
+const createDefaultGlob = () => createGlob('packages/**');
+
 module.exports = (
   {
     entry,
@@ -44,6 +56,18 @@ module.exports = (
   devtool: env === 'production' ? false : 'cheap-module-source-map',
   module: {
     rules: [
+      {
+        test: /SITE_DATA$/,
+        loader: require.resolve('@verdigris/site-data'),
+        options: {
+          debug: env === 'development',
+          include: [
+            'docs/**/*.md',
+            ...createDefaultGlob(),
+          ].filter(p => !!p),
+          exclude: ['**/node_modules/**'],
+        },
+      },
       {
         test: /\.md$/,
         exclude: /node_modules/,
