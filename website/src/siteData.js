@@ -24,12 +24,18 @@ const pkgs = SITE_DATA.children
     const sampleDir = pkgItem.children.find(item => item.id === 'examples');
     const mainDocs = docDir ? docDir.children : [];
     const samples = sampleDir ? sampleDir.children : [];
+    const subDocDir = mainDocs.find(doc => doc.id === 'docs');
+    const subDocs = subDocDir ? subDocDir.children : [];
     const id = fixId(pkgItem.id);
     return prev.concat([{
       ...pkgItem,
       id,
       title: extractTitle(id),
-      docs: [],
+      docs: subDocs.map(doc => ({
+        ...doc,
+        id: fixId(doc.id),
+        title: extractTitle(doc.id),
+      })),
       examples: samples
         .map(sample => ({
           ...sample,
