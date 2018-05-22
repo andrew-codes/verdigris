@@ -37,10 +37,10 @@ Component packages all follow the same directory structure and general guideline
     ├── examples
     ├── src
     │  ├── __tests__
-    |  |   ├── index.test.js
-    |  |   └── otherSupportingFiles.test.js
-    |  ├── index.js
-    |  └── otherSupportingFiles.js
+    │  │   ├── index.test.js
+    │  │   └── otherSupportingFiles.test.js
+    │  ├── index.js
+    │  └── otherSupportingFiles.js
     ├── LICENSE
     ├── package.json
     └── README.md
