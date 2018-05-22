@@ -10,7 +10,7 @@ This code base is a mono-repo and leverages [lerna](https://lernajs.io/) to mana
 * **`docs`**: collection of Markdown files, such as this one, which contain relevant documentation on the repo itself.
 * **`packages`**: directory of component packages; most of which will be publishable. See [anatomy of a component package](#Anatomy-of-a-component) for more details.
 * **`scripts`**: miscellaneous utility scripts, such as a shell script for creating a new component package.
-* \*`website`\*\*: web application containing help, documentation, and examples of this library; currently published to [verdigris.andrew.codes](http://verdigris.andrew.codes).
+* **`website`**: web application containing help, documentation, and examples of this library; currently published to [verdigris.andrew.codes](http://verdigris.andrew.codes).
 
 ### Anatomy of a Component Package
 
