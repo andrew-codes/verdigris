@@ -1,9 +1,9 @@
 import Loadable from 'react-loadable';
 import React from 'react';
+import { md } from '@verdigris/docs';
 import * as PropTypes from 'prop-types';
 
 import Loading from '../components/Loading';
-import Markdown from '../components/Markdown';
 import Page from '../components/Page';
 import PageNotFound from './PageNotFound';
 import { getDocs } from '../siteData';
@@ -17,8 +17,11 @@ export default function Document({ match: { params: { docId, docSectionId } } })
     .pages.find(d => d.id === docId);
 
   const Content = Loadable({
-    loader: () => doc.exports(),
+    loader: () => doc.contents(),
     loading: Loading,
+    render(contents) {
+      return md([contents.default]);
+    },
   });
 
   return (
