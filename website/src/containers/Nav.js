@@ -58,7 +58,7 @@ function Nav({ location: { pathname } }) {
                 <NavigationList>
                   {pages.map(docPage => (
                     <NavigationListItem
-                      isSelected={`/docs/${docPage.id}` === pathname}
+                      isSelected={`/docs/${id}/${docPage.id}` === pathname}
                       key={`doc-${docPage.id}`}
                     >
                       <Link to={`/docs/${id}/${docPage.id}`}>{docPage.title}</Link>
