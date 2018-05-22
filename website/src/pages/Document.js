@@ -25,7 +25,7 @@ export default function Document({ match: { params: { docId, docSectionId } } })
   });
 
   return (
-    <Page width="xlarge">
+    <Page width="large">
       <Content />
     </Page>
   );

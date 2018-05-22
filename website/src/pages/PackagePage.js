@@ -51,7 +51,7 @@ export default ({ match, location: { pathname } }) => {
     loading: Loading,
   });
   return (
-    <Page width="xlarge">
+    <Page width="large">
       <Title>{pkg.title}</Title>
       <NavigationList horizontal>
         <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}$`))}>
