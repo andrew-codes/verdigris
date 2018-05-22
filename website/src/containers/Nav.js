@@ -11,7 +11,6 @@ const Navigation = styled('aside') `
   box-sizing: border-box;
   display: flex;
   height: 100vh;
-  width: 300px;
 `;
 const SiteNavigation = styled('div') `
   background: #dde2e9;
@@ -77,7 +76,7 @@ function Nav({ location: { pathname } }) {
               {getPkgs().map(({ docs, id, title }) => (
                 <div key={`package-${id}`}>
                   <NavigationListItem
-                    isSelected={pathname.match(new RegExp(`/packages/${id}$`))}
+                    isSelected={pathname.match(new RegExp(`/packages/${id}(/(usage|style|examples.*))?$`))}
                   >
                     <Link to={`/packages/${id}`}>{title}</Link>
                   </NavigationListItem>

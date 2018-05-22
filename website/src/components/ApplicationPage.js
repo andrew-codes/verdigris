@@ -16,16 +16,16 @@ const NavAndPageContent = styled('div') `
   flex: 1 1 auto;
 `;
 const Navigation = styled('div') `
-  position: relative;
+  position: fixed;
+  width: 300px;
   z-index: 2;
 `;
 const Content = styled('div') `
   flex: 1 1 auto;
+  margin-left: 300px;
+  min-width: 0;
   position: relative;
   z-index: 1;
-  min-width: 0;
-  height: 100vh;
-  overflow-y: auto;
 `;
 function Page(props) {
   const { children, nav } = props;

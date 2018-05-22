@@ -2,9 +2,7 @@ import { code, md } from '@verdigris/docs';
 
 export default () => md`
 
-## Usage
-
-There are two primary use cases for this package; using [analytics enabled Verdigris components](#analytics-with-verdigris-components) and enabling [analytics with custom components](./analytics/docs/01-custom-components).
+Capture UI interactions, state, and contextual data from components.
 
 ### Analytics with Verdigris Components
 
