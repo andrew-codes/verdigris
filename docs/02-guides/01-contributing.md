@@ -12,7 +12,7 @@ Packages are managed using [lerna](https://lernajs.io/). However, there are `yar
 
 * **Adding** a new dependency, use `yarn lerna add --scope @verdigris/package-name dependency-name`
 * For **dev dependencies**, add the `--dev` CLI option `yarn lerna add --dev --scope @verdigris/package-name dependency-name`
-* **Removing** dependencies requires deleting the item from the package's `package.json` and re-running `yarn` in the root of Verdigris.
+* **Removing** dependencies requires deleting the item from the package's `package.json` and re-running `yarn bootstrap` in the root of Verdigris.
 
 > **Note**: Upon changing a dependency, you will likely want to run `yarn` again. This will automatically bootstrap internal dependencies. `yarn` is automatically run before running locally (`yarn start`), but not run automatically before building or deploying.
 
