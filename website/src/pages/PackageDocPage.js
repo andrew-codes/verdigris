@@ -1,8 +1,15 @@
 import Loadable from 'react-loadable';
 import React from 'react';
+import styled from 'react-emotion';
+import EditInGitHubLink from '../components/EditInGitHubLink';
 import Loading from '../components/Loading';
 import { getPackage } from '../siteData';
 
+const FloatingButton = styled('div') `
+  position: fixed;
+  right: 24px;
+  top: 24px;
+`
 export default ({ match }) => {
   const {
     docId,
@@ -18,6 +25,11 @@ export default ({ match }) => {
   });
 
   return (
-    <PackageDoc />
+    <React.Fragment>
+      <FloatingButton>
+        <EditInGitHubLink />
+      </FloatingButton>
+      <PackageDoc />
+    </React.Fragment >
   );
 };

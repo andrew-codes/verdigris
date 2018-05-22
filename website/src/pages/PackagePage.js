@@ -2,6 +2,7 @@ import Loadable from 'react-loadable';
 import React from 'react';
 import styled from 'react-emotion';
 import { Link, Route, Switch } from 'react-router-dom';
+import EditInGitHubLink from '../components/EditInGitHubLink';
 import Loading from '../components/Loading';
 import PackageDocPage from './PackageDocPage';
 import PackageExamples from './PackageExamples';
@@ -34,6 +35,11 @@ const NavigationListItem = styled('li') `
     background: rgba(255, 255, 255, 0.5);
   }
 `;
+const FloatingButton = styled('div') `
+  position: fixed;
+  right: 24px;
+  top: 24px;
+`;
 
 export default ({ match, location: { pathname } }) => {
   const pkgId = match.params.packageName;
@@ -43,13 +49,33 @@ export default ({ match, location: { pathname } }) => {
     loader: () => pkg.intro.exports(),
     loading: Loading,
   });
-  const usage = Loadable({
+  const Usage = Loadable({
     loader: () => pkg.usage.exports(),
     loading: Loading,
+    render(C) {
+      return (
+        <React.Fragment >
+          <FloatingButton>
+            <EditInGitHubLink />
+          </FloatingButton>
+          <C.default />
+        </React.Fragment>
+      );
+    },
   });
-  const style = Loadable({
+  const Style = Loadable({
     loader: () => pkg.style.exports(),
     loading: Loading,
+    render(C) {
+      return (
+        <React.Fragment >
+          <FloatingButton>
+            <EditInGitHubLink />
+          </FloatingButton>
+          <C.default />
+        </React.Fragment>
+      );
+    },
   });
   return (
     <Page width={isExamplesRoute ? 'xlarge' : 'large'}>
@@ -77,9 +103,23 @@ export default ({ match, location: { pathname } }) => {
 
       <Switch>
         <Route exact path={`/packages/${pkgId}`} component={intro} />
-        <Route path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
-        {pkg.usage && <Route exact path="/packages/:packageName/usage" component={usage} />}
-        {pkg.style && <Route exact path="/packages/:packageName/style" component={style} />}
+        <Route exact path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
+        <Route path="/packages/:packageName/docs/:docId/edit" component={({ match: { params: { packageName, docId } } }) => {
+          const routePackage = getPackage(packageName);
+          console.log(routePackage);
+          const docName = routePackage.docs.find(page => page.id === docId).name;
+          window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/packages/${packageName}/docs/docs/${docName}`;
+          return <Loading />;
+        }} />
+        <Route exact path="/packages/:packageName/:pageId" component={({ match: { params: { pageId } } }) => {
+          if (pkg.usage && pageId === 'usage') return <Usage />;
+          if (pkg.style && pageId === 'style') return <Style />;
+          return null;
+        }} />
+        <Route path="/packages/:packageName/:pageId/edit" component={({ match: { params: { packageName, pageId } } }) => {
+          window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/packages/${packageName}/docs/${pageId}.md`;
+          return <Loading />;
+        }} />
         <Route path="/packages/:packageName/examples/:exampleId/:exampleType" component={PackageExamples} />
       </Switch>
     </Page >
