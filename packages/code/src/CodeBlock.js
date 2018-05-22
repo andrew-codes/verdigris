@@ -5,6 +5,8 @@ import * as PropTypes from 'prop-types';
 import { ghcolors } from 'react-syntax-highlighter/styles/prism';
 import supportedLanguages from './supportedLanguages';
 
+ghcolors["pre[class*=\"language-\"]"].backgroundColor = 'rgba(27,31,35,0.05)';
+
 export default function CodeBlock({
   children,
   height,
