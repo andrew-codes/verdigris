@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'react-emotion';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
-import { getExamples, getPkgs } from '../siteData';
+import { getPackage } from '../siteData';
 
 const Wrapper = styled('div') `
   box-sizing: border-box;
@@ -58,9 +58,9 @@ export default ({ match }) => {
     packageName,
   } = match.params;
   const currentExampleId = +match.params.exampleId;
-  const { example, examples } = getExamples(packageName, currentExampleId);
-
-  const ExampleComponent = example.Component;
+  const { examples, } = getPackage(packageName);
+  const currentExample = examples.find(ex => ex.id === currentExampleId);
+  const ExampleComponent = currentExample.Component;
 
   return (
     <Wrapper>
@@ -77,10 +77,10 @@ export default ({ match }) => {
         <ExampleTabs>
           <NavigationList horizontal>
             <NavigationListItem isSelected={match.params.exampleType === 'component'}>
-              <Link to={`/packages/${packageName}/examples/${example.id}/component`}>component</Link>
+              <Link to={`/packages/${packageName}/examples/${currentExample.id}/component`}>component</Link>
             </NavigationListItem>
             <NavigationListItem isSelected={match.params.exampleType === 'code'}>
-              <Link to={`/packages/${packageName}/examples/${example.id}/code`}>code</Link>
+              <Link to={`/packages/${packageName}/examples/${currentExample.id}/code`}>code</Link>
             </NavigationListItem>
           </NavigationList>
           <Route path="/packages/:packageName/examples/:exampleId/component" component={() => (
@@ -89,7 +89,7 @@ export default ({ match }) => {
             </ExampleComponentWrapper>
           )} />
           <Route path="/packages/:packageName/examples/:exampleId/code" component={() => (
-            <Code language="javascript" style={{ flex: 1 }}>{example.code}</Code>
+            <Code language="javascript" style={{ flex: 1 }}>{currentExample.code}</Code>
           )} />
         </ExampleTabs>
       </ExampleWrapper>

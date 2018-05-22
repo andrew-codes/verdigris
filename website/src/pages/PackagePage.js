@@ -6,7 +6,7 @@ import Loading from '../components/Loading';
 import PackageDocPage from './PackageDocPage';
 import PackageExamples from './PackageExamples';
 import Page from '../components/Page';
-import { getExamples, getPackage } from '../siteData';
+import { getPackage } from '../siteData';
 
 const Title = styled('h1') ``;
 const NavigationList = styled('ol') `
@@ -38,7 +38,6 @@ const NavigationListItem = styled('li') `
 export default ({ match, location: { pathname } }) => {
   const pkgId = match.params.packageName;
   const pkg = getPackage(pkgId);
-  const { examples } = getExamples(pkgId);
 
   return (
     <Page width="xlarge">
@@ -57,7 +56,7 @@ export default ({ match, location: { pathname } }) => {
             <Link to={`/packages/${pkgId}/style`}>style</Link>
           </NavigationListItem>
         )}
-        {examples.length > 0 && (
+        {pkg.examples.length > 0 && (
           <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/examples/.*`))}>
             <Link to={`/packages/${pkgId}/examples/1/component`}>examples</Link>
           </NavigationListItem>
