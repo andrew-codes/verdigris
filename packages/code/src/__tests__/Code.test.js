@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CodeBlock } from '../CodeBlock';
+import CodeBlock from '../CodeBlock';
 
 test('a code string without a language is rendered with a generic language formatting', () => {
   expect(shallow(<CodeBlock>ls -a</CodeBlock>)).toMatchSnapshot();
