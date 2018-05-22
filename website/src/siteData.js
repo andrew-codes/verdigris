@@ -31,17 +31,7 @@ const pkgs = SITE_DATA.children
       ...pkgItem,
       id,
       title: extractTitle(id),
-      docs: subDocs.map(doc => ({
-        ...doc,
-        id: fixId(doc.id),
-        title: extractTitle(doc.id),
-      })),
-      examples: samples
-        .map(sample => ({
-          ...sample,
-          id: fixId(sample.id),
-          title: extractSampleTitle(sample.id),
-        }))
+      docs: subDocs
         .sort((a, b) => {
           if (a.id > b.id) {
             return 1;
@@ -50,12 +40,41 @@ const pkgs = SITE_DATA.children
             return -1;
           }
           return 0;
-        }),
+        })
+        .map(doc => ({
+          ...doc,
+          id: fixId(doc.id),
+          title: extractTitle(doc.id),
+        })),
+      examples: samples
+        .sort((a, b) => {
+          if (a.id > b.id) {
+            return 1;
+          }
+          if (a.id < b.id) {
+            return -1;
+          }
+          return 0;
+        })
+        .map(sample => ({
+          ...sample,
+          id: fixId(sample.id),
+          title: extractSampleTitle(sample.id),
+        })),
       intro: mainDocs.find(item => fixId(item.id) === 'intro'),
       usage: mainDocs.find(item => fixId(item.id) === 'usage'),
       style: mainDocs.find(item => fixId(item.id) === 'style'),
     }]);
-  }, []);
+  }, [])
+  .sort((a, b) => {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  });
 
 export const getDocs = () => docs;
 export const getPkgs = () => pkgs;
