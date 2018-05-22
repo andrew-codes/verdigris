@@ -52,7 +52,7 @@ const ExampleTabs = styled('div') `
   flex-direction: column;
 `;
 
-export default ({ match }) => {
+export default ({ match, location: { pathname } }) => {
   const {
     exampleType,
     packageName,
@@ -67,7 +67,7 @@ export default ({ match }) => {
       <ExamplesNavigation>
         <NavigationList>
           {examples.map(example => (
-            <NavigationListItem isSelected={example.isSelected} key={example.id}>
+            <NavigationListItem isSelected={pathname === `/packages/${packageName}/examples/${example.id}/${exampleType}`} key={example.id}>
               <Link to={`/packages/${packageName}/examples/${example.id}/${exampleType}`}>{example.title}</Link>
             </NavigationListItem>
           ))}
