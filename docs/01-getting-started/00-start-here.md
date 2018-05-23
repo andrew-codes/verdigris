@@ -14,6 +14,12 @@ Please ensure you have the proper software installed:
 2. `cd verdigris` to change directory into root of project
 3. `yarn && yarn bootstrap` to install and bootstrap dependencies.
 
+## Running Site Locally
+
+1. Open the terminal and change into project's root directory; `cd verdigris`
+2. Run `yarn start` in the terminal
+3. Open Chrome and visit [http://localhost:9000](http://localhost:9000)
+
 ## Continue
 
 - [Designer/UX](./designers)

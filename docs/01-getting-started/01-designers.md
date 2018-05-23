@@ -1,11 +1,5 @@
 # Getting Started: Designers
 
-## Running Site Locally
-
-1. Open the terminal and change into project's root directory; `cd verdigris`
-2. Run `yarn start` in the terminal
-3. Open Chrome and visit [http://localhost:9000](http://localhost:9000)
-
 ## Contributing Content
 
 Content can be updated locally, on GitHub via the link in the upper right corner, and new pages can easily be added.
