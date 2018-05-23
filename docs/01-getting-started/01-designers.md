@@ -32,4 +32,4 @@ New markdown files can be added to any docs directory. Additionally, new directo
 
 ## Including Images
 
-Images can be included in markdown; however, the files should be saved to the `./docs/assets` directory and the URL for the file should be linked as `/asests/filename.png`.
+Images can be included in markdown; however, the files should be saved to the `./docs/assets` directory and the URL for the file should be linked as `/assets/filename.png`.
