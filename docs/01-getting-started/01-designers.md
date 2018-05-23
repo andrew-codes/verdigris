@@ -27,4 +27,9 @@ Docs pages are located within section directories in: `./docs`. Each section dir
 Component related documentation pages; such as "usages" and "style" may be found in the component's respective `docs` directory. For example, `analytics` main docs may be found `./packages/analytics/docs/usage.md` or `./packages/analytics/docs/style.md`. Any additional component documentation pages can be added underneath a `docs` directory within the component docs directory. `./packages/analytics/docs/docs/01-some-page.md`. Pages are ordered by file name in the navigation.
 
 ## Adding New Pages
+
 New markdown files can be added to any docs directory. Additionally, new directories (with markdown files) added to `./docs` directory will show up as a navigation section and navigation items.
+
+## Including Images
+
+Images can be included in markdown; however, the files should be saved to the `./docs/assets` directory and the URL for the file should be linked as `/asests/filename.png`.
