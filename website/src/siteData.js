@@ -18,12 +18,22 @@ const docs = SITE_DATA.children
     id: fixId(docItem.id),
     name: docItem.id,
     title: extractTitle(docItem.id),
-    pages: docItem.children.map(page => ({
-      ...page,
-      id: fixId(page.id),
-      name: page.id,
-      title: extractTitle(page.id),
-    }))
+    pages: docItem.children
+      .sort((a, b) => {
+        if (a.id > b.id) {
+          return 1;
+        }
+        if (a.id < b.id) {
+          return -1;
+        }
+        return 0;
+      })
+      .map(page => ({
+        ...page,
+        id: fixId(page.id),
+        name: page.id,
+        title: extractTitle(page.id),
+      }))
   }]), []);
 
 const pkgs = SITE_DATA.children

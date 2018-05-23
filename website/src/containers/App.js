@@ -82,6 +82,12 @@ body {
   font-family: Roboto,Helvetica,Arial,"Lucida Grande",sans-serif;
   line-height: 1.5;
 }
+blockquote {
+  background: lightyellow;
+  border: 1px solid orange;
+  padding: 1rem;
+  margin: 0 1rem;
+}
 `;
 
 export default function App(props) {

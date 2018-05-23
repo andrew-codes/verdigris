@@ -1,6 +1,6 @@
 # Tour of the Code Base
 
-This document will outline the general structure of the code, the standards and norms employed for the library, as well as any relevant technologies and or commands for interacting with the code base.
+This document will outline the general structure of the code, the standards, and norms employed for the library.
 
 ## Structure
 
@@ -8,7 +8,7 @@ This code base is a mono-repo and leverages [lerna](https://lernajs.io/) to mana
 
 * **`build`**: contains a collection of private, un-publishable packages related to the configuration or build process in general. This includes things like the webpack configuration, jest configuration, etc.
 * **`docs`**: collection of Markdown files, such as this one, which contain relevant documentation on the repo itself.
-* **`packages`**: directory of component packages; most of which will be publishable. See [anatomy of a component package](#Anatomy-of-a-component) for more details.
+* **`packages`**: directory of component packages; most of which will be publishable. See below for more details.
 * **`scripts`**: miscellaneous utility scripts, such as a shell script for creating a new component package.
 * **`website`**: web application containing help, documentation, and examples of this library; currently published to [verdigris.andrew.codes](http://verdigris.andrew.codes).
 

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 
 function createGlob(glob) {
@@ -65,7 +66,7 @@ module.exports = (
             'docs/**/*.md',
             ...createDefaultGlob(),
           ].filter(p => !!p),
-          exclude: ['**/node_modules/**'],
+          exclude: ['**/node_modules/**', 'docs/assets/**'],
         },
       },
       {
@@ -114,6 +115,12 @@ function plugins(
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': `"${env}"`,
     }),
+    new CopyWebpackPlugin([
+      { from: path.join(process.cwd(), '..', 'docs', 'assets/**/*'), to: path.join(process.cwd(), 'dist', 'assets'), flatten: true, },
+      { from: path.join(process.cwd(), '_redirects'), to: path.join(process.cwd(), 'dist'), type: 'file', },
+    ], {
+        debug: env === 'development',
+      }),
   ];
 
   if (report) {
