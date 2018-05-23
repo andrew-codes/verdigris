@@ -4,7 +4,7 @@ This document will outline the general structure of the code, the standards, and
 
 ## Structure
 
-This code base is a mono-repo and leverages [lerna](https://lernajs.io/) to manage dependencies between the various packages in the repo. There are a few top-level concerns that will be detailed:
+This code base is a mono-repo and leverages [lerna](https://lernajs.io/) to manage dependencies. There are a few top-level concerns that will be detailed:
 
 * **`build`**: contains a collection of private, un-publishable packages related to the configuration or build process in general. This includes things like the webpack configuration, jest configuration, etc.
 * **`docs`**: collection of Markdown files, such as this one, which contain relevant documentation on the repo itself.
@@ -36,13 +36,20 @@ Component packages all follow the same directory structure and general guideline
 .
 └── packageName
     ├── docs
+    │  ├── docs
+    │  │   └── 01-additional-documentation.md
+    │  ├── intro.js
+    │  ├── style.md
+    │  └── usage.md
     ├── examples
+    │  ├── 01-first-example.js
+    │  └── 02-another-example.js
     ├── src
     │  ├── __tests__
     │  │   ├── index.test.js
-    │  │   └── otherSupportingFiles.test.js
+    │  │   └── otherSupportingFile.test.js
     │  ├── index.js
-    │  └── otherSupportingFiles.js
+    │  └── otherSupportingFile.js
     ├── LICENSE
     ├── package.json
     └── README.md
