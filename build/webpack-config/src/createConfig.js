@@ -66,7 +66,7 @@ module.exports = (
             'docs/**/*.md',
             ...createDefaultGlob(),
           ].filter(p => !!p),
-          exclude: ['**/node_modules/**'],
+          exclude: ['**/node_modules/**', 'docs/assets/**'],
         },
       },
       {
