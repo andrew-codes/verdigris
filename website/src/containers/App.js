@@ -23,7 +23,9 @@ class GoogleAnalyticsListener extends Component {
 
   constructor(props) {
     super(props);
-    ReactGA.initialize(props.gaId);
+    if (process.env.NODE_ENV === 'production') {
+      ReactGA.initialize(props.gaId);
+    }
   }
 
   render() {
