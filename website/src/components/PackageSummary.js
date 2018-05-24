@@ -3,55 +3,70 @@ import styled from 'react-emotion';
 import * as PropTypes from 'prop-types';
 import { CodeBlock } from '@verdigris/code';
 
-const PackageSummaryBlock = styled('aside') `
+const Wrapper = styled('aside') `
 background: lightblue;
 border: 1px solid darkblue;
 box-sizing: border-box;
 display: flex;
-flex-direction: row;
+flex-direction: column;
 padding: 1rem;
 `;
-const PackageProperties = styled('div') `
+const QuickInfo = styled('div') `
+display: flex;
+flex-direction: row;
+padding-bottom: 1rem;
+`;
+const Properties = styled('div') `
 flex: 1;
 `;
-const PropertyContainer = styled('div') ``;
-const PropertyLabel = styled('span') `
+const PropertyWrapper = styled('div') ``;
+const Label = styled('span') `
 font-weight: 600;
 `;
-const PropertyValue = styled('span') ``;
+const Value = styled('span') ``;
 const InstallCmdContainer = styled('div') `
 width: 400px;
-`
+`;
+const Description = styled('p') `
+border-top: 1px solid darkblue;
+margin: 0;
+padding-top: 1rem;
+`;
 
-export default function PackageSummary({ name, shortName, version }) {
+export default function PackageSummary({ description, name, shortName, version }) {
   return (
-    <PackageSummaryBlock>
-      <PackageProperties>
-        <PropertyContainer>
-          <PropertyLabel>Name: </PropertyLabel>
-          <PropertyValue>{name}</PropertyValue>
-        </PropertyContainer>
-        <PropertyContainer>
-          <PropertyLabel>Version: </PropertyLabel>
-          <PropertyValue>{version}</PropertyValue>
-        </PropertyContainer>
-        <PropertyContainer>
-          <PropertyLabel>Source: </PropertyLabel>
-          <PropertyValue><a href={`https://github.com/andrew-codes/verdigris/tree/master/packages/${shortName}`} title="Source code">GitHub</a></PropertyValue>
-        </PropertyContainer>
-      </PackageProperties>
-      <InstallCmdContainer>
-        <CodeBlock style={{ backgroundColor: '#fff', }} language="bash">npm install @verdigris/analytics</CodeBlock>
-      </InstallCmdContainer>
-    </PackageSummaryBlock>
+    <Wrapper>
+      <QuickInfo>
+        <Properties>
+          <PropertyWrapper>
+            <Label>Name: </Label>
+            <Value>{name}</Value>
+          </PropertyWrapper>
+          <PropertyWrapper>
+            <Label>Version: </Label>
+            <Value>{version}</Value>
+          </PropertyWrapper>
+          <PropertyWrapper>
+            <Label>Source: </Label>
+            <Value><a href={`https://github.com/andrew-codes/verdigris/tree/master/packages/${shortName}`} title="Source code">GitHub</a></Value>
+          </PropertyWrapper>
+        </Properties>
+        <InstallCmdContainer>
+          <CodeBlock style={{ backgroundColor: '#fff', }} language="bash">npm install @verdigris/analytics</CodeBlock>
+        </InstallCmdContainer>
+      </QuickInfo>
+      <Description>{description}</Description>
+    </Wrapper>
   )
 }
 PackageSummary.propTypes = {
+  description: PropTypes.string,
   name: PropTypes.string,
   shortName: PropTypes.string,
   version: PropTypes.string,
 };
 PackageSummary.defaultProps = {
+  description: 'Capture UI interactions, state, and contextual data from components.',
   name: '@verdigris/analytics',
   shortName: 'analytics',
   version: '0.0.0',
