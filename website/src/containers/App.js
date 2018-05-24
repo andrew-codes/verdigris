@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 import styled, { injectGlobal } from 'react-emotion';
@@ -7,6 +8,7 @@ import { withRouter } from 'react-router';
 import * as PropTypes from 'prop-types';
 
 import Document from '../pages/Document';
+import Error from '../components/Error';
 import Home from '../pages/Home';
 import Loading from '../components/Loading';
 import Nav from './Nav';
@@ -14,7 +16,7 @@ import PackagePage from '../pages/PackagePage';
 import ApplicationPage from '../components/ApplicationPage';
 import PageNotFound from '../pages/PageNotFound';
 import RouteAnalyticsListener from '../components/RouteAnalyticsListener';
-import { getDocs, getPackage } from '../siteData';
+import { getDocs } from '../siteData';
 
 class GoogleAnalyticsListener extends Component {
   static propTypes = {
@@ -62,13 +64,15 @@ class RouteBoundary extends Component {
   state = { hasError: false };
 
   componentDidCatch(error, info) {
-    this.setState({ hasError: true });
+    this.setState({ hasError: true, info, });
   }
 
   render() {
-    const { hasError } = this.state;
+    const { hasError, info } = this.state;
     if (hasError) {
-      return <PageNotFound />;
+      console.log(info);
+
+      return <Error stack={info.componentStack} />;
     }
     return this.props.children;
   }
