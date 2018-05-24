@@ -6,6 +6,7 @@ import EditInGitHubLink from '../components/EditInGitHubLink';
 import Loading from '../components/Loading';
 import PackageDocPage from './PackageDocPage';
 import PackageExamples from './PackageExamples';
+import PackageSummary from '../components/PackageSummary';
 import Page from '../components/Page';
 import { getPackage } from '../siteData';
 
@@ -80,6 +81,8 @@ export default ({ match, location: { pathname } }) => {
   return (
     <Page width={isExamplesRoute ? 'xlarge' : 'large'}>
       <Title>{pkg.title}</Title>
+      <PackageSummary />
+
       <NavigationList horizontal>
         <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}$`))}>
           <Link to={`/packages/${pkgId}`}>code</Link>
