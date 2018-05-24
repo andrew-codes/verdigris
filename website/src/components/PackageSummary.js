@@ -52,7 +52,7 @@ export default function PackageSummary({ description, name, shortName, version }
           </PropertyWrapper>
         </Properties>
         <InstallCmdContainer>
-          <CodeBlock style={{ backgroundColor: '#fff', }} language="bash">npm install @verdigris/analytics</CodeBlock>
+          <CodeBlock style={{ backgroundColor: '#fff', }} language="bash">{`npm install ${name}`}</CodeBlock>
         </InstallCmdContainer>
       </QuickInfo>
       <Description>{description}</Description>
@@ -64,10 +64,4 @@ PackageSummary.propTypes = {
   name: PropTypes.string,
   shortName: PropTypes.string,
   version: PropTypes.string,
-};
-PackageSummary.defaultProps = {
-  description: 'Capture UI interactions, state, and contextual data from components.',
-  name: '@verdigris/analytics',
-  shortName: 'analytics',
-  version: '0.0.0',
 };
