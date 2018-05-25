@@ -10,7 +10,8 @@
     "src"
   ],
   "verdigris": {
-    "name": "Code"
+    "name": "Code",
+    "source": "code"
   },
   "peerDependencies": {
     "react": "^16.3.2"

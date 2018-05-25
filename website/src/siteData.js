@@ -43,6 +43,7 @@ const pkgs = SITE_DATA.children
   .reduce((prev, pkgItem) => {
     const docDir = pkgItem.children.find(item => item.id === 'docs');
     const sampleDir = pkgItem.children.find(item => item.id === 'examples');
+    const pkgJson = pkgItem.children.find(item => item.id.match(/\.json$/));
     const mainDocs = docDir ? docDir.children : [];
     const samples = sampleDir ? sampleDir.children : [];
     const subDocDir = mainDocs.find(doc => doc.id === 'docs');
@@ -52,6 +53,7 @@ const pkgs = SITE_DATA.children
       ...pkgItem,
       id,
       title: extractTitle(id),
+      pkgJson,
       docs: subDocs
         .sort((a, b) => {
           if (a.id > b.id) {

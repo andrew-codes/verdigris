@@ -11,8 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 function createGlob(glob) {
   return [
     `${glob}/docs/**/*.+(js|md)`,
-    // `${glob}/package.json`,
-    // `${glob}/CHANGELOG.md`,
+    `${glob}/package.json`,
     `${glob}/examples/*.js`,
   ];
 }

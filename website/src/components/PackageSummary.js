@@ -33,7 +33,7 @@ margin: 0;
 padding-top: 1rem;
 `;
 
-export default function PackageSummary({ description, name, shortName, version }) {
+export default function PackageSummary({ description, name, sourceName, version }) {
   return (
     <Wrapper>
       <QuickInfo>
@@ -48,7 +48,7 @@ export default function PackageSummary({ description, name, shortName, version }
           </PropertyWrapper>
           <PropertyWrapper>
             <Label>Source: </Label>
-            <Value><a href={`https://github.com/andrew-codes/verdigris/tree/master/packages/${shortName}`} title="Source code">GitHub</a></Value>
+            <Value><a href={`https://github.com/andrew-codes/verdigris/tree/master/packages/${sourceName}`} title="Source code">GitHub</a></Value>
           </PropertyWrapper>
         </Properties>
         <InstallCmdContainer>
@@ -62,6 +62,6 @@ export default function PackageSummary({ description, name, shortName, version }
 PackageSummary.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
-  shortName: PropTypes.string,
+  sourceName: PropTypes.string,
   version: PropTypes.string,
 };

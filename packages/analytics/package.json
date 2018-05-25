@@ -10,7 +10,8 @@
     "src"
   ],
   "verdigris": {
-    "name": "Analytics"
+    "name": "Analytics",
+    "sourceName": "analytics"
   },
   "peerDependencies": {
     "react": "^16.3.2"
