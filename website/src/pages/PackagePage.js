@@ -47,7 +47,6 @@ export default ({ match, location: { pathname } }) => {
   const isExamplesRoute = pathname.match(new RegExp(`/packages/${pkgId}/examples/.*`));
   const pkg = getPackage(pkgId);
 
-
   const Summary = Loadable({
     loader: () => pkg.pkgJson.exports(),
     loading: Loading,
@@ -56,7 +55,7 @@ export default ({ match, location: { pathname } }) => {
         <PackageSummary
           description={pkgJson.description}
           name={pkgJson.name}
-          sourceName={pkgJson.verdigris.sourceName}
+          sourceName={pkg.id}
           version={pkgJson.version}
         />
       );

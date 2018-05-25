@@ -17,7 +17,7 @@ This code base is a mono-repo and leverages [lerna](https://lernajs.io/) to mana
 Component packages all follow the same directory structure and general guidelines:
 
 * The package name (directory) is camel case
-* `package.json` contains a `verdigris` key with the value containing metadata about the component; such as its name (in proper casing)
+* `package.json` contains a `verdigris` key with the value containing metadata about the component
 * `src` directory contains all source files
 * Every directory/sub-directory under `src` contains a `__tests__` directory to house unit tests
 * Unit tests follow the `fileName.test.js` naming convention
