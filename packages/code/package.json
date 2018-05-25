@@ -1,7 +1,7 @@
 {
   "name": "@verdigris/code",
   "version": "0.0.0",
-  "description": "Component for rendering code blocks",
+  "description": "Components for rendering inline or block level code.",
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
