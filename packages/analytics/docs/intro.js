@@ -1,9 +1,6 @@
 import { code, md } from '@verdigris/docs';
 
 export default () => md`
-
-Capture UI interactions, state, and contextual data from components.
-
 ### Analytics with Verdigris Components
 
 All Verdigris components support analytics events. Event handlers for Verdigris components provide an analytics event as the second parameter. For example, given an Asset form containing a SaveButton:
