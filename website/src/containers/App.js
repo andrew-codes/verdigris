@@ -1,12 +1,13 @@
+// ./containers/App.js
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 import styled, { injectGlobal } from 'react-emotion';
 import { AnalyticsListener } from '@verdigris/analytics';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router';
 import * as PropTypes from 'prop-types';
-
 import Document from '../pages/Document';
 import Error from '../components/Error';
 import Home from '../pages/Home';
@@ -96,7 +97,9 @@ blockquote {
 }
 `;
 
-export default function App(props) {
+export default hot(module)(App);
+
+function App(props) {
   const {
     gaId,
   } = props;

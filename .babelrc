@@ -8,5 +8,12 @@
     "transform-class-properties",
     "transform-object-rest-spread",
     "babel-plugin-emotion"
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
 }

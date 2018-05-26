@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn webpack:dev",
-    "webpack:dev": "../node_modules/@verdigris/webpack-config/bin/dev.js ./src/index.js",
+    "webpack:dev": "cross-env NODE_ENV=development ../node_modules/@verdigris/webpack-config/bin/dev.js ./src/index.js",
     "build": "cross-env NODE_ENV=production ../node_modules/@verdigris/webpack-config/bin/build.js ./src/index.js"
   },
   "dependencies": {

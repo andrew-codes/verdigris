@@ -35,9 +35,11 @@ module.exports = (
     main:
       env === 'development' && host && port
         ? [
+          'react-hot-loader/patch',
           `${require.resolve(
             'webpack-dev-server/client',
           )}?http://${host}:${port}/`,
+          'webpack/hot/only-dev-server',
           path.join(process.cwd(), entry),
         ]
         : path.join(cwd, entry),
@@ -131,6 +133,11 @@ function plugins(
         logLevel: 'error',
       }),
     );
+  }
+
+  if (env === 'development'){
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(new webpack.NoEmitOnErrorsPlugin());
   }
 
   if (env === 'production' && !noMinimize) {
