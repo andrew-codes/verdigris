@@ -1,9 +1,9 @@
 import { code, md } from '@verdigris/docs';
 
 export default () => md`
-Analytics events are supported by all relevant Verdigris components; however any component can fire these events. See using with [Custom Components](./docs/custom-components) for more details on supporting analytics events in your own, custom components.
+Analytics events are supported by all relevant Verdigris components; however any component can fire these events. See [using analytics with Custom Components](./docs/custom-components) for more details on supporting analytics events in your own, custom components.
 
-### Analytics with Verdigris Components
+### Using Analytics with Verdigris Components
 
 All Verdigris components support analytics events. Event handlers for Verdigris components provide an analytics event as the second parameter. For example, given an Asset form containing a SaveButton:
 

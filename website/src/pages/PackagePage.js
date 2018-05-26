@@ -2,7 +2,7 @@ import Loadable from 'react-loadable';
 import React from 'react';
 import styled from 'react-emotion';
 import { Link, Route, Switch } from 'react-router-dom';
-import EditInGitHubLink from '../components/EditInGitHubLink';
+import createLoadableMarkdownContent from '../components/createLoadableMarkdownContent';
 import Loading from '../components/Loading';
 import PackageDocPage from './PackageDocPage';
 import PackageExamples from './PackageExamples';
@@ -36,11 +36,6 @@ const NavigationListItem = styled('li') `
     background: rgba(255, 255, 255, 0.5);
   }
 `;
-const FloatingButton = styled('div') `
-  position: fixed;
-  right: 24px;
-  top: 24px;
-`;
 
 export default ({ match, location: { pathname } }) => {
   const pkgId = match.params.packageName;
@@ -65,34 +60,9 @@ export default ({ match, location: { pathname } }) => {
     loader: () => pkg.intro.exports(),
     loading: Loading,
   });
-  const Usage = Loadable({
-    loader: () => pkg.usage.exports(),
-    loading: Loading,
-    render(C) {
-      return (
-        <React.Fragment >
-          <FloatingButton>
-            <EditInGitHubLink />
-          </FloatingButton>
-          <C.default />
-        </React.Fragment>
-      );
-    },
-  });
-  const Style = Loadable({
-    loader: () => pkg.style.exports(),
-    loading: Loading,
-    render(C) {
-      return (
-        <React.Fragment >
-          <FloatingButton>
-            <EditInGitHubLink />
-          </FloatingButton>
-          <C.default />
-        </React.Fragment>
-      );
-    },
-  });
+  const Usage = createLoadableMarkdownContent(pkg.usage);
+  const Style = createLoadableMarkdownContent(pkg.style);
+
   return (
     <Page width={isExamplesRoute ? 'xlarge' : 'large'}>
       <Title>{pkg.title}</Title>
@@ -124,7 +94,6 @@ export default ({ match, location: { pathname } }) => {
         <Route exact path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
         <Route path="/packages/:packageName/docs/:docId/edit" component={({ match: { params: { packageName, docId } } }) => {
           const routePackage = getPackage(packageName);
-          console.log(routePackage);
           const docName = routePackage.docs.find(page => page.id === docId).name;
           window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/packages/${packageName}/docs/docs/${docName}`;
           return <Loading />;

@@ -73,7 +73,7 @@ module.exports = (
       {
         test: /\.md$/,
         exclude: /node_modules/,
-        loader: ['babel-loader', '@mdx-js/loader'],
+        loader: 'raw-loader',
       },
       {
         test: /\.js$/,
@@ -135,7 +135,7 @@ function plugins(
     );
   }
 
-  if (env === 'development'){
+  if (env === 'development') {
     plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(new webpack.NoEmitOnErrorsPlugin());
   }

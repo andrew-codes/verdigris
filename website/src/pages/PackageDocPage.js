@@ -1,6 +1,7 @@
 import Loadable from 'react-loadable';
 import React from 'react';
 import styled from 'react-emotion';
+import { md } from '@verdigris/docs';
 import EditInGitHubLink from '../components/EditInGitHubLink';
 import Loading from '../components/Loading';
 import { getPackage } from '../siteData';
@@ -19,9 +20,12 @@ export default ({ match }) => {
   const PackageDoc = Loadable({
     loader: () => {
       const doc = pkg.docs.find(d => d.id === docId);
-      return doc.exports();
+      return doc.contents();
     },
     loading: Loading,
+    render(contents) {
+      return md([contents.default]);
+    }
   });
 
   return (

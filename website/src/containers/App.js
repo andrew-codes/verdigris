@@ -71,8 +71,6 @@ class RouteBoundary extends Component {
   render() {
     const { hasError, info } = this.state;
     if (hasError) {
-      console.log(info);
-
       return <Error stack={info.componentStack} />;
     }
     return this.props.children;
