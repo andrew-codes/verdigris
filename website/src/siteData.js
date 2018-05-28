@@ -41,6 +41,8 @@ const pkgs = SITE_DATA.children
   .children
   .filter(item => item.type === 'dir')
   .reduce((prev, pkgItem) => {
+    const componentsMetadataDir = pkgItem.children.find(item => item.id === 'src') || { children: [] };
+    const componentsMetadata = componentsMetadataDir.children;
     const docDir = pkgItem.children.find(item => item.id === 'docs');
     const sampleDir = pkgItem.children.find(item => item.id === 'examples');
     const pkgJson = pkgItem.children.find(item => item.id.match(/\.json$/));
@@ -49,10 +51,12 @@ const pkgs = SITE_DATA.children
     const subDocDir = mainDocs.find(doc => doc.id === 'docs');
     const subDocs = subDocDir ? subDocDir.children : [];
     const id = fixId(pkgItem.id);
+
     return prev.concat([{
       ...pkgItem,
       id,
       title: extractTitle(id),
+      componentsMetadata,
       pkgJson,
       docs: subDocs
         .sort((a, b) => {

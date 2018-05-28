@@ -10,8 +10,8 @@ function createLoaderOutput(directory, files = [], debug = false, ) {
       return { type: 'dir', id: id, children: children };
     }
 
-    function file(id, exports, contents) {
-      return { type: 'file', id: id, exports: exports, contents: contents };
+    function file(id, exports, contents, componentMetadata) {
+      return { type: 'file', id: id, exports: exports, contents: contents, componentMetadata: componentMetadata };
     }
 
     export default ${printDir(directory)};

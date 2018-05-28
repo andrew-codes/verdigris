@@ -4,7 +4,10 @@ function pad(str, depth) {
 
 function printFile(file, depth) {
   return pad(
-    `file('${file.id}', function(){ return import('${file.path}'); }, ${file.id.match(/\.json$/) ? `function() { return ''; }` : `function(){ return import('!!raw-loader!${file.path}');}`})`,
+    `file('${file.id}', function(){ return import('${file.path}'); },
+    ${file.id.match(/\.json$/) ? `function() { return ''; }` : `function(){ return import('!!raw-loader!${file.path}');}`},
+    ${file.path.match(/packages\/.*\/src/) ? `function(){ return import('!!component-metadata-loader!${file.path}');}` : 'null'}
+    )`,
     depth,
   );
 }

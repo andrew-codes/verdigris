@@ -11,6 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 function createGlob(glob) {
   return [
     `${glob}/docs/**/*.+(js|md)`,
+    `${glob}/src/*.js`,
     `${glob}/package.json`,
     `${glob}/examples/*.js`,
   ];
@@ -67,7 +68,11 @@ module.exports = (
             'docs/**/*.md',
             ...createDefaultGlob(),
           ].filter(p => !!p),
-          exclude: ['**/node_modules/**', 'docs/assets/**'],
+          exclude: [
+            '**/node_modules/**',
+            'docs/assets/**',
+            'packages/**/__tests__/**',
+          ],
         },
       },
       {
