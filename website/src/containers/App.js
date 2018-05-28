@@ -93,6 +93,10 @@ blockquote {
   padding: 1rem;
   margin: 0 1rem;
 }
+h2 {
+  display: block;
+  border-bottom: 1px solid darkgray;
+}
 `;
 
 export default hot(module)(App);
