@@ -6,11 +6,6 @@ const contextTypes = {
 };
 
 export default class AnalyticsContext extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    // eslint-disable-next-line react/forbid-prop-types
-    data: PropTypes.any,
-  }
   static contextTypes = contextTypes;
   static childContextTypes = contextTypes;
 
@@ -34,3 +29,8 @@ export default class AnalyticsContext extends Component {
     return Children.only(this.props.children);
   }
 }
+AnalyticsContext.propTypes = {
+  children: PropTypes.node.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  data: PropTypes.any.isRequired,
+};

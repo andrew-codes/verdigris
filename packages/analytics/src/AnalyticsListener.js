@@ -2,11 +2,6 @@ import { Children, Component } from 'react';
 import * as PropTypes from 'prop-types';
 
 export default class AnalyticsListener extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    onEvent: PropTypes.func.isRequired,
-    channel: PropTypes.string,
-  }
   static contextTypes = {
     getAnalyticsEventHandlers: PropTypes.func,
   };
@@ -41,3 +36,11 @@ export default class AnalyticsListener extends Component {
     ];
   };
 }
+AnalyticsListener.propTypes = {
+  children: PropTypes.node.isRequired,
+  onEvent: PropTypes.func.isRequired,
+  channel: PropTypes.string,
+};
+AnalyticsListener.defaultProps = {
+  channel: '*',
+};

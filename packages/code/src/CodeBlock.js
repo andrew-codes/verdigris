@@ -36,16 +36,19 @@ export default function CodeBlock({
   );
 }
 CodeBlock.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.string.isRequired,
   height: PropTypes.string,
+  language: PropTypes.oneOf(supportedLanguages).isRequired,
   lineNumberStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  language: PropTypes.oneOf(supportedLanguages),
   shouldShowLineNumbers: PropTypes.bool,
   startingLineNumber: PropTypes.number,
   style: PropTypes.object,
   theme: PropTypes.object,
 };
 CodeBlock.defaultProps = {
+  height: null,
+  lineNumberStyle: null,
+  shouldShowLineNumbers: false,
   startingLineNumber: 1,
   style: {},
   theme: ghcolors,
