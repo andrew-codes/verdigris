@@ -4,6 +4,7 @@ import styled from 'react-emotion';
 import { Link, Route, Switch } from 'react-router-dom';
 import createLoadableMarkdownContent from '../components/createLoadableMarkdownContent';
 import Loading from '../components/Loading';
+import PackageAPIPage from './PackageAPIPage';
 import PackageDocPage from './PackageDocPage';
 import PackageExamples from './PackageExamples';
 import PackageSummary from '../components/PackageSummary';
@@ -72,6 +73,9 @@ export default ({ match, location: { pathname } }) => {
         <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}$`))}>
           <Link to={`/packages/${pkgId}`}>code</Link>
         </NavigationListItem>
+        <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/api$`))}>
+          <Link to={`/packages/${pkgId}/api`}>api</Link>
+        </NavigationListItem>
         {pkg.usage && (
           <NavigationListItem isSelected={pathname.match(new RegExp(`/packages/${pkgId}/usage$`))}>
             <Link to={`/packages/${pkgId}/usage`}>usage</Link>
@@ -91,6 +95,7 @@ export default ({ match, location: { pathname } }) => {
 
       <Switch>
         <Route exact path={`/packages/${pkgId}`} component={intro} />
+        <Route exact path="/packages/:packageName/api" component={PackageAPIPage} />
         <Route exact path="/packages/:packageName/docs/:docId" component={PackageDocPage} />
         <Route path="/packages/:packageName/docs/:docId/edit" component={({ match: { params: { packageName, docId } } }) => {
           const routePackage = getPackage(packageName);
