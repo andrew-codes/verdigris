@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import CodeBlock from '../CodeBlock';
 
 test('a code string without a language is rendered with a generic language formatting', () => {
-  expect(shallow(<CodeBlock>ls -a</CodeBlock>)).toMatchSnapshot();
+  expect(shallow(<CodeBlock language="bash">ls -a</CodeBlock>)).toMatchSnapshot();
 });
 
 test('component can be configured to render a specific language', () => {
@@ -41,6 +41,6 @@ test('defaults to starting line number at 1', () => {
 
 test('can apply a style object to each line', () => {
   expect(
-    shallow(<CodeBlock lineNumberStyle={{ color: 'blue' }}>ls -a</CodeBlock>),
+    shallow(<CodeBlock language="bash" lineNumberStyle={{ color: 'blue' }}>ls -a</CodeBlock>),
   ).toMatchSnapshot();
 });

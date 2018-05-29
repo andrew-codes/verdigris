@@ -4,9 +4,12 @@ exports[`a code string without a language is rendered with a generic language fo
 <SyntaxHighlighter
   customStyle={
     Object {
-      "height": undefined,
+      "height": null,
     }
   }
+  language="bash"
+  lineNumberStyle={null}
+  showLineNumbers={false}
   startingLineNumber={1}
   style={
     Object {
@@ -195,14 +198,16 @@ exports[`can apply a style object to each line 1`] = `
 <SyntaxHighlighter
   customStyle={
     Object {
-      "height": undefined,
+      "height": null,
     }
   }
+  language="bash"
   lineNumberStyle={
     Object {
       "color": "blue",
     }
   }
+  showLineNumbers={false}
   startingLineNumber={1}
   style={
     Object {
@@ -391,10 +396,12 @@ exports[`component can be configured to render a specific language 1`] = `
 <SyntaxHighlighter
   customStyle={
     Object {
-      "height": undefined,
+      "height": null,
     }
   }
   language="bash"
+  lineNumberStyle={null}
+  showLineNumbers={false}
   startingLineNumber={1}
   style={
     Object {
@@ -583,10 +590,11 @@ exports[`defaults to starting line number at 1 1`] = `
 <SyntaxHighlighter
   customStyle={
     Object {
-      "height": undefined,
+      "height": null,
     }
   }
   language="bash"
+  lineNumberStyle={null}
   showLineNumbers={true}
   startingLineNumber={1}
   style={
@@ -776,10 +784,11 @@ exports[`optionally render line numbers 1`] = `
 <SyntaxHighlighter
   customStyle={
     Object {
-      "height": undefined,
+      "height": null,
     }
   }
   language="bash"
+  lineNumberStyle={null}
   showLineNumbers={true}
   startingLineNumber={1}
   style={
@@ -969,10 +978,11 @@ exports[`optionally start at line numbers at a given number 1`] = `
 <SyntaxHighlighter
   customStyle={
     Object {
-      "height": undefined,
+      "height": null,
     }
   }
   language="bash"
+  lineNumberStyle={null}
   showLineNumbers={true}
   startingLineNumber={10}
   style={

@@ -1,8 +1,8 @@
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter/prism';
 import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
-import * as PropTypes from 'prop-types';
 import { ghcolors } from 'react-syntax-highlighter/styles/prism';
+import * as PropTypes from 'prop-types';
 import supportedLanguages from './supportedLanguages';
 
 ghcolors["pre[class*=\"language-\"]"].backgroundColor = 'rgba(27,31,35,0.05)';
