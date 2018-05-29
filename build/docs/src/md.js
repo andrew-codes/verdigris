@@ -9,7 +9,7 @@ const Link = withRouter(({
   location: {
     pathname,
   },
-}) => <a href={`${pathname}/${href}`} title="here">{children}</a>);
+}) => <a href={href.match(/^http/) ? href : `${pathname}/${href}`} title="here">{children}</a>);
 
 export default markings.customize({
   renderers: {
