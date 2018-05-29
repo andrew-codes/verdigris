@@ -22,5 +22,5 @@ Please ensure you have the proper software installed:
 
 ## Continue
 
-- [Designer/UX](./designers)
-- [Developer](./developers)
+- [Designer/UX](../designers)
+- [Developer](../developers)

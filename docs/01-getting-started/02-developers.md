@@ -25,6 +25,6 @@ In addition to running lint and tests for all open PRs via Travis, every PR will
 
 ## Additional Reading
 
-- [Tour of the Code Base](../guides/tour-of-the-code-base): overview of of structure and conventions used in Verdigris
-- [Contributing](../guides/contributing): guidelines for contributors
-- [Publishing](../guides/publishing): guide to versioning and publishing
+- [Tour of the Code Base](../../guides/tour-of-the-code-base): overview of of structure and conventions used in Verdigris
+- [Contributing](.../../guides/contributing): guidelines for contributors
+- [Publishing](../../guides/publishing): guide to versioning and publishing

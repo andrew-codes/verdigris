@@ -6,7 +6,8 @@ Content in Verdigris is written in Markdown (see [Markdown guide](https://guides
 > **Notes**:
 > 1. Internal links should ignore the `00-` prefix (of directories and files) and the file extension.
 >    - For example, a link to `../02-guides/01-contributing.md` would be written as `../guides/contributing`
-> 2. Images are saved to the directory: `./docs/assets` and are their URLs are referenced in Markdown as `/assets/filename.png`
+> 2. Use `../` instead of `./` when linking to internal pages
+> 3. Images are saved to the directory: `./docs/assets` and are their URLs are referenced in Markdown as `/assets/filename.png`
 
 ## Updating Content via GitHub
 
