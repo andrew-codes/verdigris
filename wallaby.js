@@ -27,7 +27,10 @@ module.exports = wallaby => ({
   },
   testFramework: 'jest',
   compilers: {
-    '**/*.js': wallaby.compilers.babel(),
+    '**/*.js': wallaby.compilers.babel({
+      babel: require('babel-core'),
+      babelrc: true,
+    }),
   },
   setup(w) {
     const jestConfig = require('./jest.config.js');
