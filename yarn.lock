@@ -6679,6 +6679,17 @@ react-test-renderer@^16.0.0-0:
     prop-types "^15.6.0"
     react-is "^16.3.2"
 
+react-virtualized@^9.19.1:
+  version "9.19.1"
+  resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.19.1.tgz#84b53253df2d9df61c85ce037141edccc70a73fd"
+  dependencies:
+    babel-runtime "^6.26.0"
+    classnames "^2.2.3"
+    dom-helpers "^2.4.0 || ^3.0.0"
+    loose-envify "^1.3.0"
+    prop-types "^15.6.0"
+    react-lifecycles-compat "^3.0.4"
+
 react-virtualized@^9.3.0:
   version "9.19.0"
   resolved "https://registry.yarnpkg.com/react-virtualized/-/react-virtualized-9.19.0.tgz#f329997be53e3af74427d03062517ddb3b9c8ab7"
