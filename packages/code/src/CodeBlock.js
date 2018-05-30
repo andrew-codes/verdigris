@@ -36,13 +36,38 @@ export default function CodeBlock({
   );
 }
 CodeBlock.propTypes = {
+  /**
+   * code snippet string
+   */
   children: PropTypes.string.isRequired,
+  /**
+   * code block height; will virtualize code block when code scrolls beyond height prop
+   */
   height: PropTypes.string,
+  /**
+   * language of code snippet; must be a supported language
+   */
   language: PropTypes.oneOf(supportedLanguages).isRequired,
+  /**
+   * used to apply styles to each individual line; function accepts `lineNumber` as parameter
+   * @example lineNumberStyle: lineNumber => lineNumber === 1 ? { color: 'blue' } : {},
+   */
   lineNumberStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  /**
+   * displays line numbers when true
+   */
   shouldShowLineNumbers: PropTypes.bool,
+  /**
+   * line number to start on within code block
+   */
   startingLineNumber: PropTypes.number,
+  /**
+   * override styles applied to the `<pre />` tag root element
+   */
   style: PropTypes.object,
+  /**
+   * `react-syntax-highlighter/styles/prism` theme that provides styling to code
+   */
   theme: PropTypes.object,
 };
 CodeBlock.defaultProps = {

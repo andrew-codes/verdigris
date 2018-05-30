@@ -18,5 +18,8 @@ export default function InlineCode({ children }) {
   );
 }
 InlineCode.propTypes = {
+  /**
+   * code snippet string
+   */
   children: PropTypes.string.isRequired,
 };
