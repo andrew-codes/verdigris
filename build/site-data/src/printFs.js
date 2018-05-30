@@ -1,12 +1,16 @@
+const path = require('path');
+
 function pad(str, depth) {
   return str.padStart(str.length + depth * 2);
 }
 
 function printFile(file, depth) {
+  const filePath = file.path.replace(/\\/g, '\\\\');
+
   return pad(
-    `file('${file.id}', function(){ return import('${file.path}'); },
-    ${file.id.match(/\.json$/) ? `function() { return ''; }` : `function(){ return import('!!raw-loader!${file.path}');}`},
-    ${file.path.match(/packages\/.*\/src/) ? `function(){ return import('!!component-metadata-loader!${file.path}');}` : 'null'}
+    `file('${file.id}', function(){ return import('${filePath}'); },
+    ${file.id.match(/\.json$/) ? `function() { return ''; }` : `function(){ return import('!!raw-loader!${filePath}');}`},
+    ${file.path.match(/packages\/.*\/src/) ? `function(){ return import('!!component-metadata-loader!${filePath}');}` : 'null'}
     )`,
     depth,
   );
