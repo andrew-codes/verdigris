@@ -38,7 +38,13 @@ export default class AnalyticsListener extends Component {
 }
 AnalyticsListener.propTypes = {
   children: PropTypes.node.isRequired,
+  /**
+   * invoked by fired events on specified channel
+   */
   onEvent: PropTypes.func.isRequired,
+  /**
+   * used to filter the handling of analytics events
+   */
   channel: PropTypes.string,
 };
 AnalyticsListener.defaultProps = {
