@@ -6,8 +6,7 @@
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "verdigris": {
     "name": "Code"

@@ -13,7 +13,7 @@
     "test:changed:watch": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest --watch",
     "start": "cd website && yarn start && cd ../",
     "build:website": "cd website && yarn build && cd ../",
-    "new-component": "scripts/bin/new-component.sh"
+    "new-pkg": "scripts/bin/new-pkg.sh"
   },
   "engines": {
     "node": "^8.5.0 || ^10.0.0",
