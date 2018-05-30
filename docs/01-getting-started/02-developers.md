@@ -7,7 +7,7 @@
 * `yarn test:changed` will only run tests in packages that have changed since the branch was cut from master
 * `yarn bootstrap` run after adding new internal dependencies to a package
 * `yarn lerna add --scope @verdigris/package-name dependency-to-add` (see below for details on managing dependencies)
-* `yarn new-component ComponentName "A description of the component."` will scaffold out a new component in `./packages`
+* `yarn new-pkg PackageName "A description of the package."` will scaffold out a new component in `./packages/packageName`
 
 ## Managing Dependencies
 
