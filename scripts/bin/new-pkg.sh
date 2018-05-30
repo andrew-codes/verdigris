@@ -75,7 +75,7 @@ echo "
 echo "
 " > packages/$name/docs/style.md
 # Directory to house any other misc. package doc pages
-mkdir -p package/$name/docs/docs
+mkdir -p packages/$name/docs/docs
 
 # ## examples directory
 mkdir -p packages/$name/examples
