@@ -13,8 +13,6 @@ export default ({ match: { params: { packageName } } }) => {
     loader: () => Promise.all(pkg.componentsMetadata.map(c => c.componentMetadata())),
     loading: Loading,
     render(componentsMetadata) {
-      console.log(componentsMetadata);
-
       return (
         <Components>
           {componentsMetadata

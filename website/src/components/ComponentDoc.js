@@ -55,7 +55,6 @@ class ComponentDoc extends Component {
       props,
       summary,
     } = this.props;
-    console.log(this.props);
 
     return (
       <ComponentWrapper>
