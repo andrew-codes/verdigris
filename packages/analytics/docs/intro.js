@@ -10,7 +10,7 @@ All Verdigris components support analytics events. Event handlers for Verdigris 
 #### SaveButton.js
 
 ${code`
-import Button from 'verdigris/Button';
+import Button from '@verdigris/button';
 
 const SaveButton = ({ onClick }) => (
   <Button onClick={onClick}>Save</Button>
@@ -22,7 +22,7 @@ Button is a Verdigris component and therefore provides its event handlers with a
 #### SaveButton.js
 
 ${code`
-import Button from 'verdigris/Button';
+import Button from '@verdigris/button';
 
 const SaveButton = ({ onClick }) => (
   <Button onClick={(evt, analyticsEvt) => {
@@ -41,7 +41,7 @@ You can also update the analytics event with additional payload information. Rem
 #### SaveButton.js
 
 ${code`
-import Button from 'verdigris/Button';
+import Button from '@verdigris/button';
 
 const SaveButton = ({ onClick }) => (
   <Button onClick={(evt, analyticsEvt) => {
@@ -82,4 +82,23 @@ const App = () => (
 `}
 
 The \`AnalyticsListener\`'s \`onEvent\` callback will be invoked for every fired analytics event. This is where you can capture analytics events and send them to Google Analytics or some other back-end service.
+
+Additionally, we can provide additional contextual data to our analytics event via the \'AnalyticsContext\` component.
+
+#### App.js
+
+${code`
+import { AnalyticsContext, AnalyticsListener } from 'verdigris/analytics';
+import SaveButton from './SaveButton';
+
+const consumeAnalytics = analyticsEvt => console.log(analyticsEvt);
+
+const App = () => (
+  <AnalyticsListener onEvent={consumeAnalytics}>
+  <AnalyticsContext data={{ oidToken: 'Story:1234' }}>
+      <SaveButton />
+    </AnalyticsContext>
+  </AnalyticsListener>
+);
+`}
 `;
