@@ -1,5 +1,5 @@
 # Verdigris
-Component library.
+Primarily a design language featured in some CollabNet VersionOne products with occasionally implemented components.
 
 ## Quick Start
 ### Before you Begin
@@ -15,7 +15,7 @@ Please ensure you have the proper software installed.
 2. `yarn start` and navigate to [http://localhost:9000](http://localhost:9000)
 
 ## Other Topics
-- [Tour of the code base](./docs/tour-of-the-code-base.md) (structure, conventions, and norms)
-- [Contributing](./docs/contributing.md)
-- [Publishing](./docs/publishing.md)
+- [Tour of the code base](http://verdigris.andrew.codes/docs/guides/tour-of-the-code-base) (structure, conventions, and norms)
+- [Contributing](http://verdigris.andrew.codes/docs/guides/contributing)
+- [Publishing](http://verdigris.andrew.codes/docs/guides/publishing)
 - [License](./LICENSE)
