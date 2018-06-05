@@ -122,7 +122,7 @@ function plugins(
       'process.env.NODE_ENV': `"${env}"`,
     }),
     new CopyWebpackPlugin([
-      { from: path.join(process.cwd(), '..', 'docs', 'assets/**/*'), to: path.join(process.cwd(), 'dist', 'assets'), flatten: true, },
+      { from: path.join(process.cwd(), '..', '**', 'docs', 'assets/**/*'), to: path.join(process.cwd(), 'dist', 'assets'), flatten: true, },
       { from: path.join(process.cwd(), '_redirects'), to: path.join(process.cwd(), 'dist'), type: 'file', },
     ], {
         debug: env === 'development',
