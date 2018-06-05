@@ -62,11 +62,11 @@ mkdir -p packages/$name/docs
 # code docs page (intro.js)
 echo "import { code, md } from '@verdigris/docs';
 
-export default () => md`
+export default () => md\`
 # $componentName
 
 $description
-`;
+\`;
 " > packages/$name/docs/intro.js
 # usage docs page
 echo "
