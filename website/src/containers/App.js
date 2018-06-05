@@ -97,6 +97,25 @@ h2 {
   display: block;
   border-bottom: 1px solid darkgray;
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr {
+  &:nth-child(even){
+    background: lightgray;
+  }
+}
+th, td {
+  padding: 0.5rem;
+  text-align: left;
+  vertical-align: top;
+
+  ol, ul {
+    padding: 0;
+    margin: 0 0 0 1rem;
+  }
+}
 `;
 
 export default hot(module)(App);
