@@ -53,10 +53,10 @@ const DeleteRoot = styled('span')`
   color: ${p => p.theme.colors.textInvert};
   cursor: pointer;
   display: inline-flex;
-  height: ${p => p.theme.typography.baseSize}px;
+  height: ${p => p.theme.typography.baseSize * p.theme.typography.lineHeight}px;
   justify-content: center;
   margin-right: ${p => p.theme.spacing.unit}px;
-  width: ${p => p.theme.typography.baseSize}px;
+  width: ${p => p.theme.typography.baseSize * p.theme.typography.lineHeight}px;
 `;
 
 function Chip({ avatar, clickable, component, createAnalyticsEvent, label, onClick, onDelete, ...rest }) {
