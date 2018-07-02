@@ -19,6 +19,7 @@ const ChipRoot = styled('div')`
     margin: ${p => p.theme.spacing.unit}px;
     min-height: 32px;
     position: relative;
+    white-space: nowrap;
 
     a:link,
     a:visited,
