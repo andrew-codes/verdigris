@@ -1,0 +1,14 @@
+{
+  "name": "@verdigris/theme",
+  "version": "0.0.0",
+  "description": "Theming utilities and components.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "verdigris": {
+    "name": "Theme"
+  },
+  "files": [
+    "dist"
+  ]
+}

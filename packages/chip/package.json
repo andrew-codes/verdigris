@@ -1,0 +1,22 @@
+{
+  "name": "@verdigris/chip",
+  "version": "0.0.0",
+  "description": "Concise representation of an otherwise more complex entity.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "verdigris": {
+    "name": "Chip"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@verdigris/analytics": "^0.0.0",
+    "@verdigris/theme": "^0.0.0",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-emotion": "^9.2.4"
+  }
+}
