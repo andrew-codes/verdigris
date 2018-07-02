@@ -15,7 +15,7 @@ const ChipRoot = styled('div')`
     color: ${p => p.theme.colors.text};
     cursor: ${p => p.clickable ? 'pointer' : 'default'};
     display: inline-flex;
-    margin: ${p => p.theme.spacing.unit}px;
+    margin: ${p => p.hasAvatar ? `${p.theme.spacing.unit}px ${p.theme.spacing.unit}px ${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px` : `${p.theme.spacing.unit}px`};
     min-height: ${p => (p.theme.typography.baseSize * p.theme.typography.lineHeight) + p.theme.spacing.unit * 2}px;
     position: relative;
     white-space: nowrap;
@@ -29,7 +29,7 @@ const ChipRoot = styled('div')`
 const Content = styled('span')`
   display: inline-block;
   padding: ${p => `${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px`};
-  margin-left: ${p => p.hasAvatar ? `${calculateAvatarSize(p)}px` : 0};
+  margin-left: ${p => p.hasAvatar ? `${calculateAvatarSize(p) - p.theme.spacing.unit}px` : 0};
   min-width:  ${p => p.theme.spacing.unit * 2}px;
 `;
 const Avatar = styled('span')`
@@ -40,6 +40,7 @@ const Avatar = styled('span')`
   display: flex;
   height: ${p => calculateAvatarSize(p)}px;
   justify-content: center;
+  left: -${p => p.theme.spacing.unit}px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -65,6 +66,7 @@ function Chip({ avatar, clickable, component, createAnalyticsEvent, label, onCli
     <ThemeProvider theme={defaultTheme}>
       <ChipRoot
         clickable={clickable}
+        hasAvatar={avatar}
       >
         <ComponentRoot {...rest} onClick={evt => {
           if (!clickable) return;
