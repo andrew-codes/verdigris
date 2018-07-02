@@ -6,18 +6,17 @@ import { noop } from 'lodash';
 import { ThemeProvider } from 'emotion-theming';
 import { withAnalytics } from '@verdigris/analytics';
 
-const avatarSize = 36;
 const avatarBorderSize = 2;
 
 const ChipRoot = styled('div')`
     align-items: center;
     background-color: ${p => p.theme.colors.background};
-    border-radius: 16px;
+    border-radius: ${p => p.theme.typography.baseSize}px;
     color: ${p => p.theme.colors.text};
     cursor: ${p => p.clickable ? 'pointer' : 'default'};
     display: inline-flex;
     margin: ${p => p.theme.spacing.unit}px;
-    min-height: 32px;
+    min-height: ${p => (p.theme.typography.baseSize * p.theme.typography.lineHeight) + p.theme.spacing.unit * 2}px;
     position: relative;
     white-space: nowrap;
 
@@ -30,7 +29,7 @@ const ChipRoot = styled('div')`
 const Content = styled('span')`
   display: inline-block;
   padding: ${p => `${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px`};
-  margin-left: ${p => p.hasAvatar ? `${avatarSize + avatarBorderSize}px` : 0};
+  margin-left: ${p => p.hasAvatar ? `${calculateAvatarSize(p)}px` : 0};
   min-width:  ${p => p.theme.spacing.unit * 2}px;
 `;
 const Avatar = styled('span')`
@@ -39,12 +38,12 @@ const Avatar = styled('span')`
   border: ${avatarBorderSize}px solid #fff;
   border-radius: 50%;
   display: flex;
-  height: ${avatarSize}px;
+  height: ${p => calculateAvatarSize(p)}px;
   justify-content: center;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: ${avatarSize}px;
+  width: ${p => calculateAvatarSize(p)}px;
 `;
 const DeleteRoot = styled('span')`
   align-items: center;
@@ -53,10 +52,10 @@ const DeleteRoot = styled('span')`
   color: ${p => p.theme.colors.textInvert};
   cursor: pointer;
   display: inline-flex;
-  height: 24px;
+  height: ${p => p.theme.typography.baseSize}px;
   justify-content: center;
   margin-right: ${p => p.theme.spacing.unit}px;
-  width: 24px;
+  width: ${p => p.theme.typography.baseSize}px;
 `;
 
 function Chip({ avatar, clickable, component, createAnalyticsEvent, label, onClick, onDelete, ...rest }) {
@@ -131,3 +130,7 @@ Chip.defaultProps = {
 }
 
 export default withAnalytics()(Chip);
+
+function calculateAvatarSize({ theme }) {
+  return (theme.typography.baseSize * theme.typography.lineHeight) + (theme.spacing.unit * 3) + avatarBorderSize;
+}
