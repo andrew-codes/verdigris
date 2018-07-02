@@ -15,22 +15,8 @@ export default class App extends Component {
           label="basic chip"
         />
         <Chip
-          color="lightblue"
-          label="colored chip"
-        />
-        <Chip
-          inverted
-          color="darkblue"
-          label="colored chip with inverted text color"
-        />
-        <Chip
           avatar={<span>i</span>}
           label="avatar chip"
-        />
-        <Chip
-          avatar={<span>i</span>}
-          color="lightgreen"
-          label="colored avatar chip"
         />
         <Chip
           component={AssetLink}

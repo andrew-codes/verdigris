@@ -1,1 +1,1 @@
-export { default as getThemeFromProps } from './getThemeFromProps';
+export { default as defaultTheme } from './defaultTheme';

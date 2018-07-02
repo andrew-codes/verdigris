@@ -2,7 +2,8 @@ import { noop } from 'lodash';
 import styled from 'react-emotion';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getThemeFromProps } from '@verdigris/theme';
+import { ThemeProvider } from 'emotion-theming';
+import { defaultTheme } from '@verdigris/theme';
 import { withAnalytics } from '@verdigris/analytics';
 
 const avatarSize = 36;
@@ -10,30 +11,30 @@ const avatarBorderSize = 2;
 
 const ChipRoot = styled('div')`
     align-items: center;
-    background-color: ${p => p.color ? p.color : getThemeFromProps(p).colors.backgroundPrimary};
+    background-color: ${p => p.theme.colors.background};
     border-radius: 16px;
-    color: ${p => {
-    const theme = getThemeFromProps(p);
-    return p.inverted ? theme.colors.invertedText : theme.colors.text;
-  }};
+    color: ${p => p.theme.colors.text};
     cursor: ${p => p.clickable ? 'pointer' : 'default'};
     display: inline-flex;
-    margin: ${p => getThemeFromProps(p).spacing.unit}px;
+    margin: ${p => p.theme.spacing.unit}px;
     min-height: 32px;
     position: relative;
+
+    a:link,
+    a:visited,
+    a:active {
+      color: ${p => p.theme.colors.text};
+    }
   `;
 const Content = styled('span')`
   display: inline-block;
-  padding: ${p => {
-    const theme = getThemeFromProps(p);
-    return `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`;
-  }};
+  padding: ${p => `${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px`};
   margin-left: ${p => p.hasAvatar ? `${avatarSize + avatarBorderSize}px` : 0};
-  min-width:  ${p => getThemeFromProps(p).spacing.unit * 2}px;
+  min-width:  ${p => p.theme.spacing.unit * 2}px;
 `;
 const Avatar = styled('span')`
   align-items: center;
-  background: ${ p => p.color ? p.color : getThemeFromProps(p).colors.backgroundPrimary};
+  background: ${ p => p.theme.colors.background};
   border: ${avatarBorderSize}px solid #fff;
   border-radius: 50%;
   display: flex;
@@ -46,49 +47,48 @@ const Avatar = styled('span')`
 `;
 const DeleteRoot = styled('span')`
   align-items: center;
-  background: gray;
+  background: ${p => p.theme.colors.backgroundDark};
   border-radius: 50%;
+  color: ${p => p.theme.colors.textInvert};
   cursor: pointer;
   display: inline-flex;
   height: 24px;
   justify-content: center;
-  margin-right: ${p => getThemeFromProps(p).spacing.unit}px;
+  margin-right: ${p => p.theme.spacing.unit}px;
   width: 24px;
 `;
 
-function Chip({ avatar, clickable, color, component, createAnalyticsEvent, inverted, label, onClick, onDelete, ...rest }) {
+function Chip({ avatar, clickable, component, createAnalyticsEvent, label, onClick, onDelete, ...rest }) {
   const ComponentRoot = styled(component)``;
 
   return (
-    <ChipRoot
-      clickable={clickable}
-      color={color}
-      inverted={inverted}
-    >
-      <ComponentRoot {...rest} onClick={evt => {
-        if (!clickable) return;
-        onClick(evt, createAnalyticsEvent({ action: 'chip clicked' }));
-      }}>
-        {avatar && (
-          <Avatar
-            color={color}
-          >
-            {avatar}
-          </Avatar>
-        )}
-        <Content hasAvatar={avatar}>
-          {label}
-        </Content>
-        {onDelete && (
-          <DeleteRoot onClick={evt => {
-            evt.stopPropagation();
-            onDelete(evt, createAnalyticsEvent({ action: 'chip deleted' }));
-          }}>
-            x
+    <ThemeProvider theme={defaultTheme}>
+      <ChipRoot
+        clickable={clickable}
+      >
+        <ComponentRoot {...rest} onClick={evt => {
+          if (!clickable) return;
+          onClick(evt, createAnalyticsEvent({ action: 'chip clicked' }));
+        }}>
+          {avatar && (
+            <Avatar>
+              {avatar}
+            </Avatar>
+          )}
+          <Content hasAvatar={avatar}>
+            {label}
+          </Content>
+          {onDelete && (
+            <DeleteRoot onClick={evt => {
+              evt.stopPropagation();
+              onDelete(evt, createAnalyticsEvent({ action: 'chip deleted' }));
+            }}>
+              x
         </DeleteRoot>
-        )}
-      </ComponentRoot>
-    </ChipRoot>
+          )}
+        </ComponentRoot>
+      </ChipRoot>
+    </ThemeProvider>
   );
 }
 
@@ -101,10 +101,6 @@ Chip.propTypes = {
    * When true, the chip will display as clickable. Click events will raise on component prop as well.
    */
   clickable: PropTypes.bool,
-  /**
-   * Color of chip.
-   */
-  color: PropTypes.string,
   /**
    * Component to be used as the inner root node. Can be a string to use a DOM element or a component.
    */
@@ -129,6 +125,7 @@ Chip.propTypes = {
 Chip.defaultProps = {
   clickable: false,
   component: 'div',
+  label: '',
   onClick: noop,
 }
 
