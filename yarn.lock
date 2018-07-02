@@ -2419,6 +2419,18 @@ create-emotion@^9.1.3:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
 
+create-emotion@^9.2.4:
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-9.2.4.tgz#0a4379f6bf0708c54fe26bfcd6b6bd3592e8cf23"
+  dependencies:
+    "@emotion/hash" "^0.6.2"
+    "@emotion/memoize" "^0.6.1"
+    "@emotion/stylis" "^0.6.10"
+    "@emotion/unitless" "^0.6.2"
+    csstype "^2.5.2"
+    stylis "^3.5.0"
+    stylis-rule-sheet "^0.0.10"
+
 create-error-class@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
@@ -2505,6 +2517,10 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   resolved "https://registry.yarnpkg.com/cssstyle/-/cssstyle-0.2.37.tgz#541097234cb2513c83ceed3acddc27ff27987d54"
   dependencies:
     cssom "0.3.x"
+
+csstype@^2.5.2:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.5.tgz#4125484a3d42189a863943f23b9e4b80fedfa106"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -2920,6 +2936,13 @@ emotion@^9.1.3:
   dependencies:
     babel-plugin-emotion "^9.1.2"
     create-emotion "^9.1.3"
+
+emotion@^9.2.4:
+  version "9.2.4"
+  resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.2.4.tgz#0139e7cc154b2845f4b9afaa996dd4de13bb90e3"
+  dependencies:
+    babel-plugin-emotion "^9.2.4"
+    create-emotion "^9.2.4"
 
 encodeurl@~1.0.2:
   version "1.0.2"
@@ -6637,9 +6660,9 @@ react-docgen@^2.20.0:
     node-dir "^0.1.10"
     recast "^0.12.6"
 
-react-dom@^16.3.2:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+react-dom@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6794,6 +6817,15 @@ react-virtualized@^9.3.0:
 "react@^15.6.2 || ^16.0", react@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react@^16.4.1:
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"

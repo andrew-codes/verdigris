@@ -12,7 +12,7 @@
     "name": "Analytics"
   },
   "peerDependencies": {
-    "react": "^16.3.2"
+    "react": "^16.4.1"
   },
   "dependencies": {
     "prop-types": "^15.6.1"

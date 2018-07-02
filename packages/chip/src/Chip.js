@@ -1,9 +1,9 @@
-import { noop } from 'lodash';
 import styled from 'react-emotion';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from 'emotion-theming';
 import { defaultTheme } from '@verdigris/theme';
+import { noop } from 'lodash';
+import { ThemeProvider } from 'emotion-theming';
 import { withAnalytics } from '@verdigris/analytics';
 
 const avatarSize = 36;
