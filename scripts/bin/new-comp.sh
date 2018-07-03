@@ -9,13 +9,13 @@ fi
 description=${2:-''}
 componentName="$(tr '[:lower:]' '[:upper:]' <<< ${name:0:1})${name:1}"
 
-if [ -d "packages/$name" ]; then
+if [ -d "components/$name" ]; then
   $chalk red bold "There is already a component named $componentName."
   exit 1
 fi
 
 # ## Root package directory
-mkdir -p packages/$name
+mkdir -p components/$name
 # Create license
 echo "The MIT License (MIT)
 
@@ -26,7 +26,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." \
-> packages/$name/LICENSE
+> components/$name/LICENSE
 # Create package.json
 echo "{
   \"name\": \"@verdigris/$name\",
@@ -41,24 +41,24 @@ echo "{
   \"files\": [
     \"dist\"
   ]
-}" > packages/$name/package.json
+}" > components/$name/package.json
 # Create README.md
 echo "# $componentName
 $description
-" > packages/$name/README.md
+" > components/$name/README.md
 
 # ## src directory
-mkdir -p packages/$name/src
+mkdir -p components/$name/src
 # Create default exported JS file
-echo "" > packages/$name/src/index.js
+echo "" > components/$name/src/index.js
 # Create default tests
-mkdir -p packages/$name/src/__tests__
+mkdir -p components/$name/src/__tests__
 echo "test('the component is exported', () => {
   throw new Error('Test not implemented.');
-});" > packages/$name/src/__tests__/index.test.js
+});" > components/$name/src/__tests__/index.test.js
 
 # ## docs directory
-mkdir -p packages/$name/docs
+mkdir -p components/$name/docs
 # code docs page (intro.js)
 echo "import { code, md } from '@verdigris/docs';
 
@@ -67,18 +67,18 @@ export default () => md\`
 
 $description
 \`;
-" > packages/$name/docs/intro.js
+" > components/$name/docs/intro.js
 # usage docs page
 echo "
-" > packages/$name/docs/usage.md
+" > components/$name/docs/usage.md
 # style docs page
 echo "
-" > packages/$name/docs/style.md
+" > components/$name/docs/style.md
 # Directory to house any other misc. package doc pages
-mkdir -p packages/$name/docs/docs
+mkdir -p components/$name/docs/docs
 
 # ## examples directory
-mkdir -p packages/$name/examples
+mkdir -p components/$name/examples
 echo "import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 
@@ -89,4 +89,4 @@ export default class App extends Component {
     )
   }
 }
-" > packages/$name/examples/01-an-example.js
+" > components/$name/examples/01-an-example.js
