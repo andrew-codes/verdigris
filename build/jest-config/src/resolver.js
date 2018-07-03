@@ -14,17 +14,22 @@ module.exports = function resolver(
   modulePath,
   params,
 ) {
-  if (!(modulePath.startsWith('.') || modulePath.startsWith(path.sep))) {
-    return require.resolve(modulePath);
-  }
-  if (modulePath.startsWith('.') || modulePath.startsWith(path.sep)) {
-    try {
-      return resolveFrom(params.basedir, modulePath);
-    } catch (e) {
-      // eslint-disable-line
+  try {
+    if (!(modulePath.startsWith('.') || modulePath.startsWith(path.sep))) {
+      return require.resolve(modulePath);
+    }
+    if (modulePath.startsWith('.') || modulePath.startsWith(path.sep)) {
+      try {
+        return resolveFrom(params.basedir, modulePath);
+      } catch (e) {
+        // eslint-disable-line
+      }
     }
   }
+  catch (error) {
+    // console.log(error);
 
+  }
   let result = wpResolver.resolveSync({}, params.basedir, modulePath);
   if (result) {
     result = fs.realpathSync(result);
