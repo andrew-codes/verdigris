@@ -6,7 +6,8 @@
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
   "verdigris": {
-    "name": "Theme"
+    "name": "Theme",
+    "ignoreComponentDocs": true
   },
   "files": [
     "dist"

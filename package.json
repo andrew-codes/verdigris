@@ -21,6 +21,7 @@
   },
   "workspaces": [
     "build/*",
+    "components/*",
     "packages/*",
     "website"
   ],

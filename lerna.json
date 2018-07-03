@@ -4,6 +4,7 @@
   "useWorkspaces": true,
   "packages": [
     "build/*",
+    "components/*",
     "packages/*",
     "website"
   ],

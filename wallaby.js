@@ -5,6 +5,8 @@ module.exports = wallaby => ({
     'jest.config.js',
     'build/**/*.js',
     '!build/**/__tests__/*.js',
+    'components/**/*.js',
+    '!components/**/__tests__/*.js',
     'packages/**/*.js',
     '!packages/**/__tests__/*.js',
     'website/**/*.js',
@@ -16,6 +18,7 @@ module.exports = wallaby => ({
   ],
   tests: [
     'build/**/__tests__/*.js',
+    'components/**/__tests__/*.js',
     'packages/**/__tests__/*.js',
     'website/**/__tests__/*.js',
     '!website/dist',

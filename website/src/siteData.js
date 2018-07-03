@@ -37,7 +37,7 @@ const docs = SITE_DATA.children
   }]), []);
 
 const pkgs = SITE_DATA.children
-  .find(item => item.id === 'packages')
+  .find(item => item.id === 'components')
   .children
   .filter(item => item.type === 'dir')
   .reduce((prev, pkgItem) => {

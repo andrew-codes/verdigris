@@ -17,14 +17,13 @@ function createGlob(glob) {
   ];
 }
 
-const createDefaultGlob = () => createGlob('packages/**');
+const createDefaultGlob = () => createGlob('components/**');
 
 module.exports = (
   {
     entry,
     host,
     port,
-    includePatterns = false,
     env = 'development',
     cwd = process.cwd(),
     noMinimize = false,
@@ -72,6 +71,7 @@ module.exports = (
             '**/node_modules/**',
             'docs/assets/**',
             'packages/**/__tests__/**',
+            'components/**/__tests__/**',
           ],
         },
       },

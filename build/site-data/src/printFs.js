@@ -10,7 +10,7 @@ function printFile(file, depth) {
   return pad(
     `file('${file.id}', function(){ return import('${filePath}'); },
     ${file.id.match(/\.json$/) ? `function() { return ''; }` : `function(){ return import('!!raw-loader!${filePath}');}`},
-    ${file.path.match(/packages\/.*\/src/) ? `function(){ return import('!!component-metadata-loader!${filePath}');}` : 'null'}
+    ${file.path.match(/components\/.*\/src/) ? `function(){ return import('!!component-metadata-loader!${filePath}');}` : 'null'}
     )`,
     depth,
   );
