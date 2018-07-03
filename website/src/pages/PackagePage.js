@@ -11,8 +11,8 @@ import PackageSummary from '../components/PackageSummary';
 import Page from '../components/Page';
 import { getPackage } from '../siteData';
 
-const Title = styled('h1') ``;
-const NavigationList = styled('ol') `
+const Title = styled('h1')``;
+const NavigationList = styled('ol')`
   list-style: none;
   padding: 0;
   li {
@@ -23,7 +23,7 @@ const NavigationList = styled('ol') `
     margin-left: 0;
   }
 `;
-const NavigationListItem = styled('li') `
+const NavigationListItem = styled('li')`
   border-bottom: 3px solid;
   border-bottom-color: ${p => p.isSelected ? 'blue' : 'transparent'};
   a:active,
@@ -100,7 +100,7 @@ export default ({ match, location: { pathname } }) => {
         <Route path="/packages/:packageName/docs/:docId/edit" component={({ match: { params: { packageName, docId } } }) => {
           const routePackage = getPackage(packageName);
           const docName = routePackage.docs.find(page => page.id === docId).name;
-          window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/packages/${packageName}/docs/docs/${docName}`;
+          window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/components/${packageName}/docs/docs/${docName}`;
           return <Loading />;
         }} />
         <Route exact path="/packages/:packageName/:pageId" component={({ match: { params: { pageId } } }) => {
@@ -109,7 +109,7 @@ export default ({ match, location: { pathname } }) => {
           return null;
         }} />
         <Route path="/packages/:packageName/:pageId/edit" component={({ match: { params: { packageName, pageId } } }) => {
-          window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/packages/${packageName}/docs/${pageId}.md`;
+          window.location.href = `https://github.com/andrew-codes/verdigris/edit/master/components/${packageName}/docs/${pageId}.md`;
           return <Loading />;
         }} />
         <Route path="/packages/:packageName/examples/:exampleId/:exampleType" component={PackageExamples} />
