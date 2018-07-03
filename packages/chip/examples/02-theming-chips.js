@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chip from '../src/index';
+import { createTheme } from '@verdigris/theme';
 import { ThemeProvider } from 'emotion-theming';
 
 const AssetLink = ({ href, oidToken, children }) => (
@@ -8,28 +9,28 @@ const AssetLink = ({ href, oidToken, children }) => (
   </a>
 );
 
-const pinkTheme = {
+const pinkTheme = createTheme({
   colors: {
     background: 'pink',
     backgroundDark: 'red',
     text: 'red',
     textInvert: 'white',
   },
-};
-const blueTheme = {
+});
+const blueTheme = createTheme({
   colors: {
     background: 'blue',
     backgroundDark: 'navy',
     text: 'lightblue',
     textInvert: 'white',
   },
-};
-const biggerTheme = {
+});
+const biggerTheme = createTheme({
   typography: {
     baseSize: 24,
     lineHeight: 1.5,
   },
-};
+});
 
 export default class App extends Component {
   render() {

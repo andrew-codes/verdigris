@@ -1,7 +1,6 @@
-
 import { merge } from 'lodash';
 
-const internalTheme = {
+const theme = {
   colors: {
     background: 'lightgray',
     backgroundDark: 'gray',
@@ -18,6 +17,6 @@ const internalTheme = {
   },
 };
 
-export default function defaultTheme(parentTheme = internalTheme) {
-  return merge(internalTheme, parentTheme);
+export default function defaultTheme(parentTheme = {}) {
+  return merge({}, theme, parentTheme);
 }
