@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chip from '../src/index';
 
-const AssetLink = ({ href, oidToken, children }) => (
+const AssetLink = ({ href, children }) => (
   <a href={href}>
     {children}
   </a>
@@ -52,6 +52,10 @@ export default class App extends Component {
         <Chip
           label="basic deletable chip"
           onDelete={() => alert('basic chip deleted')}
+        />
+        <Chip
+          fullWidth
+          label="full width"
         />
       </div>
     )

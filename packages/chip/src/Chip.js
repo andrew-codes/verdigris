@@ -14,7 +14,7 @@ const ChipRoot = styled('div')`
     border-radius: ${p => p.theme.typography.baseSize}px;
     color: ${p => p.theme.colors.text};
     cursor: ${p => p.clickable ? 'pointer' : 'default'};
-    display: inline-flex;
+    display: ${p => p.fullWidth ? 'flex' : 'inline-flex'};
     margin: ${p => p.hasAvatar ? `${p.theme.spacing.unit}px ${p.theme.spacing.unit}px ${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px` : `${p.theme.spacing.unit}px`};
     min-height: ${p => (p.theme.typography.baseSize * p.theme.typography.lineHeight) + p.theme.spacing.unit * 2}px;
     position: relative;
@@ -59,13 +59,14 @@ const DeleteRoot = styled('span')`
   width: ${p => p.theme.typography.baseSize * p.theme.typography.lineHeight}px;
 `;
 
-function Chip({ avatar, clickable, component, createAnalyticsEvent, label, onClick, onDelete, ...rest }) {
+function Chip({ avatar, clickable, component, createAnalyticsEvent, fullWidth, label, onClick, onDelete, ...rest }) {
   const ComponentRoot = styled(component)``;
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <ChipRoot
         clickable={clickable}
+        fullWidth={fullWidth}
         hasAvatar={avatar}
       >
         <ComponentRoot {...rest} onClick={evt => {
@@ -111,6 +112,10 @@ Chip.propTypes = {
     PropTypes.element,
     PropTypes.func,
   ]),
+  /**
+   * When true, Marker will expand to fill full width of parent.
+   */
+  fullWidth: PropTypes.bool,
   /**
    * Content of the chip.
    */
