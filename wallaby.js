@@ -12,6 +12,7 @@ module.exports = wallaby => ({
     '!node_modules/**/*.*',
     '!website/dist',
     '!**/node_modules/**/*.js',
+    '!**/dist/**/*.js',
   ],
   tests: [
     'build/**/__tests__/*.js',
