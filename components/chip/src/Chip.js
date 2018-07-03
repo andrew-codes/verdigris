@@ -113,7 +113,7 @@ Chip.propTypes = {
     PropTypes.func,
   ]),
   /**
-   * When true, Marker will expand to fill full width of parent.
+   * When true, Chip will expand to fill full width of parent.
    */
   fullWidth: PropTypes.bool,
   /**
