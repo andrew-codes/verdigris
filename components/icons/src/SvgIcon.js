@@ -25,7 +25,7 @@ function SvgIcon({ children, size }) {
 }
 SvgIcon.propTypes = {
   /**
-   * Total size of the icon; including spacing. Spacing is 2 times the theme's spacing unit for each side.
+   * Size of the icon.
    */
   size: PropTypes.number,
 };
