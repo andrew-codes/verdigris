@@ -1,17 +1,23 @@
 {
   "private": true,
-  "name": "@verdigris/jest-config",
+  "name": "@verdigris/jest",
   "version": "0.0.0",
   "description": "Scripts and configuration for running tests in Verdigris",
   "license": "MIT",
+  "bin": {
+    "run-jest": "bin/run-jest.js"
+  },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "dependencies": {
+    "enhanced-resolve": "^4.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "jest-cli": "^23.2.0",
     "jest-when": "^1.1.0",
-    "raf-stub": "^2.0.2"
+    "raf-stub": "^2.0.2",
+    "resolve-from": "^4.0.0"
   }
 }

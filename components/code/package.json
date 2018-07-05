@@ -5,6 +5,9 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
+  "scripts": {
+    "test": "run-jest"
+  },
   "files": [
     "dist"
   ],
@@ -16,7 +19,6 @@
   },
   "dependencies": {
     "emotion": "^9.2.4",
-    "emotion": "^9.1.3",
     "prop-types": "^15.6.1",
     "react-emotion": "^9.2.4",
     "react-syntax-highlighter": "^7.0.4",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "@verdigris/docs": "^0.0.0",
+    "@verdigris/jest": "^0.0.0",
     "enzyme": "^3.3.0"
   }
 }

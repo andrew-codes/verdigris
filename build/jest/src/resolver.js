@@ -30,7 +30,6 @@ module.exports = function resolver(
     // eslint-disable-line
     console.log(`Resorting to enhanced-resolve for module resolution of ${modulePath}`);
   }
-
   let result = wpResolver.resolveSync({}, params.basedir, modulePath);
   if (result) {
     result = fs.realpathSync(result);

@@ -5,6 +5,9 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
+  "scripts": {
+    "test": "run-jest"
+  },
   "verdigris": {
     "name": "Theme"
   },
@@ -16,5 +19,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "@verdigris/jest": "^0.0.0"
   }
 }

@@ -8,11 +8,10 @@
     "bootstrap": "yarn lerna bootstrap",
     "lint": "yarn lint:eslint",
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint **/*.js",
-    "test": "yarn jest",
-    "test:changed": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest",
-    "test:changed:watch": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) yarn jest --watch",
-    "start": "cd website && yarn start && cd ../",
-    "build:website": "cd website && yarn build && cd ../",
+    "test": "run-jest",
+    "test:changed": "CHANGED_PACKAGES=$(node scripts/getChangedCommittedPackagesSinceMaster.js) run-jest",
+    "start": "lerna run start --scope @verdigris/website",
+    "build:website": "lerna run build --scope @verdigris/website",
     "new-comp": "scripts/bin/new-comp.sh"
   },
   "engines": {
@@ -39,9 +38,6 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "chalk-cli": "^4.0.0",
-    "enhanced-resolve": "^4.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-to-json": "^3.3.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -50,13 +46,14 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.3",
-    "jest-when": "^1.1.0",
+    "globby": "^8.0.1",
     "lerna": "^2.11.0",
     "prettier": "^1.12.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "resolve-from": "^4.0.0",
     "yallist": "^3.0.2"
+  },
+  "dependencies": {
+    "emotion-theming": "^9.2.4"
   }
 }
