@@ -2,8 +2,9 @@ import styled from 'react-emotion';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defaultTheme } from '@verdigris/theme';
+import { CloseIcon } from '@verdigris/icons';
 import { noop } from 'lodash';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider, withTheme } from 'emotion-theming';
 import { withAnalytics } from '@verdigris/analytics';
 
 const avatarBorderSize = 2;
@@ -48,19 +49,25 @@ const Avatar = styled('span')`
 `;
 const DeleteRoot = styled('span')`
   align-items: center;
+  align-self: center;
   background: ${p => p.theme.colors.backgroundDark};
   border-radius: 50%;
   color: ${p => p.theme.colors.textInvert};
   cursor: pointer;
   display: inline-flex;
-  height: ${p => p.theme.typography.baseSize * p.theme.typography.lineHeight}px;
   justify-content: center;
   margin-right: ${p => p.theme.spacing.unit}px;
-  width: ${p => p.theme.typography.baseSize * p.theme.typography.lineHeight}px;
+  padding: ${p => p.theme.spacing.unit * 2}px
 `;
+const SizedCloseIcon = withTheme(({ theme, }) => {
+  const size = theme.typography.baseSize * theme.typography.lineHeight - theme.spacing.unit * 4;
+  return <CloseIcon size={size} />
+});
 
 function Chip({ avatar, clickable, component, createAnalyticsEvent, fullWidth, label, onClick, onDelete, ...rest }) {
-  const ComponentRoot = styled(component)``;
+  const ComponentRoot = styled(component)`
+    display: flex;
+  `;
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -86,8 +93,8 @@ function Chip({ avatar, clickable, component, createAnalyticsEvent, fullWidth, l
               evt.stopPropagation();
               onDelete(evt, createAnalyticsEvent({ action: 'chip deleted' }));
             }}>
-              x
-        </DeleteRoot>
+              <SizedCloseIcon size={16} />
+            </DeleteRoot>
           )}
         </ComponentRoot>
       </ChipRoot>

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@verdigris/analytics": "^0.0.0",
+    "@verdigris/icons": "^0.0.0",
     "@verdigris/theme": "^0.0.0",
     "emotion": "^9.2.4",
     "emotion-theming": "^9.2.4",
