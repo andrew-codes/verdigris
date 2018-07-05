@@ -1,0 +1,25 @@
+{
+  "name": "@verdigris/icons",
+  "version": "0.0.0",
+  "description": "Icon components used in LifeCycle",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "scripts": {},
+  "verdigris": {
+    "name": "Icons"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^16.4.1"
+  },
+  "dependencies": {
+    "@verdigris/theme": "^0.0.0",
+    "emotion": "^9.2.4",
+    "emotion-theming": "^9.2.4",
+    "prop-types": "^15.6.2",
+    "react-emotion": "^9.2.4"
+  }
+}
