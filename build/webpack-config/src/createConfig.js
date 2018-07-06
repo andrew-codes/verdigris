@@ -76,6 +76,13 @@ module.exports = (
         },
       },
       {
+        test: /\.icon\.svg$/,
+        loaders: [
+          require.resolve('babel-loader'),
+          require.resolve('@verdigris/svg-icon-loader'),
+        ],
+      },
+      {
         test: /\.md$/,
         exclude: /node_modules/,
         loader: 'raw-loader',

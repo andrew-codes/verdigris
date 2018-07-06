@@ -1,5 +1,3 @@
-const path = require('path');
-
 function pad(str, depth) {
   return str.padStart(str.length + depth * 2);
 }

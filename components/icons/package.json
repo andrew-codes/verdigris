@@ -1,15 +1,13 @@
 {
-  "name": "@verdigris/chip",
+  "name": "@verdigris/icons",
   "version": "0.0.0",
-  "description": "Concise representation of an otherwise more complex entity.",
+  "description": "Icon components used in LifeCycle",
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
-  "scripts": {
-    "test": "run-jest"
-  },
+  "scripts": {},
   "verdigris": {
-    "name": "Chip"
+    "name": "Icons"
   },
   "files": [
     "dist"
@@ -18,16 +16,10 @@
     "react": "^16.4.1"
   },
   "dependencies": {
-    "@verdigris/analytics": "^0.0.0",
-    "@verdigris/icons": "^0.0.0",
     "@verdigris/theme": "^0.0.0",
     "emotion": "^9.2.4",
     "emotion-theming": "^9.2.4",
-    "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react-emotion": "^9.2.4"
-  },
-  "devDependencies": {
-    "@verdigris/jest": "^0.0.0"
   }
 }

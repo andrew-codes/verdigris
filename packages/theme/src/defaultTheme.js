@@ -5,6 +5,7 @@ const theme = {
     background: 'lightgray',
     backgroundDark: 'gray',
     backgroundLight: '#fff',
+    icon: '#000',
     text: '#000',
     textInvert: 'lightgray',
   },
