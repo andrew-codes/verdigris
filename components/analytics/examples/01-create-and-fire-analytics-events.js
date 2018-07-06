@@ -12,7 +12,7 @@ class SaveButtonBase extends Component {
 
   render() {
     return (
-      <button onClick={this.handleClick}>Save</button>
+      <button onClick={this.handleClick}>Fire Workitem Channel Analytics Event</button>
     );
   }
 
@@ -27,14 +27,19 @@ const SaveButton = withAnalytics()(SaveButtonBase);
 export default class App extends Component {
   render() {
     return (
-      <AnalyticsListener channel="Workitem" onEvent={this.handleAnalyticsEvent}>
-        <SaveButton />
+      <AnalyticsListener channel="Workitem" onEvent={this.handleWorkitemAnalyticsEvent}>
+        <AnalyticsListener channel="Scope" onEvent={this.handleScopeAnalyticsEvent}>
+          <SaveButton />
+        </AnalyticsListener>
       </AnalyticsListener>
     )
   }
 
-  handleAnalyticsEvent = analyticsEvt => {
+  handleWorkitemAnalyticsEvent = analyticsEvt => {
     console.log(analyticsEvt.context, analyticsEvt.payload);
   }
 
+  handleScopeAnalyticsEvent = analyticsEvt => {
+    console.log(false);
+  }
 }
