@@ -2,10 +2,10 @@
 
 ## Other Developer CLI Tasks
 
-* `yarn lint`
-* `yarn test` will run all tests
-* `yarn test:changed` will only run tests in packages that have changed since the branch was cut from master
 * `yarn bootstrap` run after adding new internal dependencies to a package
+* `yarn lint`
+* `yarn test` will run all tests via [Cypress](https://cypress.io)
+* `yarn cypress open` will open tests in [Cypress](https://cypress.io) for local development
 * `yarn lerna add --scope @verdigris/package-name dependency-to-add` (see below for details on managing dependencies)
 * `yarn new-comp PackageName "A description of the package."` will scaffold out a new component in `./components/packageName`
 

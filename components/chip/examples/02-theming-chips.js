@@ -28,7 +28,7 @@ const blueTheme = createTheme({
 const biggerTheme = createTheme({
   typography: {
     baseSize: 24,
-    lineHeight: 1.5,
+    lineHeight: 1.25,
   },
 });
 
@@ -40,6 +40,7 @@ export default class App extends Component {
           <div>
             <h1>Pink Theme</h1>
             <Chip
+              id="basic-chip-pink"
               label="basic chip"
             />
             <Chip
@@ -68,6 +69,7 @@ export default class App extends Component {
             <Chip
               avatar={<span>i</span>}
               label="a deletable chip"
+              id="deletable-chip-pink"
               onDelete={() => alert('deletable chip deleted')}
             />
             <Chip
@@ -164,6 +166,7 @@ export default class App extends Component {
             <Chip
               avatar={<span>i</span>}
               label="a deletable chip"
+              id="deletable-chip-bigger"
               onDelete={() => alert('deletable chip deleted')}
             />
             <Chip

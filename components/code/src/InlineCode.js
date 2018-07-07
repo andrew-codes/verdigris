@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 import * as PropTypes from 'prop-types';
 
-const Code = styled('code') `
+const Code = styled('code')`
   background-color: rgba(27,31,35,0.05);
   border-radius: 3px;
   box-sizing: border-box;
@@ -12,9 +12,13 @@ const Code = styled('code') `
   padding: 0.2em 0.4em;
 `;
 
-export default function InlineCode({ children }) {
+export default function InlineCode({ children, ...rest }) {
   return (
-    <Code>{children}</Code>
+    <Code
+      {...rest}
+    >
+      {children}
+    </Code>
   );
 }
 InlineCode.propTypes = {

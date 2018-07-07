@@ -16,23 +16,26 @@ export default function CodeBlock({
   startingLineNumber,
   style,
   theme,
+  ...rest
 }) {
   return (
-    <SyntaxHighlighter
-      customStyle={{
-        ...style,
-        height,
-      }}
-      language={language}
-      lineNumberStyle={lineNumberStyle}
-      renderer={height ? virtualizedRenderer() : undefined}
-      showLineNumbers={shouldShowLineNumbers}
-      startingLineNumber={startingLineNumber}
-      style={theme}
-      wrapLines
-    >
-      {children}
-    </SyntaxHighlighter>
+    <div {...rest}>
+      <SyntaxHighlighter
+        customStyle={{
+          ...style,
+          height,
+        }}
+        language={language}
+        lineNumberStyle={lineNumberStyle}
+        renderer={height ? virtualizedRenderer() : undefined}
+        showLineNumbers={shouldShowLineNumbers}
+        startingLineNumber={startingLineNumber}
+        style={theme}
+        wrapLines
+      >
+        {children}
+      </SyntaxHighlighter>
+    </div>
   );
 }
 CodeBlock.propTypes = {

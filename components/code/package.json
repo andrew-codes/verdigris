@@ -26,8 +26,6 @@
     "react-virtualized": "^9.19.1"
   },
   "devDependencies": {
-    "@verdigris/docs": "^0.0.0",
-    "@verdigris/jest": "^0.0.0",
-    "enzyme": "^3.3.0"
+    "@verdigris/docs": "^0.0.0"
   }
 }

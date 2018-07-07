@@ -7,23 +7,23 @@ import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 import { getPackage } from '../siteData';
 
-const Wrapper = styled('div') `
+const Wrapper = styled('div')`
   box-sizing: border-box;
   display: flex;
   flex: 1;
 `;
-const ExamplesNavigation = styled('div') `
+const ExamplesNavigation = styled('div')`
   margin: 0 1rem 0 0;
   width: 260px;
 `;
-const NavigationList = styled('ol') `
+const NavigationList = styled('ol')`
   list-style: none;
   padding: 0;
   li {
     display: ${p => p.horizontal ? 'inline-block' : 'block'}
   }
 `;
-const NavigationListItem = styled('li') `
+const NavigationListItem = styled('li')`
   background: ${p => (p.isSelected ? 'rgba(0, 0, 0, 0.25)' : 'none')};
   border-radius: 3px;
   a:active,
@@ -38,17 +38,17 @@ const NavigationListItem = styled('li') `
     background: rgba(255, 255, 255, 0.5);
   }
 `;
-const ExampleWrapper = styled('div') `
+const ExampleWrapper = styled('div')`
   display: flex;
   flex: 1;
   flex-direction: column;
 `;
-const ExampleComponentWrapper = styled('div') `
+const ExampleComponentWrapper = styled('div')`
   border: 1px solid gray;
   flex: 1;
   padding: 1rem;
 `;
-const ExampleTabs = styled('div') `
+const ExampleTabs = styled('div')`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -97,7 +97,7 @@ export default ({ match, location: { pathname } }) => {
             </NavigationListItem>
           </NavigationList>
           <Route path="/packages/:packageName/examples/:exampleId/component" component={() => (
-            <ExampleComponentWrapper>
+            <ExampleComponentWrapper id="test-bed">
               <ExampleComponent />
             </ExampleComponentWrapper>
           )} />

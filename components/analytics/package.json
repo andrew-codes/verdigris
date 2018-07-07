@@ -22,8 +22,6 @@
   },
   "devDependencies": {
     "@verdigris/docs": "^0.0.0",
-    "@verdigris/jest": "^0.0.0",
-    "enzyme": "^3.3.0",
     "lodash": "^4.17.10"
   }
 }
