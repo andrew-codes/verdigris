@@ -29,6 +29,8 @@ const ChipRoot = styled('div')`
   `;
 const Content = styled('span')`
   display: inline-block;
+  font-size: ${p => p.theme.typography.baseSize}px;
+  line-height: ${p => p.theme.typography.lineHeight};
   padding: ${p => `${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px`};
   margin-left: ${p => p.hasAvatar ? `${calculateAvatarSize(p) - p.theme.spacing.unit}px` : 0};
   min-width:  ${p => p.theme.spacing.unit * 2}px;
@@ -64,7 +66,7 @@ const SizedCloseIcon = withTheme(({ theme, }) => {
   return <CloseIcon size={size} />
 });
 
-function Chip({ avatar, clickable, component, createAnalyticsEvent, fullWidth, label, onClick, onDelete, ...rest }) {
+function Chip({ avatar, className, clickable, component, createAnalyticsEvent, fullWidth, id, label, onClick, onDelete, ...rest }) {
   const ComponentRoot = styled(component)`
     display: flex;
   `;
@@ -72,8 +74,10 @@ function Chip({ avatar, clickable, component, createAnalyticsEvent, fullWidth, l
   return (
     <ThemeProvider theme={defaultTheme}>
       <ChipRoot
+        className={className}
         clickable={clickable}
         fullWidth={fullWidth}
+        id={id}
         hasAvatar={avatar}
       >
         <ComponentRoot {...rest} onClick={evt => {
@@ -93,7 +97,7 @@ function Chip({ avatar, clickable, component, createAnalyticsEvent, fullWidth, l
               evt.stopPropagation();
               onDelete(evt, createAnalyticsEvent({ action: 'chip deleted' }));
             }}>
-              <SizedCloseIcon size={16} />
+              <SizedCloseIcon />
             </DeleteRoot>
           )}
         </ComponentRoot>
@@ -107,6 +111,10 @@ Chip.propTypes = {
    * Avatar element
    */
   avatar: PropTypes.element,
+  /**
+   * CSS class applied to root element.
+   */
+  className: PropTypes.string,
   /**
    * When true, the chip will display as clickable. Click events will raise on component prop as well.
    */
@@ -124,6 +132,10 @@ Chip.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * Unique HTML ID applied to root element.
+   */
+  id: PropTypes.string,
+  /**
    * Content of the chip.
    */
   label: PropTypes.node,
@@ -137,6 +149,7 @@ Chip.propTypes = {
   onDelete: PropTypes.func,
 };
 Chip.defaultProps = {
+  className: '',
   clickable: false,
   component: 'div',
   label: '',

@@ -12,49 +12,58 @@ export default class App extends Component {
     return (
       <div>
         <Chip
+          id="basic-chip"
           label="basic chip"
         />
         <Chip
           avatar={<span>i</span>}
+          id="with-avatar"
           label="avatar chip"
         />
         <Chip
           component={AssetLink}
           href="https://google.com"
-          label="chip with custom component"
+          id="asset-link"
+          label="chip with custom AssetLink component"
         />
         <Chip
           avatar={<span>i</span>}
           clickable
+          id="clickable-chip"
           label="a clickable chip"
-          onClick={() => alert('clickable chip was clicked')}
+          onClick={() => console.log('clickable chip clicked')}
         />
         <Chip
           avatar={<span>i</span>}
           clickable
           component="a"
           href="https://google.com"
+          id="clickable-link-chip"
           label="a clickable link chip"
-          onClick={() => alert('clickable link chip was clicked')}
+          onClick={() => console.log('clickable link chip clicked')}
         />
         <Chip
           avatar={<span>i</span>}
           label="a deletable chip"
-          onDelete={() => alert('deletable chip deleted')}
+          id="deletable-chip"
+          onDelete={() => console.log('deletable chip deleted')}
         />
         <Chip
           avatar={<span>i</span>}
           clickable
+          id="clickable-deletable-chip"
           label="a clickable, deletable chip"
-          onClick={() => alert('clickable deleteable chip was clicked')}
-          onDelete={() => alert('deletable chip deleted')}
+          onClick={() => console.log('clickable deletable chip clicked')}
+          onDelete={() => console.log('clickable deletable chip deleted')}
         />
         <Chip
+          id="basic-deletable-chip"
           label="basic deletable chip"
-          onDelete={() => alert('basic chip deleted')}
+          onDelete={() => console.log('basic chip deleted')}
         />
         <Chip
           fullWidth
+          id="full-width"
           label="full width"
         />
       </div>
