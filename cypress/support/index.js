@@ -18,3 +18,8 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.on('window:before:load', (win) => {
+  global.log = cy.spy(win.console, "log");
+  global.warn = cy.spy(win.console, 'warn');
+});

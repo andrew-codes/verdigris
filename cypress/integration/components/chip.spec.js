@@ -1,9 +1,5 @@
 /// <reference types="Cypress" />
 
-let log;
-Cypress.on('window:before:load', (win) => {
-  log = cy.spy(win.console, "log");
-});
 context('chip', () => {
   it('can render text within a chip', () => {
     cy.visit('http://localhost:9000/packages/chip/examples/chip-examples/component');

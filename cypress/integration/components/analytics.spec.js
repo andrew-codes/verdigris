@@ -1,12 +1,5 @@
 /// <reference types="Cypress" />
 
-let log;
-let warn;
-Cypress.on('window:before:load', (win) => {
-  log = cy.spy(win.console, "log");
-  warn = cy.spy(win.console, 'warn');
-});
-
 context('analytics', () => {
   it('analytics events can be triggered and handled selectively for specific event channels', () => {
     cy.visit('http://localhost:9000/packages/analytics/examples/create-and-fire-analytics-events/component');
