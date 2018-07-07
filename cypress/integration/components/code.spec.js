@@ -55,6 +55,6 @@ context('code block', () => {
 context('inline code', () => {
   it('can render inline code snippets', () => {
     cy.visit('http://localhost:9000/packages/code/examples/inline-code/component');
-    cy.get('#inline code').then(code => expect(code.text()).to.eql('ls -a'));
+    cy.get('#inline-code').then(code => expect(code.text()).to.eql('ls -a'));
   })
 });

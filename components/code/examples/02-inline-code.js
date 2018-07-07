@@ -6,7 +6,7 @@ export default class App extends Component {
     return (
       <div>
         <h4>Inline</h4>
-        <InlineCode id="inline">ls -a</InlineCode>
+        <InlineCode id="inline-code">ls -a</InlineCode>
       </div>
     )
   }
