@@ -5,13 +5,15 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
-  "scripts": {},
   "verdigris": {
     "name": "Chip"
   },
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
   "peerDependencies": {
     "react": "^16.4.1"
   },

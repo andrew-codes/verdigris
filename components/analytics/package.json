@@ -5,10 +5,12 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
-  "scripts": {},
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
   "verdigris": {
     "name": "Analytics"
   },
