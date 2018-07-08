@@ -5,9 +5,7 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
-  "scripts": {
-    "test": "run-jest"
-  },
+  "scripts": {},
   "verdigris": {
     "name": "Chip"
   },
