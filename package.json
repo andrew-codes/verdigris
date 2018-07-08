@@ -52,6 +52,7 @@
     "eslint-plugin-react": "^7.7.0",
     "globby": "^8.0.1",
     "lerna": "^2.11.0",
+    "lerna-semantic-release": "^9.1.0",
     "prettier": "^1.12.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
