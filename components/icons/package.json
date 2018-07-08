@@ -5,13 +5,15 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "verdigris:src": "./src/index.js",
-  "scripts": {},
   "verdigris": {
     "name": "Icons"
   },
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "../../node_modules/@verdigris/webpack-config/bin/build-icons.js ./src/index.js"
+  },
   "peerDependencies": {
     "react": "^16.4.1"
   },
