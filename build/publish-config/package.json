@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "name": "@verdigris/publish-config",
-  "version": "0.0.0",
-  "description": "Configuration to automate publishing via semantic-release NPM package.",
-  "license": "MIT",
-  "main": "src/index.js",
-  "dependencies": {}
-}

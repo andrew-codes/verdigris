@@ -62,5 +62,8 @@
   },
   "dependencies": {
     "emotion-theming": "^9.2.4"
+  },
+  "release": {
+    "branch": "master"
   }
 }
