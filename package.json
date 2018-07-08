@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@verdigris/ui",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "author": "Andrew Smith <andrew@andrew.codes>",
   "repository": "https://github.com/andrew-codes/verdigris.git",
   "license": "MIT",
