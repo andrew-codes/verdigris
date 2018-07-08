@@ -3,6 +3,7 @@
   "name": "@verdigris/ui",
   "version": "0.0.0",
   "author": "Andrew Smith <andrew@andrew.codes>",
+  "repository": "https://github.com/andrew-codes/verdigris.git",
   "license": "MIT",
   "scripts": {
     "bootstrap": "yarn lerna bootstrap",
