@@ -15,6 +15,7 @@ Each commit message consists of a header, a body and a footer. The header has a 
 <BLANK LINE>
 <footer>
 ```
+
  > **Notes**: The header is mandatory and the scope of the header is optional.
 
 ### Revert
@@ -48,6 +49,6 @@ The subject contain succinct description of the change:
 Just as in the subject, use the imperative, present tense: "change" not "changed" nor "changes". The body should include the motivation for the change and contrast this with previous behavior.
 
 ### Footer
-The footer should contain any information about Breaking Changes and is also the place to reference GitHub issues that this commit closes.
+The footer should contain any information about Breaking Changes and is also the place to reference issues that this commit closes. The footer also contains packages that are affected by this commit in the form of: `affects: @verdigris/package-name`. Multiple packages may be impacted by adding more than one (space delimited).
 
 > **Breaking Changes** should start with the word `BREAKING CHANGE`: with a space or two newlines. The rest of the commit message is then used for this.
