@@ -1,0 +1,14 @@
+{
+  "name": "@verdigris/selection",
+  "version": "0.0.0",
+  "description": "Selection controls; switch, checkbox, and radio button.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "verdigris": {
+    "name": "Selection"
+  },
+  "files": [
+    "dist"
+  ]
+}
