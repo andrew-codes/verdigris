@@ -58,7 +58,7 @@ mkdir -p components/$name/docs
 echo "import { code, md } from '@verdigris/docs';
 
 export default () => md\`
-# $componentName
+## $componentName
 
 $description
 \`;
