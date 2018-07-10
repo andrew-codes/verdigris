@@ -14,7 +14,7 @@ function createLoaderOutput(directory, files = [], debug = false, ) {
       return { type: 'file', id: id, exports: exports, contents: contents, componentMetadata: componentMetadata };
     }
 
-    export default ${printDir(directory)};
+    module.exports = ${printDir(directory)};
   `;
 
   if (debug) {
@@ -57,7 +57,7 @@ module.exports = async function siteDataLoader() {
     .concat((opts.exclude || []).map(p => `!${p}`));
   const files = await globby(patterns, { cwd: projectRoot, });
   const result = files.reduce((prev, file) => {
-    const pathSegments = file.split(path.sep);
+    const pathSegments = file.split('/');
     return buildFs(prev, pathSegments);
   }, dir('root', projectRoot));
 

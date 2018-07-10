@@ -3,7 +3,7 @@ function pad(str, depth) {
 }
 
 function printFile(file, depth) {
-  const filePath = file.path.replace(/\\/g, '\\\\');
+  const filePath = file.path.replace(/\\/g, '/');
 
   return pad(
     `file('${file.id}', function(){ return import('${filePath}'); },
