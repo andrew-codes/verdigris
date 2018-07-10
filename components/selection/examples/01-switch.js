@@ -19,20 +19,20 @@ export default class App extends Component {
         <div>
           <Switch
             isChecked
-            id="with-label"
+            id="with-label-checked"
             label="a label"
           />
         </div>
         <div>
           <Switch
             isDisabled
-            id="with-label"
+            id="with-label-disabled"
             label="disabled toggled off"
           />
           <Switch
             isChecked
             isDisabled
-            id="with-label"
+            id="with-label-checked-disabled"
             label="disabled toggled on"
           />
         </div>

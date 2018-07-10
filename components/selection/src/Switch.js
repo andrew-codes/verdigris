@@ -6,42 +6,13 @@ import { noop } from 'lodash';
 import { ThemeProvider } from 'emotion-theming';
 
 const SwitchRoot = styled('div')`
-  align-items: center;
-  display: inline-flex;
-  height: ${p => (p.theme.typography.baseSize * p.theme.typography.lineHeight) + 6}px;
-  margin: ${p => p.theme.spacing.unit}px ${p => p.theme.spacing.unit * 2}px;
+  ${p => p.theme.Switch({ Bar, Handle, Label })(p)}
 `;
-const SwitchBar = styled('div')`
-  background: ${p => p.isDisabled ? p.theme.colors.disabled : p.isChecked ? p.theme.colors.highlightAccentSecondary : p.theme.colors.background};
-  border-radius: 4px;
-  box-shadow: rgba(0,0,0,0.35) 2px 2px;
-  cursor: pointer;
-  display: inline-flex;
-  height: 12px;
-  margin-right: 4px;
-  position: relative;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  width: 48px;
-`;
-const Label = styled('span')`
-  margin-left: ${p => p.theme.spacing.unit * 2}px;
-  color: ${p => p.isDisabled ? p.theme.colors.disabled : p.theme.colors.text}
-`;
+const Bar = styled('div')``;
+const Label = styled('span')``;
+const Handle = styled('div')``;
 const Checkbox = styled('input')`
   display: none;
-`;
-const Handle = styled('div')`
-  background: ${p => p.isDisabled ? p.theme.colors.disabled : p.isChecked ? p.theme.colors.highlight : 'white'};
-  border-radius: 50%;
-  border: 1px solid ${p => p.isDisabled ? p.theme.colors.disabled : p.isChecked ? p.theme.colors.highlightAccentPrimary : p.theme.colors.backgroundAccentPrimary};
-  box-shadow: rgba(0,0,0,0.35) 2px 2px;
-  height: ${p => p.theme.typography.baseSize * p.theme.typography.lineHeight}px;
-  left: 0px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%) ${p => p.isChecked ? `translateX(${48 + 4 - (p.theme.typography.baseSize * p.theme.typography.lineHeight)}px)` : ''};
-  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  width: ${p => p.theme.typography.baseSize * p.theme.typography.lineHeight}px;
 `;
 
 class Switch extends React.Component {
@@ -69,20 +40,21 @@ class Switch extends React.Component {
         <SwitchRoot
           id={id}
           {...rest}
+          isChecked={isChecked}
+          isDisabled={isDisabled}
           onClick={this.handleClick}
         >
-          <SwitchBar
-            isChecked={isChecked}
-            isDisabled={isDisabled}
-          >
-            <Checkbox type="checkbox" id={`${id}-checkbox`} value={Boolean(isChecked)} disabled={isDisabled} />
-            <Handle
-              isChecked={isChecked}
-              isDisabled={isDisabled}
+          <Bar>
+            <Checkbox
+              type="checkbox"
+              id={`${id}-checkbox`}
+              value={Boolean(isChecked)}
+              disabled={isDisabled}
             />
-          </SwitchBar>
+            <Handle />
+          </Bar>
           {label && (
-            <Label isDisabled={isDisabled}>{label}</Label>
+            <Label>{label}</Label>
           )}
         </SwitchRoot>
       </ThemeProvider>
