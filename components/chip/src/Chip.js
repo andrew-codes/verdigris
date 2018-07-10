@@ -7,61 +7,13 @@ import { noop } from 'lodash';
 import { ThemeProvider, withTheme } from 'emotion-theming';
 import { withAnalytics } from '@verdigris/analytics';
 
-const avatarBorderSize = 2;
-
 const ChipRoot = styled('div')`
-    align-items: center;
-    background-color: ${p => p.theme.colors.background};
-    border-radius: ${p => p.theme.typography.baseSize}px;
-    color: ${p => p.theme.colors.text};
-    cursor: ${p => p.clickable ? 'pointer' : 'default'};
-    display: ${p => p.fullWidth ? 'flex' : 'inline-flex'};
-    margin: ${p => p.hasAvatar ? `${p.theme.spacing.unit}px ${p.theme.spacing.unit}px ${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px` : `${p.theme.spacing.unit}px`};
-    min-height: ${p => (p.theme.typography.baseSize * p.theme.typography.lineHeight) + p.theme.spacing.unit * 2}px;
-    position: relative;
-    white-space: nowrap;
-
-    a:link,
-    a:visited,
-    a:active {
-      color: ${p => p.theme.colors.text};
-    }
-  `;
-const Content = styled('span')`
-  display: inline-block;
-  font-size: ${p => p.theme.typography.baseSize}px;
-  line-height: ${p => p.theme.typography.lineHeight};
-  padding: ${p => `${p.theme.spacing.unit}px ${p.theme.spacing.unit * 2}px`};
-  margin-left: ${p => p.hasAvatar ? `${calculateAvatarSize(p) - p.theme.spacing.unit}px` : 0};
-  min-width:  ${p => p.theme.spacing.unit * 2}px;
+  ${p => p.theme.Chip({ Avatar, Content, Delete })(p)}
 `;
-const Avatar = styled('span')`
-  align-items: center;
-  background: ${ p => p.theme.colors.background};
-  border: ${avatarBorderSize}px solid #fff;
-  border-radius: 50%;
-  display: flex;
-  height: ${p => calculateAvatarSize(p)}px;
-  justify-content: center;
-  left: -${p => p.theme.spacing.unit}px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: ${p => calculateAvatarSize(p)}px;
-`;
-const DeleteRoot = styled('span')`
-  align-items: center;
-  align-self: center;
-  background: ${p => p.theme.colors.backgroundDark};
-  border-radius: 50%;
-  color: ${p => p.theme.colors.textInvert};
-  cursor: pointer;
-  display: inline-flex;
-  justify-content: center;
-  margin-right: ${p => p.theme.spacing.unit}px;
-  padding: ${p => p.theme.spacing.unit * 2}px
-`;
-const SizedCloseIcon = withTheme(({ theme, }) => {
+const Content = styled('span')``;
+const Avatar = styled('span')``;
+const Delete = styled('span')``;
+const DeleteIcon = withTheme(({ theme, }) => {
   const size = theme.typography.baseSize * theme.typography.lineHeight - theme.spacing.unit * 4;
   return <CloseIcon size={size} />
 });
@@ -93,12 +45,12 @@ function Chip({ avatar, className, clickable, component, createAnalyticsEvent, f
             {label}
           </Content>
           {onDelete && (
-            <DeleteRoot onClick={evt => {
+            <Delete onClick={evt => {
               evt.stopPropagation();
               onDelete(evt, createAnalyticsEvent({ action: 'chip deleted' }));
             }}>
-              <SizedCloseIcon />
-            </DeleteRoot>
+              <DeleteIcon />
+            </Delete>
           )}
         </ComponentRoot>
       </ChipRoot>
@@ -157,7 +109,3 @@ Chip.defaultProps = {
 }
 
 export default withAnalytics()(Chip);
-
-function calculateAvatarSize({ theme }) {
-  return (theme.typography.baseSize * theme.typography.lineHeight) + (theme.spacing.unit * 3) + avatarBorderSize;
-}

@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
+import { css } from 'emotion';
+import { extendThemeWith } from '@verdigris/theme';
 import { ThemeProvider } from 'emotion-theming';
 import {
   CloseIcon
 } from '../src/index';
 
 const lightBlueIconTheme = {
-  colors: {
-    icon: 'blue',
-  },
+  Icon: () => () => css`
+    fill: blue;
+  `,
 };
 
 export default class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={lightBlueIconTheme}>
+      <ThemeProvider theme={extendThemeWith(lightBlueIconTheme)}>
         <div>
           <CloseIcon />
         </div>

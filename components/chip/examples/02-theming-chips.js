@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Chip from '../src/index';
-import { createTheme } from '@verdigris/theme';
+import { css } from 'emotion';
+import { extendThemeWith } from '@verdigris/theme';
 import { ThemeProvider } from 'emotion-theming';
 
 const AssetLink = ({ href, oidToken, children }) => (
@@ -9,34 +10,60 @@ const AssetLink = ({ href, oidToken, children }) => (
   </a>
 );
 
-const pinkTheme = createTheme({
-  colors: {
-    background: 'pink',
-    backgroundDark: 'red',
-    text: 'red',
-    textInvert: 'white',
-  },
-});
-const blueTheme = createTheme({
-  colors: {
-    background: 'blue',
-    backgroundDark: 'navy',
-    text: 'lightblue',
-    textInvert: 'white',
-  },
-});
-const biggerTheme = createTheme({
+const pinkTheme = {
+  Chip: ({ Avatar, Content, Delete }) => () => css`
+    background-color: pink;
+    color: red;
+
+    a:visited,
+    a:link,
+    a:active {
+      color: red;
+    }
+
+    ${Avatar} {
+      background-color: pink;
+    }
+    ${Delete} {
+      background-color: red;
+      fill: white;
+    }
+  `,
+};
+
+const blueTheme = {
+  Chip: ({ Avatar, Content, Delete }) => () => css`
+    background-color: lightblue;
+    color: blue;
+
+    a:visited,
+    a:link,
+    a:active {
+      color: blue;
+    }
+
+    ${Avatar} {
+      background-color: lightblue;
+    }
+    ${Delete} {
+      background-color: blue;
+      fill: white;
+    }
+  `,
+};
+
+const biggerTheme = {
   typography: {
     baseSize: 24,
     lineHeight: 1.25,
   },
-});
+};
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <ThemeProvider theme={pinkTheme}>
+        <ThemeProvider theme={extendThemeWith(pinkTheme)}>
           <div>
             <h1>Pink Theme</h1>
             <Chip
@@ -86,7 +113,7 @@ export default class App extends Component {
           </div>
         </ThemeProvider>
         <hr />
-        <ThemeProvider theme={blueTheme}>
+        <ThemeProvider theme={extendThemeWith(blueTheme)}>
           <div>
             <h1>Blue Theme</h1>
             <Chip
@@ -134,7 +161,7 @@ export default class App extends Component {
           </div>
         </ThemeProvider>
         <hr />
-        <ThemeProvider theme={biggerTheme}>
+        <ThemeProvider theme={extendThemeWith(biggerTheme)}>
           <div>
             <h1>Bigger Theme</h1>
             <Chip

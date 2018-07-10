@@ -51,11 +51,6 @@ $description
 mkdir -p components/$name/src
 # Create default exported JS file
 echo "" > components/$name/src/index.js
-# Create default tests
-mkdir -p components/$name/src/__tests__
-echo "test('the component is exported', () => {
-  throw new Error('Test not implemented.');
-});" > components/$name/src/__tests__/index.test.js
 
 # ## docs directory
 mkdir -p components/$name/docs
@@ -63,7 +58,7 @@ mkdir -p components/$name/docs
 echo "import { code, md } from '@verdigris/docs';
 
 export default () => md\`
-# $componentName
+## $componentName
 
 $description
 \`;

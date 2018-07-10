@@ -6,10 +6,7 @@ import { defaultTheme } from '@verdigris/theme';
 import ThemedIcon from './private-utils/ThemedIcon';
 
 const IconRoot = styled('span')`
-  align-content: center;
-  display: inline-flex;
-  fill: ${p => p.theme.colors.icon};
-  justify-content: center;
+  ${p => p.theme.Icon()(p)}
 `;
 
 function SvgIcon({ children, size }) {
