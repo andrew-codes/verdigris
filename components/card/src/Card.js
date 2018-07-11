@@ -3,11 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defaultTheme } from '@verdigris/theme';
 import { ThemeProvider } from 'emotion-theming';
-import { withAnalytics } from '@verdigris/analytics';
-
-import CardBody from './CardBody';
-import CardHeader from './CardHeader';
-import CardFooter from './CardFooter';
 
 const propTypes = {
   /**
@@ -66,4 +61,4 @@ function Card (props) {
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
 
-export default withAnalytics()(Card);
+export default Card;
