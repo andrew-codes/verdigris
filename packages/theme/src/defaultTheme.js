@@ -24,6 +24,19 @@ const theme = {
     fill: ${palette.black};
     justify-content: center;
   `,
+  Card: () => ({ hasShadow, hasBorder }) => css`
+    background: ${palette.paper};
+    display: flex;
+    flex-direction: column;
+    box-shadow: ${hasShadow ? "0 2px 4px rgba(0, 0, 0, 0.1);" : "none"};
+    border: ${hasBorder ? "1px solid #d7dee4;" : "none"};
+  `,
+  CardBody: () => () => css`
+  `,
+  CardFooter: () => () => css`
+  `,
+  CardHeader: () => () => css`
+  `,
   Chip: ({ Avatar, Content, Delete }) => ({ clickable, fullWidth, hasAvatar, theme }) => css`
     align-items: center;
     background-color: ${palette.lightGray};

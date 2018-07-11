@@ -1,0 +1,29 @@
+{
+  "name": "@verdigris/card",
+  "version": "0.0.0",
+  "description": "A card is a sheet of material that serves as an entry point to more detailed information. Cards may contain a photo, text, and a link about a single subject",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "verdigris": {
+    "name": "Card"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1"
+  },
+  "dependencies": {
+    "@verdigris/analytics": "^0.0.0",
+    "@verdigris/icons": "^0.0.0",
+    "@verdigris/theme": "^0.0.0",
+    "emotion": "^9.2.4",
+    "emotion-theming": "^9.2.4",
+    "prop-types": "^15.6.2",
+    "react-emotion": "^9.2.4"
+  }
+}
