@@ -1,10 +1,10 @@
 import Loadable from 'react-loadable';
 import { CodeBlock } from '@verdigris/code';
-import Loading from '../components/Loading';
 import React from 'react';
 import styled from 'react-emotion';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
 import { getPackage } from '../siteData';
 
 const Wrapper = styled('div')`
