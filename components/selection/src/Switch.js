@@ -1,11 +1,51 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'react-emotion';
+import { css } from 'emotion';
 import { defaultTheme } from '@verdigris/theme';
 import { noop } from 'lodash';
 import { ThemeProvider } from 'emotion-theming';
 
+const localTheme = ({ Bar, Handle, Label }) => ({ isChecked, isDisabled, theme }) => css`
+  align-items: center;
+  display: inline-flex;
+  margin: ${theme.spacing.unit}px ${theme.spacing.unit * 2}px;
+
+  ${Bar} {
+    background-color: ${theme.palette.gray};
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    height: 12px;
+    margin-right: 4px;
+    min-width: 48px;
+    position: relative;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    width: 48px;
+  }
+  ${Handle} {
+    background: ${isDisabled ? theme.palette.lightGray : isChecked ? theme.palette.cerulean : 'white'};
+    border-radius: 50%;
+    border: 1px solid ${isDisabled ? theme.palette.lightGray : isChecked ? theme.palette.cerulean : theme.palette.gray};
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    height: ${theme.typography.baseSize * theme.typography.lineHeight}px;
+    left: -1px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) ${isChecked ? `translateX(${48 + 4 - (theme.typography.baseSize * theme.typography.lineHeight)}px)` : ''};
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    width: ${theme.typography.baseSize * theme.typography.lineHeight}px;
+  }
+  ${Label} {
+    color: ${isDisabled ? theme.palette.lightGray : theme.palette.black};
+    font-size: ${theme.typography.baseSize}px;
+    line-height: ${theme.typography.lineHeight};
+    margin-left: ${theme.spacing.unit * 2}px;
+  }
+`;
+
 const SwitchRoot = styled('div')`
+  ${p => localTheme({ Bar, Handle, Label })(p)}
   ${p => p.theme.Switch({ Bar, Handle, Label })(p)}
 `;
 const Bar = styled('div')``;

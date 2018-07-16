@@ -1,11 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import { css } from 'emotion';
 import { ThemeProvider } from 'emotion-theming';
 import { defaultTheme } from '@verdigris/theme';
 import ThemedIcon from './private-utils/ThemedIcon';
 
+const localTheme = () => ({ theme }) => css`
+align-content: center;
+display: inline-flex;
+fill: ${theme.palette.black};
+justify-content: center;
+`;
 const IconRoot = styled('span')`
+  ${p => localTheme()(p)}
   ${p => p.theme.Icon()(p)}
 `;
 
