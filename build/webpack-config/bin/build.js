@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
+const path = require('path');
 const webpack = require('webpack');
 const createConfig = require('../src/createConfig.js');
 
-const HOST = 'localhost';
-
-runDevServer()
-  .catch(error => process.exit(error));
+runDevServer().catch(error => process.exit(error));
 
 async function runDevServer() {
   const [entry] = process.argv.slice(2);
@@ -15,9 +13,9 @@ async function runDevServer() {
 
   const config = createConfig({
     entry,
-    host: HOST,
     env,
     report,
+    projectRoot: path.join(__dirname, '..', '..', '..'),
   });
   const compiler = webpack(config);
 
@@ -28,6 +26,6 @@ async function runDevServer() {
         return;
       }
       resolve(stats);
-    })
+    });
   });
 }

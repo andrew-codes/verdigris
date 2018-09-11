@@ -9,8 +9,7 @@ const HOST = 'localhost';
 const PORT = +process.env.PORT || 9000;
 const { log } = console;
 
-runDevServer()
-  .catch(error => process.exit(error));
+runDevServer().catch(error => process.exit(error));
 
 async function runDevServer() {
   const [entry] = process.argv.slice(2);
@@ -19,8 +18,6 @@ async function runDevServer() {
 
   const config = createConfig({
     entry,
-    host: HOST,
-    port: PORT,
     env,
     report,
   });

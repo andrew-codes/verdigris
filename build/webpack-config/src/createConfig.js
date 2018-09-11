@@ -5,8 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function createGlob(glob) {
   return [
@@ -19,41 +18,33 @@ function createGlob(glob) {
 
 const createDefaultGlob = () => createGlob('components/**');
 
-module.exports = (
-  {
-    entry,
-    host,
-    port,
-    env = 'development',
-    cwd = process.cwd(),
-    noMinimize = false,
-    report = false,
-  },
-) => ({
+module.exports = ({
+  entry,
+  env = 'development',
+  cwd = process.cwd(),
+  noMinimize = false,
+  report = false,
+  publicPath = '/',
+  projectRoot = process.cwd(),
+}) => ({
   mode: env,
   entry: {
     main:
-      env === 'development' && host && port
+      env === 'development'
         ? [
-          'react-hot-loader/patch',
-          `${require.resolve(
-            'webpack-dev-server/client',
-          )}?http://${host}:${port}/`,
-          'webpack/hot/only-dev-server',
-          path.join(process.cwd(), entry),
-        ]
+            'react-hot-loader/patch',
+            `webpack-hot-middleware/client`,
+            path.join(cwd, entry),
+          ]
         : path.join(cwd, entry),
-    vendor: [
-      'react',
-      'react-dom',
-      'react-router',
-      'react-router-dom',
-    ],
+    vendor: ['react', 'react-dom', 'react-router', 'react-router-dom'],
   },
   output: {
     filename: '[name].js',
     path: path.resolve(cwd, 'dist'),
-    publicPath: '/',
+    publicPath,
+    library: env === 'development' ? 'App' : undefined,
+    libraryTarget: env === 'development' ? 'umd' : undefined,
   },
   devtool: env === 'production' ? false : 'cheap-module-source-map',
   module: {
@@ -63,16 +54,14 @@ module.exports = (
         loader: require.resolve('@verdigris/site-data'),
         options: {
           debug: env === 'development',
-          include: [
-            'docs/**/*.md',
-            ...createDefaultGlob(),
-          ].filter(p => !!p),
+          include: ['docs/**/*.md', ...createDefaultGlob()].filter(p => !!p),
           exclude: [
             '**/node_modules/**',
             'docs/assets/**',
             'packages/**/__tests__/**',
             'components/**/__tests__/**',
           ],
+          projectRoot,
         },
       },
       {
@@ -107,33 +96,12 @@ module.exports = (
   },
   plugins: plugins({ cwd, env, noMinimize, report }),
 });
-function plugins(
-  {
-    cwd,
-    env,
-    noMinimize,
-    report,
-  },
-) {
+function plugins({ cwd, env, noMinimize, report }) {
   const plugins = [
     new webpack.NamedModulesPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.join(cwd, 'public/index.html.ejs'),
-      title: `Verdigris Component Library${env === 'development' ? ' - DEV' : ''}`,
-      // favicon: path.join(
-      //   cwd,
-      //   `public/favicon${env === 'development' ? '-dev' : ''}.ico`,
-      // ),
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': `"${env}"`,
     }),
-    new CopyWebpackPlugin([
-      { from: path.join(process.cwd(), '..', '**', 'docs', 'assets/**/*'), to: path.join(process.cwd(), 'dist', 'assets'), flatten: true, },
-      { from: path.join(process.cwd(), '_redirects'), to: path.join(process.cwd(), 'dist'), type: 'file', },
-    ], {
-        debug: env === 'development',
-      }),
   ];
 
   if (report) {
@@ -152,8 +120,37 @@ function plugins(
     plugins.push(new webpack.NoEmitOnErrorsPlugin());
   }
 
-  if (env === 'production' && !noMinimize) {
-    plugins.push(uglify());
+  if (env === 'production') {
+    if (!noMinimize) {
+      plugins.push(uglify());
+    }
+    plugins.push(
+      new CopyWebpackPlugin(
+        [
+          {
+            from: path.join(process.cwd(), '..', '**', 'docs', 'assets/**/*'),
+            to: path.join(process.cwd(), 'dist', 'assets'),
+            flatten: true,
+          },
+          {
+            from: path.join(process.cwd(), '_redirects'),
+            to: path.join(process.cwd(), 'dist'),
+            type: 'file',
+          },
+        ],
+        {
+          debug: env === 'development',
+        },
+      ),
+      new HtmlWebpackPlugin({
+        template: path.join(cwd, 'public/index.html.ejs'),
+        title: 'Verdigris Component Library',
+        // favicon: path.join(
+        //   cwd,
+        //   `public/favicon${env === 'development' ? '-dev' : ''}.ico`,
+        // ),
+      }),
+    );
   }
 
   return plugins;
