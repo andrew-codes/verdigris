@@ -2,6 +2,25 @@
 
 This document will outline the general structure of the code, the standards, and norms employed for the library.
 
+## Developer CLI Tasks
+
+* `yarn bootstrap` run after adding new internal dependencies to a package
+* `yarn lint`
+* `yarn test` will run all tests via [Cypress](https://cypress.io)
+* `yarn cypress open` will open tests in [Cypress](https://cypress.io) for local development
+* `yarn lerna add --scope @verdigris/package-name dependency-to-add` (see below for details on managing dependencies)
+* `yarn new-comp PackageName "A description of the package."` will scaffold out a new component in `./components/packageName`
+
+## Managing Dependencies
+
+Packages are managed using [lerna](https://lernajs.io/). Each package has its own list of dependencies. Therefore, dependencies are not added at the project root level; rather scoped to a specific package. There are `yarn` scripts to help automate this:
+
+> **Note**: If you run into trouble after installing a new dependency, try running `yarn && yarn bootstrap`.
+
+* **Adding** a new dependency, use `yarn lerna add --scope @verdigris/package-name dependency-name`
+* For **dev dependencies**, add the `--dev` CLI option `yarn lerna add --dev --scope @verdigris/package-name dependency-name`
+* **Removing** dependencies requires deleting the item from the package's `package.json` and re-running `yarn bootstrap` in the project root.
+
 ## Structure
 
 This code base is a mono-repo and leverages [lerna](https://lernajs.io/) to manage dependencies. There are a few top-level concerns that will be detailed:
@@ -57,3 +76,32 @@ Component packages all follow the same directory structure and general guideline
 Tests are run via [Cypress](https://cypress.io) and are located in `cypress/integration`. Tests are run against a running local instance of the site. `yarn test` will start the site for the tests. However, in order to run tests interactively for development, first run `yarn start` to start the site, then `yarn cypress open` to open the [Cypress](https://cypress.io) test runner.
 
 Tests should be written against the examples page of components on the docs site. This ensures that the docs' examples are fully complete; while giving a test bed for running e2e tests on the components in isolation.
+
+## Updating Site Content
+
+Content in Verdigris is written in Markdown (see [Markdown guide](https://guides.github.com/features/mastering-markdown/)).
+> **Notes**:
+> 1. Internal links should ignore the `00-` prefix (of directories and files) and the file extension
+>    - For example, a link to `../02-guides/01-contributing.md` would be written as `../guides/contributing`
+> 2. Use `../` instead of `./` when linking to internal pages
+> 3. Images are saved to the directory: `./docs/assets` and are their URLs are referenced in Markdown as `/assets/filename.png`
+
+### Documentation Pages
+
+Documentation pages are located within section directories in: `./docs`. Each section directory; such as `./docs/01-getting-started` contains Markdown files of pages. File names will be used as the menu item text; excluding the number and following dash. The number dash, `01-` is used to order content in the navigation menu. Pages and document sections are ordered by file name.
+
+### Component Documentation Pages
+
+Component related documentation pages; such as "usages" and "style" may be found in the component's respective `docs` directory. For example, `analytics` main docs may be found `./packages/analytics/docs/usage.md` or `./packages/analytics/docs/style.md`. Any additional component documentation pages can be added underneath a `docs` directory within the component docs directory. `./packages/analytics/docs/docs/01-some-page.md`. Pages are ordered by file name in the navigation.
+
+#### Adding Images to Component Documentation Pages
+
+> Please ensure all images for a component's documentation are saved to `componentName/docs/assets` directory.
+
+Reference images by file name as if they were located in the root of the site's `/assets` directory. As an example, we want to add an image to the Usage page for `Typography`.
+
+Our image file is named `title-screenshot.png` and the Usage page's file is located in `./packages/typography/docs/usage.md`. Because images must be saved in an assets directory, we save image to `./packages/typography/docs/assets/title-screenshot.png`. In our Usage page's file, we reference the image by a site absolute path: `![Title screenshot](/assets/title-screenshot.png)`.
+
+### Adding New Pages
+
+New markdown files can be added to any docs directory. Additionally, new directories (with markdown files) added to `./docs` directory will show up as a navigation section and navigation items.
