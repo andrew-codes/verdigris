@@ -1,12 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Page from '../components/Page';
+import { Redirect } from 'react-router';
 
 export default function Home() {
   return (
-    <Page width="large">
-      <h1>Verdigris Heading</h1>
-      <Link to="/error">Error page</Link>
-    </Page>
+    <Redirect from="/" to="/docs/getting-started/start-here" />
   );
 }
