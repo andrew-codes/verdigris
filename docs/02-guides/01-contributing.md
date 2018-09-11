@@ -1,5 +1,6 @@
 # Contributing
 
+<<<<<<< HEAD
 Please open issues on [GitHub](https://github.com/andrew-codes/verdigris/issues)
 
 ## Getting Started
@@ -33,6 +34,10 @@ In addition to running lint and tests for all open PRs via Travis, every PR will
 
 - [Tour of the Code Base](../../guides/tour-of-the-code-base): overview of of structure and conventions used in Verdigris
 
+=======
+- Please open issues on [GitHub](https://github.com/andrew-codes/verdigris/issues)
+
+>>>>>>> docs: WIP
 ## Commit Guidelines
 We have very precise rules over how our git commit messages can be formatted. This leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to generate the  change log.
 
@@ -83,3 +88,34 @@ Just as in the subject, use the imperative, present tense: "change" not "changed
 The footer should contain any information about Breaking Changes and is also the place to reference issues that this commit closes. The footer also contains packages that are affected by this commit in the form of: `affects: @verdigris/package-name`. Multiple packages may be impacted by adding more than one (space delimited).
 
 > **Breaking Changes** should start with the word `BREAKING CHANGE`: with a space or two newlines. The rest of the commit message is then used for this.
+
+## Getting Started Contributing
+
+### Before you Begin
+
+Please ensure you have the proper software installed:
+
+1. `node -v` should be ^8.5.0, ^10.0.0  [[download]](https://nodejs.org/en/)
+2. `yarn -v` should be ^1.3.2 [[download]](https://yarnpkg.com/lang/en/docs/install/)
+3. `git --version` should be >= 2.0.0 [[download]](https://git-scm.com/downloads)
+
+### Setup
+
+1. Fork the [repository](https://github.com/andrew-codes/verdigris) on GitHub
+2. Clone your forked repository
+3. `cd verdigris` to change directory into root of project
+4. `yarn && yarn bootstrap` to install and bootstrap dependencies
+
+### Running Site Locally
+
+1. Open the terminal and change into project's root directory; `cd verdigris`
+2. Run `yarn start` in the terminal
+3. Open Chrome and visit [http://localhost:9000](http://localhost:9000)
+
+### PR Deployment Preview Sites
+
+In addition to running lint and tests for all open PRs via Travis, every PR will deploy a preview site. See the PR in GitHub for a link to the PR's deployed sample site.
+
+### Additional Reading
+
+- [Tour of the Code Base](../../guides/tour-of-the-code-base): overview of of structure and conventions used in Verdigris
