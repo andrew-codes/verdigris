@@ -5,10 +5,9 @@
   "author": "Andrew Smith <andrew@andrew.codes>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn webpack:dev",
-    "webpack:dev": "cross-env NODE_ENV=development ../node_modules/@verdigris/webpack-config/bin/dev.js ./src/index.js",
     "build": "cross-env NODE_ENV=production ../node_modules/@verdigris/webpack-config/bin/build.js ./src/index.js"
   },
+  "main":"src/containers/App",
   "dependencies": {
     "@mdx-js/mdx": "^0.8.1",
     "@verdigris/analytics": "^0.0.0",

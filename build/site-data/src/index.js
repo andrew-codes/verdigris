@@ -4,7 +4,7 @@ const globby = require('globby');
 const { dir, buildFs, isDirHasFiles } = require('./buildFs');
 const { printDir } = require('./printFs');
 
-function createLoaderOutput(directory, files = [], debug = false, ) {
+function createLoaderOutput(directory, files = [], debug = false) {
   const output = `
     function dir(id, children) {
       return { type: 'dir', id: id, children: children };
@@ -30,12 +30,14 @@ function createLoaderOutput(directory, files = [], debug = false, ) {
   return output;
 }
 
-function addWebpackDependencies(directory, addContextDependency, ) {
+function addWebpackDependencies(directory, addContextDependency) {
   if (isDirHasFiles(directory)) {
     return addContextDependency(directory.path);
   }
 
-  directory.children.forEach(child => addWebpackDependencies(child, addContextDependency));
+  directory.children.forEach(child =>
+    addWebpackDependencies(child, addContextDependency),
+  );
 }
 
 module.exports = async function siteDataLoader() {
@@ -44,7 +46,7 @@ module.exports = async function siteDataLoader() {
     loaderUtils.getOptions(this) || {},
   );
 
-  const projectRoot = path.join(process.cwd(), '..');
+  const { projectRoot } = opts;
 
   this.clearDependencies();
 
@@ -55,7 +57,7 @@ module.exports = async function siteDataLoader() {
   const patterns = []
     .concat(opts.include)
     .concat((opts.exclude || []).map(p => `!${p}`));
-  const files = await globby(patterns, { cwd: projectRoot, });
+  const files = await globby(patterns, { cwd: projectRoot });
   const result = files.reduce((prev, file) => {
     const pathSegments = file.split('/');
     return buildFs(prev, pathSegments);

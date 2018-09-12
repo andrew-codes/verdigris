@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: docker/ci.Dockerfile
+    working_dir: /app
+    environment:
+      NODE_ENV: test
+      CYPRESS_KEY: $CYPRESS_KEY
+      PORT: 9000
+    entrypoint:
+      - yarn
+      - verify:ci

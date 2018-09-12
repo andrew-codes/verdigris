@@ -1,0 +1,5 @@
+**/node_modules
+.git
+stack.*.yml
+README.md
+.git*
