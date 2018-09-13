@@ -7,7 +7,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production ../node_modules/@verdigris/webpack-config/bin/build.js ./src/index.js"
   },
-  "main":"src/containers/App",
+  "main": "src/containers/App",
   "dependencies": {
     "@mdx-js/mdx": "^0.8.1",
     "@verdigris/analytics": "^0.0.0",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@verdigris/webpack-config": "^0.0.0",
-    "cross-env": "^5.1.4"
+    "cross-env": "^5.1.4",
+    "express": "^4.16.3"
   }
 }
