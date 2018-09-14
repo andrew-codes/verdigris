@@ -12,8 +12,6 @@ Please ensure you have the proper software installed:
 2.  `yarn -v` should be ^1.3.2 [[download](https://yarnpkg.com/lang/en/docs/install/)]
 3.  `git --version` should be ^2.0.0 [[download](https://git-scm.com/downloads)]
 
-> Note: The site can be run via docker (`docker-compose -f stack.dev.yml up`). However, if you wish to develop components then you will need the full list of software above in order to run Cypress tests during development.
-
 ### Setup
 
 1.  Fork the [repository](https://github.com/andrew-codes/verdigris) on GitHub
