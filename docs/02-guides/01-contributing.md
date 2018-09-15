@@ -24,6 +24,7 @@ Please ensure you have the proper software installed:
 1.  Open the terminal and change into project's root directory; `cd verdigris`
 2.  Run `yarn start` in the terminal
 3.  Open Chrome and visit [http://localhost:9000](http://localhost:9000)
+4.  `yarn start:dev` will start the site and open Cypress
 
 ### PR Deployment Preview Sites
 
