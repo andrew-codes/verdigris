@@ -8,5 +8,5 @@ node_modules
 cypress/screenshots
 cypress/videos
 
-dist
-website/dist
+website/.docz
+**/dist
