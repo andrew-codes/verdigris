@@ -7,19 +7,18 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "yarn lerna bootstrap",
+    "start": "cd website && yarn start",
+    "test": "start-test start http-get://localhost:3000 cy:run",
     "lint": "yarn lint:eslint",
-    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint **/*.js",
-    "build:website": "lerna run build --scope @verdigris/website",
-    "cy:run": "cypress run",
-    "cy:run:dev": "cypress open",
-    "cy:run:ci": "cypress run --parallel --record --key $CYPRESS_KEY",
-    "test": "start-server-and-test start http://localhost:9000 cy:run",
-    "test:ci": "start-server-and-test start:ci http://localhost:9000 cy:run:ci",
-    "start:dev": "start-server-and-test start http://localhost:9000 cy:run:dev",
-    "start": "yarn lerna run start --scope @verdigris/website",
-    "start:ci": "cd website && PORT=9000 node test-server.js",
+    "build": "lerna run build",
+    "build:docs": "lerna run build --scope @verdigris/website",
     "new-comp": "scripts/bin/new-comp.sh",
-    "build": "lerna run build"
+
+    "test:ci": "start-server-and-test start http://localhost:3000 cy:run:ci",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "cy:run:ci": "cypress run --parallel --record --key $CYPRESS_KEY",
+    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint **/*.js"
   },
   "engines": {
     "node": "^8.5.0 || ^10.0.0",
