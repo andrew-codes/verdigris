@@ -4,8 +4,17 @@ context('analytics', () => {
   before(() => {
     cy.visit('/packages/analytics');
   });
-  it('documentation page for analytics exists', () => {
-    cy.contains('h1', 'Analytics').should('exist');
+  it('documentation page contains API section for Analytics components', () => {
+    cy.contains('h2', 'API')
+      .siblings('#analyticscontext')
+      .next()
+      .find('.PropsTable')
+      .should('exist');
+    cy.contains('h2', 'API')
+      .siblings('#analyticslistener')
+      .next()
+      .find('.PropsTable')
+      .should('exist');
   });
   it('analytics events can be triggered and handled selectively for specific event channels', () => {
     cy.contains('h2', 'Handling Fired Events')
