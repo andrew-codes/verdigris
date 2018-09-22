@@ -1,18 +1,22 @@
-context('switch', () => {
+context.skip('switch', () => {
   it('can render a switch that is off', () => {
     cy.visit('/packages/selection/examples/switch/component');
 
-    cy.get('#basic-switch input[type="checkbox"]')
-      .then(el => expect(el.is(':checked')).to.eql(false));
+    cy.get('#basic-switch input[type="checkbox"]').then(el =>
+      expect(el.is(':checked')).to.eql(false),
+    );
   });
   it('does not visibly show the checkbox input control', () => {
     cy.visit('/packages/selection/examples/switch/component');
 
-    cy.get('#basic-switch input[type="checkbox"]').should('have.css', 'display', 'none');
+    cy.get('#basic-switch input[type="checkbox"]').should(
+      'have.css',
+      'display',
+      'none',
+    );
   });
   it('can render a label for the switch', () => {
     cy.visit('/packages/selection/examples/switch/component');
-    cy.get('#with-label')
-      .then(el => expect(el.text()).to.eql('a label'));
+    cy.get('#with-label').then(el => expect(el.text()).to.eql('a label'));
   });
 });

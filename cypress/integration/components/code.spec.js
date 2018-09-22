@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('code block', () => {
+context.skip('code block', () => {
   it('defaults to rendering without line numbers', () => {
     cy.visit('/packages/code/examples/code-block/component');
     cy.get('#with-language pre')
@@ -56,5 +56,5 @@ context('inline code', () => {
   it('can render inline code snippets', () => {
     cy.visit('/packages/code/examples/inline-code/component');
     cy.get('#inline-code').then(code => expect(code.text()).to.eql('ls -a'));
-  })
+  });
 });

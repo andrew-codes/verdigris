@@ -5,7 +5,7 @@ menu: Components
 ---
 
 import { Component } from 'react';
-import { Playground, PropsTable } from 'docz'
+import { Playground, PropsTable } from '@verdigris/docz'
 import { AnalyticsContext, AnalyticsListener, withAnalytics } from './src'
 import Chip from '@verdigris/chip'
 
@@ -30,10 +30,28 @@ Event handlers for Verdigris components provide an analytics event as the second
   )}
 </Playground>
 
+## Handling Fired Events
+Finally, we need to set up a listener to consume fired analytics events. This can be accomplished with the `AnalyticsListener` component.
+
+<Playground testId="handling-fired-events">
+  {() => (
+      <AnalyticsListener onEvent={({payload}) => console.log(payload)}>
+        <Chip
+          clickable
+          onClick={(evt, analyticsEvt) => {
+            analyticsEvt.fire();
+          }}
+          label="Name" />
+      </AnalyticsListener>
+  )}
+</Playground>
+
+The `AnalyticsListener`'s `onEvent` callback will be invoked for every fired analytics event. This is where you can capture analytics events and send them to Google Analytics or some other back-end service.
+
 ## Updating Events
 You can also update the analytics event with additional payload information. Remember, you can only update an analytics event before it has fired.
 
-<Playground>
+<Playground testId="updating-event">
   {() => {
     const UserChip = () => (
       <Chip
@@ -54,41 +72,29 @@ You can also update the analytics event with additional payload information. Rem
         label="Name" />
     );
 
-    return <UserChip />
+    return (
+      <AnalyticsListener onEvent={({payload}) => console.log(payload)}>
+        <UserChip />
+      </AnalyticsListener>
+    );
   }}
 </Playground>
-
-## Handling Fired Events
-Finally, we need to set up a listener to consume fired analytics events. This can be accomplished with the `AnalyticsListener` component.
-
-<Playground>
-  {() => (
-      <AnalyticsListener onEvent={({payload}) => console.log(payload)}>
-        <Chip
-          clickable
-          onClick={(evt, analyticsEvt) => {
-            analyticsEvt.fire();
-          }}
-          label="Name" />
-      </AnalyticsListener>
-  )}
-</Playground>
-
-The `AnalyticsListener`'s `onEvent` callback will be invoked for every fired analytics event. This is where you can capture analytics events and send them to Google Analytics or some other back-end service.
 
 ## Providing Contextual Data
 Additionally, we can provide additional contextual data to our analytics event via the 'AnalyticsContext` component.
 
-<Playground>
+<Playground testId="contextual-data">
   {() => (
     <AnalyticsListener onEvent={({context, payload})=> console.log(context, payload)}>
-      <AnalyticsContext data={{ oidToken: 'User:1234' }}>
-        <Chip
-          clickable
-          onClick={(evt, analyticsEvt) => {
-            analyticsEvt.fire();
-          }}
-          label="Name" />
+      <AnalyticsContext data={{ oidToken: 'User:1' }}>
+          <AnalyticsContext data={{ friend: 'User:2' }}>
+          <Chip
+            clickable
+            onClick={(evt, analyticsEvt) => {
+              analyticsEvt.fire();
+            }}
+            label="Name" />
+        </AnalyticsContext>
       </AnalyticsContext>
     </AnalyticsListener>
   )}
@@ -99,7 +105,7 @@ Analytics events can also be configured and fired for any, non-verdigris, compon
 
 In order to enable the creation of an analytics event, we can leverage the `withAnalytics` HoC. This will inject a `createAnalyticsEvent` function as a property to our `SaveButton` component. We can use the injected prop function to create analytics events and either fire them immediately:
 
-<Playground>
+<Playground testId="custom-components">
   {() => {
     const SaveButtonBase = ({ createAnalyticsEvent, onClick }) => (
         <button
@@ -147,8 +153,8 @@ Or pass them to an event handler callback to be fired by a parent component:
   }}
 </Playground>
 
-## Asynchronous Firing
-<Playground>
+## Async Events
+<Playground testId="async-events">
   {() => {
     const SaveButtonBase = ({ createAnalyticsEvent, onClick })=> (
       <button onClick={evt => {
