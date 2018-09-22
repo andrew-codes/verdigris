@@ -6,7 +6,6 @@ import { CloseIcon } from '@verdigris/icons';
 import { defaultTheme } from '@verdigris/theme';
 import { noop } from 'lodash';
 import { ThemeProvider, withTheme } from 'emotion-theming';
-import { withAnalytics } from '@verdigris/analytics';
 
 const avatarBorderSize = 2;
 const localTheme = ({ Avatar, Content, Delete }) => ({
@@ -142,7 +141,6 @@ function Chip({
     </ThemeProvider>
   );
 }
-
 Chip.propTypes = {
   /**
    * Avatar element
@@ -193,7 +191,7 @@ Chip.defaultProps = {
   onClick: noop,
 };
 
-export default withAnalytics()(Chip);
+export default Chip;
 
 function calculateAvatarSize({ theme }) {
   return (
