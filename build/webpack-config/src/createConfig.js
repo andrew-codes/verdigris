@@ -5,16 +5,18 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = ({
-    entry,
+  entry,
   env = 'production',
-    cwd = process.cwd(),
-    noMinimize = false,
-    report = false,
+  cwd = process.cwd(),
+  noMinimize = false,
+  report = false,
 }) => ({
   mode: env,
   entry: {
     main: path.join(cwd, entry),
   },
+  externals: {
+    react: 'React',
   },
   output: {
     filename: '[name].js',
@@ -43,18 +45,11 @@ module.exports = ({
   },
   resolve: {
     mainFields: ['verdigris:src', 'main'],
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js'],
   },
-  plugins: plugins({ cwd, env, noMinimize, report }),
+  plugins: createPlugins({ cwd, env, noMinimize, report }),
 });
-function plugins(
-  {
-    cwd,
-    env,
-    noMinimize,
-    report,
-  },
-) {
+function createPlugins({ env, noMinimize, report }) {
   const plugins = [
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
@@ -71,11 +66,6 @@ function plugins(
         logLevel: 'error',
       }),
     );
-  }
-
-  if (env === 'development') {
-    plugins.push(new webpack.HotModuleReplacementPlugin());
-    plugins.push(new webpack.NoEmitOnErrorsPlugin());
   }
 
   if (env === 'production' && !noMinimize) {

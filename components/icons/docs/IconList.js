@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'react-emotion';
-import { code, md } from '@verdigris/docs';
-import * as Icons from '../src/index';
+import * as AllIcons from '../src/index';
 
-const icons = Object.keys(Icons).map((key) => ({
+const icons = Object.keys(AllIcons).map(key => ({
   name: key,
-  Icon: Icons[key],
+  Icon: AllIcons[key],
 }));
 
 const IconList = styled('ul')`
@@ -38,12 +37,15 @@ const IconWrapper = styled('span')`
   justify-self: center;
 `;
 
-function RenderIcons({ icons }) {
+export default function Icons() {
   return (
     <IconList>
-      {icons.map(({ name, Icon }, iconIndex) => (
-        <IconListItem key={iconIndex}>
-          <IconName>{name}<br />(size: 32)</IconName>
+      {icons.map(({ name, Icon }) => (
+        <IconListItem key={name}>
+          <IconName>
+            {name}
+            <br />(size: 32)
+          </IconName>
           <IconWrapper>
             <Icon size={32} />
           </IconWrapper>
@@ -52,12 +54,6 @@ function RenderIcons({ icons }) {
     </IconList>
   );
 }
-RenderIcons.defaultProps = {
+Icons.defaultProps = {
   icons: [],
 };
-
-export default () => md`
-# Icons
-
-${<RenderIcons icons={icons} />}
-`;

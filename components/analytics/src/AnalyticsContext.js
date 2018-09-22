@@ -7,6 +7,7 @@ const contextTypes = {
 
 export default class AnalyticsContext extends Component {
   static contextTypes = contextTypes;
+
   static childContextTypes = contextTypes;
 
   getChildContext = () => ({
@@ -16,13 +17,9 @@ export default class AnalyticsContext extends Component {
   getAnalyticsContext = () => {
     const { data } = this.props;
     const { getAnalyticsContext } = this.context;
-    const ancestorData = typeof getAnalyticsContext === 'function'
-      ? getAnalyticsContext()
-      : [];
-    return [
-      ...ancestorData,
-      data,
-    ];
+    const ancestorData =
+      typeof getAnalyticsContext === 'function' ? getAnalyticsContext() : [];
+    return [...ancestorData, data];
   };
 
   render() {

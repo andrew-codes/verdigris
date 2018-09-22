@@ -1,9 +1,0 @@
-{
-  "presets": ["env", "react"],
-  "plugins": [
-    "dynamic-import-webpack",
-    "transform-class-properties",
-    "transform-object-rest-spread",
-    "babel-plugin-emotion"
-  ]
-}

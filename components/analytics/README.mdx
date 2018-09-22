@@ -1,0 +1,247 @@
+---
+name: Analytics
+route: /packages/analytics
+menu: Components
+---
+
+import { Component } from 'react';
+import { Playground, PropsTable } from 'docz'
+import { AnalyticsContext, AnalyticsListener, withAnalytics } from './src'
+import Chip from '@verdigris/chip'
+
+# Analytics
+
+## Usage
+The analytics set of components provide a standardized way to trigger and consume analytics events. The actual handling of any event is left up to the consumer; enabling a wide range of use cases. One example is this site; firing analytics events on page views and then consuming them in Google Analytics.
+
+Analytics events will be supported by all relevant Verdigris components; however **any component** can fire these events. See [using analytics with Custom Components](#analytics-with-custom-components) for more details on supporting analytics events in your own, custom components.
+
+## Firing Events
+Event handlers for Verdigris components provide an analytics event as the second parameter. For example, a `Chip` onClick event handler.
+
+<Playground>
+  {() => (
+    <Chip
+      clickable
+      onClick={(evt, analyticsEvt) => {
+        analyticsEvt.fire();
+      }}
+      label="Name" />
+  )}
+</Playground>
+
+## Updating Events
+You can also update the analytics event with additional payload information. Remember, you can only update an analytics event before it has fired.
+
+<Playground>
+  {() => {
+    const UserChip = () => (
+      <Chip
+        clickable
+        onClick={(evt, analyticsEvt) => {
+          // Update with an object literal
+          analyticsEvt.update({
+            action: 'save',
+          });
+          // Update with a callback
+          analyticsEvt.update(payload => Object.assign({},
+            payload,
+            {
+              additionalAction: payload.action === 'save' ? 'save item' : null,
+            }));
+          analyticsEvt.fire();
+        }}
+        label="Name" />
+    );
+
+    return <UserChip />
+  }}
+</Playground>
+
+## Handling Fired Events
+Finally, we need to set up a listener to consume fired analytics events. This can be accomplished with the `AnalyticsListener` component.
+
+<Playground>
+  {() => (
+      <AnalyticsListener onEvent={({payload}) => console.log(payload)}>
+        <Chip
+          clickable
+          onClick={(evt, analyticsEvt) => {
+            analyticsEvt.fire();
+          }}
+          label="Name" />
+      </AnalyticsListener>
+  )}
+</Playground>
+
+The `AnalyticsListener`'s `onEvent` callback will be invoked for every fired analytics event. This is where you can capture analytics events and send them to Google Analytics or some other back-end service.
+
+## Providing Contextual Data
+Additionally, we can provide additional contextual data to our analytics event via the 'AnalyticsContext` component.
+
+<Playground>
+  {() => (
+    <AnalyticsListener onEvent={({context, payload})=> console.log(context, payload)}>
+      <AnalyticsContext data={{ oidToken: 'User:1234' }}>
+        <Chip
+          clickable
+          onClick={(evt, analyticsEvt) => {
+            analyticsEvt.fire();
+          }}
+          label="Name" />
+      </AnalyticsContext>
+    </AnalyticsListener>
+  )}
+</Playground>
+
+## Custom Components
+Analytics events can also be configured and fired for any, non-verdigris, component. Let's build a `SaveButton` with analytics enabled.
+
+In order to enable the creation of an analytics event, we can leverage the `withAnalytics` HoC. This will inject a `createAnalyticsEvent` function as a property to our `SaveButton` component. We can use the injected prop function to create analytics events and either fire them immediately:
+
+<Playground>
+  {() => {
+    const SaveButtonBase = ({ createAnalyticsEvent, onClick }) => (
+        <button
+          onClick={evt =>{
+              const analyticsEvent = createAnalyticsEvent({ action: 'save' });
+               // optionally provide a channel
+              const channel = '*';
+              analyticsEvent.fire(channel);
+
+              onClick(evt);
+          }}>
+          Save
+      </button>
+    );
+    const SaveButton = withAnalytics()(SaveButtonBase);
+
+    return (
+      <AnalyticsListener onEvent={({context, payload})=> console.log(context, payload)}>
+        <SaveButton onClick={console.log}/>
+      </AnalyticsListener>
+    );
+  }}
+</Playground>
+
+Or pass them to an event handler callback to be fired by a parent component:
+
+<Playground>
+  {() => {
+    const SaveButtonBase = ({ createAnalyticsEvent, onClick }) => (
+        <button
+          onClick={evt =>{
+              const analyticsEvent = createAnalyticsEvent({ action: 'save' });
+              onClick(evt, analyticsEvent);
+          }}>
+          Save
+      </button>
+    );
+    const SaveButton = withAnalytics()(SaveButtonBase);
+
+    return (
+      <AnalyticsListener onEvent={({context, payload})=> console.log(context, payload)}>
+        <SaveButton onClick={(evt, analyticsEvent) => analyticsEvent.fire()}/>
+      </AnalyticsListener>
+    );
+  }}
+</Playground>
+
+## Asynchronous Firing
+<Playground>
+  {() => {
+    const SaveButtonBase = ({ createAnalyticsEvent, onClick })=> (
+      <button onClick={evt => {
+        const analyticsEvt = createAnalyticsEvent({ action: 'Save' });
+        onClick(evt, analyticsEvt);
+      }}>
+        Save
+      </button>
+    );
+  const SaveButton = withAnalytics()(SaveButtonBase);
+
+  class Form extends Component {
+    constructor(props) {
+      super(props);
+      this.handleSaveClick = this.handleSaveClick.bind(this);
+    }
+
+    componentWillUnmount() {
+      console.log('Form will unmount');
+    }
+
+    render() {
+      return (
+        <AnalyticsListener channel="form" onEvent={this.handleAnalyticsEvent}>
+          <AnalyticsContext data={{ form: 'MyForm', formAction: 'new' }}>
+            <SaveButton onClick={this.handleSaveClick} />
+          </AnalyticsContext>
+        </AnalyticsListener>
+      );
+    }
+
+    handleSaveClick(evt, analyticsEvt) {
+      this.props.onSave(evt, analyticsEvt);
+    };
+
+    handleAnalyticsEvent(analyticsEvt) {
+      console.log(analyticsEvt.context, analyticsEvt.payload);
+    };
+  }
+
+  class App extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        saved: false,
+      };
+
+      this.handleSave = this.handleSave.bind(this);
+    }
+
+    render() {
+      if (this.state.saved) {
+        return (
+            <span>Saved!</span>
+        );
+      }
+      return (
+        <Form onSave={this.handleSave} />
+      );
+    }
+
+    handleSave(evt, analyticsEvt) {
+      this.dispatchSave(analyticsEvt);
+      this.setState({
+        saved: true,
+      });
+    }
+
+    dispatchSave(analyticsEvt) {
+      new Promise(resolve =>
+        setTimeout(() => {
+          const oidTokenFromServer = 'User:1234';
+          resolve(oidTokenFromServer);
+        }, 10))
+      .then(oidToken => {
+        analyticsEvt.update({
+          oidToken,
+        });
+        analyticsEvt.fire('form');
+      })
+    }
+  }
+
+    return (
+      <App />
+    );
+  }}
+</Playground>
+
+## API
+
+### AnalyticsContext
+<PropsTable of={AnalyticsContext} />
+
+### AnalyticsListener
+<PropsTable of={AnalyticsListener} />

@@ -4,10 +4,12 @@ import UIAnalyticsEvent from './UIAnalyticsEvent';
 
 export default (eventsMap = {}) => WrappedComponent => class extends Component {
   static displayName = `WithAnalytics(${WrappedComponent.displayName || WrappedComponent.name})`;
+
   static contextTypes = {
     getAnalyticsEventHandlers: PropTypes.func,
     getAnalyticsContext: PropTypes.func,
   }
+
   render() {
     const props = { ...this.props, ...this.mapEvents() };
     return (

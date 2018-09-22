@@ -26,6 +26,5 @@
     "react-virtualized": "^9.19.1"
   },
   "devDependencies": {
-    "@verdigris/docs": "^0.0.0"
   }
 }

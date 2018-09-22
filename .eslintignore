@@ -1,3 +1,6 @@
-node_modules
+/node_modules
+**/node_modules
 /scripts
-examples/
+**/examples/
+/.docz
+/**/dist
