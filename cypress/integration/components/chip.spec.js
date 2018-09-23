@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('chip', () => {
+context('@verdigris/chip', () => {
   before(() => {
     cy.visit('/packages/chip');
   });
