@@ -17,7 +17,7 @@ export default function CodeBlock({
   ...rest
 }) {
   return (
-    <div {...rest}>
+    <div {...rest} data-component="CodeBlock">
       <SyntaxHighlighter
         customStyle={{
           ...style,

@@ -53,6 +53,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
+    "jquery": "^3.3.1",
     "lerna": "^3.4.0",
     "lerna-semantic-release": "^9.1.0",
     "prettier": "^1.14.3",

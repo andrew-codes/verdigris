@@ -11,18 +11,13 @@ import { CodeBlock, InlineCode } from './src'
 Components for rendering inline or blocks of code; providing language syntax highlighting and optional line numbers.
 
 ## Code Block
-<Playground>
+<Playground testId="code-block">
   {() => {
     const multiLineCode = `const myVariable = 'a constant value';
 const mySecondVariable = myVariable + '.';`;
 
     return (
       <Fragment>
-        <h4>Without a language</h4>
-        <CodeBlock>
-          const myVariable = 'a constant value';
-        </CodeBlock>
-
         <h4>With a language</h4>
         <CodeBlock language="javascript">
          const myVariable = 'a constant value';
@@ -68,7 +63,7 @@ const mySecondVariable = myVariable + '.';`;
 </Playground>
 
 ## Inline Code
-<Playground>
+<Playground testId="inline-code">
   <p>Sample inline code snippet, <InlineCode>ls -a</InlineCode>, used to list all files in a directory.
   </p>
 </Playground>
