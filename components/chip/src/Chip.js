@@ -77,11 +77,11 @@ const localTheme = ({ Avatar, Content, Delete }) => ({
 `;
 
 const ChipRoot = styled('div')`
-  ${p => localTheme({ Avatar, Content, Delete })(p)} ${p =>
-    p.theme.Chip({ Avatar, Content, Delete })(p)};
+  ${p => localTheme({ Avatar, Content, Delete })(p)};
+  ${p => p.theme.Chip({ Avatar, Content, Delete })(p)};
 `;
-const Content = styled('span')``;
 const Avatar = styled('span')``;
+const Content = styled('span')``;
 const Delete = styled('span')``;
 const DeleteIcon = withTheme(({ theme }) => {
   const size =

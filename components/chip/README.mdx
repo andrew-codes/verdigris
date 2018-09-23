@@ -4,45 +4,65 @@ route: /packages/chip
 menu: Components
 ---
 
+import { Fragment } from 'react'
+import { Playground, PropsTable } from '@verdigris/docz'
 import Chip from './src'
 import ChipSrc from './src/Chip'
-import { Playground, PropsTable } from '@verdigris/docz'
 
+## Usage
 Concise representation of an otherwise more complex entity.
 
 ## Rendering Basic Chips
 Chips contain a label (text) and can optionally render an avatar. The avatar can be an icon or any other renderable node.
+
 <Playground testId="basic-chips">
   <Chip label="basic text chip" />
-   <Chip
-      avatar={<span>i</span>}
-      label="chip with avatar"
-    />
-    <Chip
-      fullWidth
-      label="full width chip"
-    />
-    <Chip
-      fullWidth
-      avatar={<span>i</span>}
-      label="full width with avatar"
-    />
+  <Chip
+    avatar={<span>i</span>}
+    label="chip with avatar"
+  />
+  <Chip
+    fullWidth
+    label="full width chip"
+  />
+  <Chip
+    fullWidth
+    avatar={<span>i</span>}
+    label="full width with avatar"
+  />
 </Playground>
 
-## Rendering with Custom Component
+## Using Custom Component
 In some cases, you may want a Chip to actually be an anchor (link). Chip provides a way to supply a component to be used as its root.
 
 > When using an anchor for a Chip, the avatar and chip become the anchor's clickable target. No click handler will be invoked; regardless of the `clickable` prop value.
 
 <Playground testId="custom-component">
-    <Chip
-      clickable
-      avatar={<span>i</span>}
-      component="a"
-      href="https://verdigris.andrew.codes"
-      label="a clickable link chip"
-      onClick={() => console.log('clickable link chip clicked')}
-    />
+  {() => {
+    const AssetLink = ({ href, children }) => (
+      <a href={href}>
+        {children}
+      </a>
+    );
+    return (
+      <Fragment>
+        <Chip
+          avatar={<span>i</span>}
+          component="a"
+          href="https://verdigris.andrew.codes"
+          label="a clickable link chip"
+          onClick={() => console.log('clickable link chip clicked')}
+        />
+        <Chip
+          avatar={<span>i</span>}
+          component={AssetLink}
+          href="https://verdigris.andrew.codes"
+          label="an AssetLink chip"
+          onClick={() => console.log('clickable AssetLink chip clicked')}
+        />
+      </Fragment>
+    );
+  }}
 </Playground>
 
 ## Clickable Chips

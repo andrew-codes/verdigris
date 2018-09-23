@@ -25,7 +25,7 @@ context('chip', () => {
       .should('have.css', 'display', 'flex');
   });
   it('the root component can be configured to a different component', () => {
-    cy.contains('h2', 'Rendering with Custom Component')
+    cy.contains('h2', 'Using Custom Component')
       .siblings('[data-testid="custom-component"]')
       .find('[data-component="Chip"]')
       .find('a')
