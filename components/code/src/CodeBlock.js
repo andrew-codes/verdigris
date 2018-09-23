@@ -1,11 +1,9 @@
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
-import { ghcolors } from 'react-syntax-highlighter/styles/prism';
+import { docco } from 'react-syntax-highlighter/styles/hljs';
 import * as PropTypes from 'prop-types';
 import supportedLanguages from './supportedLanguages';
-
-ghcolors["pre[class*=\"language-\"]"].backgroundColor = 'rgba(27,31,35,0.05)';
 
 export default function CodeBlock({
   children,
@@ -79,5 +77,5 @@ CodeBlock.defaultProps = {
   shouldShowLineNumbers: false,
   startingLineNumber: 1,
   style: {},
-  theme: ghcolors,
+  theme: docco,
 };
