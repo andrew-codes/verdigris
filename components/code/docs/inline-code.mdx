@@ -1,0 +1,20 @@
+---
+name: InlineCode
+route: /packages/code/components/InlineCode
+menu: Components
+---
+import { Fragment } from 'react'
+import { Playground, PropsTable } from '@verdigris/docz'
+import { InlineCode } from '../src'
+
+## Usage
+Component for rendering inline code; providing language syntax highlighting.
+
+## Examples
+<Playground testId="inline-code">
+  <p>Sample inline code snippet, <InlineCode>ls -a</InlineCode>, used to list all files in a directory.
+  </p>
+</Playground>
+
+## API
+<PropsTable of={InlineCode} />

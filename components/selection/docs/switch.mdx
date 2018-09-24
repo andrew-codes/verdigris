@@ -1,0 +1,26 @@
+---
+name: Switch
+route: /packages/selection/components/switch
+menu: Components
+---
+import { Playground, PropsTable } from '@verdigris/docz'
+import { Switch } from '../src'
+import SwitchSrc from '../src/Switch'
+
+## Usage
+A selection control used to select between one of only two states.
+
+## Examples
+<Playground testId="examples">
+  <div><Switch /></div>
+  <div><Switch label="check this out!" /></div>
+  <div><Switch isChecked label="I see you checked it out"/></div>
+  <div><Switch isDisabled label="this is not checked and disabled" /></div>
+  <div><Switch isChecked isDisabled  label="this is checked, but disabled" /></div>
+  <div>
+    <h4>Switch with onChange handler; analytics enabled (see console for logs)</h4>
+    <Switch onChange={(evt, analyticsEvent, isChecked) => console.log(evt, analyticsEvent, isChecked)} /></div>
+</Playground>
+
+## API
+<PropsTable of={SwitchSrc} />

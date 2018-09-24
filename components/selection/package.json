@@ -12,6 +12,7 @@
     "dist"
   ],
   "dependencies": {
+    "@verdigris/analytics": "^0.0.0",
     "@verdigris/theme": "^0.0.0",
     "emotion": "^9.2.5",
     "emotion-theming": "^9.2.5",

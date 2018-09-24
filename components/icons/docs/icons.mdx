@@ -1,0 +1,29 @@
+---
+name: Icons
+route: /packages/icons
+menu: Components
+---
+import { Playground, PropsTable } from '@verdigris/docz'
+import IconList from './IconList'
+import { CloseIcon } from '../src'
+import SvgIcon from '../src/SvgIcon'
+
+## Usage
+Collection of SVG icon files converted to `SvgIcon` components.
+
+## Examples
+Each icon can be imported as a property of this package.
+
+```js
+import { CloseIcon } from '@verdigris/icons';
+```
+
+<Playground>
+  <CloseIcon />
+</Playground>
+
+## API
+<PropsTable of={SvgIcon} />
+
+## Available Icons
+<IconList />

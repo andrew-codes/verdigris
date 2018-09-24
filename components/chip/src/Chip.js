@@ -97,7 +97,6 @@ function Chip({
   component,
   createAnalyticsEvent,
   fullWidth,
-  id,
   label,
   onClick,
   onDelete,
@@ -113,7 +112,6 @@ function Chip({
         className={className}
         clickable={clickable}
         fullWidth={fullWidth}
-        id={id}
         hasAvatar={avatar}
         data-component="Chip"
       >
@@ -121,7 +119,10 @@ function Chip({
           {...rest}
           onClick={evt => {
             if (!clickable) return;
-            onClick(evt, createAnalyticsEvent({ action: 'chip clicked' }));
+            onClick(
+              evt,
+              createAnalyticsEvent({ component: 'Chip', event: 'click' }),
+            );
           }}
         >
           {avatar && <Avatar>{avatar}</Avatar>}
@@ -130,7 +131,10 @@ function Chip({
             <Delete
               onClick={evt => {
                 evt.stopPropagation();
-                onDelete(evt, createAnalyticsEvent({ action: 'chip deleted' }));
+                onDelete(
+                  evt,
+                  createAnalyticsEvent({ component: 'Chip', event: 'delete' }),
+                );
               }}
             >
               <DeleteIcon />
@@ -166,10 +170,6 @@ Chip.propTypes = {
    * When true, Chip will expand to fill full width of parent.
    */
   fullWidth: PropTypes.bool,
-  /**
-   * Unique HTML ID applied to root element.
-   */
-  id: PropTypes.string,
   /**
    * Content of the chip.
    */
