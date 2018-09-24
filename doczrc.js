@@ -1,7 +1,9 @@
+const doczPluginNetlify = require('docz-plugin-netlify');
 const pkg = require('./package.json');
 
 export default {
   description: pkg.description,
+  plugins: [doczPluginNetlify()],
   title: 'Verdigris Component Library',
   modifyBundlerConfig: config => ({
     ...config,

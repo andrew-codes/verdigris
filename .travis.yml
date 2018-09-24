@@ -14,7 +14,6 @@ install:
 
 defaults: &defaults
   script:
-    - yarn build:website
     - yarn test:ci
     - kill $(jobs -p) || true
 
