@@ -12,6 +12,7 @@
     "test": "start-test start http-get://localhost:3000 cy:run",
     "lint": "yarn lint:eslint",
     "build": "lerna run build",
+    "prebuild:website": "yarn bootstrap",
     "build:website": "docz build",
     "new-comp": "scripts/bin/new-comp.sh",
     "test:ci": "start-server-and-test start http://localhost:3000 cy:run:ci",
