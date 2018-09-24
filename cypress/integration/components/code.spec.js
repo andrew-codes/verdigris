@@ -3,20 +3,26 @@ import $ from 'jquery';
 
 context('@verdigris/code', () => {
   before(() => {
-    cy.visit('/packages/code');
+    cy.visit('/packages/code/components/codeblock');
   });
-  context('code block', () => {
+  context('<CodeBlock />', () => {
+    it('documentation page contains API section for Analytics components', () => {
+      cy.contains('h2', 'API')
+        .next()
+        .find('.PropsTable')
+        .should('exist');
+    });
     it('defaults to rendering without line numbers', () => {
-      cy.contains('h2', 'Inline Code')
-        .siblings('[data-testid="code-block"]')
+      cy.contains('h2', 'Examples')
+        .nextUntil('[data-testid="examples"]')
         .find('[data-component="CodeBlock"]')
         .first()
         .find('.react-syntax-highlighter-line-number')
         .should('not.exist');
     });
     it('can render with line numbers', () => {
-      cy.contains('h2', 'Inline Code')
-        .siblings('[data-testid="code-block"]')
+      cy.contains('h2', 'Examples')
+        .nextUntil('[data-testid="examples"]')
         .find('[data-component="CodeBlock"]')
         .then(els => els[1])
         .find('.react-syntax-highlighter-line-number')
@@ -26,8 +32,8 @@ context('@verdigris/code', () => {
         });
     });
     it('can render with line numbers starting at a specific number', () => {
-      cy.contains('h2', 'Inline Code')
-        .siblings('[data-testid="code-block"]')
+      cy.contains('h2', 'Examples')
+        .nextUntil('[data-testid="examples"]')
         .find('[data-component="CodeBlock"]')
         .then(els => els[2])
         .find('.react-syntax-highlighter-line-number')
@@ -37,8 +43,8 @@ context('@verdigris/code', () => {
         });
     });
     it('can apply styles to line numbers', () => {
-      cy.contains('h2', 'Inline Code')
-        .siblings('[data-testid="code-block"]')
+      cy.contains('h2', 'Examples')
+        .nextUntil('[data-testid="examples"]')
         .find('[data-component="CodeBlock"]')
         .then(els => els[3])
         .find('.react-syntax-highlighter-line-number')
@@ -46,8 +52,8 @@ context('@verdigris/code', () => {
           expect(lineNumbers[0].style.color).to.eql('blue');
           expect(lineNumbers[1].style.color).to.eql('blue');
         });
-      cy.contains('h2', 'Inline Code')
-        .siblings('[data-testid="code-block"]')
+      cy.contains('h2', 'Examples')
+        .nextUntil('[data-testid="examples"]')
         .find('[data-component="CodeBlock"]')
         .then(els => els[4])
         .find('.react-syntax-highlighter-line-number')
@@ -55,16 +61,6 @@ context('@verdigris/code', () => {
           expect(lineNumbers[0].style.color).to.eql('blue');
           expect(lineNumbers[1].style.color).to.eql('green');
         });
-    });
-  });
-
-  context('inline code', () => {
-    it('can render inline code snippets', () => {
-      cy.contains('h2', 'Inline Code')
-        .siblings('[data-testid="inline-code"]')
-        .find('[data-component="InlineCode"]')
-        .should('have.text', 'ls -a')
-        .then(el => expect(el.prop('tagName').toLowerCase()).to.equal('code'));
     });
   });
 });

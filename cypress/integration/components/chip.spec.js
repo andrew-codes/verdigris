@@ -2,11 +2,10 @@
 
 context('@verdigris/chip', () => {
   before(() => {
-    cy.visit('/packages/chip');
+    cy.visit('/packages/chip/components/chip');
   });
   it('documentation page contains API section for Analytics components', () => {
     cy.contains('h2', 'API')
-      .siblings('#chip')
       .next()
       .find('.PropsTable')
       .should('exist');

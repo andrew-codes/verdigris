@@ -103,6 +103,7 @@ class Switch extends React.Component {
           isChecked={isChecked}
           isDisabled={isDisabled}
           onClick={this.handleClick}
+          data-component="Switch"
         >
           <Bar>
             <Checkbox
