@@ -23,14 +23,15 @@ export default class AnalyticsContext extends Component {
   };
 
   render() {
-    return Children.only(this.props.children);
+    const { children } = this.props;
+    return Children.only(children);
   }
 }
 AnalyticsContext.propTypes = {
   children: PropTypes.node.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   /**
    * additional data to be passed along as context to fired analytics events
    */
+  // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.any.isRequired,
 };

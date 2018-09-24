@@ -6,6 +6,12 @@ import { defaultTheme } from '@verdigris/theme';
 import { noop } from 'lodash';
 import { ThemeProvider } from 'emotion-theming';
 
+const deriveColor = (props, defaultColor) => {
+  const { isChecked, isDisabled, theme } = props;
+  if (isDisabled) return theme.palette.lightGray;
+  if (isChecked) return theme.palette.cerulean;
+  return defaultColor;
+};
 const localTheme = ({ Bar, Handle, Label }) => ({
   isChecked,
   isDisabled,
@@ -28,18 +34,10 @@ const localTheme = ({ Bar, Handle, Label }) => ({
     width: 48px;
   }
   ${Handle} {
-    background: ${isDisabled
-      ? theme.palette.lightGray
-      : isChecked
-        ? theme.palette.cerulean
-        : 'white'};
+    background: ${deriveColor({ isChecked, isDisabled, theme }, 'white')};
     border-radius: 50%;
     border: 1px solid
-      ${isDisabled
-        ? theme.palette.lightGray
-        : isChecked
-          ? theme.palette.cerulean
-          : theme.palette.gray};
+      ${deriveColor({ isChecked, isDisabled, theme }, theme.palette.gray)};
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
       0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     height: ${theme.typography.baseSize * theme.typography.lineHeight}px;
@@ -65,8 +63,8 @@ const localTheme = ({ Bar, Handle, Label }) => ({
 `;
 
 const SwitchRoot = styled('div')`
-  ${p => localTheme({ Bar, Handle, Label })(p)} ${p =>
-    p.theme.Switch({ Bar, Handle, Label })(p)};
+  ${p => localTheme({ Bar, Handle, Label })(p)};
+  ${p => p.theme.Switch({ Bar, Handle, Label })(p)};
 `;
 const Bar = styled('div')``;
 const Label = styled('span')``;

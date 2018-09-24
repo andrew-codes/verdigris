@@ -18,11 +18,8 @@
       "error",
       {
         "devDependencies": [
-          "**/docs/**/*.js",
-          "**/__tests__/**/*.js",
-          "**/examples/**/*.js",
-          "./projector.js",
-          "./resolver.js"
+          "./doczrc.js",
+          "cypress/**/*.js"
         ]
       }
     ],

@@ -1,5 +1,4 @@
 /// <reference types="Cypress" />
-import $ from 'jquery';
 
 context('@verdigris/code', () => {
   before(() => {

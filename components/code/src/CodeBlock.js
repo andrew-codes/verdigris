@@ -65,10 +65,12 @@ CodeBlock.propTypes = {
   /**
    * override styles applied to the `<pre />` tag root element
    */
+  // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   /**
    * `react-syntax-highlighter/styles/prism` theme that provides styling to code
    */
+  // eslint-disable-next-line react/forbid-prop-types
   theme: PropTypes.object,
 };
 CodeBlock.defaultProps = {

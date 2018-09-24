@@ -15,7 +15,8 @@ export default class AnalyticsListener extends Component {
   });
 
   render() {
-    return Children.only(this.props.children);
+    const { children } = this.props;
+    return Children.only(children);
   }
 
   getAnalyticsEventHandlers = () => {

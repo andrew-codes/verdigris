@@ -33,7 +33,7 @@ export default (eventsMap = {}) => WrappedComponent => {
         if (!['object', 'function'].includes(typeof eventCreator)) {
           return prev;
         }
-
+        // eslint-disable-next-line react/destructuring-assignment
         const providedPropCallback = this.props[propCallbackName];
         const modifiedCallback = (...args) => {
           const analyticsEvent =
