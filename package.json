@@ -44,7 +44,7 @@
     "babel-polyfill": "^6.26.0",
     "chalk-cli": "^4.0.0",
     "codemirror": "^5.40.2",
-    "cypress": "^3.0.2",
+    "cypress": "^3.1.0",
     "docz": "^0.11.2",
     "docz-plugin-netlify": "^1.1.4",
     "docz-theme-default": "^0.11.2",

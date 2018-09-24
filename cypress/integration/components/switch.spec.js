@@ -1,5 +1,5 @@
-context.skip('@verdigris/switch', () => {
-  context.skip('<Switch />', () => {
+context('@verdigris/switch', () => {
+  context('<Switch />', () => {
     before(() => {
       cy.visit('/packages/selection/components/switch');
     });
@@ -15,7 +15,7 @@ context.skip('@verdigris/switch', () => {
         .find('[data-component="Switch"]')
         .first()
         .find('input')
-        .should('have.value', false);
+        .should('have.value', 'false');
     });
     it('can render a switch that is checked', () => {
       cy.contains('h2', 'Examples')
@@ -23,7 +23,7 @@ context.skip('@verdigris/switch', () => {
         .find('[data-component="Switch"]')
         .then(els => els[2])
         .find('input')
-        .should('have.value', true);
+        .should('have.value', 'true');
     });
     it('does not visibly show the checkbox input control', () => {
       cy.contains('h2', 'Examples')
@@ -40,7 +40,8 @@ context.skip('@verdigris/switch', () => {
         .then(els => els[1])
         .find('div')
         .first()
-        .nextUntil('span')
+        .siblings('span')
+        .first()
         .contains('check this out')
         .should('exist');
     });
