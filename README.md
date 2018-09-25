@@ -21,7 +21,6 @@ Please ensure you have the proper software installed.
 
 ## Other Topics
 
-* [Tour of the code base](http://verdigris.andrew.codes/docs/guides/tour-of-the-code-base) (structure, conventions, and norms)
-* [Contributing](http://verdigris.andrew.codes/docs/guides/contributing)
-* [Publishing](http://verdigris.andrew.codes/docs/guides/publishing)
-* [License](./LICENSE)
+- [Tour of the code base](https://verdigris.andrew.codes/guides/tour-code-base) (structure, conventions, and norms)
+- [Contributing](https://verdigris.andrew.codes/guides/contributing)
+- [License](./LICENSE)
