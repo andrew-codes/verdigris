@@ -14,12 +14,12 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-Cypress.on('window:before:load', (win) => {
-  global.log = cy.spy(win.console, "log");
-  global.warn = cy.spy(win.console, 'warn');
+Cypress.on('window:before:load', win => {
+  cy.spy(win.console, 'log');
+  cy.spy(win.console, 'warn');
 });

@@ -5,6 +5,7 @@ export default class AnalyticsListener extends Component {
   static contextTypes = {
     getAnalyticsEventHandlers: PropTypes.func,
   };
+
   static childContextTypes = {
     getAnalyticsEventHandlers: PropTypes.func.isRequired,
   };
@@ -14,26 +15,25 @@ export default class AnalyticsListener extends Component {
   });
 
   render() {
-    return Children.only(this.props.children);
+    const { children } = this.props;
+    return Children.only(children);
   }
 
   getAnalyticsEventHandlers = () => {
     const { channel, onEvent } = this.props;
     const { getAnalyticsEventHandlers } = this.context;
 
-    const parentEventHandlers = typeof getAnalyticsEventHandlers === 'function'
-      ? getAnalyticsEventHandlers()
-      : [];
+    const parentEventHandlers =
+      typeof getAnalyticsEventHandlers === 'function'
+        ? getAnalyticsEventHandlers()
+        : [];
 
     const handler = (event, eventChannel) => {
       if (channel === '*' || channel === eventChannel) {
         onEvent(event, eventChannel);
       }
     };
-    return [
-      handler,
-      ...parentEventHandlers,
-    ];
+    return [handler, ...parentEventHandlers];
   };
 }
 AnalyticsListener.propTypes = {

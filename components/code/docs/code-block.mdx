@@ -1,0 +1,66 @@
+---
+name: CodeBlock
+route: /packages/code/components/CodeBlock
+menu: 3. Components
+---
+import { Fragment } from 'react'
+import { Playground, PropsTable } from '@verdigris/docz'
+import { CodeBlock } from '../src'
+
+## Usage
+Component blocks of code; providing language syntax highlighting and optional line numbers.
+
+## Examples
+<Playground testId="code-block">
+  {() => {
+    const multiLineCode = `const myVariable = 'a constant value';
+const mySecondVariable = myVariable + '.';`;
+
+    return (
+      <Fragment>
+        <h4>With a language</h4>
+        <CodeBlock language="javascript">
+         const myVariable = 'a constant value';
+        </CodeBlock>
+
+        <h4>With line numbers</h4>
+        <CodeBlock
+          shouldShowLineNumbers
+          language="javascript"
+        >
+          {multiLineCode}
+        </CodeBlock>
+
+        <h4>Staring at line N (10)</h4>
+        <CodeBlock
+          shouldShowLineNumbers
+          language="javascript"
+          startingLineNumber={10}
+        >
+          {multiLineCode}
+        </CodeBlock>
+
+        <h4>Line number styling</h4>
+        <CodeBlock
+          shouldShowLineNumbers
+          language="javascript"
+          lineNumberStyle={{ color: 'blue' }}
+        >
+          {multiLineCode}
+        </CodeBlock>
+
+        <h4>Line number styling via function</h4>
+        <CodeBlock
+          shouldShowLineNumbers
+          language="javascript"
+          lineNumberStyle={lineNumber => lineNumber % 2 ? { color: 'blue' } : { color: 'green' }}
+        >
+          {multiLineCode}
+        </CodeBlock>
+      </Fragment>
+    );
+  }}
+</Playground>
+
+## API
+<PropsTable of={CodeBlock} />

@@ -1,11 +1,9 @@
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
-import { ghcolors } from 'react-syntax-highlighter/styles/prism';
+import { docco } from 'react-syntax-highlighter/styles/hljs';
 import * as PropTypes from 'prop-types';
 import supportedLanguages from './supportedLanguages';
-
-ghcolors["pre[class*=\"language-\"]"].backgroundColor = 'rgba(27,31,35,0.05)';
 
 export default function CodeBlock({
   children,
@@ -19,7 +17,7 @@ export default function CodeBlock({
   ...rest
 }) {
   return (
-    <div {...rest}>
+    <div {...rest} data-component="CodeBlock">
       <SyntaxHighlighter
         customStyle={{
           ...style,
@@ -67,10 +65,12 @@ CodeBlock.propTypes = {
   /**
    * override styles applied to the `<pre />` tag root element
    */
+  // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   /**
    * `react-syntax-highlighter/styles/prism` theme that provides styling to code
    */
+  // eslint-disable-next-line react/forbid-prop-types
   theme: PropTypes.object,
 };
 CodeBlock.defaultProps = {
@@ -79,5 +79,5 @@ CodeBlock.defaultProps = {
   shouldShowLineNumbers: false,
   startingLineNumber: 1,
   style: {},
-  theme: ghcolors,
+  theme: docco,
 };

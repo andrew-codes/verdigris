@@ -1,19 +1,18 @@
 {
   "presets": [
-    "env",
-    "react"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true
+        }
+      }
+    ],
+    "@babel/preset-react"
   ],
   "plugins": [
-    "dynamic-import-webpack",
-    "transform-class-properties",
-    "transform-object-rest-spread",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
     "babel-plugin-emotion"
-  ],
-  "env": {
-    "development": {
-      "plugins": [
-        "react-hot-loader/babel"
-      ]
-    }
-  }
+  ]
 }

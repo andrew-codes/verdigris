@@ -21,7 +21,7 @@
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
-    "@verdigris/docs": "^0.0.0",
+    "@verdigris/docz": "^0.0.0",
     "lodash": "^4.17.10"
   }
 }

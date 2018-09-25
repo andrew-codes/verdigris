@@ -1,13 +1,14 @@
 {
   "extends": [
     "airbnb",
-    "prettier"
+    "prettier",
+    "prettier/react"
   ],
   "parser": "babel-eslint",
   "plugins": [
-    "jest",
     "prettier",
-    "import"
+    "import",
+    "cypress"
   ],
   "rules": {
     "linebreak-style": [
@@ -17,11 +18,8 @@
       "error",
       {
         "devDependencies": [
-          "**/docs/**/*.js",
-          "**/__tests__/**/*.js",
-          "**/examples/**/*.js",
-          "./projector.js",
-          "./resolver.js"
+          "./doczrc.js",
+          "cypress/**/*.js"
         ]
       }
     ],
@@ -48,10 +46,6 @@
     "react/sort-comp": "off",
     "react/jsx-filename-extension": "off",
     "react/require-default-props": "off",
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/valid-expect": "error",
     "react/jsx-indent": "off",
     "arrow-parens": "off",
     "react/jsx-closing-bracket-location": "off",
@@ -60,13 +54,17 @@
     "react/jsx-equals-spacing": "off",
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-indent-props": "off",
+    "react/jsx-one-expression-per-line": "off",
     "react/jsx-max-props-per-line": "off",
+    "react/jsx-props-no-multi-spaces": "off",
     "react/jsx-tag-spacing": "off",
     "react/jsx-wrap-multilines": "off",
     "react/prefer-stateless-function": "off"
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "cypress/globals": true,
+    "mocha": true
   },
   "overrides": [
     {
@@ -75,10 +73,9 @@
         "**/*.test.js"
       ],
       "globals": {
-        "when": true
-      },
-      "env": {
-        "jest": true
+        "when": true,
+        "before": true,
+        "it": true
       },
       "rules": {
         "react/no-multi-comp": "off",

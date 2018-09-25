@@ -6,7 +6,17 @@ import { defaultTheme } from '@verdigris/theme';
 import { noop } from 'lodash';
 import { ThemeProvider } from 'emotion-theming';
 
-const localTheme = ({ Bar, Handle, Label }) => ({ isChecked, isDisabled, theme }) => css`
+const deriveColor = (props, defaultColor) => {
+  const { isChecked, isDisabled, theme } = props;
+  if (isDisabled) return theme.palette.lightGray;
+  if (isChecked) return theme.palette.cerulean;
+  return defaultColor;
+};
+const localTheme = ({ Bar, Handle, Label }) => ({
+  isChecked,
+  isDisabled,
+  theme,
+}) => css`
   align-items: center;
   display: inline-flex;
   margin: ${theme.spacing.unit}px ${theme.spacing.unit * 2}px;
@@ -24,16 +34,24 @@ const localTheme = ({ Bar, Handle, Label }) => ({ isChecked, isDisabled, theme }
     width: 48px;
   }
   ${Handle} {
-    background: ${isDisabled ? theme.palette.lightGray : isChecked ? theme.palette.cerulean : 'white'};
+    background: ${deriveColor({ isChecked, isDisabled, theme }, 'white')};
     border-radius: 50%;
-    border: 1px solid ${isDisabled ? theme.palette.lightGray : isChecked ? theme.palette.cerulean : theme.palette.gray};
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    border: 1px solid
+      ${deriveColor({ isChecked, isDisabled, theme }, theme.palette.gray)};
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
     height: ${theme.typography.baseSize * theme.typography.lineHeight}px;
     left: -1px;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%) ${isChecked ? `translateX(${48 + 4 - (theme.typography.baseSize * theme.typography.lineHeight)}px)` : ''};
-    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transform: translateY(-50%)
+      ${isChecked
+        ? `translateX(${48 +
+            4 -
+            theme.typography.baseSize * theme.typography.lineHeight}px)`
+        : ''};
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     width: ${theme.typography.baseSize * theme.typography.lineHeight}px;
   }
   ${Label} {
@@ -45,8 +63,8 @@ const localTheme = ({ Bar, Handle, Label }) => ({ isChecked, isDisabled, theme }
 `;
 
 const SwitchRoot = styled('div')`
-  ${p => localTheme({ Bar, Handle, Label })(p)}
-  ${p => p.theme.Switch({ Bar, Handle, Label })(p)}
+  ${p => localTheme({ Bar, Handle, Label })(p)};
+  ${p => p.theme.Switch({ Bar, Handle, Label })(p)};
 `;
 const Bar = styled('div')``;
 const Label = styled('span')``;
@@ -64,7 +82,8 @@ class Switch extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isChecked !== this.state.isChecked) {
+    const { isChecked } = this.state;
+    if (nextProps.isChecked !== isChecked) {
       this.setState({
         isChecked: nextProps.isChecked,
       });
@@ -72,52 +91,59 @@ class Switch extends React.Component {
   }
 
   render() {
-    const { id, isDisabled, label, ...rest } = this.props;
+    const { isDisabled, label, ...rest } = this.props;
     const { isChecked } = this.state;
 
     return (
       <ThemeProvider theme={defaultTheme}>
         <SwitchRoot
-          id={id}
           {...rest}
           isChecked={isChecked}
           isDisabled={isDisabled}
           onClick={this.handleClick}
+          data-component="Switch"
         >
           <Bar>
             <Checkbox
               type="checkbox"
-              id={`${id}-checkbox`}
               value={Boolean(isChecked)}
               disabled={isDisabled}
             />
             <Handle />
           </Bar>
-          {label && (
-            <Label>{label}</Label>
-          )}
+          {label && <Label>{label}</Label>}
         </SwitchRoot>
       </ThemeProvider>
     );
   }
 
   handleClick = evt => {
-    if (this.props.isDisabled) {
+    const { createAnalyticsEvent, isDisabled, onChange } = this.props;
+    if (isDisabled) {
       return;
     }
-    this.toggleState()
-      .then(isChecked => this.props.onChange(evt, isChecked));
-  }
+    this.toggleState().then(isChecked => {
+      const analyticsEvent = createAnalyticsEvent({
+        component: 'Switch',
+        event: 'change',
+        payload: isChecked,
+      });
+      onChange(evt, analyticsEvent, isChecked);
+    });
+  };
 
-  toggleState = () => new Promise(resolve => {
-    this.setState({ isChecked: !this.state.isChecked }, resolve);
-  });
+  toggleState = () =>
+    new Promise(resolve => {
+      this.setState(
+        state => ({ isChecked: !state.isChecked }),
+        () => {
+          const { isChecked } = this.state;
+          resolve(isChecked);
+        },
+      );
+    });
 }
 Switch.propTypes = {
-  /**
-   * Unique HTML ID applied to root element.
-   */
-  id: PropTypes.string,
   /**
    * Considered toggled on when true
    */
@@ -134,11 +160,10 @@ Switch.propTypes = {
    * Fired when Switch isChecked is changed.
    */
   onChange: PropTypes.func,
-
 };
 Switch.defaultProps = {
   isChecked: false,
   isDisabled: false,
   onChange: noop,
-}
+};
 export default Switch;

@@ -26,5 +26,8 @@
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
     "react-emotion": "^9.2.4"
+  },
+  "devDependencies": {
+    "@verdigris/docz": "^0.0.0"
   }
 }

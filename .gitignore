@@ -5,6 +5,8 @@ node_modules
 .idea
 .DS_Store
 .vscode
+cypress/screenshots
+cypress/videos
 
-dist
-website/dist
+.docz
+**/dist
