@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('@verdigris/analytics', () => {
+context('@andrew-codes/verdigris-analytics', () => {
   before(() => {
     cy.visit('/packages/analytics');
   });

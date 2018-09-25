@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@verdigris/svg-icon-loader",
+  "name": "@andrew-codes/verdigris-svg-icon-loader",
   "version": "0.0.0",
   "description": "Svg icon webpack loader.",
   "license": "MIT",

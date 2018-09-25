@@ -2,8 +2,8 @@ import styled from 'react-emotion';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'emotion';
-import { CloseIcon } from '@verdigris/icons';
-import { defaultTheme } from '@verdigris/theme';
+import { CloseIcon } from '@andrew-codes/verdigris-icons';
+import { defaultTheme } from '@andrew-codes/verdigris-theme';
 import { noop } from 'lodash';
 import { ThemeProvider, withTheme } from 'emotion-theming';
 

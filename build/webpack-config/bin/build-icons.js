@@ -28,7 +28,7 @@ async function runDevServer() {
           test: /\.icon\.svg$/,
           loaders: [
             require.resolve('babel-loader'),
-            require.resolve('@verdigris/svg-icon-loader'),
+            require.resolve('@andrew-codes/verdigris-svg-icon-loader'),
           ],
         },
         {

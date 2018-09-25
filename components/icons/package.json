@@ -1,5 +1,5 @@
 {
-  "name": "@verdigris/icons",
+  "name": "@andrew-codes/verdigris-icons",
   "version": "0.0.0",
   "description": "Icon components used in LifeCycle",
   "license": "MIT",
@@ -12,13 +12,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "../../node_modules/@verdigris/webpack-config/bin/build-icons.js ./src/index.js"
+    "build": "../../node_modules/@andrew-codes/verdigris-webpack-config/bin/build-icons.js ./src/index.js"
   },
   "peerDependencies": {
     "react": "^16.4.1"
   },
   "dependencies": {
-    "@verdigris/theme": "^0.0.0",
+    "@andrew-codes/verdigris-theme": "^0.0.0",
     "emotion": "^9.2.4",
     "emotion-theming": "^9.2.4",
     "prop-types": "^15.6.2",

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@verdigris/ui",
+  "name": "@andrew-codes/verdigris-ui",
   "description": "Collection of components and accompanying documentation site serving as a test bed for re-usable component creation.",
   "version": "0.0.0-development",
   "author": "Andrew Smith <andrew@andrew.codes>",
@@ -36,7 +36,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "@verdigris/svg-icon-loader": "^0.0.0",
+    "@andrew-codes/verdigris-svg-icon-loader": "^0.0.0",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-emotion": "^9.2.10",

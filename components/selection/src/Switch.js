@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'react-emotion';
 import { css } from 'emotion';
-import { defaultTheme } from '@verdigris/theme';
+import { defaultTheme } from '@andrew-codes/verdigris-theme';
 import { noop } from 'lodash';
 import { ThemeProvider } from 'emotion-theming';
 
