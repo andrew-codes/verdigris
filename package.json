@@ -7,18 +7,17 @@
   "repository": "https://github.com/andrew-codes/verdigris.git",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "yarn lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
     "start": "docz dev",
     "test": "start-test start http-get://localhost:3000 cy:run",
     "lint": "yarn lint:eslint",
     "build": "lerna run build",
     "prebuild:website": "yarn bootstrap",
     "build:website": "docz build",
-    "new-comp": "scripts/bin/new-comp.sh",
     "test:ci": "start-server-and-test start http://localhost:3000 cy:run:ci",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "cy:run:ci": "cypress run --video false",
+    "cy:run:ci": "cypress run",
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
   },
   "engines": {

@@ -12,7 +12,7 @@ install:
 
 defaults: &defaults
   script:
-    - yarn test
+    - yarn test:ci
     - kill $(jobs -p) || true
 
 jobs:
