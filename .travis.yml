@@ -18,9 +18,11 @@ defaults: &defaults
 jobs:
   include:
     - stage: verify
+      if: (branch = master AND type = push) OR type = pull_request
       script:
         - yarn lint
     - stage: verify
+      if: (branch = master AND type = push) OR type = pull_request
       env:
         - STAGE_NAME=1x-electron
       <<: *defaults
