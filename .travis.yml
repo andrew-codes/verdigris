@@ -14,7 +14,7 @@ install:
 
 defaults: &defaults
   script:
-    - yarn test:ci
+    - yarn test
     - kill $(jobs -p) || true
 
 jobs:
@@ -26,22 +26,22 @@ jobs:
       env:
         - STAGE_NAME=1x-electron
       <<: *defaults
-    - stage: verify
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
-    - stage: verify
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
-    - stage: verify
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
-    - stage: verify
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
+    # - stage: verify
+    #   env:
+    #     - STAGE_NAME=4x-electron
+    #   <<: *defaults
+    # - stage: verify
+    #   env:
+    #     - STAGE_NAME=4x-electron
+    #   <<: *defaults
+    # - stage: verify
+    #   env:
+    #     - STAGE_NAME=4x-electron
+    #   <<: *defaults
+    # - stage: verify
+    #   env:
+    #     - STAGE_NAME=4x-electron
+    #   <<: *defaults
     - stage: publish
       if: branch = master AND type = push
       env:
