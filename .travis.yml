@@ -1,3 +1,4 @@
+dist: cypress/browsers:chrome67
 language: node_js
 
 node_js:
@@ -5,12 +6,17 @@ node_js:
 
 cache:
   yarn: true
-
-install:
-  - yarn
-  - yarn bootstrap
+  directories:
+    - ~/.cache
+  override:
+    - yarn install --frozen-lockfile
+    - yarn cypress verify
 
 defaults: &defaults
+  install:
+    - yarn install
+    - yarn bootstrap
+    - yarn cypress verify
   script:
     - yarn test:ci
     - kill $(jobs -p) || true
@@ -26,26 +32,34 @@ jobs:
       env:
         - STAGE_NAME=1x-electron
       <<: *defaults
-    # - stage: verify
-    #   env:
-    #     - STAGE_NAME=4x-electron
-    #   <<: *defaults
-    # - stage: verify
-    #   env:
-    #     - STAGE_NAME=4x-electron
-    #   <<: *defaults
-    # - stage: verify
-    #   env:
-    #     - STAGE_NAME=4x-electron
-    #   <<: *defaults
-    # - stage: verify
-    #   env:
-    #     - STAGE_NAME=4x-electron
-    #   <<: *defaults
+    - stage: verify
+      if: (branch = master AND type = push) OR type = pull_request
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
+    - stage: verify
+      if: (branch = master AND type = push) OR type = pull_request
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
+    - stage: verify
+      if: (branch = master AND type = push) OR type = pull_request
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
+    - stage: verify
+      if: (branch = master AND type = push) OR type = pull_request
+      env:
+        - STAGE_NAME=4x-electron
+      <<: *defaults
     - stage: publish
       if: branch = master AND type = push
       env:
         - NODE_ENV=production
+      install:
+        - yarn install --frozen-lockfile
+        - yarn bootstrap
+        - yarn cypress verify
       script:
-        - yarn build
+        # - yarn build
         - echo 'Publishing master'

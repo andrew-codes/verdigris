@@ -14,10 +14,10 @@
     "build": "lerna run build",
     "prebuild:website": "yarn bootstrap",
     "build:website": "docz build",
-    "test:ci": "start-server-and-test start http://localhost:3000 cy:run:ci",
+    "test:ci": "start-server-and-test start http-get://localhost:3000 cy:run:ci",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "cy:run:ci": "cypress run",
+    "cy:run:ci": "cypress run --parallel --record --key $CYPRESS_KEY",
     "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
   },
   "engines": {
