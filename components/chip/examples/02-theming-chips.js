@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chip from '../src/index';
 import { css } from 'emotion';
-import { extendThemeWith } from '@verdigris/theme';
+import { extendThemeWith } from '@andrew-codes/verdigris-theme';
 import { ThemeProvider } from 'emotion-theming';
 
 const AssetLink = ({ href, oidToken, children }) => (

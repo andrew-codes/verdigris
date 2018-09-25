@@ -13,15 +13,15 @@ This document will outline the general structure of the code, the standards, and
 * `yarn lint`
 * `yarn test` will run all tests via [Cypress](https://cypress.io)
 * `yarn cypress open` will open tests in [Cypress](https://cypress.io) for local development
-* `yarn lerna add --scope @verdigris/package-name dependency-to-add` (see below for details on managing dependencies)
+* `yarn lerna add --scope @andrew-codes/verdigris-package-name dependency-to-add` (see below for details on managing dependencies)
 
 ## Managing Dependencies
 Packages are managed using [lerna](https://lernajs.io/). Each package has its own list of dependencies. Therefore, dependencies are not added at the project root level; rather scoped to a specific package. There are `yarn` scripts to help automate this:
 
 > **Note**: If you run into trouble after installing a new dependency, try running `yarn && yarn bootstrap`.
 
-* **Adding** a new dependency, use `yarn lerna add --scope @verdigris/package-name dependency-name`
-* For **dev dependencies**, add the `--dev` CLI option `yarn lerna add --dev --scope @verdigris/package-name dependency-name`
+* **Adding** a new dependency, use `yarn lerna add --scope @andrew-codes/verdigris-package-name dependency-name`
+* For **dev dependencies**, add the `--dev` CLI option `yarn lerna add --dev --scope @andrew-codes/verdigris-package-name dependency-name`
 * **Removing** dependencies requires deleting the item from the package's `package.json` and re-running `yarn bootstrap` in the project root.
 
 ## Structure

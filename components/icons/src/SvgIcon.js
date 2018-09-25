@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import { css } from 'emotion';
 import { ThemeProvider } from 'emotion-theming';
-import { defaultTheme } from '@verdigris/theme';
+import { defaultTheme } from '@andrew-codes/verdigris-theme';
 import ThemedIcon from './private-utils/ThemedIcon';
 
 const localTheme = () => ({ theme }) => css`

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@verdigris/webpack-config",
+  "name": "@andrew-codes/verdigris-webpack-config",
   "description": "Webpack configuration for running dev server and building Verdigris website.",
   "version": "0.0.0",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "webpack-dev": "bin/dev.js"
   },
   "dependencies": {
-    "@verdigris/svg-icon-loader": "^0.0.0",
+    "@andrew-codes/verdigris-svg-icon-loader": "^0.0.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.11.1"

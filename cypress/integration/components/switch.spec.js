@@ -1,4 +1,4 @@
-context('@verdigris/switch', () => {
+context('@andrew-codes/verdigris-switch', () => {
   context('<Switch />', () => {
     before(() => {
       cy.visit('/packages/selection/components/switch');

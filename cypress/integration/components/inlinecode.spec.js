@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('@verdigris/code', () => {
+context('@andrew-codes/verdigris-code', () => {
   before(() => {
     cy.visit('/packages/code/components/inlinecode');
   });

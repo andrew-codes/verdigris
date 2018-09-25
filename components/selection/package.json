@@ -1,5 +1,5 @@
 {
-  "name": "@verdigris/selection",
+  "name": "@andrew-codes/verdigris-selection",
   "version": "0.0.0",
   "description": "Selection controls; switch, checkbox, and radio button.",
   "license": "MIT",
@@ -12,8 +12,8 @@
     "dist"
   ],
   "dependencies": {
-    "@verdigris/analytics": "^0.0.0",
-    "@verdigris/theme": "^0.0.0",
+    "@andrew-codes/verdigris-analytics": "^0.0.0",
+    "@andrew-codes/verdigris-theme": "^0.0.0",
     "emotion": "^9.2.5",
     "emotion-theming": "^9.2.5",
     "lodash": "^4.17.10",

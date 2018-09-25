@@ -29,7 +29,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 > components/$name/LICENSE
 # Create package.json
 echo "{
-  \"name\": \"@verdigris/$name\",
+  \"name\": \"@andrew-codes/verdigris-$name\",
   \"version\": \"0.0.0\",
   \"description\": \"$description\",
   \"license\": \"MIT\",
@@ -55,7 +55,7 @@ echo "" > components/$name/src/index.js
 # ## docs directory
 mkdir -p components/$name/docs
 # code docs page (intro.js)
-echo "import { code, md } from '@verdigris/docs';
+echo "import { code, md } from '@andrew-codes/verdigris-docs';
 
 export default () => md\`
 ## $componentName

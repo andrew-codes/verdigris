@@ -25,7 +25,7 @@ export default {
                   ],
                 },
               },
-              { loader: require.resolve('@verdigris/svg-icon-loader') },
+              { loader: require.resolve('@andrew-codes/verdigris-svg-icon-loader') },
             ],
           },
         ]),

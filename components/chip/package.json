@@ -1,5 +1,5 @@
 {
-  "name": "@verdigris/chip",
+  "name": "@andrew-codes/verdigris-chip",
   "version": "0.0.0",
   "description": "Concise representation of an otherwise more complex entity.",
   "license": "MIT",
@@ -18,9 +18,9 @@
     "react": "^16.4.1"
   },
   "dependencies": {
-    "@verdigris/analytics": "^0.0.0",
-    "@verdigris/icons": "^0.0.0",
-    "@verdigris/theme": "^0.0.0",
+    "@andrew-codes/verdigris-analytics": "^0.0.0",
+    "@andrew-codes/verdigris-icons": "^0.0.0",
+    "@andrew-codes/verdigris-theme": "^0.0.0",
     "emotion": "^9.2.4",
     "emotion-theming": "^9.2.4",
     "lodash": "^4.17.10",
@@ -28,6 +28,6 @@
     "react-emotion": "^9.2.4"
   },
   "devDependencies": {
-    "@verdigris/docz": "^0.0.0"
+    "@andrew-codes/verdigris-docz": "^0.0.0"
   }
 }

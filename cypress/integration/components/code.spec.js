@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 import $ from 'jquery';
 
-context('@verdigris/code', () => {
+context('@andrew-codes/verdigris-code', () => {
   before(() => {
     cy.visit('/packages/code/components/codeblock');
   });

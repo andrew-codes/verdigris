@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch } from '../src/index';
 import { ThemeProvider } from 'emotion-theming';
 import { css } from 'emotion';
-import { extendThemeWith } from '@verdigris/theme';
+import { extendThemeWith } from '@andrew-codes/verdigris-theme';
 
 const iosTheme = {
   Switch: ({ Bar, Handle, Label }) => ({ isChecked, isDisabled, theme }) => css`
