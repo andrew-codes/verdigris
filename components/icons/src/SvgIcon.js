@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  createComponent,
-  utils,
-} from '@andrew-codes/verdigris-style-container';
+import { createComponent } from '@andrew-codes/verdigris-style-container';
 
 const IconRoot = createComponent(
   ({ color }) => ({

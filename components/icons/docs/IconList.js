@@ -3,10 +3,12 @@ import { createComponent } from '@andrew-codes/verdigris-style-container';
 import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import * as AllIcons from '../src/index';
 
-const icons = Object.keys(AllIcons).map(key => ({
-  name: key,
-  Icon: AllIcons[key],
-}));
+const icons = Object.keys(AllIcons)
+  .filter(key => key !== 'default')
+  .map(key => ({
+    name: key,
+    Icon: AllIcons[key],
+  }));
 
 const IconList = createComponent(
   () => ({
