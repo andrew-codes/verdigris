@@ -18,6 +18,7 @@
     "react": "^16.4.1"
   },
   "devDependencies": {
+    "@andrew-codes/verdigris-docz": "^0.0.0",
     "@andrew-codes/verdigris-style-provider": "^0.0.0-development"
   },
   "dependencies": {
