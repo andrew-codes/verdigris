@@ -11,9 +11,6 @@
     "dist"
   ],
   "scripts": {},
-  "devDependencies": {
-    "prop-types": "^15.6.2"
-  },
   "dependencies": {
     "fela": "^6.2.2",
     "fela-beautifier": "^5.0.17",
@@ -23,6 +20,7 @@
     "fela-plugin-prefixer": "^5.0.20",
     "fela-plugin-unit": "^5.1.1",
     "fela-plugin-validator": "^5.2.4",
+    "prop-types": "^15.6.2",
     "react-fela": "^8.0.2"
   },
   "peerDependencies": {

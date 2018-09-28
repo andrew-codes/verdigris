@@ -16,9 +16,7 @@
     "@andrew-codes/verdigris-base-theme": "^0.0.0-development",
     "@andrew-codes/verdigris-style-container": "^0.0.0-development",
     "lodash": "^4.17.10",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1"
-  },
-  "devDependencies": {
-    "prop-types": "^15.6.2"
   }
 }

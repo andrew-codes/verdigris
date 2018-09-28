@@ -11,14 +11,12 @@
     "dist"
   ],
   "scripts": {},
-  "devDependencies": {
-    "prop-types": "^15.6.2"
-  },
   "dependencies": {
     "fela": "^6.2.2",
     "fela-bindings": "^3.0.2",
     "fela-utils": "^8.1.2",
     "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
     "react-fela": "^8.0.2"
   },
   "peerDependencies": {
