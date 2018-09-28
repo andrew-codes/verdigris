@@ -16,7 +16,7 @@
     "prop-types": "^15.6.2"
   },
   "peerDependencies": {
-    "docz": "^0.11.2",
+    "docz": "^0.12.3",
     "react": "^16.5.2"
   }
 }
