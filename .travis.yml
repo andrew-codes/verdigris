@@ -4,22 +4,8 @@ language: node_js
 node_js:
   - 10.8
 
-cache:
-  yarn: true
-  directories:
-    - ~/.cache
-  override:
-    - yarn install --frozen-lockfile
-    - yarn cypress verify
-
-defaults: &defaults
-  install:
-    - yarn install
-    - yarn bootstrap
-    - yarn cypress verify
-  script:
-    - yarn test:ci
-    - kill $(jobs -p) || true
+install:
+  - yarn install --frozen-lockfile
 
 jobs:
   include:
@@ -29,29 +15,13 @@ jobs:
         - yarn lint
     - stage: verify
       if: (branch = master AND type = push) OR type = pull_request
-      env:
-        - STAGE_NAME=1x-electron
-      <<: *defaults
-    - stage: verify
-      if: (branch = master AND type = push) OR type = pull_request
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
-    - stage: verify
-      if: (branch = master AND type = push) OR type = pull_request
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
-    - stage: verify
-      if: (branch = master AND type = push) OR type = pull_request
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
-    - stage: verify
-      if: (branch = master AND type = push) OR type = pull_request
-      env:
-        - STAGE_NAME=4x-electron
-      <<: *defaults
+      install:
+        - yarn install
+        - yarn bootstrap
+        - yarn cypress verify
+      script:
+        - yarn test:ci
+        - kill $(jobs -p) || true
     - stage: publish
       if: branch = master AND type = push
       env:
