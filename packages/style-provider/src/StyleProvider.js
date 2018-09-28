@@ -1,5 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Children, isValidElement, cloneElement } from 'react';
+import React, {
+  Children,
+  Component,
+  isValidElement,
+  cloneElement,
+} from 'react';
 import { Provider } from 'react-fela';
 import createRenderer from './createRenderer';
 
@@ -13,15 +18,24 @@ const getRenderer = ({ dev, renderer }) => {
   }
   return singletonRenderer;
 };
-function StyleProvider({ dev, children, renderer, ...rest }) {
-  const providerRenderer = getRenderer({ dev, renderer });
-  const child = Children.only(children);
+class StyleProvider extends Component {
+  getChildContext() {
+    return {
+      theme: {},
+    };
+  }
 
-  return (
-    <Provider renderer={providerRenderer}>
-      {isValidElement(child) ? cloneElement(child, { ...rest }) : child}
-    </Provider>
-  );
+  render() {
+    const { dev, children, renderer, ...rest } = this.props;
+    const providerRenderer = getRenderer({ dev, renderer });
+    const child = Children.only(children);
+
+    return (
+      <Provider renderer={providerRenderer}>
+        {isValidElement(child) ? cloneElement(child, { ...rest }) : child}
+      </Provider>
+    );
+  }
 }
 StyleProvider.propTypes = {
   children: PropTypes.node,
@@ -31,6 +45,10 @@ StyleProvider.propTypes = {
 };
 StyleProvider.defaultProps = {
   dev: false,
+};
+StyleProvider.childContextTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 
 export default StyleProvider;
