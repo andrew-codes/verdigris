@@ -4,8 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 
-runDevServer()
-  .catch(error => process.exit(error));
+runDevServer().catch(error => process.exit(error));
 
 async function runDevServer() {
   const [entry] = process.argv.slice(2);
@@ -50,21 +49,25 @@ async function runDevServer() {
       }
 
       resolve(stats);
-    })
+    });
   });
 }
 
 function getExternals() {
   // return /^[a-z\-0-9]+$/;
-  return fs.readdirSync('node_modules')
+  return fs
+    .readdirSync('node_modules')
     .concat(fs.readdirSync('../../node_modules'))
-    .filter((x) => {
+    .filter(x => {
       return ['.bin'].indexOf(x) === -1;
     })
-    .reduce((prev, mod) => ({
-      ...prev,
-      [mod]: {
-        commonjs: mod,
-      },
-    }), {});
+    .reduce(
+      (acc, mod) => ({
+        ...acc,
+        [mod]: {
+          commonjs: mod,
+        },
+      }),
+      {},
+    );
 }

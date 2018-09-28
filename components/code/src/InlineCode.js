@@ -1,19 +1,24 @@
 import React from 'react';
-import styled from 'react-emotion';
-import * as PropTypes from 'prop-types';
-
-const Code = styled('code')`
-  background-color: rgba(27, 31, 35, 0.05);
-  border-radius: 3px;
-  box-sizing: border-box;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier,
-    monospace;
-  font-size: 85%;
-  margin: 0;
-  padding: 0.2em 0.4em;
-`;
+import PropTypes from 'prop-types';
+import {
+  createComponent,
+  utils,
+} from '@andrew-codes/verdigris-style-container';
 
 export default function InlineCode({ children, ...rest }) {
+  const Code = createComponent(
+    () => ({
+      backgroundColor: 'rgba(27, 31, 35, 0.05)',
+      borderRadius: '3px',
+      boxSizing: 'border-box',
+      fontFamily: `'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace`,
+      fontSize: '85%',
+      margin: '0',
+      ...utils.padding('0.2em', '0.4em'),
+    }),
+    'code',
+    ['data-component', ...Object.keys(rest)],
+  );
   return (
     <Code {...rest} data-component="InlineCode">
       {children}

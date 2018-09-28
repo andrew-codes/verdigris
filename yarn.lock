@@ -2955,6 +2955,10 @@ babel-plugin-transform-dynamic-import@2.0.0, babel-plugin-transform-dynamic-impo
   dependencies:
     "@babel/plugin-syntax-dynamic-import" "7.0.0-beta.34"
 
+babel-plugin-transform-react-fela-display-name@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-fela-display-name/-/babel-plugin-transform-react-fela-display-name-1.1.0.tgz#0b8b487bc258745cf1ffe79ebb55b6c20d9125dc"
+
 babel-plugin-transform-react-remove-prop-types@0.4.12:
   version "0.4.12"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.12.tgz#a382c27c42d6580748c80caf8c3d5091edbb60b8"
@@ -3172,6 +3176,10 @@ body-parser@1.18.2:
 bottleneck@^2.0.1:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/bottleneck/-/bottleneck-2.11.0.tgz#d91e194ef071ddb88312f13454405e52067ea9cc"
+
+bowser@^1.7.3:
+  version "1.9.4"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.9.4.tgz#890c58a2813a9d3243704334fa81b96a5c150c9a"
 
 boxen@^1.2.1:
   version "1.3.0"
@@ -3765,6 +3773,10 @@ clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
 
+clone@~2.1.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+
 cmd-shim@^2.0.2, cmd-shim@~2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/cmd-shim/-/cmd-shim-2.0.2.tgz#6fcbda99483a8fd15d7d30a196ca69d688a2efdb"
@@ -4301,7 +4313,37 @@ crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
 
-csstype@^2.5.2:
+css-in-js-utils@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-2.0.0.tgz#5af1dd70f4b06b331f48d22a3d86e0786c0b9435"
+  dependencies:
+    hyphenate-style-name "^1.0.2"
+
+css-in-js-utils@^2.0.0:
+  version "2.0.1"
+  resolved "http://registry.npmjs.org/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz#3b472b398787291b47cfe3e44fecfdd9e914ba99"
+  dependencies:
+    hyphenate-style-name "^1.0.2"
+    isobject "^3.0.1"
+
+css-in-js-utils@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/css-in-js-utils/-/css-in-js-utils-3.0.0.tgz#4379185f5cc79f9eba39b4e795c317f253ffaa40"
+  dependencies:
+    hyphenate-style-name "^1.0.2"
+
+cssbeautify@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/cssbeautify/-/cssbeautify-0.3.1.tgz#12dd1f734035c2e6faca67dcbdcef74e42811397"
+
+csslint@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/csslint/-/csslint-1.0.5.tgz#19cc3eda322160fd3f7232af1cb2a360e898a2e9"
+  dependencies:
+    clone "~2.1.0"
+    parserlib "~1.1.1"
+
+csstype@^2.5.2, csstype@^2.5.5:
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.7.tgz#bf9235d5872141eccfb2d16d82993c6b149179ff"
 
@@ -4975,13 +5017,13 @@ emojis-list@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
 
-emotion-theming@^9.2.4, emotion-theming@^9.2.5, emotion-theming@^9.2.6:
+emotion-theming@^9.2.6:
   version "9.2.9"
   resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-9.2.9.tgz#2bfd77fdd47d3f5e60d59d97dd4cea4622657220"
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-emotion@^9.2.4, emotion@^9.2.5, emotion@^9.2.8:
+emotion@^9.2.8:
   version "9.2.10"
   resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.2.10.tgz#9ba8e33d3dff1352af03f92d761ac6889cb0c545"
   dependencies:
@@ -5596,6 +5638,10 @@ fast-levenshtein@^2.0.6, fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
+fast-loops@^1.0.0, fast-loops@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/fast-loops/-/fast-loops-1.0.1.tgz#a3d33e71654a7e6e67d7c2de0fee4ea11c6f2526"
+
 fault@^1.0.1, fault@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/fault/-/fault-1.0.2.tgz#c3d0fec202f172a3a4d414042ad2bb5e2a3ffbaa"
@@ -5608,7 +5654,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.0, fbjs@^0.8.16:
+fbjs@^0.8.0, fbjs@^0.8.16, fbjs@^0.8.4:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   dependencies:
@@ -5625,6 +5671,110 @@ fd-slicer@~1.0.1:
   resolved "https://registry.yarnpkg.com/fd-slicer/-/fd-slicer-1.0.1.tgz#8b5bcbd9ec327c5041bf9ab023fd6750f1177e65"
   dependencies:
     pend "~1.2.0"
+
+fela-beautifier@^5.0.17:
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/fela-beautifier/-/fela-beautifier-5.0.17.tgz#6d8e6a8e4177d31de9dadc68fba7e27b0e83c659"
+  dependencies:
+    cssbeautify "^0.3.1"
+    fast-loops "^1.0.0"
+
+fela-bindings@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/fela-bindings/-/fela-bindings-3.0.2.tgz#9015db3814abfb7cbf41477b3fea0a5c99333ab6"
+  dependencies:
+    fast-loops "^1.0.0"
+    fela-dom "^8.0.2"
+    fela-tools "^5.2.2"
+    react-addons-shallow-compare "^15.6.2"
+    shallow-equal "^1.0.0"
+
+fela-dom@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/fela-dom/-/fela-dom-8.0.2.tgz#5474eb2d891b8cd07d057587b6d142c4f38f7ada"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.1"
+    fela-utils "^8.1.2"
+
+fela-plugin-embedded@^5.2.12:
+  version "5.2.12"
+  resolved "https://registry.yarnpkg.com/fela-plugin-embedded/-/fela-plugin-embedded-5.2.12.tgz#c496e41f900a127927978085fd03cdd2590f0179"
+  dependencies:
+    fast-loops "^1.0.0"
+    isobject "^3.0.1"
+
+fela-plugin-fallback-value@^5.0.19:
+  version "5.0.19"
+  resolved "https://registry.yarnpkg.com/fela-plugin-fallback-value/-/fela-plugin-fallback-value-5.0.19.tgz#7dbd58b8c41a615420235b3a54c65f0a64e62614"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    isobject "^3.0.1"
+
+fela-plugin-named-media-query@^5.0.13:
+  version "5.0.13"
+  resolved "https://registry.yarnpkg.com/fela-plugin-named-media-query/-/fela-plugin-named-media-query-5.0.13.tgz#a597017dffe489455383dcfb054ee93bcbfdec81"
+  dependencies:
+    fela-utils "^7.0.5"
+
+fela-plugin-prefixer@^5.0.20:
+  version "5.0.20"
+  resolved "https://registry.yarnpkg.com/fela-plugin-prefixer/-/fela-plugin-prefixer-5.0.20.tgz#6663fcbbeb8b9005a18c9bd987fb9f5bd4077a8f"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.0"
+    fela-plugin-fallback-value "^5.0.19"
+    inline-style-prefixer "^4.0.0"
+    isobject "^3.0.1"
+
+fela-plugin-unit@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/fela-plugin-unit/-/fela-plugin-unit-5.1.1.tgz#a3e01eda7b831c13e883790a3991f5cb545182f7"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    isobject "^3.0.1"
+
+fela-plugin-validator@^5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/fela-plugin-validator/-/fela-plugin-validator-5.2.4.tgz#6b113126f9dda184a8519584362ba24ccfac73bd"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    csslint "^1.0.5"
+    fela-utils "^8.1.2"
+    isobject "^3.0.1"
+
+fela-tools@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-5.2.2.tgz#eea2b898349c13e6d5b6a73fd6b1da221d48212d"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.0"
+    fela "^6.2.2"
+    fela-utils "^8.1.2"
+
+fela-utils@^7.0.5:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-7.0.5.tgz#62397db8abf8294bb160ba7575b31d68495283b2"
+  dependencies:
+    css-in-js-utils "2.0.0"
+
+fela-utils@^8.1.2:
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/fela-utils/-/fela-utils-8.1.2.tgz#3c132f60d85a55fe2c3483993304cb4dbd9c98cc"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    fast-loops "^1.0.0"
+    string-hash "^1.1.3"
+
+fela@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/fela/-/fela-6.2.2.tgz#caf80fde0b6b4a54c9c365812a11ba032b827b11"
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    csstype "^2.5.5"
+    fast-loops "^1.0.0"
+    fela-utils "^8.1.2"
+    isobject "^3.0.1"
 
 figgy-pudding@^3.0.0, figgy-pudding@^3.1.0, figgy-pudding@^3.2.1, figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
   version "3.5.1"
@@ -6508,6 +6658,10 @@ humanize-string@^1.0.2:
   dependencies:
     decamelize "^1.0.0"
 
+hyphenate-style-name@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
+
 iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -6620,6 +6774,13 @@ init-package-json@^1.10.3:
     semver "2.x || 3.x || 4 || 5"
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^3.0.0"
+
+inline-style-prefixer@^4.0.0:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/inline-style-prefixer/-/inline-style-prefixer-4.0.2.tgz#d390957d26f281255fe101da863158ac6eb60911"
+  dependencies:
+    bowser "^1.7.3"
+    css-in-js-utils "^2.0.0"
 
 inquirer@3.3.0:
   version "3.3.0"
@@ -7694,7 +7855,7 @@ lodash@4.17.10, lodash@^4.3.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
-"lodash@>=3.5 <5", lodash@^4.14.0, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1:
+"lodash@>=3.5 <5", lodash@^4.14.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
@@ -9165,6 +9326,10 @@ parse-url@^1.3.0:
     is-ssh "^1.3.0"
     protocols "^1.4.0"
 
+parserlib@~1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/parserlib/-/parserlib-1.1.1.tgz#a64cfa724062434fdfc351c9a4ec2d92b94c06f4"
+
 parseurl@^1.3.2, parseurl@~1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
@@ -9615,6 +9780,13 @@ re-resizable@^4.8.1:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-4.9.0.tgz#0160728b9d7e32371fb26562221678ae643e6557"
 
+react-addons-shallow-compare@^15.6.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.6.2.tgz#198a00b91fc37623db64a28fd17b596ba362702f"
+  dependencies:
+    fbjs "^0.8.4"
+    object-assign "^4.1.0"
+
 react-codemirror2@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-codemirror2/-/react-codemirror2-5.1.0.tgz#62de4460178adea40eb52eabf7491669bf3794b8"
@@ -9691,7 +9863,7 @@ react-dom@^16.5.0, react-dom@^16.5.2:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
-react-emotion@^9.2.4, react-emotion@^9.2.5, react-emotion@^9.2.8:
+react-emotion@^9.2.8:
   version "9.2.10"
   resolved "https://registry.yarnpkg.com/react-emotion/-/react-emotion-9.2.10.tgz#a90f8ce4509ba1e33e70ffe2240fb25e73cedfc7"
   dependencies:
@@ -9705,6 +9877,14 @@ react-error-overlay@^4.0.1:
 react-feather@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.1.3.tgz#f0c0ae701265393d81d883e1ce903cae34290475"
+
+react-fela@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/react-fela/-/react-fela-8.0.2.tgz#d9892c776f5385060a6aeffd7fcb0b7ae6d8af71"
+  dependencies:
+    fela-bindings "^3.0.2"
+    fela-dom "^8.0.2"
+    prop-types "^15.5.8"
 
 react-hot-loader@4.3.4:
   version "4.3.4"
@@ -10723,6 +10903,10 @@ sha@~2.0.1:
     graceful-fs "^4.1.2"
     readable-stream "^2.0.2"
 
+shallow-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.0.0.tgz#508d1838b3de590ab8757b011b25e430900945f7"
+
 shallowequal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.0.2.tgz#1561dbdefb8c01408100319085764da3fcf83f8f"
@@ -11101,6 +11285,10 @@ stream-to-observable@^0.1.0:
 strict-uri-encode@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+
+string-hash@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
 
 string-width@^1.0.1:
   version "1.0.2"

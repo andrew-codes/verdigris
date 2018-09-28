@@ -1,4 +1,1 @@
-import { withAnalytics } from '@andrew-codes/verdigris-analytics';
-import SwitchSrc from './Switch';
-
-export const Switch = withAnalytics()(SwitchSrc);
+export { default as Switch } from './Switch';

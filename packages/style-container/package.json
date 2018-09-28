@@ -1,0 +1,27 @@
+{
+  "name": "@andrew-codes/verdigris-style-container",
+  "description": "Fela HoC and other fela based utilities.",
+  "version": "0.0.0-development",
+  "author": "Andrew Smith <andrew@andrew.codes>",
+  "repository": "https://github.com/andrew-codes/verdigris.git",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "prop-types": "^15.6.2"
+  },
+  "dependencies": {
+    "fela": "^6.2.2",
+    "fela-bindings": "^3.0.2",
+    "fela-utils": "^8.1.2",
+    "lodash": "^4.17.11",
+    "react-fela": "^8.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.5.2"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@andrew-codes/verdigris-base-theme",
+  "description": "Base theme for common, cross-component theme elements, such as typographic properties.",
+  "version": "0.0.0-development",
+  "author": "Andrew Smith <andrew@andrew.codes>",
+  "repository": "https://github.com/andrew-codes/verdigris.git",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "verdigris:src": "./src/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "prop-types": "^15.6.2"
+  },
+  "dependencies": {
+    "fela": "^6.2.2",
+    "fela-beautifier": "^5.0.17",
+    "fela-plugin-embedded": "^5.2.12",
+    "fela-plugin-fallback-value": "^5.0.19",
+    "fela-plugin-named-media-query": "^5.0.13",
+    "fela-plugin-prefixer": "^5.0.20",
+    "fela-plugin-unit": "^5.1.1",
+    "fela-plugin-validator": "^5.2.4",
+    "react-fela": "^8.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.5.2"
+  }
+}

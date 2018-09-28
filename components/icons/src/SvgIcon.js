@@ -1,28 +1,27 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
-import { css } from 'emotion';
-import { ThemeProvider } from 'emotion-theming';
-import { defaultTheme } from '@andrew-codes/verdigris-theme';
-import ThemedIcon from './private-utils/ThemedIcon';
+import React from 'react';
+import {
+  createComponent,
+  utils,
+} from '@andrew-codes/verdigris-style-container';
 
-const localTheme = () => ({ theme }) => css`
-  align-content: center;
-  display: inline-flex;
-  fill: ${theme.palette.black};
-  justify-content: center;
-`;
-const IconRoot = styled('span')`
-  ${p => localTheme()(p)} ${p => p.theme.Icon()(p)};
-`;
+const IconRoot = createComponent(
+  ({ color }) => ({
+    alignContent: 'center',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    ...utils.conditionalStyle(color, 'fill', color, 'black'),
+  }),
+  'span',
+);
 
-function SvgIcon({ children, size }) {
+function SvgIcon({ children, color, size }) {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <IconRoot>
-        <ThemedIcon size={size}>{children}</ThemedIcon>
-      </IconRoot>
-    </ThemeProvider>
+    <IconRoot color={color}>
+      {React.cloneElement(React.Children.only(children), {
+        style: { width: `${size}px`, height: `${size}px` },
+      })}
+    </IconRoot>
   );
 }
 SvgIcon.propTypes = {
@@ -30,6 +29,10 @@ SvgIcon.propTypes = {
    * SVG icon element
    */
   children: PropTypes.node,
+  /**
+   * Color of the icon. To inherit color from parent, use "inherit".
+   */
+  color: PropTypes.string,
   /**
    * Size of the icon.
    */

@@ -1,5 +1,5 @@
 import { Children, Component } from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export default class AnalyticsListener extends Component {
   static contextTypes = {

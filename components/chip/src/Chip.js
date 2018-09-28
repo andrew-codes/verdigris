@@ -1,96 +1,97 @@
-import styled from 'react-emotion';
-import React from 'react';
+import baseTheme from '@andrew-codes/verdigris-base-theme';
 import PropTypes from 'prop-types';
-import { css } from 'emotion';
+import React from 'react';
+import {
+  applyTheme,
+  createComponent,
+  withTheme,
+  utils,
+} from '@andrew-codes/verdigris-style-container';
 import { CloseIcon } from '@andrew-codes/verdigris-icons';
-import { defaultTheme } from '@andrew-codes/verdigris-theme';
 import { noop } from 'lodash';
-import { ThemeProvider, withTheme } from 'emotion-theming';
+import { withAnalytics } from '@andrew-codes/verdigris-analytics';
 
-const avatarBorderSize = 2;
-const localTheme = ({ Avatar, Content, Delete }) => ({
-  clickable,
-  fullWidth,
-  hasAvatar,
-  theme,
-}) => css`
-  align-items: center;
-  background-color: ${theme.palette.lightGray};
-  border-radius: ${theme.typography.baseSize}px;
-  color: ${theme.palette.black};
-  cursor: ${clickable ? 'pointer' : 'default'};
-  display: ${fullWidth ? 'flex' : 'inline-flex'};
-  margin: ${hasAvatar
-    ? `${theme.spacing.unit}px ${theme.spacing.unit}px ${
-        theme.spacing.unit
-      }px ${theme.spacing.unit * 2}px`
-    : `${theme.spacing.unit}px`};
-  min-height: ${theme.typography.baseSize * theme.typography.lineHeight +
-    theme.spacing.unit * 2}px;
-  position: relative;
-  white-space: nowrap;
-
-  a:link,
-  a:visited,
-  a:active {
-    color: ${theme.palette.black};
-  }
-
-  ${Content} {
-    display: inline-block;
-    font-size: ${theme.typography.baseSize}px;
-    line-height: ${theme.typography.lineHeight};
-    padding: ${theme.spacing.unit}px ${theme.spacing.unit * 2}px;
-    margin-left: ${hasAvatar
-      ? `${calculateAvatarSize({ theme }) - theme.spacing.unit}px`
-      : 0};
-    min-width: ${theme.spacing.unit * 2}px;
-  }
-
-  ${Avatar} {
-    align-items: center;
-    background: ${theme.palette.lightGray};
-    border: ${avatarBorderSize}px solid #fff;
-    border-radius: 50%;
-    display: flex;
-    height: ${calculateAvatarSize({ theme })}px;
-    justify-content: center;
-    left: -${theme.spacing.unit}px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: ${calculateAvatarSize({ theme })}px;
-  }
-
-  ${Delete} {
-    align-items: center;
-    align-self: center;
-    background: ${theme.palette.gray};
-    border-radius: 50%;
-    color: ${theme.palette.paper};
-    cursor: pointer;
-    display: inline-flex;
-    justify-content: center;
-    margin-right: ${theme.spacing.unit}px;
-    padding: ${theme.spacing.unit * 2}px;
-  }
-`;
-
-const ChipRoot = styled('div')`
-  ${p => localTheme({ Avatar, Content, Delete })(p)};
-  ${p => p.theme.Chip({ Avatar, Content, Delete })(p)};
-`;
-const Avatar = styled('span')``;
-const Content = styled('span')``;
-const Delete = styled('span')``;
-const DeleteIcon = withTheme(({ theme }) => {
-  const size =
-    theme.typography.baseSize * theme.typography.lineHeight -
-    theme.spacing.unit * 4;
-  return <CloseIcon size={size} />;
+const localTheme = () => ({
+  Chip: {
+    backgroundColor: 'lightgray',
+    borderColor: 'dimgray',
+    spacing: 4,
+    textColor: 'black',
+  },
 });
 
-function Chip({
+const ChipRoot = createComponent(
+  ({ clickable, fullWidth, theme }) => ({
+    alignItems: 'center',
+    backgroundColor: theme.Chip.backgroundColor,
+    borderRadius: `${theme.typography.baseSize}px`,
+    color: `${theme.Chip.textColor}`,
+    cursor: clickable ? 'pointer' : 'default',
+    display: fullWidth ? 'flex' : 'inline-flex',
+    minHeight: `${theme.typography.baseSize * theme.typography.lineHeight +
+      theme.Chip.spacing * 2}px`,
+    whiteSpace: 'nowrap',
+  }),
+  'div',
+  ['data-component'],
+);
+const Avatar = createComponent(
+  ({ size, theme }) => ({
+    alignItems: 'center',
+    background: theme.Chip.backgroundColor,
+    borderColor: theme.Chip.borderColor,
+    borderStyle: 'solid',
+    borderWidth: '1px',
+    borderRadius: '50%',
+    display: 'inline-flex',
+    height: `${size}px`,
+    justifyContent: 'center',
+    marginLeft: `${theme.Chip.spacing}px`,
+    width: `${size}px`,
+  }),
+  'span',
+);
+const Content = createComponent(
+  ({ hasAvatar, theme }) => ({
+    display: 'inline-block',
+    fontSize: `${theme.typography.baseSize}px`,
+    lineHeight: theme.typography.lineHeight,
+    minWidth: `${theme.Chip.spacing * 2}px`,
+    ...utils.conditionalStyles(
+      hasAvatar,
+      utils.padding(
+        `${theme.Chip.spacing}px`,
+        `${theme.Chip.spacing * 2}px`,
+        `${theme.Chip.spacing}px`,
+        `${theme.Chip.spacing}px`,
+      ),
+      utils.padding(
+        `${theme.Chip.spacing}px`,
+        `${theme.Chip.spacing * 2}px`,
+        `${theme.Chip.spacing}px`,
+      ),
+    ),
+  }),
+  'span',
+);
+const Delete = createComponent(
+  ({ theme }) => ({
+    alignItems: 'center',
+    alignSelf: 'center',
+    background: theme.Chip.borderColor,
+    borderRadius: '50%',
+    fill: theme.Chip.backgroundColor,
+    cursor: 'pointer',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    marginRight: `${theme.Chip.spacing * 2}px`,
+    padding: `${theme.Chip.spacing}px`,
+  }),
+  'span',
+  ['onClick'],
+);
+
+const Chip = ({
   avatar,
   className,
   clickable,
@@ -100,51 +101,71 @@ function Chip({
   label,
   onClick,
   onDelete,
+  theme,
   ...rest
-}) {
-  const ComponentRoot = styled(component)`
-    display: flex;
-  `;
+}) => {
+  const ComponentRoot = createComponent(
+    () => {
+      const anchorLinkVisitActiveStyles = {
+        color: 'black',
+      };
+      return {
+        alignItems: 'center',
+        display: 'flex',
+        ':link': anchorLinkVisitActiveStyles,
+        ':visited': anchorLinkVisitActiveStyles,
+        ':active': anchorLinkVisitActiveStyles,
+      };
+    },
+    component,
+    ['onClick', ...Object.keys(rest)],
+  );
+  const size =
+    theme.typography.baseSize * theme.typography.lineHeight -
+    theme.Chip.spacing * 4;
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <ChipRoot
-        className={className}
-        clickable={clickable}
-        fullWidth={fullWidth}
-        hasAvatar={avatar}
-        data-component="Chip"
+    <ChipRoot
+      className={className}
+      clickable={clickable}
+      data-component="Chip"
+      fullWidth={fullWidth}
+    >
+      <ComponentRoot
+        {...rest}
+        onClick={evt => {
+          if (!clickable) return;
+          onClick(
+            evt,
+            createAnalyticsEvent({ component: 'Chip', event: 'click' }),
+          );
+        }}
       >
-        <ComponentRoot
-          {...rest}
-          onClick={evt => {
-            if (!clickable) return;
-            onClick(
-              evt,
-              createAnalyticsEvent({ component: 'Chip', event: 'click' }),
-            );
-          }}
-        >
-          {avatar && <Avatar>{avatar}</Avatar>}
-          <Content hasAvatar={avatar}>{label}</Content>
-          {onDelete && (
-            <Delete
-              onClick={evt => {
-                evt.stopPropagation();
-                onDelete(
-                  evt,
-                  createAnalyticsEvent({ component: 'Chip', event: 'delete' }),
-                );
-              }}
-            >
-              <DeleteIcon />
-            </Delete>
-          )}
-        </ComponentRoot>
-      </ChipRoot>
-    </ThemeProvider>
+        {avatar && (
+          <Avatar
+            size={theme.typography.baseSize * theme.typography.lineHeight}
+          >
+            {avatar}
+          </Avatar>
+        )}
+        <Content hasAvatar={!!avatar}>{label}</Content>
+        {onDelete && (
+          <Delete
+            onClick={evt => {
+              evt.stopPropagation();
+              onDelete(
+                evt,
+                createAnalyticsEvent({ component: 'Chip', event: 'delete' }),
+              );
+            }}
+          >
+            <CloseIcon color="inherit" size={size} />
+          </Delete>
+        )}
+      </ComponentRoot>
+    </ChipRoot>
   );
-}
+};
 Chip.propTypes = {
   /**
    * Avatar element
@@ -191,12 +212,7 @@ Chip.defaultProps = {
   onClick: noop,
 };
 
-export default Chip;
-
-function calculateAvatarSize({ theme }) {
-  return (
-    theme.typography.baseSize * theme.typography.lineHeight +
-    theme.spacing.unit * 3 +
-    avatarBorderSize
-  );
-}
+export default withAnalytics()(
+  applyTheme(baseTheme, localTheme)(withTheme(Chip)),
+);
+export { Chip };

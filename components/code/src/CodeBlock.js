@@ -2,7 +2,7 @@ import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
 import { docco } from 'react-syntax-highlighter/styles/hljs';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import supportedLanguages from './supportedLanguages';
 
 export default function CodeBlock({
@@ -51,7 +51,6 @@ CodeBlock.propTypes = {
   language: PropTypes.oneOf(supportedLanguages).isRequired,
   /**
    * used to apply styles to each individual line; function accepts `lineNumber` as parameter
-   * @example lineNumberStyle: lineNumber => lineNumber === 1 ? { color: 'blue' } : {},
    */
   lineNumberStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
@@ -68,7 +67,7 @@ CodeBlock.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   /**
-   * `react-syntax-highlighter/styles/prism` theme that provides styling to code
+   * `react-syntax-highlighter/styles/hljs` theme that provides styling to code
    */
   // eslint-disable-next-line react/forbid-prop-types
   theme: PropTypes.object,

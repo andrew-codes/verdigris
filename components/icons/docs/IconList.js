@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'react-emotion';
+import { createComponent } from '@andrew-codes/verdigris-style-container';
+import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import * as AllIcons from '../src/index';
 
 const icons = Object.keys(AllIcons).map(key => ({
@@ -7,51 +8,60 @@ const icons = Object.keys(AllIcons).map(key => ({
   Icon: AllIcons[key],
 }));
 
-const IconList = styled('ul')`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-const IconListItem = styled('li')`
-  align-items: center;
-  border: 1px solid black;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 8px;
-  min-height: 150px;
-  min-width: 150px;
-  padding: 8px;
-`;
-const IconName = styled('h4')`
-  border-bottom: 1px dashed black;
-  display: block;
-  justify-self: flex-start;
-  margin: 0;
-  width: 100%;
-`;
-const IconWrapper = styled('span')`
-  align-items: center;
-  display: flex;
-  flex: 1;
-  justify-self: center;
-`;
+const IconList = createComponent(
+  () => ({
+    listStyle: 'none',
+    margin: '0',
+    padding: '0',
+  }),
+  'ul',
+);
+const IconListItem = createComponent(
+  () => ({
+    alignItems: 'center',
+    display: 'inline-flex',
+    flexDirection: 'column-reverse',
+    justifyContent: 'center',
+    margin: '8px',
+    minHeight: '150px',
+    minWidth: '150px',
+    padding: '8px',
+  }),
+  'li',
+);
+const IconName = createComponent(
+  () => ({
+    borderBottom: '1px dashed black',
+    display: 'block',
+    justifySelf: 'flex-start',
+    margin: '0',
+  }),
+  'h4',
+);
+const IconWrapper = createComponent(
+  () => ({
+    alignItems: 'center',
+    display: 'flex',
+    flex: '1',
+    justifySelf: 'center',
+  }),
+  'span',
+);
 
 export default function Icons() {
   return (
-    <IconList>
-      {icons.map(({ name, Icon }) => (
-        <IconListItem key={name}>
-          <IconName>
-            {name}
-            <br />(size: 32)
-          </IconName>
-          <IconWrapper>
-            <Icon size={32} />
-          </IconWrapper>
-        </IconListItem>
-      ))}
-    </IconList>
+    <StyleProvider>
+      <IconList>
+        {icons.map(({ name, Icon }) => (
+          <IconListItem key={name}>
+            <IconName>{name}</IconName>
+            <IconWrapper>
+              <Icon />
+            </IconWrapper>
+          </IconListItem>
+        ))}
+      </IconList>
+    </StyleProvider>
   );
 }
 Icons.defaultProps = {

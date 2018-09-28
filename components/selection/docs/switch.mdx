@@ -4,8 +4,7 @@ route: /packages/selection/components/switch
 menu: 3. Components
 ---
 import { Playground, PropsTable } from '@andrew-codes/verdigris-docz'
-import { Switch } from '../src'
-import SwitchSrc from '../src/Switch'
+import Switch, { Switch as SwitchSrc } from '../src/Switch'
 
 ## Usage
 A selection control used to select between one of only two states.
@@ -14,9 +13,9 @@ A selection control used to select between one of only two states.
 <Playground testId="examples">
   <div><Switch /></div>
   <div><Switch label="check this out!" /></div>
-  <div><Switch isChecked label="I see you checked it out"/></div>
-  <div><Switch isDisabled label="this is not checked and disabled" /></div>
-  <div><Switch isChecked isDisabled  label="this is checked, but disabled" /></div>
+  <div><Switch checked label="I see you checked it out"/></div>
+  <div><Switch disabled label="this is not checked and disabled" /></div>
+  <div><Switch checked disabled label="this is checked, but disabled" /></div>
   <div>
     <h4>Switch with onChange handler; analytics enabled (see console for logs)</h4>
     <Switch onChange={(evt, analyticsEvent, isChecked) => console.log(evt, analyticsEvent, isChecked)} /></div>

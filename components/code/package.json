@@ -18,13 +18,12 @@
     "react": "^16.4.1"
   },
   "dependencies": {
-    "emotion": "^9.2.4",
-    "prop-types": "^15.6.1",
-    "react-emotion": "^9.2.4",
+    "@andrew-codes/verdigris-style-container": "^0.0.0-development",
     "react-syntax-highlighter": "^7.0.4",
     "react-syntax-highlighter-virtualized-renderer": "^1.1.0",
     "react-virtualized": "^9.19.1"
   },
   "devDependencies": {
+    "prop-types": "^15.6.1"
   }
 }
