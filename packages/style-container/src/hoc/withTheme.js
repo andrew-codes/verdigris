@@ -14,6 +14,7 @@ const withTheme = ComponentToWrap => {
     ComponentToWrap,
   )}`;
   WithThemeComponent.propTypes = ComponentToWrap.propTypes;
+  // eslint-disable-next-line react/forbid-prop-types
   WithThemeComponent.contextTypes = { theme: PropTypes.object };
 
   return WithThemeComponent;

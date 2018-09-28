@@ -17,6 +17,7 @@ const applyStaticStyles = staticStyles => ComponentToWrap => {
   }
 
   CompWithStaticStyles.propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
     renderer: PropTypes.object.isRequired,
     ...ComponentToWrap.propTypes,
   };

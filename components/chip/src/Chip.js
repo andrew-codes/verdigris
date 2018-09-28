@@ -187,6 +187,7 @@ Chip.propTypes = {
     PropTypes.element,
     PropTypes.func,
   ]),
+  createAnalyticsEvent: PropTypes.func,
   /**
    * When true, Chip will expand to fill full width of parent.
    */
@@ -212,7 +213,7 @@ Chip.defaultProps = {
   onClick: noop,
 };
 
-export default withAnalytics()(
-  applyTheme(baseTheme, localTheme)(withTheme(Chip)),
+export default applyTheme(baseTheme, localTheme)(
+  withTheme(withAnalytics()(Chip)),
 );
 export { Chip };

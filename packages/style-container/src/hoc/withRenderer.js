@@ -14,6 +14,7 @@ const withRenderer = ComponentToWrap => {
     ComponentToWrap,
   )}`;
   WithRendererComponent.propTypes = ComponentToWrap.propTypes;
+  // eslint-disable-next-line react/forbid-prop-types
   WithRendererComponent.contextTypes = { renderer: PropTypes.object };
   return WithRendererComponent;
 };

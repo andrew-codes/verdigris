@@ -1,7 +1,7 @@
 import beautifier from 'fela-beautifier';
 import embedded from 'fela-plugin-embedded';
 import fallbackValue from 'fela-plugin-fallback-value';
-import namedMediaQuery from 'fela-plugin-named-media-query';
+// import namedMediaQuery from 'fela-plugin-named-media-query';
 import prefixer from 'fela-plugin-prefixer';
 import unit from 'fela-plugin-unit';
 import validator from 'fela-plugin-validator';

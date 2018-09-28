@@ -17,11 +17,11 @@ const createComponentFactory = (createElement, contextTypes) => (
       );
     }
 
-    // if (!theme) {
-    //   throw new Error(
-    //     "createComponent() can't render styles without the theme in the context. Wrap the root of your app with <StyleProvider />.",
-    //   );
-    // }
+    if (!theme) {
+      throw new Error(
+        "createComponent() can't render styles without the theme in the context. Wrap the root of your app with <StyleProvider />.",
+      );
+    }
 
     const resolvedPassThrough = [
       ...resolvePassThrough(passThroughProps, ruleProps),

@@ -161,6 +161,7 @@ Switch.propTypes = {
    * Considered toggled on when true
    */
   checked: PropTypes.bool,
+  createAnalyticsEvent: PropTypes.func,
   /**
    * Does not respond to onChange events and cannot be toggled.
    */
@@ -180,5 +181,5 @@ Switch.defaultProps = {
   onChange: noop,
 };
 
-export default withAnalytics()(applyTheme(baseTheme, localTheme)(Switch));
+export default applyTheme(baseTheme, localTheme)(withAnalytics()(Switch));
 export { Switch };

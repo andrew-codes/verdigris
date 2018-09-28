@@ -9,6 +9,7 @@ const customizeMerge = (objValue, srcValue, key) => {
     }
     return objValue.concat(srcValue);
   }
+  return undefined;
 };
 
 const createDeriveThemeValue = baseTheme => theme => {

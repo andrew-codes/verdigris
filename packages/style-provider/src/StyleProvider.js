@@ -26,6 +26,7 @@ function StyleProvider({ dev, children, renderer, ...rest }) {
 StyleProvider.propTypes = {
   children: PropTypes.node,
   dev: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
   renderer: PropTypes.object,
 };
 StyleProvider.defaultProps = {
