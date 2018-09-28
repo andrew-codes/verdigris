@@ -1,11 +1,14 @@
-dist: cypress/browsers:chrome67
 language: node_js
 
-node_js:
-  - 10.8
+sudo: required
 
-install:
-  - yarn install --frozen-lockfile
+cache:
+  yarn: true
+  directories:
+    - ~/.cache
+  override:
+    - yarn install --frozen-lockfile
+    - yarn cypress verify
 
 jobs:
   include:
@@ -16,20 +19,68 @@ jobs:
     - stage: verify
       if: (branch = master AND type = push) OR type = pull_request
       install:
+        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - yarn install
         - yarn bootstrap
-        - yarn cypress verify
       script:
         - yarn test:ci
         - kill $(jobs -p) || true
+    - stage: publish-preview
+      if: (branch = master AND type = push) OR type = pull_request
+      script:
+        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+        - npm install -g netlify-cli@next
+        - echo '{
+                "cliId": "${CLIENT_ID}",
+                "userId": "${USER_ID}",
+                "users": {
+                  "${USER_ID}": {
+                    "id": "${USER_ID}",
+                    "name": "Andrew Smith",
+                    "email": "andrew@andrew.codes",
+                    "slug": "andrew-codes",
+                    "auth": {
+                      "token": "${NETLIFY_TOKEN}",
+                      "github": {
+                        "user": null,
+                        "token": null
+                      }
+                    }
+                  }
+                }
+              }' | ~/.netlify/config.json
+        - yarn install --frozen-lockfile
+        - yarn bootstrap
+        - yarn build:website
+        - netlify deploy
     - stage: publish
       if: branch = master AND type = push
       env:
         - NODE_ENV=production
       install:
+        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+        - npm install -g netlify-cli@next
+        - echo '{
+                "cliId": "${CLIENT_ID}",
+                "userId": "${USER_ID}",
+                "users": {
+                  "${USER_ID}": {
+                    "id": "${USER_ID}",
+                    "name": "Andrew Smith",
+                    "email": "andrew@andrew.codes",
+                    "slug": "andrew-codes",
+                    "auth": {
+                      "token": "${NETLIFY_TOKEN}",
+                      "github": {
+                        "user": null,
+                        "token": null
+                      }
+                    }
+                  }
+                }
+              }' | ~/.netlify/config.json
         - yarn install --frozen-lockfile
         - yarn bootstrap
-        - yarn cypress verify
       script:
         # - yarn build
         - echo 'Publishing master'

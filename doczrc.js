@@ -3,7 +3,6 @@ const pkg = require('./package.json');
 
 export default {
   description: pkg.description,
-  // files: 'components/{analytics,chip,icons,selection}/docs/*.mdx',
   plugins: [doczPluginNetlify()],
   title: 'Verdigris Component Library',
   modifyBundlerConfig: config => ({
