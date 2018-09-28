@@ -8,16 +8,17 @@ import {
 const IconRoot = createComponent(
   ({ color }) => ({
     alignContent: 'center',
+    fill: color,
     display: 'inline-flex',
     justifyContent: 'center',
-    ...utils.conditionalStyle(color, 'fill', color, 'black'),
   }),
   'span',
+  ['data-component'],
 );
 
 function SvgIcon({ children, color, size }) {
   return (
-    <IconRoot color={color}>
+    <IconRoot color={color} data-component="SvgIcon">
       {React.cloneElement(React.Children.only(children), {
         style: { width: `${size}px`, height: `${size}px` },
       })}
@@ -39,6 +40,7 @@ SvgIcon.propTypes = {
   size: PropTypes.number,
 };
 SvgIcon.defaultProps = {
+  color: '#000',
   size: 16,
 };
 

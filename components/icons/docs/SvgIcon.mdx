@@ -1,0 +1,43 @@
+---
+name: SvgIcon
+route: /packages/icons/components/SvgIcon
+menu: 3. Components
+---
+import StyleProvider from '@andrew-codes/verdigris-style-provider'
+import { Playground, PropsTable } from '@andrew-codes/verdigris-docz'
+import SvgIcon from '../'
+
+## Usage
+Provides the ability to create an icon component from SVG markup. To enable importing SVG files directly as a custom SvgIcon, there is a webpack loader, `@andrew-codes/verdigris-svg-icon-loader`, that will accomplish this.
+
+## Examples
+Use pre-existing SVG markup with the SvgIcon component. Simply provide the SVG markup as the child.
+
+```js
+import SvgIcon from '@andrew-codes/verdigris-icons';
+```
+
+<Playground testId="examples">
+  <h4>Custom Close Icon</h4>
+  <SvgIcon>
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <polygon points="24,5 19,0 12,7.2 4.9,0 0,5 7.2,12 0,19 4.9,24 12,16.8 19,24 24,19 16.8,12" />
+    </svg>
+  </SvgIcon>
+  <SvgIcon size={32} color="#00a9e0">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <polygon points="24,5 19,0 12,7.2 4.9,0 0,5 7.2,12 0,19 4.9,24 12,16.8 19,24 24,19 16.8,12" />
+    </svg>
+  </SvgIcon>
+</Playground>
+
+## API
+<PropsTable of={SvgIcon} />
