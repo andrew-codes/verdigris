@@ -25,7 +25,7 @@ context('@andrew-codes/verdigris-icons', () => {
       .find('[data-component="SvgIcon"]')
       .then(els => els[1])
       .should('have.css', 'width', '32px')
-      .should('have.css', 'height', '32px');
-      .should('have.css', 'fill', 'rgb(0, 169, 224)')
+      .should('have.css', 'height', '32px')
+      .should('have.css', 'fill', 'rgb(0, 169, 224)');
   });
 });
