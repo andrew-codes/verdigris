@@ -10,14 +10,44 @@ cache:
     - yarn install --frozen-lockfile
     - yarn cypress verify
 
+defaults: &deploySite
+  install:
+    - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+    - wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
+    - yarn install
+    - yarn bootstrap
+  script:
+    - yarn build:website
+    - |
+      if [ $PROD ]; then
+        PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy | grep https.*com$ | sed 's/^ *//;s/$//')
+      else
+        PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy --draft | grep https.*com$ | sed 's/^ *//;s/$//')
+      fi
+      echo $PUBLISH_URL
+    - |
+      UPDATE_STATUS_CMD=$(cat <<-END
+        curl -u "$GITHUB_USER:$GITHUB_TOKEN" -X POST -d '{
+                "state": "success",
+                "target_url": "$PUBLISH_URL",
+                "description": "Deployment Preview URL",
+                "context": "deployment/preview"
+              }' -H "Content-Type: application/json" "https://api.github.com/repos/$GITHUB_USER/verdigris/statuses/$SHA"
+      END
+      )
+    - eval $UPDATE_STATUS_CMD
+
 jobs:
   include:
-    - stage: verify
-      if: (branch = master AND type = push) OR type = pull_request
+    - stage: 'Verify'
+      if: type = push
+      install:
+        - yarn install
       script:
         - yarn lint
-    - stage: verify
-      if: (branch = master AND type = push) OR type = pull_request
+
+    - stage: 'Verify'
+      if: type = push
       install:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         - yarn install
@@ -25,62 +55,29 @@ jobs:
       script:
         - yarn test:ci
         - kill $(jobs -p) || true
-    - stage: publish-preview
-      if: (branch = master AND type = push) OR type = pull_request
-      script:
-        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - npm install -g netlify-cli@next
-        - echo '{
-                "cliId": "${CLIENT_ID}",
-                "userId": "${USER_ID}",
-                "users": {
-                  "${USER_ID}": {
-                    "id": "${USER_ID}",
-                    "name": "Andrew Smith",
-                    "email": "andrew@andrew.codes",
-                    "slug": "andrew-codes",
-                    "auth": {
-                      "token": "${NETLIFY_TOKEN}",
-                      "github": {
-                        "user": null,
-                        "token": null
-                      }
-                    }
-                  }
-                }
-              }' | ~/.netlify/config.json
-        - yarn install --frozen-lockfile
-        - yarn bootstrap
-        - yarn build:website
-        - netlify deploy
-    - stage: publish
+
+    - stage: 'Deploy Preview of Docs Site'
+      if: type = pull_request
+      env:
+        - SHA=$TRAVIS_PULL_REQUEST_SHA
+        - NODE_ENV=development
+      <<: *deploySite
+
+    - stage: 'Publish to NPM'
       if: branch = master AND type = push
       env:
         - NODE_ENV=production
       install:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - npm install -g netlify-cli@next
-        - echo '{
-                "cliId": "${CLIENT_ID}",
-                "userId": "${USER_ID}",
-                "users": {
-                  "${USER_ID}": {
-                    "id": "${USER_ID}",
-                    "name": "Andrew Smith",
-                    "email": "andrew@andrew.codes",
-                    "slug": "andrew-codes",
-                    "auth": {
-                      "token": "${NETLIFY_TOKEN}",
-                      "github": {
-                        "user": null,
-                        "token": null
-                      }
-                    }
-                  }
-                }
-              }' | ~/.netlify/config.json
         - yarn install --frozen-lockfile
         - yarn bootstrap
       script:
-        # - yarn build
-        - echo 'Publishing master'
+        - echo 'This is empty for now'
+
+    - stage: 'Deploy Production Docs Site'
+      if: branch = master AND type = push
+      env:
+        - NODE_ENV=production
+        - SHA=$TRAVIS_COMMIT
+        - PROD=1
+      <<: *deploySite
