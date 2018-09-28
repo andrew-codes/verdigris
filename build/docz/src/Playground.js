@@ -8,7 +8,11 @@ CodeMirror.defaults.viewportMargin = Infinity;
 export default ({ children, testId, ...rest }) => (
   <div data-testid={testId}>
     <StyleProvider>
-      <Playground {...rest}>{children}</Playground>
+      <Playground {...rest}>
+        <StyleProvider>
+          <div>{children}</div>
+        </StyleProvider>
+      </Playground>
     </StyleProvider>
   </div>
 );
