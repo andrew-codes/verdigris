@@ -14,7 +14,7 @@ defaults: &deploySite
   install:
     - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
     - wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
-    - yarn install
+    - yarn install --frozen-lockfile
     - yarn bootstrap
   script:
     - yarn build:website
@@ -28,11 +28,11 @@ defaults: &deploySite
     - |
       UPDATE_STATUS_CMD=$(cat <<-END
         curl -u "$GITHUB_USER:$GITHUB_TOKEN" -X POST -d '{
-                "state": "success",
-                "target_url": "$PUBLISH_URL",
-                "description": "Deployment Preview URL",
-                "context": "deployment/preview"
-              }' -H "Content-Type: application/json" "https://api.github.com/repos/$GITHUB_USER/verdigris/statuses/$SHA"
+          "state": "success",
+          "target_url": "$PUBLISH_URL",
+          "description": "Deployment Preview URL",
+          "context": "deployment/preview"
+        }' -H "Content-Type: application/json" "https://api.github.com/repos/$GITHUB_USER/verdigris/statuses/$SHA"
       END
       )
     - eval $UPDATE_STATUS_CMD
@@ -42,7 +42,7 @@ jobs:
     - stage: 'Verify'
       if: type = push
       install:
-        - yarn install
+        - yarn install --frozen-lockfile
       script:
         - yarn lint
 
@@ -50,8 +50,9 @@ jobs:
       if: type = push
       install:
         - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - yarn install
+        - yarn install --frozen-lockfile
         - yarn bootstrap
+        - yarn cypress verify
       script:
         - yarn test:ci
         - kill $(jobs -p) || true
@@ -77,7 +78,6 @@ jobs:
     - stage: 'Deploy Production Docs Site'
       if: branch = master AND type = push
       env:
-        - NODE_ENV=production
         - SHA=$TRAVIS_COMMIT
         - PROD=1
       <<: *deploySite
