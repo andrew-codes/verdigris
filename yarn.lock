@@ -4990,9 +4990,9 @@ docz-core@^0.10.3:
     ws "^6.0.0"
     yargs "^12.0.1"
 
-docz-core@^0.12.2:
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-0.12.2.tgz#c153902e64591e34974305f65434cf0ab492238a"
+docz-core@^0.12.5:
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-0.12.5.tgz#6da41c330dbfd7758988005ff4039c5af8241df0"
   dependencies:
     "@babel/core" "7.1.0"
     "@babel/polyfill" "7.0.0"
@@ -5065,13 +5065,13 @@ docz-plugin-netlify@^1.1.4:
   dependencies:
     docz-core "^0.10.3"
 
-docz-theme-default@^0.12.3:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.12.3.tgz#a4f7497f00d884edbf004ecf4e2e8654c5eced2d"
+docz-theme-default@^0.12.5:
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.12.5.tgz#49ee983d23d950bbef0e19e8b99a51434ff18273"
   dependencies:
     codemirror "^5.40.0"
     copy-text-to-clipboard "^1.0.4"
-    docz "^0.12.3"
+    docz "^0.12.5"
     emotion "^9.2.9"
     emotion-theming "^9.2.9"
     facepaint "^1.2.1"
@@ -5122,9 +5122,9 @@ docz-utils@^0.12.2:
     unist-util-is "^2.1.2"
     unist-util-visit "^1.4.0"
 
-docz@^0.12.3:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/docz/-/docz-0.12.3.tgz#702698a3ab371df19ffe679b4235961c8443171d"
+docz@^0.12.5:
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/docz/-/docz-0.12.5.tgz#5b1ada2e2d2b252b0d789c94c258f950323916ec"
   dependencies:
     "@mdx-js/tag" "^0.15.0"
     "@sindresorhus/slugify" "^0.3.0"
@@ -5132,8 +5132,8 @@ docz@^0.12.3:
     capitalize "^1.0.0"
     create-react-context "^0.2.3"
     deepmerge "^2.1.1"
-    docz-core "^0.12.2"
-    docz-theme-default "^0.12.3"
+    docz-core "^0.12.5"
+    docz-theme-default "^0.12.5"
     lodash "^4.17.11"
     prop-types "^15.6.2"
     react "^16.5.2"
