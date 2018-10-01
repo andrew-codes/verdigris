@@ -38,8 +38,17 @@ class StyleProvider extends Component {
   }
 }
 StyleProvider.propTypes = {
+  /**
+   * A single, valid, renderable node.
+   */
   children: PropTypes.node,
+  /**
+   * Enables development friendly CSS classNames when true.
+   */
   dev: PropTypes.bool,
+  /**
+   * Typically only used for testing purposes; provide your own, external renderer.
+   */
   // eslint-disable-next-line react/forbid-prop-types
   renderer: PropTypes.object,
 };
