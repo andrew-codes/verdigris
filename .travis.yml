@@ -22,7 +22,8 @@ defaults: &deploySite
       if [ $PROD ]; then
         PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy | grep https.*com$ | sed 's/^ *//;s/$//')
       else
-        PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy --draft | grep https.*com$ | sed 's/^ *//;s/$//')
+        ./netlifyctl -A "$NETLIFY_TOKEN" deploy --draft | grep https.*com$ | sed 's/^ *//;s/$//'
+        PUBLISH_URL="https://verdigris.andrew.codes"
       fi
       echo $PUBLISH_URL
     - |

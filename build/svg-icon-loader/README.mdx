@@ -1,0 +1,46 @@
+---
+name: SVG Icon Loader
+route: /packages/svg-icon-loader
+menu: Other Packages
+---
+
+# SVG Icon Loader
+Webpack loader used to import SVG files as verdigris SvgIcon components.
+
+## Getting Started
+Configure webpack to load all imported files ending with `.icon.svg` to load with this package's loader. It first loads the SVG via the `@andrew-codes/verdigris-svg-icon-loader` webpack loader, then processes it via Babel.
+
+> Remember to include the `babel-loader` **and** the proper presets to load JSX.
+
+```js
+module.exports = {
+  module: {
+    rules: [{
+      test: /\.icon\.svg$/,
+      use: [
+        {
+          loader: require.resolve('babel-loader'),
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          }
+        },
+        {
+          loader: require.resolve(
+            '@andrew-codes/verdigris-svg-icon-loader',
+          ),
+        },
+      ],
+    }],
+  },
+};
+```
+
+Now you can import SVG files as [SvgIcon](/packages/icons/components/SvgIcon#api) components.
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CloseIcon from './assets/close.icon.svg';
+
+ReactDOM.render(<CloseIcon color="blue" size={32} />, document.getElementsByTag('body')[0]);
+```

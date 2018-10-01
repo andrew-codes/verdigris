@@ -5,6 +5,32 @@ export default {
   description: pkg.description,
   plugins: [doczPluginNetlify()],
   title: 'Verdigris Component Library',
+  menu: [
+    {
+      name: 'Getting Started',
+      menu: ['Start Here', 'Customization'],
+    },
+    {
+      name: 'Guides',
+      menu: ['Contributing', 'Tour of Code Base'],
+    },
+    {
+      name: 'Components',
+      menu: [
+        'Analytics',
+        'Chip',
+        'CodeBlock',
+        'InlineCode',
+        'SvgIcon',
+        'Icons',
+        'Switch',
+      ],
+    },
+    {
+      name: 'Other Packages',
+      menu: ['SVG Icon Loader'],
+    },
+  ],
   modifyBundlerConfig: config => ({
     ...config,
     module: {
