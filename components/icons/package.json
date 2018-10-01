@@ -17,11 +17,12 @@
   "peerDependencies": {
     "react": "^16.4.1"
   },
+  "devDependencies": {
+    "@andrew-codes/verdigris-docz": "^0.0.0-development",
+    "@andrew-codes/verdigris-style-provider": "^0.0.0-development"
+  },
   "dependencies": {
-    "@andrew-codes/verdigris-theme": "^0.0.0",
-    "emotion": "^9.2.4",
-    "emotion-theming": "^9.2.4",
-    "prop-types": "^15.6.2",
-    "react-emotion": "^9.2.4"
+    "@andrew-codes/verdigris-style-container": "^0.0.0-development",
+    "prop-types": "^15.6.2"
   }
 }

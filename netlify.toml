@@ -1,0 +1,8 @@
+[Settings]
+ID = "ba91228c-5b32-4022-b8ca-5f130297710b"
+
+# Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.
+
+[build]
+  publish = ".docz/dist"
+  command = "yarn build:website"

@@ -3,13 +3,13 @@ name: Icons
 route: /packages/icons
 menu: 3. Components
 ---
+import StyleProvider from '@andrew-codes/verdigris-style-provider'
 import { Playground, PropsTable } from '@andrew-codes/verdigris-docz'
 import IconList from './IconList'
-import { CloseIcon } from '../src'
-import SvgIcon from '../src/SvgIcon'
+import SvgIcon, { CloseIcon } from '../'
 
 ## Usage
-Collection of SVG icon files converted to `SvgIcon` components.
+Collection of SVG icon files converted to `SvgIcon` components. See the [SvgIcon](/packages/icons/components/SvgIcon) section to make your own SVG icons.
 
 ## Examples
 Each icon can be imported as a property of this package.
@@ -18,8 +18,15 @@ Each icon can be imported as a property of this package.
 import { CloseIcon } from '@andrew-codes/verdigris-icons';
 ```
 
-<Playground>
-  <CloseIcon />
+<Playground testId="examples">
+    <CloseIcon />
+    <CloseIcon size={32} />
+    <CloseIcon size={64} color="#00a9e0" />
+    <div style={{
+      fill: 'green'
+    }}>
+      <CloseIcon color="inherit" />
+    </div>
 </Playground>
 
 ## API

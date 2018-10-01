@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import UIAnalyticsEvent from './UIAnalyticsEvent';
 
 export default (eventsMap = {}) => WrappedComponent => {
@@ -28,10 +28,10 @@ export default (eventsMap = {}) => WrappedComponent => {
     };
 
     mapEvents = () =>
-      Object.keys(eventsMap).reduce((prev, propCallbackName) => {
+      Object.keys(eventsMap).reduce((acc, propCallbackName) => {
         const eventCreator = eventsMap[propCallbackName];
         if (!['object', 'function'].includes(typeof eventCreator)) {
-          return prev;
+          return acc;
         }
         // eslint-disable-next-line react/destructuring-assignment
         const providedPropCallback = this.props[propCallbackName];
@@ -47,7 +47,7 @@ export default (eventsMap = {}) => WrappedComponent => {
         };
 
         return {
-          ...prev,
+          ...acc,
           [propCallbackName]: modifiedCallback,
         };
       }, {});
