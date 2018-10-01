@@ -3,11 +3,11 @@ import React, { PureComponent } from 'react';
 import getComponentDisplayName from '../getComponentDisplayName';
 import withRenderer from './withRenderer';
 
-const applyStaticStyles = staticStyles => ComponentToWrap => {
+const applyStaticStyles = (staticStyles, selector) => ComponentToWrap => {
   class CompWithStaticStyles extends PureComponent {
     componentWillMount() {
       const { renderer } = this.props;
-      renderer.renderStatic(staticStyles);
+      renderer.renderStatic(staticStyles, selector);
     }
 
     render() {
@@ -18,7 +18,7 @@ const applyStaticStyles = staticStyles => ComponentToWrap => {
 
   CompWithStaticStyles.propTypes = {
     // eslint-disable-next-line react/forbid-prop-types
-    renderer: PropTypes.object.isRequired,
+    renderer: PropTypes.object,
     ...ComponentToWrap.propTypes,
   };
   CompWithStaticStyles.displayName = getComponentDisplayName(ComponentToWrap);

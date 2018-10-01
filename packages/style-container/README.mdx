@@ -1,0 +1,161 @@
+---
+name: StyleContainer
+menu: Other Packages
+route: /packages/style-container
+---
+import { Playground, PropsTable } from '@andrew-codes/verdigris-docz'
+import { applyStaticStyles, applyTheme, createComponent, getComponentDisplayName, utils, withTheme } from './src'
+
+# StyleContainer Package
+This package contains several HoC and other utility functions when using and/or theming Verdigris components. It also contains the primary way to create custom, theme-enabled and stylable components.
+
+## `createComponent`
+`createComponent` is used internally to create Fela-enabled and themed components within Verdigris. It can also be used to create your own components. The benefit to using this for your own components is that it will:
+
+1. leverage existing `<StyleProvider>` ([read more](/packages/style-provider))
+2. enable access to the theme used by Verdigris
+3. provide consistent mechanism to style components
+
+`createComponent` is a named export function that **accepts 2 or 3 parameters** and returns a renderable Component. The first is a style rule and the second the type of element. It will **return a component**. To pass props through to the underlying element, there is a third parameter that can be leveraged. You can provide an array of prop names to pass through to the underlying component.
+
+```js
+import { createComponent } from '@andrew-codes/verdigris-style-container';
+```
+<Playground>
+  {() => {
+    const styleRule = (props) => ({
+      backgroundColor: props.color
+    });
+
+    const Header = createComponent(styleRule, 'h3');
+    const ClickableHeader = createComponent(styleRule, 'h3', ['onClick']);
+
+    return (
+      <div>
+        <Header color="lightblue">This header does not pass through onClick prop</Header>
+        <ClickableHeader color="lightblue" onClick={console.log}>This header does pass through onClick prop</ClickableHeader>
+      </div>
+    );
+  }}
+</Playground>
+
+## `utils`
+A [caveat](http://fela.js.org/docs/introduction/Caveats.html) with using Fela as the underlying styling mechanism is that it is advised to **not use shorthand** CSS properties and instead **favor longhand** properties. To ease some of the burden of tying out longhand properties, there are a set of export functions as `utils`.
+
+```js
+import { utils } from '@andrew-codes/verdigris-style-container';
+```
+<Playground>
+  {() => {
+    const styleRule = (props) =>
+      Object.assign({
+        backgroundColor: props.color,
+        },
+        utils.padding('1rem'),
+        utils.margin('0'),
+      );
+
+    const Header = createComponent(styleRule, 'h3');
+
+    return <Header color="lightblue">This has a custom padding and no margins</Header>;
+  }}
+</Playground>
+
+## `applyTheme` HoC
+Provide one or more themes to be merged into the current theme.
+
+```js
+import { withTheme } from '@andrew-codes/verdigris-style-container';
+```
+<Playground>
+  {() => {
+    const theme  = {
+      backgroundColor: 'lightgreen',
+    };
+    const theme2  = {
+      color: 'darkblue'
+    };
+    const styleRule = (props) => ({
+      backgroundColor: props.theme.backgroundColor,
+      color: props.theme.color,
+    });
+
+    const ThemedHeader = applyTheme(theme, theme2)(createComponent(styleRule, 'h3'));
+
+    return <ThemedHeader>I am themed to have a lightgreen background</ThemedHeader>;
+  }}
+</Playground>
+
+## `withTheme` HoC
+Injects a component with the Verdigris theme as a prop, `theme`.
+
+```js
+import { withTheme } from '@andrew-codes/verdigris-style-container';
+```
+<Playground>
+  {() => {
+    const theme  = {
+      backgroundColor: 'darkgreen',
+      color: 'white'
+    };
+    const styleRule = (props) => ({
+      backgroundColor: props.theme.backgroundColor,
+      color: props.theme.color,
+    });
+
+    const ContainerWithTheme = applyTheme(theme)(createComponent(() => ({}), 'div'));
+    const ThemedHeader = withTheme(createComponent(styleRule, 'h3'));
+
+    return (
+      <ContainerWithTheme>
+        <ThemedHeader>I am themed to have a darkgreen background</ThemedHeader>
+      </ContainerWithTheme>
+    );
+  }}
+</Playground>
+
+## `withRenderer` HoC
+Provides a component access to the underlying Fela renderer.
+
+```js
+import { withRenderer } from '@andrew-codes/verdigris-style-container';
+```
+
+## `applyStaticStyles` HoC
+Enables providing global styles to be injected into the page.
+
+```js
+import { applyStaticStyles } from '@andrew-codes/verdigris-style-container';
+```
+<Playground>
+  {() => {
+    // Try changing from 'white' to 'blue'
+    const globalStyles = {
+      backgroundColor: 'white',
+    };
+
+    const ThemedHeader = applyStaticStyles(globalStyles, 'p')(createComponent(() => ({}), 'h3'));
+
+    return <ThemedHeader>I have global styles</ThemedHeader>
+  }}
+</Playground>
+
+## `getComponentDisplayName`
+Useful for HoC that need to get the underlying wrapped component's name in order to set the Wrapped component's display name properly.
+
+```js
+import { getComponentDisplayName } from '@andrew-codes/verdigris-style-container';
+```
+<Playground>
+  {() => {
+    const MyNamedComponent = () => (<span>hooray</span>);
+
+    return (
+      <div>
+        <div>{getComponentDisplayName(MyNamedComponent)}</div>
+        <div>{getComponentDisplayName('div')}</div>
+        <div>Defaults to "Component" when no name exists: {getComponentDisplayName({})}</div>
+      </div>
+    )
+  }}
+</Playground>

@@ -25,5 +25,8 @@
   },
   "peerDependencies": {
     "react": "^16.5.2"
+  },
+  "devDependencies": {
+    "@andrew-codes/verdigris-docz": "^0.0.0-development"
   }
 }

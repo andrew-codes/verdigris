@@ -28,7 +28,7 @@ export default {
     },
     {
       name: 'Other Packages',
-      menu: ['SVG Icon Loader'],
+      menu: ['SVG Icon Loader', 'StyleProvider', 'StyleContainer'],
     },
   ],
   modifyBundlerConfig: config => ({
