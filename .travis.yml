@@ -12,48 +12,25 @@ cache:
 
 defaults: &deploySite
   install:
-    - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-    - wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
-    - yarn install --frozen-lockfile
-    - yarn bootstrap
+    - ./scripts/bin/ci-install.sh
   script:
-    - yarn build:website
-    - |
-      if [ $PROD ]; then
-        PUBLISH_URL=$(./netlifyctl -A "$NETLIFY_TOKEN" deploy | grep https.*com$ | sed 's/^ *//;s/$//')
-      else
-        ./netlifyctl -A "$NETLIFY_TOKEN" deploy --draft | grep https.*com$ | sed 's/^ *//;s/$//'
-        PUBLISH_URL="https://verdigris.andrew.codes"
-      fi
-      echo $PUBLISH_URL
-    - |
-      UPDATE_STATUS_CMD=$(cat <<-END
-        curl -u "$GITHUB_USER:$GITHUB_TOKEN" -X POST -d '{
-          "state": "success",
-          "target_url": "$PUBLISH_URL",
-          "description": "Deployment Preview URL",
-          "context": "deployment/preview"
-        }' -H "Content-Type: application/json" "https://api.github.com/repos/$GITHUB_USER/verdigris/statuses/$SHA"
-      END
-      )
-    - eval $UPDATE_STATUS_CMD
+    - ./scripts/bin/ci-deploy-docs.sh
 
 jobs:
   include:
     - stage: 'Verify'
       if: type = push
       install:
-        - yarn install --frozen-lockfile
+        - ./scripts/bin/ci-install.sh
       script:
         - yarn lint
 
     - stage: 'Verify'
       if: type = push
+      env:
+        - NODE_ENV: test
       install:
-        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - yarn install --frozen-lockfile
-        - yarn bootstrap
-        - yarn cypress verify
+        - ./scripts/bin/ci-install.sh
       script:
         - yarn test:ci
         - kill $(jobs -p) || true
@@ -70,9 +47,7 @@ jobs:
       env:
         - NODE_ENV=production
       install:
-        - echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        - yarn install --frozen-lockfile
-        - yarn bootstrap
+        - ./scripts/bin/ci-install.sh
       script:
         - echo 'This is empty for now'
 
