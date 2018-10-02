@@ -41,7 +41,6 @@ function amendPropTypes(getDescriptor, path) {
   path.get('properties').each(propertyPath => {
     switch (propertyPath.node.type) {
       case types.Property.name: {
-        console.log(1);
         const propDescriptor = getDescriptor(
           getPropertyName.default(propertyPath),
         );
@@ -56,8 +55,6 @@ function amendPropTypes(getDescriptor, path) {
         break;
       }
       case types.SpreadElement.name: {
-        console.log(2);
-
         const resolvedValuePath = resolveToValue.default(
           propertyPath.get('argument'),
         );
