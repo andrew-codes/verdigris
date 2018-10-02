@@ -5,8 +5,9 @@ menu: Components
 ---
 
 import { Fragment } from 'react'
-import { Playground, PropsTable } from '@andrew-codes/verdigris-docz'
+import { Playground, PropsTable, ThemeDefinitionTable } from '@andrew-codes/verdigris-docz'
 import Chip, {Chip as ChipSrc} from '../src/Chip'
+import ChipThemeDefinition from '!!@andrew-codes/verdigris-theme-definition-loader!../src/Chip'
 
 ## Usage
 Concise representation of an otherwise more complex entity.
@@ -115,5 +116,8 @@ Finally, chips can be configured to contain a delete button and associated click
     />
 </Playground>
 
-## API
+## Component API
 <PropsTable of={ChipSrc} />
+
+## Theme API
+<ThemeDefinitionTable of={ChipThemeDefinition} />

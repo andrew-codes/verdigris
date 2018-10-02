@@ -3,8 +3,9 @@ name: Switch
 route: /packages/selection/components/switch
 menu: Components
 ---
-import { Playground, PropsTable } from '@andrew-codes/verdigris-docz'
+import { Playground, PropsTable, ThemeDefinitionTable } from '@andrew-codes/verdigris-docz'
 import Switch, { Switch as SwitchSrc } from '../src/Switch'
+import SwitchThemeDefinition from '!!@andrew-codes/verdigris-theme-definition-loader!../src/Switch'
 
 ## Usage
 A selection control used to select between one of only two states.
@@ -21,5 +22,8 @@ A selection control used to select between one of only two states.
     <Switch onChange={(evt, analyticsEvent, isChecked) => console.log(evt, analyticsEvent, isChecked)} /></div>
 </Playground>
 
-## API
+## Component API
 <PropsTable of={SwitchSrc} />
+
+## Theme API
+<ThemeDefinitionTable of={SwitchThemeDefinition} />

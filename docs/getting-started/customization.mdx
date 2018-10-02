@@ -3,6 +3,38 @@ name: Customization
 route: /getting-started/customization
 menu: Getting Started
 ---
+import { PropsTable } from '@andrew-codes/verdigris-docz'
 
 # Customization via Themes
+The intended mechanism to customize Verdigris components is **not** CSS. Instead, all components have a pre-defined set of configuration touch points that enable customization of the aesthetics of the component. The touch points are either controlled via props or, in some cases, a theme. A **theme may be overridden**, augmented, and injectecd at **any point** in your component tree; with the help of some ~~components and~~ [utility high order functions](/packages/style-container#applytheme-hoc).
 
+> A theme is function that returns a plain JavaScript object containing values for the various configuration touch points for each component. It accepts the current theme as its only input.
+
+## The Theme Function
+A theme function accepts the currently computed theme as its only input. **Its output will be merged with the current theme**. Therefore, it is not necessary to spread the current theme into your overriding theme.
+
+```js
+const myTheme = currentTheme => ({
+  // No need to spread the existing Theme.
+  // The output of your theme function will be merge on top of the existing theme.
+  Chip: {
+    backgroundColor: 'dimgray',
+  },
+});
+```
+
+The output of the theme function is a JavaScript object; of which can contain one more Component keys. Every component has a dedicated key in the theme to house all its configuration options. Each component may have different theme values, as each component will have different points of configuration. You will find a component's specific set of theme values on its documentation page; under the heading **"Theme API"**. As an example, take a look at the [theme API for a Chip](/packages/chip/components/chip#theme-api).
+
+```js
+const myTheme = currentTheme => ({
+  Chip: { // component theme key (note the the casing)
+    spacing: currentTheme.Chip.spacing * 2, // theme value
+  },
+});
+```
+
+## ThemeProvider
+tbd
+
+## Theme HoC
+As stated, there are several HoC and utility functions to aid with creating themes, accessing themes, and applying them. They can all be found (with more details) in the [@andrew-codes/verdigris/style-container package](/packages/style-container#applytheme-hoc).

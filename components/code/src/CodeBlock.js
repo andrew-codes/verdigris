@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import virtualizedRenderer from 'react-syntax-highlighter-virtualized-renderer';
 import { docco } from 'react-syntax-highlighter/styles/hljs';
-import PropTypes from 'prop-types';
 import supportedLanguages from './supportedLanguages';
 
 export default function CodeBlock({

@@ -4,7 +4,11 @@ context('@andrew-codes/verdigris-switch', () => {
       cy.visit('/packages/selection/components/switch');
     });
     it('contains an API section in the docs', () => {
-      cy.contains('h2', 'API')
+      cy.contains('h2', 'Component API')
+        .next()
+        .find('.PropsTable')
+        .should('exist');
+      cy.contains('h2', 'Theme API')
         .next()
         .find('.PropsTable')
         .should('exist');

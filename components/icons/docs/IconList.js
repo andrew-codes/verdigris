@@ -1,6 +1,5 @@
 import React from 'react';
 import { createComponent } from '@andrew-codes/verdigris-style-container';
-import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import * as AllIcons from '../src/index';
 
 const icons = Object.keys(AllIcons)
@@ -52,18 +51,16 @@ const IconWrapper = createComponent(
 
 export default function Icons() {
   return (
-    <StyleProvider>
-      <IconList>
-        {icons.map(({ name, Icon }) => (
-          <IconListItem key={name}>
-            <IconName>{name}</IconName>
-            <IconWrapper>
-              <Icon />
-            </IconWrapper>
-          </IconListItem>
-        ))}
-      </IconList>
-    </StyleProvider>
+    <IconList>
+      {icons.map(({ name, Icon }) => (
+        <IconListItem key={name}>
+          <IconName>{name}</IconName>
+          <IconWrapper>
+            <Icon />
+          </IconWrapper>
+        </IconListItem>
+      ))}
+    </IconList>
   );
 }
 Icons.defaultProps = {

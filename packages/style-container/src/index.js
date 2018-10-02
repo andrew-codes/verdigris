@@ -45,5 +45,6 @@ export { default as withRenderer } from './hoc/withRenderer';
 export { default as withTheme } from './hoc/withTheme';
 export { default as applyStaticStyles } from './hoc/applyStaticStyles';
 export { default as applyTheme } from './hoc/applyTheme';
+export { default as applyDefaultTheme } from './hoc/applyDefaultTheme';
 export { default as mergeThemes } from './mergeThemes';
 export { utils };
