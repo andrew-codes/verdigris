@@ -11,15 +11,6 @@ import { CloseIcon } from '@andrew-codes/verdigris-icons';
 import { noop } from 'lodash';
 import { withAnalytics } from '@andrew-codes/verdigris-analytics';
 
-const localTheme = () => ({
-  Chip: {
-    backgroundColor: 'lightgray',
-    borderColor: 'dimgray',
-    spacing: 4,
-    textColor: 'black',
-  },
-});
-
 const ChipRoot = createComponent(
   ({ clickable, fullWidth, theme }) => ({
     alignItems: 'center',
@@ -93,7 +84,6 @@ const Delete = createComponent(
 
 const Chip = ({
   avatar,
-  className,
   clickable,
   component,
   createAnalyticsEvent,
@@ -125,12 +115,7 @@ const Chip = ({
     theme.Chip.spacing * 4;
 
   return (
-    <ChipRoot
-      className={className}
-      clickable={clickable}
-      data-component="Chip"
-      fullWidth={fullWidth}
-    >
+    <ChipRoot clickable={clickable} data-component="Chip" fullWidth={fullWidth}>
       <ComponentRoot
         {...rest}
         onClick={evt => {
@@ -172,10 +157,6 @@ Chip.propTypes = {
    */
   avatar: PropTypes.element,
   /**
-   * CSS class applied to root element.
-   */
-  className: PropTypes.string,
-  /**
    * When true, the chip will display as clickable. Click events will raise on component prop as well.
    */
   clickable: PropTypes.bool,
@@ -206,14 +187,37 @@ Chip.propTypes = {
   onDelete: PropTypes.func,
 };
 Chip.defaultProps = {
-  className: '',
   clickable: false,
   component: 'div',
   label: '',
   onClick: noop,
 };
+Chip.themeDefinition = {
+  /**
+   * Chip background color.
+   */
+  backgroundColor: PropTypes.string,
+  /**
+   * Border color around the entirety of the Chip.
+   */
+  borderColor: PropTypes.string,
+  /**
+   * Spacing unit to calculate spacing such as padding and margins.
+   */
+  spacing: PropTypes.number,
+  /**
+   * Color of the Chip's label text.
+   */
+  textColor: PropTypes.string,
+};
+Chip.defaultThemeValues = {
+  backgroundColor: 'lightgray',
+  borderColor: 'dimgray',
+  spacing: 4,
+  textColor: 'black',
+};
 
-export default applyTheme(baseTheme, localTheme)(
-  withTheme(withAnalytics()(Chip)),
-);
+export default applyTheme(baseTheme, () => ({
+  Chip: Chip.defaultThemeValues,
+}))(withTheme(withAnalytics()(Chip)));
 export { Chip };

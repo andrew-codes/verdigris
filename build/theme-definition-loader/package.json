@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@andrew-codes/verdigris-theme-definition-loader",
+  "version": "0.0.0",
+  "description": "Theme Definition docgen handler and webpack loader",
+  "license": "MIT",
+  "main": "./src/index.js",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "react-docgen": "^2.21.0",
+    "recast": "^0.15.5"
+  }
+}
