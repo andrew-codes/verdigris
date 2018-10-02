@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 context('@andrew-codes/verdigris-docz', () => {
   context('ThemeDefinitionTable', () => {
-    it('lists the theme definition in a tabular format', () => {
+    it('lists the theme definition in a tabular format and hides the Required column', () => {
       cy.visit('/packages/chip/components/chip')
         .contains('h2', 'Theme API')
         .next()
@@ -11,16 +11,24 @@ context('@andrew-codes/verdigris-docz', () => {
 
       cy.get('@table')
         .find('thead th')
-        .should('have.length', 4)
         .then(els => {
-          const textValues = els.map(el => el.text());
+          const textValues = els.toArray().map(el => $(el).text());
           expect(textValues).to.eql([
             'Property',
             'Type',
+            'Required',
             'Default',
             'Description',
           ]);
         });
+
+      cy.get('@table')
+        .find('thead')
+        .contains('Required')
+        .should('have.css', 'display', 'none');
+      cy.get('@table')
+        .find('tbody td:nth-of-type(3)')
+        .should('have.css', 'display', 'none');
     });
   });
 });
