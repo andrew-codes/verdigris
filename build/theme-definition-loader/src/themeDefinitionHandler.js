@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2015, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 const getPropType = require('react-docgen/dist/utils/getPropType');
 const getPropertyName = require('react-docgen/dist/utils/getPropertyName');
 const isReactModuleName = require('react-docgen/dist/utils/isReactModuleName');
@@ -62,9 +53,13 @@ function amendPropTypes(getDescriptor, path) {
           case types.ObjectExpression.name: // normal object literal
             amendPropTypes(getDescriptor, resolvedValuePath);
             break;
+          default:
+            break;
         }
         break;
       }
+      default:
+        break;
     }
   });
 }
@@ -87,21 +82,21 @@ function resolveDocumentation(documentation, path) {
 }
 
 function getDefaultValue(path) {
-  let { node } = path;
+  const { node } = path;
+  let newPath = path;
   let defaultValue;
   if (types.Literal.check(node)) {
     defaultValue = node.raw;
   } else {
-    if (types.AssignmentPattern.check(path.node)) {
-      path = resolveToValue.default(path.get('right'));
+    if (types.AssignmentPattern.check(newPath.node)) {
+      newPath = resolveToValue.default(newPath.get('right'));
     } else {
-      path = resolveToValue.default(path);
+      newPath = resolveToValue.default(newPath);
     }
-    if (types.ImportDeclaration.check(path.node)) {
+    if (types.ImportDeclaration.check(newPath.node)) {
       defaultValue = node.name;
     } else {
-      node = path.node;
-      defaultValue = printValue.default(path);
+      defaultValue = printValue.default(newPath);
     }
   }
   if (typeof defaultValue !== 'undefined') {
