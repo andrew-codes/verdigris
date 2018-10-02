@@ -1,4 +1,3 @@
-import baseTheme from '@andrew-codes/verdigris-base-theme';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -9,7 +8,6 @@ import {
 import { noop } from 'lodash';
 import { withAnalytics } from '@andrew-codes/verdigris-analytics';
 
-const barWidth = 48;
 const deriveColor = ({ checked, disabled, theme }, defaultColor) => {
   if (disabled) return theme.Switch.disabledColor;
   if (checked) return theme.Switch.checkedColor;
@@ -38,12 +36,12 @@ const Bar = createComponent(
     marginRight: `${theme.Switch.spacing}px`,
     position: 'relative',
     transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    width: `${barWidth}px`,
+    width: `${theme.Switch.width}px`,
   }),
   'div',
 );
 const Handle = createComponent(({ checked, disabled, theme }) => {
-  const size = theme.typography.baseSize * theme.typography.lineHeight;
+  const size = theme.Switch.fontSize * theme.Switch.lineHeight;
   return {
     backgroundColor: deriveColor(
       { checked, disabled, theme },
@@ -60,7 +58,9 @@ const Handle = createComponent(({ checked, disabled, theme }) => {
     position: 'absolute',
     top: '50%',
     transform: `translateY(-50%) ${
-      checked ? `translateX(${barWidth + theme.Switch.spacing - size}px)` : ''
+      checked
+        ? `translateX(${theme.Switch.width + theme.Switch.spacing - size}px)`
+        : ''
     }`,
     transition:
       'transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
@@ -70,8 +70,8 @@ const Handle = createComponent(({ checked, disabled, theme }) => {
 const Label = createComponent(
   ({ disabled, theme }) => ({
     color: disabled ? theme.Switch.disabledColor : theme.Switch.textColor,
-    fontSize: `${theme.typography.baseSize}px`,
-    lineHeight: theme.typography.lineHeight,
+    fontSize: `${theme.Switch.fontSize}px`,
+    lineHeight: theme.Switch.lineHeight,
     marginLeft: `${theme.Switch.spacing * 2}px`,
   }),
   'span',
@@ -188,6 +188,14 @@ Switch.themeDefinition = {
    */
   disabledColor: PropTypes.string,
   /**
+   * Size of text; used in size calculations.
+   */
+  fontSize: PropTypes.number,
+  /**
+   * Line height of text; used in size calculations.
+   */
+  lineHeight: PropTypes.number,
+  /**
    * Controls spacing unit (padding, margin).
    */
   spacing: PropTypes.number,
@@ -195,17 +203,24 @@ Switch.themeDefinition = {
    * Color of the label text.
    */
   textColor: PropTypes.string,
+  /**
+   * Width of Switch.
+   */
+  width: PropTypes.number,
 };
 Switch.defaultThemeValues = {
   backgroundColor: 'gray',
-  checkedColor: '#00a9e0',
-  color: 'white',
+  checkedColor: 'rgb(0, 169, 224)',
+  color: 'rgb(255, 255, 255)',
   disabledColor: 'lightgray',
+  fontSize: 16,
+  lineHeight: 1.5,
   spacing: 4,
-  textColor: 'black',
+  textColor: 'rgb(0, 0, 0)',
+  width: 48,
 };
 
-export default applyTheme(baseTheme, () => ({
+export default applyTheme(() => ({
   Switch: Switch.defaultThemeValues,
 }))(withAnalytics()(Switch));
 export { Switch };

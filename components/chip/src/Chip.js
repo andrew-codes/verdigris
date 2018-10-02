@@ -1,4 +1,3 @@
-import baseTheme from '@andrew-codes/verdigris-base-theme';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -15,11 +14,11 @@ const ChipRoot = createComponent(
   ({ clickable, fullWidth, theme }) => ({
     alignItems: 'center',
     backgroundColor: theme.Chip.backgroundColor,
-    borderRadius: `${theme.typography.baseSize}px`,
+    borderRadius: `${theme.Chip.fontSize}px`,
     color: `${theme.Chip.textColor}`,
     cursor: clickable ? 'pointer' : 'default',
     display: fullWidth ? 'flex' : 'inline-flex',
-    minHeight: `${theme.typography.baseSize * theme.typography.lineHeight +
+    minHeight: `${theme.Chip.fontSize * theme.Chip.lineHeight +
       theme.Chip.spacing * 2}px`,
     whiteSpace: 'nowrap',
   }),
@@ -45,8 +44,8 @@ const Avatar = createComponent(
 const Content = createComponent(
   ({ hasAvatar, theme }) => ({
     display: 'inline-block',
-    fontSize: `${theme.typography.baseSize}px`,
-    lineHeight: theme.typography.lineHeight,
+    fontSize: `${theme.Chip.fontSize}px`,
+    lineHeight: theme.Chip.lineHeight,
     minWidth: `${theme.Chip.spacing * 2}px`,
     ...utils.conditionalStyles(
       hasAvatar,
@@ -110,9 +109,8 @@ const Chip = ({
     component,
     ['onClick', ...Object.keys(rest)],
   );
-  const size =
-    theme.typography.baseSize * theme.typography.lineHeight -
-    theme.Chip.spacing * 4;
+  const avatarSize = theme.Chip.fontSize * theme.Chip.lineHeight;
+  const deleteIconSize = avatarSize - theme.Chip.spacing * 4;
 
   return (
     <ChipRoot clickable={clickable} data-component="Chip" fullWidth={fullWidth}>
@@ -126,13 +124,7 @@ const Chip = ({
           );
         }}
       >
-        {avatar && (
-          <Avatar
-            size={theme.typography.baseSize * theme.typography.lineHeight}
-          >
-            {avatar}
-          </Avatar>
-        )}
+        {avatar && <Avatar size={avatarSize}>{avatar}</Avatar>}
         <Content hasAvatar={!!avatar}>{label}</Content>
         {onDelete && (
           <Delete
@@ -144,7 +136,7 @@ const Chip = ({
               );
             }}
           >
-            <CloseIcon color="inherit" size={size} />
+            <CloseIcon color="inherit" size={deleteIconSize} />
           </Delete>
         )}
       </ComponentRoot>
@@ -202,6 +194,14 @@ Chip.themeDefinition = {
    */
   borderColor: PropTypes.string,
   /**
+   * Size of text; used in size calculations.
+   */
+  fontSize: PropTypes.number,
+  /**
+   * Line height of text; used in size calculations.
+   */
+  lineHeight: PropTypes.number,
+  /**
    * Spacing unit to calculate spacing such as padding and margins.
    */
   spacing: PropTypes.number,
@@ -213,11 +213,13 @@ Chip.themeDefinition = {
 Chip.defaultThemeValues = {
   backgroundColor: 'lightgray',
   borderColor: 'dimgray',
+  fontSize: 16,
+  lineHeight: 1.5,
   spacing: 4,
-  textColor: 'black',
+  textColor: 'rgb(0, 0, 0)',
 };
 
-export default applyTheme(baseTheme, () => ({
+export default applyTheme(() => ({
   Chip: Chip.defaultThemeValues,
 }))(withTheme(withAnalytics()(Chip)));
 export { Chip };
