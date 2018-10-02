@@ -1,6 +1,5 @@
 import React from 'react';
 import { createComponent } from '@andrew-codes/verdigris-style-container';
-import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import * as AllIcons from '../src/index';
 
 const icons = Object.keys(AllIcons)
