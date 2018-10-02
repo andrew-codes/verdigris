@@ -31,6 +31,7 @@ export default {
       menu: ['SVG Icon Loader', 'StyleProvider', 'StyleContainer'],
     },
   ],
+  wrapper: '@andrew-codes/verdigris-style-provider',
   modifyBundlerConfig: config => ({
     ...config,
     module: {

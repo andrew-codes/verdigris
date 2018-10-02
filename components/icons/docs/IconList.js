@@ -52,18 +52,16 @@ const IconWrapper = createComponent(
 
 export default function Icons() {
   return (
-    <StyleProvider>
-      <IconList>
-        {icons.map(({ name, Icon }) => (
-          <IconListItem key={name}>
-            <IconName>{name}</IconName>
-            <IconWrapper>
-              <Icon />
-            </IconWrapper>
-          </IconListItem>
-        ))}
-      </IconList>
-    </StyleProvider>
+    <IconList>
+      {icons.map(({ name, Icon }) => (
+        <IconListItem key={name}>
+          <IconName>{name}</IconName>
+          <IconWrapper>
+            <Icon />
+          </IconWrapper>
+        </IconListItem>
+      ))}
+    </IconList>
   );
 }
 Icons.defaultProps = {
