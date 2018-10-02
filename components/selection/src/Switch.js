@@ -9,20 +9,10 @@ import {
 import { noop } from 'lodash';
 import { withAnalytics } from '@andrew-codes/verdigris-analytics';
 
-const localTheme = () => ({
-  Switch: {
-    spacing: 4,
-    backgroundColor: 'gray',
-    borderColor: 'white',
-    color: '#00a9e0',
-    disabledColor: 'lightgray',
-    textColor: 'black',
-  },
-});
 const barWidth = 48;
 const deriveColor = ({ checked, disabled, theme }, defaultColor) => {
   if (disabled) return theme.Switch.disabledColor;
-  if (checked) return theme.Switch.color;
+  if (checked) return theme.Switch.checkedColor;
   return defaultColor;
 };
 
@@ -55,14 +45,14 @@ const Bar = createComponent(
 const Handle = createComponent(({ checked, disabled, theme }) => {
   const size = theme.typography.baseSize * theme.typography.lineHeight;
   return {
-    backgroundColor: deriveColor({ checked, disabled, theme }, 'white'),
+    backgroundColor: deriveColor(
+      { checked, disabled, theme },
+      theme.Switch.color,
+    ),
     borderRadius: '50%',
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: deriveColor(
-      { checked, disabled, theme },
-      theme.Switch.borderColor,
-    ),
+    borderColor: deriveColor({ checked, disabled, theme }, theme.Switch.color),
     boxShadow:
       '0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
     height: `${size}px`,
@@ -180,6 +170,42 @@ Switch.defaultProps = {
   disabled: false,
   onChange: noop,
 };
+Switch.themeDefinition = {
+  /**
+   * Color of the bar behind the circular knob.
+   */
+  backgroundColor: PropTypes.string,
+  /**
+   * Border of the circular knob when checked.
+   */
+  checkedColor: PropTypes.string,
+  /**
+   * Color of the circular knob when neither disabled OR checked.
+   */
+  color: PropTypes.string,
+  /**
+   * Color of knob when disabled.
+   */
+  disabledColor: PropTypes.string,
+  /**
+   * Controls spacing unit (padding, margin).
+   */
+  spacing: PropTypes.number,
+  /**
+   * Color of the label text.
+   */
+  textColor: PropTypes.string,
+};
+Switch.defaultThemeValues = {
+  backgroundColor: 'gray',
+  checkedColor: '#00a9e0',
+  color: 'white',
+  disabledColor: 'lightgray',
+  spacing: 4,
+  textColor: 'black',
+};
 
-export default applyTheme(baseTheme, localTheme)(withAnalytics()(Switch));
+export default applyTheme(baseTheme, () => ({
+  Switch: Switch.defaultThemeValues,
+}))(withAnalytics()(Switch));
 export { Switch };
