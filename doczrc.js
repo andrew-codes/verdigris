@@ -28,7 +28,7 @@ export default {
     },
     {
       name: 'Other Packages',
-      menu: ['SVG Icon Loader', 'StyleProvider', 'StyleContainer'],
+      menu: ['StyleProvider', 'StyleContainer', 'SVG Icon Loader'],
     },
   ],
   wrapper: '@andrew-codes/verdigris-style-provider',
