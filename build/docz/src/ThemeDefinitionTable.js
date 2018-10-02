@@ -15,10 +15,10 @@ const PropsTable = ({ of }) => (
   </div>
 );
 PropsTable.propTypes = {
-  of: PropTypes.oneOfType(
+  of: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.object),
     PropTypes.object,
-  ),
+  ]),
 };
 PropsTable.defaultProps = {
   of: {

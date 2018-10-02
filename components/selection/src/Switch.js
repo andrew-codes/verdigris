@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  applyTheme,
+  applyDefaultTheme,
   createComponent,
   utils,
 } from '@andrew-codes/verdigris-style-container';
@@ -220,7 +220,7 @@ Switch.defaultThemeValues = {
   width: 48,
 };
 
-export default applyTheme(() => ({
+export default applyDefaultTheme({
   Switch: Switch.defaultThemeValues,
-}))(withAnalytics()(Switch));
+})(withAnalytics()(Switch));
 export { Switch };

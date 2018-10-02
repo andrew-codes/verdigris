@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  applyTheme,
+  applyDefaultTheme,
   createComponent,
   withTheme,
   utils,
@@ -219,7 +219,7 @@ Chip.defaultThemeValues = {
   textColor: 'rgb(0, 0, 0)',
 };
 
-export default applyTheme(() => ({
+export default applyDefaultTheme({
   Chip: Chip.defaultThemeValues,
-}))(withTheme(withAnalytics()(Chip)));
+})(withTheme(withAnalytics()(Chip)));
 export { Chip };
