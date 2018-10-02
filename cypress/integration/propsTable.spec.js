@@ -1,11 +1,14 @@
 context('@andrew-codes/verdigris-docz', () => {
-  it('PropsTable filters out createAnalyticsEvent prop type from component documentation', () => {
-    cy.visit('/packages/chip/components/chip')
-      .contains('h2', 'API')
-      .next()
-      .find('.PropsTable')
-      .should('exist')
-      .find('createAnalyticsEvent')
-      .should('not.exist');
+  context('PropsTable', () => {
+    it('excludes propType createAnalyticsEvent from component documentation', () => {
+      cy.visit('/packages/chip/components/chip')
+        .contains('h2', 'Component API')
+        .next()
+        .find('.PropsTable')
+        .as('table')
+        .should('exist')
+        .find('createAnalyticsEvent')
+        .should('not.exist');
+    });
   });
 });

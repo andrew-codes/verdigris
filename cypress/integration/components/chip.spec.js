@@ -5,7 +5,11 @@ context('@andrew-codes/verdigris-chip', () => {
     cy.visit('/packages/chip/components/chip');
   });
   it('documentation page contains API section for Analytics components', () => {
-    cy.contains('h2', 'API')
+    cy.contains('h2', 'Component API')
+      .next()
+      .find('.PropsTable')
+      .should('exist');
+    cy.contains('h2', 'Theme API')
       .next()
       .find('.PropsTable')
       .should('exist');
