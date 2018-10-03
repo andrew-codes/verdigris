@@ -1,10 +1,10 @@
 import React from 'react';
 import { combineRules } from 'fela';
-import { ThemeProvider, connect } from 'react-fela';
+import { connect } from 'react-fela';
 import createFelaComponent from './createComponent';
 import * as utils from './styleUtils';
 
-export const createComponent = (rule, type = 'div', passThroughProps = []) =>
+const createComponent = (rule, type = 'div', passThroughProps = []) =>
   createFelaComponent(
     rule,
     type,
@@ -13,38 +13,47 @@ export const createComponent = (rule, type = 'div', passThroughProps = []) =>
       : passThroughProps,
   );
 
-export const createComponentStyles = (styleFunctions, component) =>
+const createComponentStyles = (styleFunctions, component) =>
   connect(styleFunctions)(component);
 
-export { ThemeProvider, connect, combineRules };
-
-export const reduceProps = (props, reduce) =>
+const reduceProps = (props, reduce) =>
   Object.keys(props)
     .map(key => [key, props[key]])
     .reduce((acc, [key, value]) => reduce(acc, key, value), {});
 
-export const filterNone = props =>
+const filterNoneProps = props =>
   reduceProps(props, (acc, key, value) => {
     if (value == null) return acc;
     acc[key] = value;
     return acc;
   });
 
-export const filterStyle = props =>
+const filterStyleProps = props =>
   reduceProps(props, (acc, key, value) => {
     if (key === 'style') return acc;
     acc[key] = value;
     return acc;
   });
 
-export const mapChildren = (children, func) =>
+const mapChildren = (children, func) =>
   React.Children.toArray(children).map(func);
 
-export { default as getComponentDisplayName } from './getComponentDisplayName';
-export { default as withRenderer } from './hoc/withRenderer';
-export { default as withTheme } from './hoc/withTheme';
+export { default as applyDefaultTheme } from './hoc/applyDefaultTheme';
 export { default as applyStaticStyles } from './hoc/applyStaticStyles';
 export { default as applyTheme } from './hoc/applyTheme';
-export { default as applyDefaultTheme } from './hoc/applyDefaultTheme';
+export { default as getComponentDisplayName } from './getComponentDisplayName';
 export { default as mergeThemes } from './mergeThemes';
-export { utils };
+export { default as ThemeProvider } from './ThemeProvider';
+export { default as withRenderer } from './hoc/withRenderer';
+export { default as withTheme } from './hoc/withTheme';
+export {
+  connect,
+  combineRules,
+  createComponent,
+  createComponentStyles,
+  filterNoneProps,
+  filterStyleProps,
+  mapChildren,
+  reduceProps,
+  utils,
+};
