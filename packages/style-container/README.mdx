@@ -4,7 +4,7 @@ menu: Other Packages
 route: /packages/style-container
 ---
 import { Playground, PropsTable } from '@andrew-codes/verdigris-docz'
-import { applyStaticStyles, applyTheme, createComponent, getComponentDisplayName, utils, withTheme } from './src'
+import { applyStaticStyles, applyTheme, createComponent, getComponentDisplayName, ThemeProvider, utils, withTheme } from './src'
 
 # StyleContainer Package
 This package contains several HoC and other utility functions when using and/or theming Verdigris components. It also contains the primary way to create custom, theme-enabled and stylable components.
@@ -58,6 +58,40 @@ import { utils } from '@andrew-codes/verdigris-style-container';
     const Header = createComponent(styleRule, 'h3');
 
     return <Header color="lightblue">This has a custom padding and no margins</Header>;
+  }}
+</Playground>
+
+## ThemeProvider
+Inject a theme to be merged into the current context's theme for a sub-tree of components.
+
+```js
+import { ThemeProvider } from '@andrew-codes/verdigris-style-container';
+```
+<Playground>
+  {() => {
+    const blueTheme = () => ({
+      backgroundColor: 'blue',
+      color: 'white',
+    });
+    const greenTheme = (ctxTheme) => ({
+      backgroundColor: 'green'
+    });
+
+    const styleRule = ({theme}) => ({
+      backgroundColor: theme.backgroundColor,
+      color: theme.color,
+    });
+
+    const Header = createComponent(styleRule, 'h3');
+
+    return (
+      <ThemeProvider theme={blueTheme}>
+        <Header>I use the blueTheme</Header>
+        <ThemeProvider theme={greenTheme}>
+          <Header>I use the greenTheme</Header>
+        </ThemeProvider>
+      </ThemeProvider>)
+      ;
   }}
 </Playground>
 
