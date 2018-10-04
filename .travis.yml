@@ -19,14 +19,12 @@ defaults: &deploySite
 jobs:
   include:
     - stage: 'Verify'
-      if: type = push
       install:
         - ./scripts/bin/ci-install.sh
       script:
         - yarn lint
 
     - stage: 'Verify'
-      if: type = push
       env:
         - NODE_ENV: test
       install:
