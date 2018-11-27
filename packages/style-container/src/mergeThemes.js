@@ -3,6 +3,7 @@ import { mergeWith } from 'lodash';
 const customizeMerge = (objValue, srcValue, key) => {
   if (Array.isArray(objValue)) {
     if (!Array.isArray(srcValue)) {
+      // eslint-disable-next-line no-console
       console.warn(
         `Cannot merge values for ${key}; one is an array and one is not. Did you mean for both of them to be an array?`,
       );

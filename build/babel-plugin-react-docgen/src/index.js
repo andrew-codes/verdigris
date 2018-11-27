@@ -1,4 +1,3 @@
-const Path = require('path');
 const _ = require('lodash');
 const ReactDocgen = require('react-docgen');
 const reactDocgenHandlers = require('react-docgen/dist/handlers');

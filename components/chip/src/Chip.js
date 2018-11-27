@@ -115,7 +115,7 @@ const Chip = ({
           <WithTheme>
             {theme => {
               const avatarSize = theme.Chip.fontSize * theme.Chip.lineHeight;
-              const deleteIconSize = avatarSize - theme.Chip.spacing * 4;
+
               return (
                 <ChipRoot
                   clickable={clickable}
@@ -149,9 +149,7 @@ const Chip = ({
                             }),
                           );
                         }}
-                      >
-                        {/* <CloseIcon color="inherit" size={deleteIconSize} /> */}
-                      </Delete>
+                      />
                     )}
                   </ComponentRoot>
                 </ChipRoot>
