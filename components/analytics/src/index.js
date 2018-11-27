@@ -1,4 +1,10 @@
-export { default as AnalyticsContext } from './AnalyticsContext';
-export { default as AnalyticsListener } from './AnalyticsListener';
-export { default as withAnalytics } from './withAnalytics';
-export { default as withAnalyticsContext } from './withAnalyticsContext';
+import AnalyticsContext, { WithAnalyticsContext } from './AnalyticsContext';
+import AnalyticsListener, { WithAnalyticsListener } from './AnalyticsListener';
+
+export {
+  AnalyticsContext,
+  AnalyticsListener,
+  WithAnalyticsContext,
+  WithAnalyticsListener,
+};
+export { default as WithAnalytics } from './WithAnalytics';

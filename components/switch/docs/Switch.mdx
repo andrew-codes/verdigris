@@ -1,0 +1,40 @@
+---
+name: Switch
+route: /packages/selection/components/switch
+menu: Data Entry
+---
+
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import Switch from '../src';
+
+## Usage
+
+A selection control used to select between one of only two states; on and off.
+
+## Examples
+
+<Playground data-test="examples">
+  <Switch />
+  <Switch label="check this out!" />
+  <Switch checked label="I see you checked it out" />
+  <Switch disabled label="this is not checked and disabled" />
+  <Switch checked disabled label="this is checked, but disabled" />
+  <div>
+    <h4>
+      Switch with onChange handler; analytics enabled (see console for logs)
+    </h4>
+    <Switch onChange={console.log} />
+  </div>
+</Playground>
+
+## Component API
+
+<PropsTable of={Switch} />
+
+## Theme API
+
+<ThemeDefinitionTable of={Switch} />

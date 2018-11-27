@@ -1,0 +1,175 @@
+---
+name: Custom Components
+route: /packages/analytics/custom-components
+menu: Analytics
+---
+
+import Chip from '@andrew-codes/verdigris-chip';
+import { Component } from 'react';
+import { Playground, PropsTable } from '@andrew-codes/verdigris-docz';
+import { AnalyticsContext, AnalyticsListener, WithAnalytics } from '../src';
+
+## Analytics with non-Verdigris Components
+
+Analytics events can also be configured and fired for any, non-verdigris, component. Let's build a `SaveButton` with analytics enabled.
+
+In order to enable the creation of an analytics event, we can leverage the `WithAnalytics` component. This uses a render prop to inject a `createAnalyticsEvent` function which will be used to create analytics events. We can either create the event within the `SaveButton` and fire immediately
+
+<Playground data-test="custom-components">
+  {() => {
+    const SaveButton = ({onClick }) => (
+      <WithAnalytics>
+        {createAnalyticsEvent => (
+            <button
+              onClick={evt =>{
+                  const analyticsEvent = createAnalyticsEvent({ action: 'save' });
+                  // optionally provide a channel
+                  const channel = '*';
+                  analyticsEvent.fire(channel);
+
+                  onClick(evt);
+              }}>
+              Save
+          </button>
+        )}
+     </WithAnalytics>
+    );
+
+    return (
+      <AnalyticsListener onEvent={({context, payload})=> console.log(context, payload)}>
+        <SaveButton onClick={console.log}/>
+      </AnalyticsListener>
+    );
+
+}}
+
+</Playground>
+
+or pass them to an event handler callback to be fired by a parent component:
+
+<Playground>
+  {() => {
+    const SaveButton = ({onClick}) => (
+      <WithAnalytics>
+        {createAnalyticsEvent => (
+            <button
+              onClick={evt =>{
+                  const analyticsEvent = createAnalyticsEvent({ action: 'save' });
+                  onClick(evt, analyticsEvent);
+              }}>
+              Save
+          </button>
+        )}
+     </WithAnalytics>
+    );
+
+    return (
+      <AnalyticsListener onEvent={({context, payload})=> console.log(context, payload)}>
+        <SaveButton onClick={(evt, analyticsEvent) => analyticsEvent.fire()}/>
+      </AnalyticsListener>
+    );
+
+}}
+
+</Playground>
+
+## Async Events
+
+In this example, we demonstrate firing an event during a component's lifecycle and unmounting.
+
+<Playground data-test="async-events">
+  {() => {
+    const SaveButton = ({ onClick })=> (
+      <WithAnalytics>
+        {createAnalyticsEvent => (
+          <button onClick={evt => {
+            const analyticsEvt = createAnalyticsEvent({ action: 'Save' });
+            onClick(evt, analyticsEvt);
+          }}>
+            Save
+          </button>
+        )}
+      </WithAnalytics>
+    );
+
+class Form extends Component {
+constructor(props) {
+super(props);
+this.handleSaveClick = this.handleSaveClick.bind(this);
+}
+
+    componentWillUnmount() {
+      console.log('Form will unmount');
+    }
+
+    render() {
+      return (
+        <AnalyticsListener channel="form" onEvent={this.handleAnalyticsEvent}>
+          <AnalyticsContext data={{ form: 'MyForm', formAction: 'new' }}>
+            <SaveButton onClick={this.handleSaveClick} />
+          </AnalyticsContext>
+        </AnalyticsListener>
+      );
+    }
+
+    handleSaveClick(evt, analyticsEvt) {
+      this.props.onSave(evt, analyticsEvt);
+    };
+
+    handleAnalyticsEvent(analyticsEvt) {
+      console.log(analyticsEvt.context, analyticsEvt.payload);
+    };
+
+}
+
+class App extends Component {
+constructor(props) {
+super(props);
+this.state = {
+saved: false,
+};
+
+      this.handleSave = this.handleSave.bind(this);
+    }
+
+    render() {
+      if (this.state.saved) {
+        return (
+            <span>Saved!</span>
+        );
+      }
+      return (
+        <Form onSave={this.handleSave} />
+      );
+    }
+
+    handleSave(evt, analyticsEvt) {
+      this.dispatchSave(analyticsEvt);
+      this.setState({
+        saved: true,
+      });
+    }
+
+    dispatchSave(analyticsEvt) {
+      new Promise(resolve =>
+        setTimeout(() => {
+          const oidTokenFromServer = 'User:1234';
+          resolve(oidTokenFromServer);
+        }, 10))
+      .then(oidToken => {
+        analyticsEvt.update({
+          oidToken,
+        });
+        analyticsEvt.fire('form');
+      })
+    }
+
+}
+
+    return (
+      <App />
+    );
+
+}}
+
+</Playground>

@@ -4,7 +4,7 @@
   "description": "Concise representation of an otherwise more complex entity.",
   "license": "MIT",
   "main": "./dist/index.js",
-  "verdigris:src": "./src/index.js",
+  "main:src": "./src/index.js",
   "verdigris": {
     "name": "Chip"
   },
@@ -20,12 +20,12 @@
   "dependencies": {
     "@andrew-codes/verdigris-analytics": "^0.0.0",
     "@andrew-codes/verdigris-icons": "^0.0.0",
-    "@andrew-codes/verdigris-style-container": "^0.0.0-development",
+    "@andrew-codes/verdigris-style-container": "^0.0.0",
+    "@andrew-codes/verdigris-style-provider": "0.0.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.2"
   },
   "devDependencies": {
-    "@andrew-codes/verdigris-docz": "^0.0.0-development",
-    "@andrew-codes/verdigris-theme-definition-loader": "^0.0.0"
+    "@andrew-codes/verdigris-docz": "^0.0.0"
   }
 }

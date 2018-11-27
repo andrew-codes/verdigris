@@ -1,32 +1,27 @@
-import { Children, Component } from 'react';
+import React, { createContext, Children } from 'react';
 import PropTypes from 'prop-types';
 
-const contextTypes = {
-  getAnalyticsContext: PropTypes.func,
+const { Consumer, Provider } = createContext();
+
+const getAnalyticsContext = (getAncestorAnalyticsContext, data) => () => {
+  const ancestorData =
+    typeof getAncestorAnalyticsContext === 'function'
+      ? getAncestorAnalyticsContext()
+      : [];
+  return [...ancestorData, data];
 };
 
-export default class AnalyticsContext extends Component {
-  static contextTypes = contextTypes;
-
-  static childContextTypes = contextTypes;
-
-  getChildContext = () => ({
-    getAnalyticsContext: this.getAnalyticsContext,
-  });
-
-  getAnalyticsContext = () => {
-    const { data } = this.props;
-    const { getAnalyticsContext } = this.context;
-    const ancestorData =
-      typeof getAnalyticsContext === 'function' ? getAnalyticsContext() : [];
-    return [...ancestorData, data];
-  };
-
-  render() {
-    const { children } = this.props;
-    return Children.only(children);
-  }
-}
+const AnalyticsContext = ({ children, data }) => {
+  return (
+    <Consumer>
+      {getAnalyticsContextValue => (
+        <Provider value={getAnalyticsContext(getAnalyticsContextValue, data)}>
+          {Children.only(children)}
+        </Provider>
+      )}
+    </Consumer>
+  );
+};
 AnalyticsContext.propTypes = {
   children: PropTypes.node.isRequired,
   /**
@@ -35,3 +30,5 @@ AnalyticsContext.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.any.isRequired,
 };
+export default AnalyticsContext;
+export const WithAnalyticsContext = Consumer;

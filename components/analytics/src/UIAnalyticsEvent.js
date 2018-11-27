@@ -6,18 +6,20 @@ export default class UIAnalyticsEvent {
     this.context = props.context || [];
     this.handlers = props.handlers || [];
     this.hasFired = false;
+    this.fire = this.fire.bind(this);
+    this.update = this.update.bind(this);
   }
 
-  fire = channel => {
+  fire(channel) {
     if (this.hasFired) {
       warn('Cannot fire events more than one time.');
       return;
     }
     this.handlers.forEach(handler => handler(this, channel));
     this.hasFired = true;
-  };
+  }
 
-  update = value => {
+  update(value) {
     if (this.hasFired) {
       warn('Cannot update an event after firing');
       return this;
@@ -31,5 +33,5 @@ export default class UIAnalyticsEvent {
           };
 
     return this;
-  };
+  }
 }

@@ -1,16 +1,18 @@
-import React from 'react';
 import { combineRules } from 'fela';
 import { connect } from 'react-fela';
 import createFelaComponent from './createComponent';
-import * as utils from './styleUtils';
+import * as styleUtils from './styleUtils';
+import { ThemeProvider, WithTheme } from './ThemeProvider';
 
 const createComponent = (rule, type = 'div', passThroughProps = []) =>
   createFelaComponent(
     rule,
     type,
+    /* eslint-disable react/forbid-foreign-prop-types */
     type.propTypes
-      ? passThroughProps.concat(Object.keys(type.propTypes))
+      ? passThroughProps.concat(Object.keys(type.propType))
       : passThroughProps,
+    /* eslint-enable react/forbid-foreign-prop-types */
   );
 
 const createComponentStyles = (styleFunctions, component) =>
@@ -35,17 +37,10 @@ const filterStyleProps = props =>
     return acc;
   });
 
-const mapChildren = (children, func) =>
-  React.Children.toArray(children).map(func);
-
-export { default as applyDefaultTheme } from './hoc/applyDefaultTheme';
-export { default as applyStaticStyles } from './hoc/applyStaticStyles';
-export { default as applyTheme } from './hoc/applyTheme';
+export { default as applyStaticStyles } from './applyStaticStyles';
 export { default as getComponentDisplayName } from './getComponentDisplayName';
 export { default as mergeThemes } from './mergeThemes';
-export { default as ThemeProvider } from './ThemeProvider';
-export { default as withRenderer } from './hoc/withRenderer';
-export { default as withTheme } from './hoc/withTheme';
+export { default as WithRenderer } from './WithRenderer';
 export {
   connect,
   combineRules,
@@ -53,7 +48,8 @@ export {
   createComponentStyles,
   filterNoneProps,
   filterStyleProps,
-  mapChildren,
   reduceProps,
-  utils,
+  ThemeProvider,
+  styleUtils,
+  WithTheme,
 };

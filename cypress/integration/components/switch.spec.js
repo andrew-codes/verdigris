@@ -1,21 +1,19 @@
 context('@andrew-codes/verdigris-switch', () => {
   context('<Switch />', () => {
     before(() => {
-      cy.visit('/packages/selection/components/switch');
+      cy.navigate('Data Entry', 'Switch');
     });
     it('contains an API section in the docs', () => {
       cy.contains('h2', 'Component API')
-        .next()
-        .find('.PropsTable')
+        .next('[data-component="PropsTable"]')
         .should('exist');
       cy.contains('h2', 'Theme API')
-        .next()
-        .find('.PropsTable')
+        .next('[data-component="PropsTable"]')
         .should('exist');
     });
     it('can render a switch that is not checked', () => {
       cy.contains('h2', 'Examples')
-        .siblings('[data-testid="examples"]')
+        .siblings('[data-test="examples"]')
         .find('[data-component="Switch"]')
         .first()
         .find('input')
@@ -23,7 +21,7 @@ context('@andrew-codes/verdigris-switch', () => {
     });
     it('can render a switch that is checked', () => {
       cy.contains('h2', 'Examples')
-        .siblings('[data-testid="examples"]')
+        .siblings('[data-test="examples"]')
         .find('[data-component="Switch"]')
         .then(els => els[2])
         .find('input')
@@ -31,7 +29,7 @@ context('@andrew-codes/verdigris-switch', () => {
     });
     it('does not visibly show the checkbox input control', () => {
       cy.contains('h2', 'Examples')
-        .siblings('[data-testid="examples"]')
+        .siblings('[data-test="examples"]')
         .find('[data-component="Switch"]')
         .first()
         .find('input')
@@ -39,7 +37,7 @@ context('@andrew-codes/verdigris-switch', () => {
     });
     it('properly renders a label to the right of the switch', () => {
       cy.contains('h2', 'Examples')
-        .siblings('[data-testid="examples"]')
+        .siblings('[data-test="examples"]')
         .find('[data-component="Switch"]')
         .then(els => els[1])
         .find('div')

@@ -2,21 +2,19 @@
 
 context('@andrew-codes/verdigris-chip', () => {
   before(() => {
-    cy.visit('/packages/chip/components/chip');
+    cy.navigate('Data Display', 'Chip');
   });
   it('documentation page contains API section for Analytics components', () => {
     cy.contains('h2', 'Component API')
-      .next()
-      .find('.PropsTable')
+      .next('[data-component="PropsTable"]')
       .should('exist');
     cy.contains('h2', 'Theme API')
-      .next()
-      .find('.PropsTable')
+      .next('[data-component="PropsTable"]')
       .should('exist');
   });
   it('can render basic textual chips', () => {
     cy.contains('h2', 'Rendering Basic Chips')
-      .siblings('[data-testid="basic-chips"]')
+      .siblings('[data-test="basic-chips"]')
       .find('[data-component="Chip"]')
       .first()
       .should('have.text', 'basic text chip')
@@ -29,7 +27,7 @@ context('@andrew-codes/verdigris-chip', () => {
   });
   it('the root component can be configured to a different component', () => {
     cy.contains('h2', 'Using Custom Component')
-      .siblings('[data-testid="custom-component"]')
+      .siblings('[data-test="custom-component"]')
       .find('[data-component="Chip"]')
       .find('a')
       .should('exist')
@@ -37,7 +35,7 @@ context('@andrew-codes/verdigris-chip', () => {
   });
   it('chips can be marked as clickable and therefore respond to onClick handler', () => {
     cy.contains('h2', 'Clickable Chips')
-      .siblings('[data-testid="clickable-chips"]')
+      .siblings('[data-test="clickable-chips"]')
       .find('[data-component="Chip"]')
       .first()
       .should('have.css', 'cursor', 'pointer')
@@ -48,7 +46,7 @@ context('@andrew-codes/verdigris-chip', () => {
   });
   it('chips not marked as clickable do not respond to onClick handler', () => {
     cy.contains('h2', 'Rendering Basic Chips')
-      .siblings('[data-testid="basic-chips"]')
+      .siblings('[data-test="basic-chips"]')
       .find('[data-component="Chip"]')
       .first()
       .should('have.text', 'basic text chip')
@@ -57,7 +55,7 @@ context('@andrew-codes/verdigris-chip', () => {
   });
   it('chips can be marked as deletable and respond to onDelete click handler', () => {
     cy.contains('h2', 'Deletable Chips')
-      .siblings('[data-testid="deletable-chips"]')
+      .siblings('[data-test="deletable-chips"]')
       .find('[data-component="Chip"]')
       .first()
       .contains('deletable chip')
@@ -70,7 +68,7 @@ context('@andrew-codes/verdigris-chip', () => {
   });
   it('chips do not fire onClick handler when deleting a chip', () => {
     cy.contains('h2', 'Deletable Chips')
-      .siblings('[data-testid="deletable-chips"]')
+      .siblings('[data-test="deletable-chips"]')
       .find('[data-component="Chip"]')
       .first()
       .next()

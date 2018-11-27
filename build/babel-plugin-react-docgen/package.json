@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "@andrew-codes/babel-plugin-react-docgen",
+  "version": "0.0.0",
+  "description": "Babel plugin for react-docgen that enables customization of resolvers and handlers",
+  "license": "MIT",
+  "main": "./src/index.js",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "react-docgen": "^2.21.0",
+    "recast": "^0.16.1"
+  }
+}

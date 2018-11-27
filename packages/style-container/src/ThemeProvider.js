@@ -1,33 +1,25 @@
 import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
+import React, { createContext } from 'react';
 import mergeThemes from './mergeThemes';
 
-class ThemeProvider extends Component {
-  getChildContext() {
-    const { theme = {} } = this.context;
-    const { theme: propsTheme } = this.props;
-    return {
-      theme: mergeThemes(theme, propsTheme),
-    };
-  }
+const { Consumer, Provider } = createContext();
 
-  render() {
-    const { children } = this.props;
-    return <Fragment>{children}</Fragment>;
-  }
-}
+const ThemeProvider = ({ children, theme }) => (
+  <Consumer>
+    {contextTheme => {
+      const mergedTheme = mergeThemes(contextTheme, theme);
+      return <Provider value={mergedTheme}>{children}</Provider>;
+    }}
+  </Consumer>
+);
 ThemeProvider.propTypes = {
   children: PropTypes.node,
+  /**
+   * Theme to be provided to all components in the sub-tree. If a function, accepts existing theme as only parameter.
+   */
   // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object.isRequired,
-};
-ThemeProvider.childContextTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
-};
-ThemeProvider.contextTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
+  theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-export default ThemeProvider;
+export const WithTheme = Consumer;
+export { ThemeProvider };

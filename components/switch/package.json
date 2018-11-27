@@ -1,0 +1,24 @@
+{
+  "name": "@andrew-codes/verdigris-switch",
+  "version": "0.0.0",
+  "description": "Selection controls; switch, checkbox, and radio button.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "main:src": "./src/index.js",
+  "verdigris": {
+    "name": "Selection"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@andrew-codes/verdigris-analytics": "^0.0.0",
+    "@andrew-codes/verdigris-style-container": "^0.0.0",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "@andrew-codes/verdigris-docz": "^0.0.0"
+  }
+}

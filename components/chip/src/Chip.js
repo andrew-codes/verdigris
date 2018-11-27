@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import {
-  applyDefaultTheme,
   createComponent,
-  withTheme,
-  utils,
+  styleUtils,
+  WithTheme,
 } from '@andrew-codes/verdigris-style-container';
-import { CloseIcon } from '@andrew-codes/verdigris-icons';
+// import { CloseIcon } from '@andrew-codes/verdigris-icons';
 import { noop } from 'lodash';
-import { withAnalytics } from '@andrew-codes/verdigris-analytics';
+import { WithAnalytics } from '@andrew-codes/verdigris-analytics';
 
 const ChipRoot = createComponent(
   ({ clickable, fullWidth, theme }) => ({
@@ -47,15 +47,15 @@ const Content = createComponent(
     fontSize: `${theme.Chip.fontSize}px`,
     lineHeight: theme.Chip.lineHeight,
     minWidth: `${theme.Chip.spacing * 2}px`,
-    ...utils.conditionalStyles(
+    ...styleUtils.conditionalStyles(
       hasAvatar,
-      utils.padding(
+      styleUtils.padding(
         `${theme.Chip.spacing}px`,
         `${theme.Chip.spacing * 2}px`,
         `${theme.Chip.spacing}px`,
         `${theme.Chip.spacing}px`,
       ),
-      utils.padding(
+      styleUtils.padding(
         `${theme.Chip.spacing}px`,
         `${theme.Chip.spacing * 2}px`,
         `${theme.Chip.spacing}px`,
@@ -85,12 +85,10 @@ const Chip = ({
   avatar,
   clickable,
   component,
-  createAnalyticsEvent,
   fullWidth,
   label,
   onClick,
   onDelete,
-  theme,
   ...rest
 }) => {
   const ComponentRoot = createComponent(
@@ -109,38 +107,58 @@ const Chip = ({
     component,
     ['onClick', ...Object.keys(rest)],
   );
-  const avatarSize = theme.Chip.fontSize * theme.Chip.lineHeight;
-  const deleteIconSize = avatarSize - theme.Chip.spacing * 4;
 
   return (
-    <ChipRoot clickable={clickable} data-component="Chip" fullWidth={fullWidth}>
-      <ComponentRoot
-        {...rest}
-        onClick={evt => {
-          if (!clickable) return;
-          onClick(
-            evt,
-            createAnalyticsEvent({ component: 'Chip', event: 'click' }),
-          );
-        }}
-      >
-        {avatar && <Avatar size={avatarSize}>{avatar}</Avatar>}
-        <Content hasAvatar={!!avatar}>{label}</Content>
-        {onDelete && (
-          <Delete
-            onClick={evt => {
-              evt.stopPropagation();
-              onDelete(
-                evt,
-                createAnalyticsEvent({ component: 'Chip', event: 'delete' }),
+    <StyleProvider theme={{ Chip: Chip.defaultThemeValues }}>
+      <WithAnalytics>
+        {createAnalyticsEvent => (
+          <WithTheme>
+            {theme => {
+              const avatarSize = theme.Chip.fontSize * theme.Chip.lineHeight;
+
+              return (
+                <ChipRoot
+                  clickable={clickable}
+                  data-component="Chip"
+                  fullWidth={fullWidth}
+                >
+                  <ComponentRoot
+                    {...rest}
+                    onClick={evt => {
+                      if (!clickable) return;
+                      onClick(
+                        evt,
+                        createAnalyticsEvent({
+                          component: 'Chip',
+                          event: 'click',
+                        }),
+                      );
+                    }}
+                  >
+                    {avatar && <Avatar size={avatarSize}>{avatar}</Avatar>}
+                    <Content hasAvatar={!!avatar}>{label}</Content>
+                    {onDelete && (
+                      <Delete
+                        onClick={evt => {
+                          evt.stopPropagation();
+                          onDelete(
+                            evt,
+                            createAnalyticsEvent({
+                              component: 'Chip',
+                              event: 'delete',
+                            }),
+                          );
+                        }}
+                      />
+                    )}
+                  </ComponentRoot>
+                </ChipRoot>
               );
             }}
-          >
-            <CloseIcon color="inherit" size={deleteIconSize} />
-          </Delete>
+          </WithTheme>
         )}
-      </ComponentRoot>
-    </ChipRoot>
+      </WithAnalytics>
+    </StyleProvider>
   );
 };
 Chip.propTypes = {
@@ -160,7 +178,6 @@ Chip.propTypes = {
     PropTypes.element,
     PropTypes.func,
   ]),
-  createAnalyticsEvent: PropTypes.func,
   /**
    * When true, Chip will expand to fill full width of parent.
    */
@@ -219,7 +236,4 @@ Chip.defaultThemeValues = {
   textColor: 'rgb(0, 0, 0)',
 };
 
-export default applyDefaultTheme({
-  Chip: Chip.defaultThemeValues,
-})(withTheme(withAnalytics()(Chip)));
-export { Chip };
+export default Chip;

@@ -5,8 +5,7 @@ context('@andrew-codes/verdigris-docz', () => {
     it('lists the theme definition in a tabular format and hides the Required column', () => {
       cy.visit('/packages/chip/components/chip')
         .contains('h2', 'Theme API')
-        .next()
-        .find('.PropsTable')
+        .next('[data-component="PropsTable"]')
         .as('table');
 
       cy.get('@table')
@@ -16,19 +15,10 @@ context('@andrew-codes/verdigris-docz', () => {
           expect(textValues).to.eql([
             'Property',
             'Type',
-            'Required',
             'Default',
             'Description',
           ]);
         });
-
-      cy.get('@table')
-        .find('thead')
-        .contains('Required')
-        .should('have.css', 'display', 'none');
-      cy.get('@table')
-        .find('tbody td:nth-of-type(3)')
-        .should('have.css', 'display', 'none');
     });
   });
 });
