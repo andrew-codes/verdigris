@@ -1,6 +1,6 @@
 context('main navigation', () => {
   const mainNav = [
-    ['Getting Started', '/'],
+    ['Start Here', '/'],
     ['Customization', '/getting-started/customization'],
     ['Contributing', '/guides/contributing', 'Guides'],
     ['Tour of Code Base', '/guides/tour-of-code-base', 'Guides'],

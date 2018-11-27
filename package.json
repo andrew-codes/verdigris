@@ -18,7 +18,8 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "cy:run:ci": "cypress run",
-    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint ."
+    "lint:eslint": "eslint --print-config .eslintrc.json | eslint-config-prettier-check && eslint .",
+    "verify": "yarn lint && yarn test"
   },
   "engines": {
     "node": ">=8.5.0",
