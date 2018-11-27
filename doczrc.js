@@ -15,11 +15,21 @@ export default {
       menu: ['Contributing', 'Tour of Code Base'],
     },
     {
-      name: 'Components',
+      name: 'Analytics',
+      menu: ['Overview', 'Custom Components'],
+    },
+    {
+      name: 'Layout',
+    },
+    {
+      name: 'Data Entry',
+    },
+    {
+      name: 'Data Display',
     },
     {
       name: 'Other Packages',
-      menu: ['StyleProvider', 'StyleContainer', 'SVG Icon Loader'],
+      menu: ['StyleProvider', 'StyleContainer'],
     },
   ],
   modifyBundlerConfig: config => ({

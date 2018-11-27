@@ -1,7 +1,7 @@
 ---
 name: Switch
 route: /packages/selection/components/switch
-menu: Components
+menu: Data Entry
 ---
 
 import {
@@ -9,11 +9,11 @@ import {
   PropsTable,
   ThemeDefinitionTable,
 } from '@andrew-codes/verdigris-docz';
-import Switch from './src';
+import Switch from '../src';
 
 ## Usage
 
-A selection control used to select between one of only two states.
+A selection control used to select between one of only two states; on and off.
 
 ## Examples
 
@@ -27,11 +27,7 @@ A selection control used to select between one of only two states.
     <h4>
       Switch with onChange handler; analytics enabled (see console for logs)
     </h4>
-    <Switch
-      onChange={(evt, analyticsEvent, isChecked) =>
-        console.log(evt, analyticsEvent, isChecked)
-      }
-    />
+    <Switch onChange={console.log} />
   </div>
 </Playground>
 

@@ -1,7 +1,7 @@
 context('@andrew-codes/verdigris-switch', () => {
   context('<Switch />', () => {
     before(() => {
-      cy.visit('/packages/selection/components/switch');
+      cy.navigate('Data Entry', 'Switch');
     });
     it('contains an API section in the docs', () => {
       cy.contains('h2', 'Component API')

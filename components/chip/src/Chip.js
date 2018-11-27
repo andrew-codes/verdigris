@@ -191,7 +191,7 @@ Chip.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * @deprecated Callback invoked when chip delete icon is clicked. Providing this will cause the delete icon to show.
+   * Callback invoked when chip delete icon is clicked. Providing this will cause the delete icon to show.
    */
   onDelete: PropTypes.func,
 };

@@ -1,0 +1,112 @@
+---
+name: Overview
+route: /packages/analytics/overview
+menu: Analytics
+---
+
+import Chip from '@andrew-codes/verdigris-chip';
+import { Playground, PropsTable } from '@andrew-codes/verdigris-docz';
+import { AnalyticsContext, AnalyticsListener, WithAnalytics } from '../src';
+
+## Usage
+
+The analytics set of components provide a standardized way to trigger and consume analytics events. The actual handling of any event is left up to the consumer; enabling a wide range of use cases. One example is this site; firing analytics events on page views and then consuming them in Google Analytics.
+
+Analytics events will be supported by all relevant Verdigris components; however **any component** can fire these events.
+
+> **Any component** can fire analytics events. See [using analytics with Custom Components](/packages/analytics/custom-components).
+
+## Firing Events
+
+**Event handlers** for Verdigris components provide an **analytics event** as the **second parameter**. Analytics events must be fired in order to be consumed. Data may be provided to the `fire()` invokation to pass along as the payload. An example `Chip` component providing the analytics event as second parameter:
+
+<Playground>
+  {() => (
+    <Chip
+      clickable
+      onClick={(evt, analyticsEvt) => {
+        analyticsEvt.fire('some payload');
+      }}
+      label="Name"
+    />
+  )}
+</Playground>
+
+## Handling Fired Events
+
+However, firing an event is useless without a consumer to handle the fired event. Finally, we need to set up a listener via the `AnalyticsListener` component. The `AnalyticsListener`'s `onEvent` callback will be invoked for every fired analytics event. This is where you can capture analytics events and send them to Google Analytics or some other back-end service. See the `console` for logged events.
+
+<Playground data-test="handling-fired-events">
+  {() => (
+    <AnalyticsListener onEvent={({ payload }) => console.log(payload)}>
+      <Chip
+        clickable
+        onClick={(evt, analyticsEvt) => {
+          analyticsEvt.fire('some payload');
+        }}
+        label="Name"
+      />
+    </AnalyticsListener>
+  )}
+</Playground>
+
+## Updating Events
+
+You can also update the analytics event with additional payload information.
+
+> Remember, you can only update an analytics event before it has fired.
+
+<Playground data-test="updating-event">
+  {() => {
+    const UserChip = () => (
+      <Chip
+        clickable
+        onClick={(evt, analyticsEvt) => {
+          // Update with an object literal
+          analyticsEvt.update({
+            action: 'save',
+          });
+          // Update with a callback
+          analyticsEvt.update(payload => Object.assign({},
+            payload,
+            {
+              additionalAction: payload.action === 'save' ? 'save item' : null,
+            }));
+          analyticsEvt.fire();
+        }}
+        label="Name" />
+    );
+
+    return (
+      <AnalyticsListener onEvent={({payload}) => console.log(payload)}>
+        <UserChip />
+      </AnalyticsListener>
+    );
+
+}}
+
+</Playground>
+
+## Providing Contextual Data
+
+Additionally, we can provide additional contextual data to our analytics event via the 'AnalyticsContext` component.
+
+<Playground data-test="contextual-data">
+  {() => (
+    <AnalyticsListener
+      onEvent={({ context, payload }) => console.log(context, payload)}
+    >
+      <AnalyticsContext data={{ oidToken: 'User:1' }}>
+        <AnalyticsContext data={{ friend: 'User:2' }}>
+          <Chip
+            clickable
+            onClick={(evt, analyticsEvt) => {
+              analyticsEvt.fire();
+            }}
+            label="Name"
+          />
+        </AnalyticsContext>
+      </AnalyticsContext>
+    </AnalyticsListener>
+  )}
+</Playground>

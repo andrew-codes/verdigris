@@ -36,7 +36,7 @@ const WithAnalytics = ({ children }) => {
   );
 };
 WithAnalytics.propTypes = {
-  /** function child that will receive an analytics event. */
+  /** render prop that will receive the createAnalytics function. */
   children: PropTypes.func.isRequired,
 };
 

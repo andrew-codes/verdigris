@@ -2,7 +2,7 @@
 
 context('@andrew-codes/verdigris-chip', () => {
   before(() => {
-    cy.visit('/packages/chip/components/chip');
+    cy.navigate('Data Display', 'Chip');
   });
   it('documentation page contains API section for Analytics components', () => {
     cy.contains('h2', 'Component API')
