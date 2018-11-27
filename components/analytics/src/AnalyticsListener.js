@@ -1,41 +1,41 @@
-import { Children, Component } from 'react';
+import React, { createContext, Children } from 'react';
 import PropTypes from 'prop-types';
 
-export default class AnalyticsListener extends Component {
-  static contextTypes = {
-    getAnalyticsEventHandlers: PropTypes.func,
+const { Consumer, Provider } = createContext();
+
+const getAnalyticsEventHandlers = (
+  getAnalyticsEventHandlersValue,
+  channel,
+  onEvent,
+) => () => {
+  const parentEventHandlers =
+    typeof getAnalyticsEventHandlersValue === 'function'
+      ? getAnalyticsEventHandlersValue()
+      : [];
+
+  const handler = (event, eventChannel) => {
+    if (channel === '*' || channel === eventChannel) {
+      onEvent(event, eventChannel);
+    }
   };
+  return [handler, ...parentEventHandlers];
+};
 
-  static childContextTypes = {
-    getAnalyticsEventHandlers: PropTypes.func.isRequired,
-  };
-
-  getChildContext = () => ({
-    getAnalyticsEventHandlers: this.getAnalyticsEventHandlers,
-  });
-
-  render() {
-    const { children } = this.props;
-    return Children.only(children);
-  }
-
-  getAnalyticsEventHandlers = () => {
-    const { channel, onEvent } = this.props;
-    const { getAnalyticsEventHandlers } = this.context;
-
-    const parentEventHandlers =
-      typeof getAnalyticsEventHandlers === 'function'
-        ? getAnalyticsEventHandlers()
-        : [];
-
-    const handler = (event, eventChannel) => {
-      if (channel === '*' || channel === eventChannel) {
-        onEvent(event, eventChannel);
-      }
-    };
-    return [handler, ...parentEventHandlers];
-  };
-}
+const AnalyticsListener = ({ children, channel, onEvent }) => (
+  <Consumer>
+    {getAncestorAnalyticsEventHandlers => (
+      <Provider
+        value={getAnalyticsEventHandlers(
+          getAncestorAnalyticsEventHandlers,
+          channel,
+          onEvent,
+        )}
+      >
+        {Children.only(children)}
+      </Provider>
+    )}
+  </Consumer>
+);
 AnalyticsListener.propTypes = {
   children: PropTypes.node.isRequired,
   /**
@@ -50,3 +50,5 @@ AnalyticsListener.propTypes = {
 AnalyticsListener.defaultProps = {
   channel: '*',
 };
+export default AnalyticsListener;
+export const WithAnalyticsListener = Consumer;

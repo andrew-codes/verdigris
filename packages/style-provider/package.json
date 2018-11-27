@@ -1,12 +1,12 @@
 {
   "name": "@andrew-codes/verdigris-style-provider",
   "description": "",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "author": "Andrew Smith <andrew@andrew.codes>",
   "repository": "https://github.com/andrew-codes/verdigris.git",
   "license": "MIT",
   "main": "./dist/index.js",
-  "verdigris:src": "./src/index.js",
+  "main:src": "./src/index.js",
   "files": [
     "dist"
   ],
@@ -27,6 +27,6 @@
     "react": "^16.5.2"
   },
   "devDependencies": {
-    "@andrew-codes/verdigris-docz": "^0.0.0-development"
+    "@andrew-codes/verdigris-docz": "^0.0.0"
   }
 }

@@ -5,7 +5,12 @@ import React, {
   isValidElement,
   cloneElement,
 } from 'react';
-import { Provider } from 'react-fela';
+import {
+  mergeThemes,
+  ThemeProvider,
+  WithTheme,
+} from '@andrew-codes/verdigris-style-container';
+import { Provider as FelaProvider } from 'react-fela';
 import createRenderer from './createRenderer';
 
 let singletonRenderer;
@@ -19,21 +24,20 @@ const getRenderer = ({ dev, renderer }) => {
   return singletonRenderer;
 };
 class StyleProvider extends Component {
-  getChildContext() {
-    return {
-      theme: {},
-    };
-  }
-
   render() {
-    const { dev, children, renderer, ...rest } = this.props;
+    const { dev, children, renderer, theme, ...rest } = this.props;
     const providerRenderer = getRenderer({ dev, renderer });
     const child = Children.only(children);
-
     return (
-      <Provider renderer={providerRenderer}>
-        {isValidElement(child) ? cloneElement(child, { ...rest }) : child}
-      </Provider>
+      <FelaProvider renderer={providerRenderer}>
+        <WithTheme>
+          {(ctxTheme = () => {}) => (
+            <ThemeProvider theme={mergeThemes(theme, ctxTheme)}>
+              {isValidElement(child) ? cloneElement(child, { ...rest }) : child}
+            </ThemeProvider>
+          )}
+        </WithTheme>
+      </FelaProvider>
     );
   }
 }
@@ -51,13 +55,13 @@ StyleProvider.propTypes = {
    */
   // eslint-disable-next-line react/forbid-prop-types
   renderer: PropTypes.object,
+  /** Localized theme for a component found in this library. Enables co-locating theme data with each component. */
+  // eslint-disable-next-line react/forbid-prop-types
+  theme: PropTypes.object,
 };
 StyleProvider.defaultProps = {
   dev: false,
-};
-StyleProvider.childContextTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object,
+  theme: {},
 };
 
 export default StyleProvider;

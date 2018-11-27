@@ -16,64 +16,53 @@ export default {
     },
     {
       name: 'Components',
-      menu: [
-        'Analytics',
-        'Chip',
-        'CodeBlock',
-        'InlineCode',
-        'SvgIcon',
-        'Icons',
-        'Switch',
-      ],
     },
     {
       name: 'Other Packages',
       menu: ['StyleProvider', 'StyleContainer', 'SVG Icon Loader'],
     },
   ],
-  wrapper: '@andrew-codes/verdigris-style-provider',
   modifyBundlerConfig: config => ({
     ...config,
-    module: {
-      ...config.module,
-      rules: config.module.rules
-        .filter(rule => !'icon.svg'.match(rule.test))
-        .concat([
-          {
-            test: /\.icon\.svg$/,
-            use: [
-              {
-                loader: require.resolve('babel-loader'),
-                options: {
-                  presets: ['@babel/preset-env', '@babel/preset-react'],
-                  plugins: [
-                    '@babel/plugin-proposal-object-rest-spread',
-                    [
-                      'babel-plugin-transform-react-remove-prop-types',
-                      {
-                        mode: 'wrap',
-                        ignoreFilenames: ['node_modules'],
-                      },
-                    ],
-                  ],
-                },
-              },
-              {
-                loader: require.resolve(
-                  '@andrew-codes/verdigris-svg-icon-loader',
-                ),
-              },
-            ],
-          },
-        ]),
-    },
     resolve: {
       ...config.resolve,
-      mainFields: ['verdigris:src', 'main'],
+      mainFields: ['main:src', 'main'],
     },
   }),
-  modifyBabelRc: babelrc => ({
-    ...babelrc,
-    babelrc: true,
+  modifyBabelRc: config => ({
+    babelrc: false,
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          targets: {
+            esmodules: true,
+          },
+        },
+      ],
+      '@babel/preset-react',
+    ],
+    plugins: config.plugins.concat([
+      '@babel/plugin-proposal-object-rest-spread',
+      '@babel/plugin-syntax-dynamic-import',
+      'babel-plugin-transform-react-fela-display-name',
+      [
+        'babel-plugin-transform-react-remove-prop-types',
+        {
+          mode: 'wrap',
+          ignoreFilenames: ['node_modules'],
+        },
+      ],
+      'babel-plugin-dev-expression',
+      [
+        '@andrew-codes/babel-plugin-react-docgen',
+        {
+          additionalHandlers: [
+            '@andrew-codes/theme-definition-handler',
+            'react-docgen-deprecation-handler',
+          ],
+        },
+      ],
+    ]),
   }),
 };
