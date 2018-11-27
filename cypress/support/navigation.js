@@ -2,7 +2,7 @@ Cypress.Commands.add('navigate', (subMenuName, pageName) => {
   cy.visit('/')
     .get('nav')
     .as('nav');
-  if (pageName) {
+  if (subMenuName && pageName) {
     cy.get('@nav')
       .contains('a', subMenuName)
       .click();
