@@ -35,7 +35,7 @@ Event handlers for Verdigris components provide an analytics event as the second
 
 Finally, we need to set up a listener to consume fired analytics events. This can be accomplished with the `AnalyticsListener` component.
 
-<Playground testId="handling-fired-events">
+<Playground data-test="handling-fired-events">
   {() => (
     <AnalyticsListener onEvent={({ payload }) => console.log(payload)}>
       <Chip
@@ -55,7 +55,7 @@ The `AnalyticsListener`'s `onEvent` callback will be invoked for every fired ana
 
 You can also update the analytics event with additional payload information. Remember, you can only update an analytics event before it has fired.
 
-<Playground testId="updating-event">
+<Playground data-test="updating-event">
   {() => {
     const UserChip = () => (
       <Chip
@@ -90,7 +90,7 @@ You can also update the analytics event with additional payload information. Rem
 
 Additionally, we can provide additional contextual data to our analytics event via the 'AnalyticsContext` component.
 
-<Playground testId="contextual-data">
+<Playground data-test="contextual-data">
   {() => (
     <AnalyticsListener
       onEvent={({ context, payload }) => console.log(context, payload)}
@@ -116,7 +116,7 @@ Analytics events can also be configured and fired for any, non-verdigris, compon
 
 In order to enable the creation of an analytics event, we can leverage the `withAnalytics` HoC. This will inject a `createAnalyticsEvent` function as a property to our `SaveButton` component. We can use the injected prop function to create analytics events and either fire them immediately:
 
-<Playground testId="custom-components">
+<Playground data-test="custom-components">
   {() => {
     const SaveButton = ({onClick }) => (
       <WithAnalytics>
@@ -176,7 +176,7 @@ Or pass them to an event handler callback to be fired by a parent component:
 
 ## Async Events
 
-<Playground testId="async-events">
+<Playground data-test="async-events">
   {() => {
     const SaveButton = ({ onClick })=> (
       <WithAnalytics>

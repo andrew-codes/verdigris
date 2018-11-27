@@ -6,12 +6,7 @@ context('main navigation', () => {
     ['Tour of Code Base', '/guides/tour-of-code-base', 'Guides'],
     ['Analytics', '/packages/analytics', 'Components'],
     ['Chip', '/packages/chip/components/chip', 'Components'],
-    ['CodeBlock', '/packages/code/components/codeblock', 'Components'],
-    ['InlineCode', '/packages/code/components/inlinecode', 'Components'],
-    ['SvgIcon', '/packages/icons/components/SvgIcon', 'Components'],
-    ['Icons', '/packages/icons', 'Components'],
     ['Switch', '/packages/selection/components/switch', 'Components'],
-    ['SVG Icon Loader', '/packages/svg-icon-loader', 'Other Packages'],
     ['StyleProvider', '/packages/styleprovider', 'Other Packages'],
     ['StyleContainer', '/packages/stylecontainer', 'Other Packages'],
   ];

@@ -7,18 +7,16 @@ context('@andrew-codes/verdigris-analytics', () => {
   it('documentation page contains API section for Analytics components', () => {
     cy.contains('h2', 'API')
       .siblings('#analyticscontext')
-      .next()
-      .find('.PropsTable')
+      .next('[data-component="PropsTable"]')
       .should('exist');
     cy.contains('h2', 'API')
       .siblings('#analyticslistener')
-      .next()
-      .find('.PropsTable')
+      .next('[data-component="PropsTable"]')
       .should('exist');
   });
   it('analytics events can be triggered and handled selectively for specific event channels', () => {
     cy.contains('h2', 'Handling Fired Events')
-      .siblings('[data-testid="handling-fired-events"]')
+      .siblings('[data-test="handling-fired-events"]')
       .find('[data-component="Chip"]')
       .click()
       .window(win => {
@@ -27,7 +25,7 @@ context('@andrew-codes/verdigris-analytics', () => {
   });
   it('analytics events can be augmented with contextual data', () => {
     cy.contains('h2', 'Providing Contextual Data')
-      .siblings('[data-testid="contextual-data"]')
+      .siblings('[data-test="contextual-data"]')
       .find('[data-component="Chip"]')
       .click()
       .window(win => {
@@ -39,7 +37,7 @@ context('@andrew-codes/verdigris-analytics', () => {
   });
   it('analytics events can be used via `withAnalytics` HoC', () => {
     cy.contains('h2', 'Custom Components')
-      .siblings('[data-testid="custom-components"]')
+      .siblings('[data-test="custom-components"]')
       .contains('button', 'Save')
       .click()
       .window(win => {
@@ -49,7 +47,7 @@ context('@andrew-codes/verdigris-analytics', () => {
   it('analytics events can be updated, but only before being fired', () => {
     cy.visit('/packages/analytics');
     cy.contains('h2', 'Updating Events')
-      .siblings('[data-testid="updating-event"]')
+      .siblings('[data-test="updating-event"]')
       .find('[data-component="Chip"]')
       .click()
       .click()
@@ -61,7 +59,7 @@ context('@andrew-codes/verdigris-analytics', () => {
   });
   it('analytics events can be fired asynchronously even after a component unmounts', () => {
     cy.contains('h2', 'Async Events')
-      .siblings('[data-testid="async-events"]')
+      .siblings('[data-test="async-events"]')
       .contains('button', 'Save')
       .click()
       .window(win => {
