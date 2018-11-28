@@ -5,11 +5,9 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "main:src": "./src/index.js",
-  "verdigris": {
-    "name": "Chip"
-  },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "scripts": {
     "build": "babel src --out-dir dist"

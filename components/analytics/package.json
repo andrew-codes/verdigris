@@ -6,7 +6,8 @@
   "main": "./dist/index.js",
   "main:src": "./src/index.js",
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "scripts": {
     "build": "babel src --out-dir dist"
