@@ -73,3 +73,5 @@ fs.writeFileSync(
   componentSrcContents,
   'utf8',
 );
+
+shell.exec('yarn bootstrap');
