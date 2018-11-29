@@ -1,0 +1,37 @@
+---
+name: WithBreakpoint
+route: /packages/with-breakpoint/components/WithBreakpoint
+menu: Layout
+---
+
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import WithBreakpoint from '../src';
+
+## Usage
+
+## Examples
+
+<Playground data-test="examples">
+  <WithBreakpoint>
+    {breakpoint => (
+      <div>
+        Current breakpoint is:
+        <div>
+          <strong>{breakpoint}</strong>
+        </div>
+      </div>
+    )}
+  </WithBreakpoint>
+</Playground>
+
+## Component API
+
+<PropsTable of={WithBreakpoint} />
+
+## Theme API
+
+<ThemeDefinitionTable of={WithBreakpoint} />
