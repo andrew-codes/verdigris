@@ -25,6 +25,8 @@
     "react-virtualized": "^9.19.1"
   },
   "devDependencies": {
-    "@andrew-codes/verdigris-docz": "^0.0.0"
+    "@andrew-codes/verdigris-docz": "^0.0.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5"
   }
 }

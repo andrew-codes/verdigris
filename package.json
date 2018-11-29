@@ -34,7 +34,7 @@
     "@andrew-codes/babel-plugin-react-docgen": "0.0.0",
     "@andrew-codes/theme-definition-handler": "^0.0.0",
     "@andrew-codes/verdigris-svg-icon-loader": "^0.0.0",
-    "@babel/core": "^7.1.0",
+    "@babel/core": "^7.1.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
