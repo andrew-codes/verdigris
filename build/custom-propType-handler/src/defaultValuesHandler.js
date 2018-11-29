@@ -1,6 +1,6 @@
 const getPropertyName = require('react-docgen/dist/utils/getPropertyName');
 const getMemberValuePath = require('react-docgen/dist/utils/getMemberValuePath');
-const printValue = require('react-docgen/dist/utils/printValue');
+const printValue = require('react-docgen/dist/utils/printValue').default;
 const recast = require('recast');
 const resolveFunctionDefinitionToReturnValue = require('react-docgen/dist/utils/resolveFunctionDefinitionToReturnValue');
 const resolveToValue = require('react-docgen/dist/utils/resolveToValue');
@@ -74,7 +74,12 @@ function getDefaultPropsPath(propName, componentDefinition) {
   return defaultThemeValues;
 }
 
-function getDefaultValuesFromProps(properties, documentation, isStateless) {
+function getDefaultValuesFromProps(
+  propTypeName,
+  properties,
+  documentation,
+  isStateless,
+) {
   properties
     .filter(propertyPath => types.Property.check(propertyPath.node))
     // Don't evaluate property if component is functional and the node is not an AssignmentPattern
@@ -87,14 +92,14 @@ function getDefaultValuesFromProps(properties, documentation, isStateless) {
       const propDescriptor = documentation._data.get(propTypeName)[
         getPropertyName.default(propertyPath)
       ];
-      const defaultValue = getDefaultValue(
-        isStateless
-          ? propertyPath.get('value', 'right')
-          : propertyPath.get('value'),
-      );
-      if (defaultValue) {
-        propDescriptor.defaultValue = defaultValue;
-      }
+        const defaultValue = getDefaultValue(
+          isStateless
+            ? propertyPath.get('value', 'right')
+            : propertyPath.get('value'),
+        );
+        if (defaultValue) {
+          propDescriptor.defaultValue = defaultValue;
+        }
     });
 }
 
