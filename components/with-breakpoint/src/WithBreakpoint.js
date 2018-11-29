@@ -11,11 +11,7 @@ const isSSR = () => typeof window === 'undefined';
 class WithBreakpoint extends Component {
   constructor(props) {
     super(props);
-    this.theme = {
-      breakpoints: {
-        values: {},
-      },
-    };
+    this.theme = { WithBreakpoint: WithBreakpoint.defaultThemeValues };
     this.state = {
       breakpoint: isSSR() ? undefined : this.getBreakpoint(),
     };
@@ -41,7 +37,9 @@ class WithBreakpoint extends Component {
     const { children } = this.props;
     const { breakpoint } = this.state;
     return (
-      <StyleProvider theme={WithBreakpoint.defaultThemeValues}>
+      <StyleProvider
+        theme={{ WithBreakpoint: WithBreakpoint.defaultThemeValues }}
+      >
         <WithTheme>
           {theme => {
             this.theme = theme;
@@ -59,15 +57,16 @@ class WithBreakpoint extends Component {
 
   getBreakpoint(innerWidth = window.innerWidth) {
     const {
-      breakpoints: { values },
+      WithBreakpoint: { breakpoints },
     } = this.theme;
 
     return (
       breakpointKeys.reduce((acc, breakpoint, index) => {
         if (acc) return acc;
-        if (innerWidth < values[breakpoint]) {
+        if (innerWidth < breakpoints[breakpoint]) {
           return breakpointKeys[index - 1];
         }
+        return null;
       }, null) || 'xl'
     );
   }
@@ -93,24 +92,20 @@ WithBreakpoint.defaultProps = {
 };
 WithBreakpoint.themeDefinition = {
   breakpoints: PropTypes.shape({
-    values: PropTypes.shape({
-      xs: PropTypes.number,
-      sm: PropTypes.number,
-      md: PropTypes.number,
-      lg: PropTypes.number,
-      xl: PropTypes.number,
-    }),
+    xs: PropTypes.number,
+    sm: PropTypes.number,
+    md: PropTypes.number,
+    lg: PropTypes.number,
+    xl: PropTypes.number,
   }),
 };
 WithBreakpoint.defaultThemeValues = {
   breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1280,
+    xl: 1920,
   },
 };
 

@@ -1,4 +1,5 @@
 import capitalize from 'capitalize';
+import { CodeBlock } from '@andrew-codes/verdigris-code';
 import PropTypes from 'prop-types';
 import React from 'react';
 import StyleProvider from '@andrew-codes/verdigris-style-provider';
@@ -22,7 +23,20 @@ const getPropType = (prop, Tooltip) => {
     return name;
   }
 
-  return <Tooltip text={humanize(prop.type)}>{name}</Tooltip>;
+  return (
+    <Tooltip
+      text={humanize(prop.type)
+        .split('\\n')
+        .map((part, index) => (
+          /* eslint-disable-next-line react/no-array-index-key */
+          <span key={index} style={{ display: 'block' }}>
+            {part}
+          </span>
+        ))}
+    >
+      {name}
+    </Tooltip>
+  );
 };
 
 const PropsTable = ({ of, components }) => {
@@ -68,7 +82,13 @@ const PropsTable = ({ of, components }) => {
                 <Tr key={key}>
                   <Td>{key}</Td>
                   <Td>{getPropType(value, Tooltip)}</Td>
-                  <Td>{defaultValue}</Td>
+                  <Td>
+                    {defaultValue.split(/\n/).length > 1 ? (
+                      <CodeBlock>{defaultValue}</CodeBlock>
+                    ) : (
+                      defaultValue
+                    )}
+                  </Td>
                   <Td>
                     {value.deprecated ? (
                       <span>

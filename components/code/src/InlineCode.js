@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   createComponent,
-  utils,
+  styleUtils,
 } from '@andrew-codes/verdigris-style-container';
 
 export default function InlineCode({ children, ...rest }) {
@@ -14,7 +14,7 @@ export default function InlineCode({ children, ...rest }) {
       fontFamily: `'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace`,
       fontSize: '85%',
       margin: '0',
-      ...utils.padding('0.2em', '0.4em'),
+      ...styleUtils.padding('0.2em', '0.4em'),
     }),
     'code',
     ['data-component', ...Object.keys(rest)],

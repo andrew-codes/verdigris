@@ -41,8 +41,7 @@ const getTypeStr = type => {
       Object.keys(shape).forEach(key => {
         rst[key] = getTypeStr(shape[key]);
       });
-
-      return JSON.stringify(rst, null, 2);
+      return JSON.stringify(rst, null, 2).replace(/\\"/g, '"');
     default:
       return capitalize(type.name);
   }
