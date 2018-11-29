@@ -20,6 +20,7 @@ const componentDirectory = path.join(
 );
 
 if (fs.existsSync(componentDirectory) && !force) {
+  /* eslint-disable-next-line no-console */
   console.log('Component already exists. Try using --force.');
   return;
 }
