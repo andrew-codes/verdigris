@@ -39,7 +39,7 @@ export default {
       mainFields: ['main:src', 'main'],
     },
   }),
-  modifyBabelRc: config => ({
+  modifyBabelRc: () => ({
     babelrc: false,
     presets: [
       [
@@ -52,7 +52,7 @@ export default {
       ],
       '@babel/preset-react',
     ],
-    plugins: config.plugins.concat([
+    plugins: [
       '@babel/plugin-proposal-object-rest-spread',
       '@babel/plugin-syntax-dynamic-import',
       'babel-plugin-transform-react-fela-display-name',
@@ -73,6 +73,6 @@ export default {
           ],
         },
       ],
-    ]),
+    ],
   }),
 };

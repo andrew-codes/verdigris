@@ -12,7 +12,6 @@
     "dist"
   ],
   "scripts": {
-    "build": "../../node_modules/@andrew-codes/verdigris-webpack-config/bin/build-icons.js ./src/index.js"
   },
   "peerDependencies": {
     "react": "^16.4.1"

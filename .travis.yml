@@ -30,7 +30,15 @@ jobs:
       install:
         - ./scripts/bin/ci-install.sh
       script:
-        - yarn test:ci
+        - yarn test:specs
+
+    - stage: 'Verify'
+      env:
+        - NODE_ENV: test
+      install:
+        - ./scripts/bin/ci-install.sh
+      script:
+        - yarn test:e2e:ci
         - kill $(jobs -p) || true
 
     - stage: 'Deploy Preview of Docs Site'

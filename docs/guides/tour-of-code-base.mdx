@@ -11,8 +11,11 @@ This document will outline the general structure of the code, the standards, and
 ## Developer CLI Tasks
 
 - `yarn bootstrap` run after adding new internal dependencies to a package
+- `yarn verify` for fast verification (linting, testing, etc.)
 - `yarn lint`
-- `yarn test` will run all tests via [Cypress](https://cypress.io)
+- `yarn test` will run all unit tests and e2e [Cypress](https://cypress.io) tests
+- `yarn test:specs` will run all unit tests
+- `yarn test:e2e` will run all e2e [Cypress](https://cypress.io) tests
 - `yarn cypress open` will open tests in [Cypress](https://cypress.io) for local development
 - `yarn lerna add --scope @andrew-codes/verdigris-package-name dependency-to-add` (see below for details on managing dependencies)
 
