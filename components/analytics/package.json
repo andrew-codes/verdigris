@@ -6,10 +6,11 @@
   "main": "./dist/index.js",
   "main:src": "./src/index.js",
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "scripts": {
-    "build": "babel src --out-dir dist"
+    "build": "babel --root-mode upward src --out-dir dist"
   },
   "verdigris": {
     "name": "Analytics"
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@andrew-codes/verdigris-chip": "^0.0.0",
-    "@andrew-codes/verdigris-docz": "^0.0.0"
+    "@andrew-codes/verdigris-docz": "^0.0.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5"
   }
 }

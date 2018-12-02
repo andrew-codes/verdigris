@@ -1,0 +1,65 @@
+---
+name: SpacedGroup
+route: /packages/spaced-group/components/SpacedGroup
+menu: Layout
+---
+
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import SpacedGroup from '../src';
+
+## Usage
+
+## Examples
+
+<Playground data-test="direction">
+  <SpacedGroup direction="vertical">
+    <SpacedGroup>
+      <div>Hello</div>
+      <input type="text" />
+      <div>world</div>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical">
+      <div>Hello</div>
+      <input type="text" />
+      <div>world</div>
+    </SpacedGroup>
+  </SpacedGroup>
+</Playground>
+
+<Playground data-test="centered">
+  <SpacedGroup direction="vertical">
+    <SpacedGroup centered>
+      <div>Hello</div>
+      <input type="text" />
+      <div>world</div>
+    </SpacedGroup>
+    <SpacedGroup centered direction="vertical">
+      <div>Hello</div>
+      <input type="text" />
+      <div>world</div>
+    </SpacedGroup>
+  </SpacedGroup>
+</Playground>
+
+<Playground data-test="breakpoints">
+  <SpacedGroup direction="vertical">
+    <SpacedGroup lg={40}>
+      <div>Hello</div>
+      <input type="text" />
+      <div>world</div>
+    </SpacedGroup>
+    <SpacedGroup direction="vertical">
+      <div>Hello</div>
+      <input type="text" />
+      <div>world</div>
+    </SpacedGroup>
+  </SpacedGroup>
+</Playground>
+
+## Component API
+
+<PropsTable of={SpacedGroup} />

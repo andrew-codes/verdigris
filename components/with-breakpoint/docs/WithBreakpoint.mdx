@@ -1,0 +1,60 @@
+---
+name: WithBreakpoint
+route: /packages/with-breakpoint/components/WithBreakpoint
+menu: Layout
+---
+
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import WithBreakpoint, { isBreakpointDown, isBreakpointUp } from '../src';
+
+## Usage
+
+Provides the current breakpoint; based on the viewport size.
+
+## Examples
+
+<Playground data-test="withbreakpoint">
+  <WithBreakpoint>
+    {breakpoint => (
+      <div>
+        Current breakpoint is:
+        <div>
+          <strong>{breakpoint}</strong>
+        </div>
+      </div>
+    )}
+  </WithBreakpoint>
+</Playground>
+
+## Breakpoint Utilities
+
+Functions that aid in determining if a provided breakpoint is equal to or above/below a target breakpoint.
+
+<Playground data-test="utilities">
+  <WithBreakpoint>
+    {breakpoint => (
+      <div>
+        <p>
+          Current breakpoint above md:{' '}
+          <strong>{isBreakpointUp('md', breakpoint).toString()}</strong>
+        </p>
+        <p>
+          Current breakpoint below md:{' '}
+          <strong>{isBreakpointDown('md', breakpoint).toString()}</strong>
+        </p>
+      </div>
+    )}
+  </WithBreakpoint>
+</Playground>
+
+## Component API
+
+<PropsTable of={WithBreakpoint} />
+
+## Theme API
+
+<ThemeDefinitionTable of={WithBreakpoint} />

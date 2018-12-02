@@ -1,7 +1,7 @@
 {
-  "name": "@andrew-codes/verdigris-chip",
+  "name": "@andrew-codes/verdigris-spaced-group",
   "version": "0.0.0",
-  "description": "Concise representation of an otherwise more complex entity.",
+  "description": "",
   "license": "MIT",
   "main": "./dist/index.js",
   "main:src": "./src/index.js",
@@ -12,16 +12,14 @@
   "scripts": {
     "build": "babel --root-mode upward src --out-dir dist"
   },
-  "peerDependencies": {
-    "react": "^16.4.1"
-  },
   "dependencies": {
-    "@andrew-codes/verdigris-analytics": "^0.0.0",
-    "@andrew-codes/verdigris-icons": "^0.0.0",
     "@andrew-codes/verdigris-style-container": "^0.0.0",
-    "@andrew-codes/verdigris-style-provider": "0.0.0",
-    "lodash": "^4.17.10",
-    "prop-types": "^15.6.2"
+    "@andrew-codes/verdigris-style-provider": "^0.0.0",
+    "@andrew-codes/verdigris-with-breakpoint": "^0.0.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1"
   },
   "devDependencies": {
     "@andrew-codes/verdigris-docz": "^0.0.0",
