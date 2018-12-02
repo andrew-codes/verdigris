@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import WithBreakpoint, {
-  breakpointKeys,
-  isBreakpointUp,
+  getBreakpointValue,
 } from '@andrew-codes/verdigris-with-breakpoint';
 import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import {
@@ -13,18 +12,6 @@ import {
 const HORIZONTAL = 'horizontal';
 const VERTICAL = 'vertical';
 
-const getBreakpointMargin = (breakpoint, breakpointMarginValues) =>
-  breakpointKeys
-    .slice(0)
-    .reverse()
-    .reduce((acc, target) => {
-      if (acc) return acc;
-      if (isBreakpointUp(target, breakpoint)) {
-        return breakpointMarginValues[target];
-      }
-      return null;
-    }, null);
-
 const getCenteredStyles = () => {
   return {
     alignItems: 'center',
@@ -33,7 +20,7 @@ const getCenteredStyles = () => {
 
 const SpacedGroupContainer = createComponent(
   ({ centered, breakpoint, direction, xs, sm, md, lg, xl }) => {
-    const margin = getBreakpointMargin(breakpoint, { xs, sm, md, lg, xl });
+    const margin = getBreakpointValue(breakpoint, { xs, sm, md, lg, xl });
     const centeredStyles = getCenteredStyles(direction);
 
     return {

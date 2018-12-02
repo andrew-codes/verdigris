@@ -25,3 +25,14 @@ export const isBreakpointDown = (
   }
   return src < target;
 };
+
+export const getBreakpointValue = (currentBreakpoint, breakpointValues) => {
+  const effectiveBreakpoint = breakpointKeys
+    .slice(0)
+    .reverse()
+    .find(
+      target =>
+        isBreakpointUp(target, currentBreakpoint) && !!breakpointValues[target],
+    );
+  return breakpointValues[effectiveBreakpoint];
+};
