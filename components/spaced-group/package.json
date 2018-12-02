@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "@andrew-codes/verdigris-style-container": "^0.0.0",
-    "@andrew-codes/verdigris-style-provider": "^0.0.0"
+    "@andrew-codes/verdigris-style-provider": "^0.0.0",
+    "@andrew-codes/verdigris-with-breakpoint": "^0.0.0"
   },
   "peerDependencies": {
     "prop-types": "^15.6.2",
