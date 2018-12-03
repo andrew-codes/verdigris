@@ -1,0 +1,121 @@
+---
+name: Grid
+route: /packages/grid/components/Grid
+menu: Layout
+---
+
+import { Playground, PropsTable } from '@andrew-codes/verdigris-docz';
+import { Grid, GridItem } from '../src';
+
+## Usage
+
+Using a 12-column grid layout, the `Grid` provides both visual consistency between layouts and flexibiliy for a variety of layout designs.
+
+## Basic Grid
+
+<Playground>
+  <Grid>
+    <GridItem xs={12}>x12</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={3}>x3</GridItem>
+    <GridItem xs={3}>x3</GridItem>
+    <GridItem xs={3}>x3</GridItem>
+    <GridItem xs={3}>x3</GridItem>
+  </Grid>
+</Playground>
+
+## Responsive Grid
+
+<Playground>
+  <Grid data-test="responsive">
+    <GridItem xs={12} lg={12} data-test="x12">
+      xs=x12, lg=12
+    </GridItem>
+    <GridItem xs={12} lg={6} data-test="x6">
+      xs=12, lg=x6
+    </GridItem>
+    <GridItem xs={12} lg={6}>
+      xs=12, lg=x6
+    </GridItem>
+    <GridItem xs={12} lg={4} data-test="x4">
+      xs=12, lg=x4
+    </GridItem>
+    <GridItem xs={12} lg={4}>
+      xs=12, lg=x4
+    </GridItem>
+    <GridItem xs={12} lg={4}>
+      xs=12, lg=x4
+    </GridItem>
+    <GridItem xs={12} lg={3} data-test="x3">
+      xs=12, lg=x3
+    </GridItem>
+    <GridItem xs={12} lg={3}>
+      xs=12, lg=x3
+    </GridItem>
+    <GridItem xs={12} lg={3}>
+      xs=12, lg=x3
+    </GridItem>
+    <GridItem xs={12} lg={3}>
+      xs=12, lg=x3
+    </GridItem>
+  </Grid>
+</Playground>
+
+## Direction (row, reversed)
+
+<Playground>
+  <Grid data-test="row">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+  </Grid>
+  <Grid reversed data-test="row-reverse">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+  </Grid>
+</Playground>
+
+## Direction (column, reversed)
+
+<Playground>
+  <Grid direction="column" data-test="column">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+  </Grid>
+  <Grid reversed direction="column" data-test="column-reverse">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+  </Grid>
+</Playground>
+
+## Nesting Grids
+
+<Playground>
+  <Grid data-test="outer-grid">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>
+      <Grid data-test="nested-grid">
+        <GridItem xs={2} data-test="x2">x2</GridItem>
+        <GridItem xs={4} data-test="x4">x4</GridItem>
+        <GridItem xs={6} data-test="x6">x6</GridItem>
+      </Grid>
+    </GridItem>
+  </Grid>
+
+</Playground>
+
+## Grid API
+
+<PropsTable of={Grid} />
+
+## GridItem API
+
+<PropsTable of={GridItem} />

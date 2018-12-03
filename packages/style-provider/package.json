@@ -8,9 +8,12 @@
   "main": "./dist/index.js",
   "main:src": "./src/index.js",
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "babel --root-mode upward src --out-dir dist"
+  },
   "dependencies": {
     "fela": "^6.2.2",
     "fela-beautifier": "^5.0.17",
@@ -27,6 +30,8 @@
     "react": "^16.5.2"
   },
   "devDependencies": {
-    "@andrew-codes/verdigris-docz": "^0.0.0"
+    "@andrew-codes/verdigris-docz": "^0.0.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5"
   }
 }

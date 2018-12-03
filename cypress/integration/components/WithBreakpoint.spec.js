@@ -14,11 +14,11 @@ context('@andrew-codes/verdigris-with-breakpoint', () => {
     cy.get('[data-test="withbreakpoint"]').as('playground');
     cy.viewport(600, 1000);
     cy.get('@playground')
-      .contains('md')
+      .contains('sm')
       .should('exist');
     cy.viewport(650, 1000);
     cy.get('@playground')
-      .contains('md')
+      .contains('sm')
       .should('exist');
     cy.viewport(1280, 1000);
     cy.get('@playground')
