@@ -33,19 +33,44 @@ const getGridSizeStyles = (breakpoint, breakpointValues) => {
   };
 };
 
-const GridItemRoot = createComponent(({ breakpoint, xs }) => {
-  return {
-    ...getGridSizeStyles(breakpoint, { xs }),
-    boxSizing: 'border-box',
-    margin: '0',
-  };
-}, 'div');
+const GridItemRoot = createComponent(
+  ({
+    alignContent,
+    alignItems,
+    breakpoint,
+    direction,
+    justify,
+    reversed,
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
+  }) => {
+    return {
+      ...getGridSizeStyles(breakpoint, { xs, sm, md, lg, xl }),
+      alignContent,
+      alignItems,
+      boxSizing: 'border-box',
+      display: 'flex',
+      flexDirection: `${direction}${reversed ? '-reverse' : ''}`,
+      justify,
+      margin: '0',
+    };
+  },
+  'div',
+  ['data-component', 'data-test'],
+);
 
 const Grid = ({ children, ...rest }) => (
   <StyleProvider>
     <WithBreakpoint>
       {breakpoint => (
-        <GridItemRoot {...rest} breakpoint={breakpoint}>
+        <GridItemRoot
+          {...rest}
+          breakpoint={breakpoint}
+          data-component="GridItem"
+        >
           {children}
         </GridItemRoot>
       )}
@@ -53,11 +78,57 @@ const Grid = ({ children, ...rest }) => (
   </StyleProvider>
 );
 Grid.propTypes = {
+  /** Defines the `align-content` style property; applied to all screen sizes. */
+  alignContent: PropTypes.oneOf([
+    'stretch',
+    'center',
+    'flex-start',
+    'flex-end',
+    'space-between',
+    'space-around',
+  ]),
+  /** Defines the `align-items` style property; applied to all screen sizes. */
+  alignItems: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'stretch',
+    'baseline',
+  ]),
   children: PropTypes.node,
-  /** The number of grids to be used; applied for all the screen sizes with the lowest priority. */
+  /** Apply a `row` or `column` flex-direction orientation. */
+  direction: PropTypes.oneOf(['row', 'column']),
+  /**
+   * Defines the `justify-content` style property; applied to all screen sizes.
+   */
+  justify: PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-between',
+    'space-around',
+    'space-evenly',
+  ]),
+  /** The number of grids to be used; applied to `lg` breakpoint and up. */
+  lg: PropTypes.oneOf(gridSizes),
+  /** The number of grids to be used; applied to `md` breakpoint and up. */
+  md: PropTypes.oneOf(gridSizes),
+  /** Reverses the direction when true. */
+  reversed: PropTypes.bool,
+  /** The number of grids to be used; applied to `sm` breakpoint and up. */
+  sm: PropTypes.oneOf(gridSizes),
+  /** Defines `flex-wrap`; applied to all screen sizes. */
+  wrap: PropTypes.oneOf(['nowrap', 'wrap', 'wrap-reverse']),
+  /** The number of grids to be used; applied to `xl` breakpoint and up. */
+  xl: PropTypes.oneOf(gridSizes),
+  /** The number of grids to be used; applied to all the screen sizes with the lowest priority. */
   xs: PropTypes.oneOf(gridSizes),
 };
 Grid.defaultProps = {
+  alignContent: 'stretch',
+  alignItems: 'stretch',
+  justify: 'flex-start',
+  wrap: 'wrap',
   xs: false,
 };
 Grid.themeDefinition = {};

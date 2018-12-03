@@ -13,7 +13,7 @@ Using a 12-column grid layout, the `Grid` provides both visual consistency betwe
 
 ## Basic Grid
 
-<Playground data-test="basic">
+<Playground>
   <Grid>
     <GridItem xs={12}>x12</GridItem>
     <GridItem xs={6}>x6</GridItem>
@@ -25,6 +25,73 @@ Using a 12-column grid layout, the `Grid` provides both visual consistency betwe
     <GridItem xs={3}>x3</GridItem>
     <GridItem xs={3}>x3</GridItem>
     <GridItem xs={3}>x3</GridItem>
+  </Grid>
+</Playground>
+
+## Responsive Grid
+
+<Playground>
+  <Grid data-test="responsive">
+    <GridItem xs={12} lg={12} data-test="x12">
+      xs=x12, lg=12
+    </GridItem>
+    <GridItem xs={12} lg={6} data-test="x6">
+      xs=12, lg=x6
+    </GridItem>
+    <GridItem xs={12} lg={6}>
+      xs=12, lg=x6
+    </GridItem>
+    <GridItem xs={12} lg={4} data-test="x4">
+      xs=12, lg=x4
+    </GridItem>
+    <GridItem xs={12} lg={4}>
+      xs=12, lg=x4
+    </GridItem>
+    <GridItem xs={12} lg={4}>
+      xs=12, lg=x4
+    </GridItem>
+    <GridItem xs={12} lg={3} data-test="x3">
+      xs=12, lg=x3
+    </GridItem>
+    <GridItem xs={12} lg={3}>
+      xs=12, lg=x3
+    </GridItem>
+    <GridItem xs={12} lg={3}>
+      xs=12, lg=x3
+    </GridItem>
+    <GridItem xs={12} lg={3}>
+      xs=12, lg=x3
+    </GridItem>
+  </Grid>
+</Playground>
+
+## Direction (row, reversed)
+
+<Playground>
+  <Grid data-test="row">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+  </Grid>
+  <Grid reversed data-test="row-reverse">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+  </Grid>
+</Playground>
+
+## Direction (column, reversed)
+
+<Playground>
+  <Grid direction="column" data-test="column">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
+  </Grid>
+  <Grid reversed direction="column" data-test="column-reverse">
+    <GridItem xs={2}>x2</GridItem>
+    <GridItem xs={4}>x4</GridItem>
+    <GridItem xs={6}>x6</GridItem>
   </Grid>
 </Playground>
 
