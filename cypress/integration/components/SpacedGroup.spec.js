@@ -48,6 +48,7 @@ context('@andrew-codes/verdigris-spaced-group', () => {
       .find('[data-component="SpacedGroup"]')
       .as('parentSpacedGroup');
 
+    cy.viewport(600, 1000);
     cy.get('@parentSpacedGroup')
       .find('[data-component="SpacedGroup"]')
       .first()
