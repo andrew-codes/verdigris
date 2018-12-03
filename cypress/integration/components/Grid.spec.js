@@ -67,4 +67,17 @@ context('@andrew-codes/grid', () => {
       'column-reverse',
     );
   });
+
+  it('grids can be nested', () => {
+    cy.get('[data-test="nested-grid"]').as('nestedGrid');
+    cy.get('@nestedGrid')
+      .find('[data-test="x2"]')
+      .should('have.css', 'width', '63px');
+    cy.get('@nestedGrid')
+      .find('[data-test="x4"]')
+      .should('have.css', 'width', '126px');
+    cy.get('@nestedGrid')
+      .find('[data-test="x6"]')
+      .should('have.css', 'width', '190px');
+  });
 });
