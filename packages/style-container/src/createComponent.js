@@ -1,12 +1,15 @@
+import classNames from 'classnames';
 import extractPassThroughProps from 'fela-bindings/lib/extractPassThroughProps';
-import invariant from 'tiny-invariant';
 import PropTypes from 'prop-types';
-import React, { createElement as reactCreateElement } from 'react';
+import React, {
+  cloneElement as reactCloneElement,
+  createElement as reactCreateElement,
+} from 'react';
 import resolvePassThrough from 'fela-bindings/lib/resolvePassThrough';
 import getComponentDisplayName from './getComponentDisplayName';
 import { WithTheme } from './ThemeProvider';
 
-const createComponentFactory = (createElement, contextTypes) => (
+const createComponentFactory = (createElement, cloneElement, contextTypes) => (
   rule,
   type,
   passThroughProps,
@@ -36,11 +39,6 @@ const createComponentFactory = (createElement, contextTypes) => (
           theme: theme || {},
         };
 
-        invariant(
-          !rulePropsWithTheme.className,
-          `You cannot restyle Fela component ${componentName}`,
-        );
-
         const componentProps = extractPassThroughProps(
           resolvedPassThrough,
           ruleProps,
@@ -50,9 +48,9 @@ const createComponentFactory = (createElement, contextTypes) => (
           componentProps.style = ruleProps.style;
         }
 
-        componentProps.className = renderer.renderRule(
-          rule,
-          rulePropsWithTheme,
+        componentProps.className = classNames(
+          rulePropsWithTheme.className,
+          renderer.renderRule(rule, rulePropsWithTheme),
         );
 
         if (rulePropsWithTheme.id) {
@@ -61,6 +59,10 @@ const createComponentFactory = (createElement, contextTypes) => (
 
         if (rulePropsWithTheme.innerRef) {
           componentProps.ref = rulePropsWithTheme.innerRef;
+        }
+
+        if (rulePropsWithTheme.instance) {
+          return cloneElement(rulePropsWithTheme.instance, componentProps);
         }
 
         const customType = rulePropsWithTheme.is || type;
@@ -87,7 +89,7 @@ const createComponentFactory = (createElement, contextTypes) => (
   return FelaComponent;
 };
 
-export default createComponentFactory(reactCreateElement, {
+export default createComponentFactory(reactCreateElement, reactCloneElement, {
   renderer: PropTypes.object,
   theme: PropTypes.object,
 });

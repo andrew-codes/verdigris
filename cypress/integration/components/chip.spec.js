@@ -12,19 +12,6 @@ context('@andrew-codes/verdigris-chip', () => {
       .next('[data-component="PropsTable"]')
       .should('exist');
   });
-  it('can render basic textual chips', () => {
-    cy.contains('h2', 'Rendering Basic Chips')
-      .siblings('[data-test="basic-chips"]')
-      .find('[data-component="Chip"]')
-      .first()
-      .should('have.text', 'basic text chip')
-      .should('have.css', 'display', 'inline-flex')
-
-      .next()
-      .should('have.text', 'ichip with avatar')
-      .next()
-      .should('have.css', 'display', 'flex');
-  });
   it('the root component can be configured to a different component', () => {
     cy.contains('h2', 'Using Custom Component')
       .siblings('[data-test="custom-component"]')
@@ -53,7 +40,7 @@ context('@andrew-codes/verdigris-chip', () => {
       .click()
       .window(win => expect(win.log).to.not.be.called);
   });
-  it('chips can be marked as deletable and respond to onDelete click handler', () => {
+  it('chips can be marked as delete-able and respond to onDelete click handler', () => {
     cy.contains('h2', 'Deletable Chips')
       .siblings('[data-test="deletable-chips"]')
       .find('[data-component="Chip"]')

@@ -4,6 +4,8 @@ route: /packages/grid/components/Grid
 menu: Layout
 ---
 
+import Border from '@andrew-codes/verdigris-border';
+import Grow from '@andrew-codes/verdigris-grow';
 import { Playground, PropsTable } from '@andrew-codes/verdigris-docz';
 import { Grid, GridItem } from '../src';
 
@@ -15,16 +17,56 @@ Using a 12-column grid layout, the `Grid` provides both visual consistency betwe
 
 <Playground>
   <Grid>
-    <GridItem xs={12}>x12</GridItem>
-    <GridItem xs={6}>x6</GridItem>
-    <GridItem xs={6}>x6</GridItem>
-    <GridItem xs={4}>x4</GridItem>
-    <GridItem xs={4}>x4</GridItem>
-    <GridItem xs={4}>x4</GridItem>
-    <GridItem xs={3}>x3</GridItem>
-    <GridItem xs={3}>x3</GridItem>
-    <GridItem xs={3}>x3</GridItem>
-    <GridItem xs={3}>x3</GridItem>
+    <GridItem xs={12}>
+      <Border color="black">
+        <Grow>x12</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={6}>
+      <Border color="black">
+        <Grow>x6</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={6}>
+      <Border color="black">
+        <Grow>x6</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={4}>
+      <Border color="black">
+        <Grow>x4</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={4}>
+      <Border color="black">
+        <Grow>x4</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={4}>
+      <Border color="black">
+        <Grow>x4</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={3}>
+      <Border color="black">
+        <Grow>x3</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={3}>
+      <Border color="black">
+        <Grow>x3</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={3}>
+      <Border color="black">
+        <Grow>x3</Grow>
+      </Border>
+    </GridItem>
+    <GridItem xs={3}>
+      <Border color="black">
+        <Grow>x3</Grow>
+      </Border>
+    </GridItem>
   </Grid>
 </Playground>
 

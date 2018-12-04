@@ -4,6 +4,7 @@ route: /packages/selection/components/switch
 menu: Data Entry
 ---
 
+import SpacedGroup from '@andrew-codes/verdigris-spaced-group';
 import {
   Playground,
   PropsTable,
@@ -18,17 +19,19 @@ A selection control used to select between one of only two states; on and off.
 ## Examples
 
 <Playground data-test="examples">
-  <Switch />
-  <Switch label="check this out!" />
-  <Switch checked label="I see you checked it out" />
-  <Switch disabled label="this is not checked and disabled" />
-  <Switch checked disabled label="this is checked, but disabled" />
-  <div>
-    <h4>
-      Switch with onChange handler; analytics enabled (see console for logs)
-    </h4>
-    <Switch onChange={console.log} />
-  </div>
+  <SpacedGroup direction="column">
+    <Switch />
+    <Switch label="check this out!" />
+    <Switch checked label="I see you checked it out" />
+    <Switch disabled label="this is not checked and disabled" />
+    <Switch checked disabled label="this is checked, but disabled" />
+    <div>
+      <h4>
+        Switch with onChange handler; analytics enabled (see console for logs)
+      </h4>
+      <Switch onChange={console.log} />
+    </div>
+  </SpacedGroup>
 </Playground>
 
 ## Component API

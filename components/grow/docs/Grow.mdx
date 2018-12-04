@@ -1,0 +1,31 @@
+---
+name: Grow
+route: /packages/grow/components/Grow
+menu: Layout
+---
+
+import Border from '@andrew-codes/verdigris-border';
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import Grow from '../src';
+
+## Usage
+
+Used with `Grid` and any other flex based layout, use this when an element should grow to fill its parent.
+
+## Examples
+
+<Playground data-test="examples">
+  <div style={{ display: 'flex', width: '50%' }}>
+    <Border color="black">
+      <Grow>Grown up</Grow>
+    </Border>
+  </div>
+</Playground>
+
+## Component API
+
+<PropsTable of={Grow} />

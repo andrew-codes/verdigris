@@ -1,0 +1,35 @@
+---
+name: Border
+route: /packages/border/components/Border
+menu: Layout
+---
+
+import SpacedGroup from '@andrew-codes/verdigris-spaced-group';
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import Border from '../src';
+
+## Usage
+
+## Examples
+
+<Playground data-test="examples">
+  <SpacedGroup direction="column">
+    <Border color="#000">
+      <div>Hello</div>
+    </Border>
+    <Border color="blue">
+      <div>world</div>
+    </Border>
+    <Border color="rgba(0,0,0,0.5)">
+      <div>world</div>
+    </Border>
+  </SpacedGroup>
+</Playground>
+
+## Component API
+
+<PropsTable of={Border} />
