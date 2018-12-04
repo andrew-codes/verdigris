@@ -20,13 +20,18 @@ Use to hide content either visually or from screen readers.
 
 This is useful when needing to hide content from the screen, but make it available screen readers. A primary use case for this is when using icon buttons; providing the icon button action as visually hidden and the icon itself as hidden only from screen readers.
 
+> Visually hidden items are still focus-able and will display when focused.
+
 <Playground data-test="visually-hidden">
   <SpacedGroup>
     <Hidden>I am hidden</Hidden>
     <span>I am not hidden</span>
-    <Hidden>
-      <div>I am also not visually displayed</div>
-    </Hidden>
+    <span>
+      <Hidden>
+        <a href="">additional details</a>
+      </Hidden>
+      icon
+    </span>
     <div>I am also not visually hidden</div>
   </SpacedGroup>
 </Playground>
@@ -35,7 +40,9 @@ This is useful when needing to hide content from the screen, but make it availab
 
 <Playground data-test="hidden-from-screenreaders">
   <SpacedGroup>
-    <Hidden fromScreenReader>I am hidden from screen readers</Hidden>
+    <a href="">
+      <Hidden fromScreenReader>icon</Hidden>Save
+    </a>
   </SpacedGroup>
 </Playground>
 
