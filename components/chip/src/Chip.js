@@ -11,13 +11,13 @@ import { noop } from 'lodash';
 import { WithAnalytics } from '@andrew-codes/verdigris-analytics';
 
 const ChipRoot = createComponent(
-  ({ clickable, fullWidth, theme }) => ({
+  ({ clickable, theme }) => ({
     alignItems: 'center',
     backgroundColor: theme.Chip.backgroundColor,
     borderRadius: `${theme.Chip.fontSize}px`,
     color: `${theme.Chip.textColor}`,
     cursor: clickable ? 'pointer' : 'default',
-    display: fullWidth ? 'flex' : 'inline-flex',
+    display: 'inline-flex',
     minHeight: `${theme.Chip.fontSize * theme.Chip.lineHeight +
       theme.Chip.spacing * 2}px`,
     whiteSpace: 'nowrap',
@@ -85,7 +85,6 @@ const Chip = ({
   avatar,
   clickable,
   component,
-  fullWidth,
   label,
   onClick,
   onDelete,
@@ -120,7 +119,6 @@ const Chip = ({
                 <ChipRoot
                   clickable={clickable}
                   data-component="Chip"
-                  fullWidth={fullWidth}
                 >
                   <ComponentRoot
                     {...rest}
@@ -178,10 +176,6 @@ Chip.propTypes = {
     PropTypes.element,
     PropTypes.func,
   ]),
-  /**
-   * When true, Chip will expand to fill full width of parent.
-   */
-  fullWidth: PropTypes.bool,
   /**
    * Content of the chip.
    */
