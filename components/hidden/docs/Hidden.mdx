@@ -1,0 +1,51 @@
+---
+name: Hidden
+route: /packages/hidden/components/Hidden
+menu: Layout
+---
+
+import SpacedGroup from '@andrew-codes/verdigris-spaced-group';
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import Hidden from '../src';
+
+## Usage
+
+Use to hide content either visually or from screen readers.
+
+## Visually Hidden
+
+This is useful when needing to hide content from the screen, but make it available screen readers. A primary use case for this is when using icon buttons; providing the icon button action as visually hidden and the icon itself as hidden only from screen readers.
+
+> Visually hidden items are still focus-able and will display when focused.
+
+<Playground data-test="visually-hidden">
+  <SpacedGroup>
+    <Hidden>I am hidden</Hidden>
+    <span>I am not hidden</span>
+    <span>
+      <Hidden>
+        <a href="">additional details</a>
+      </Hidden>
+      icon
+    </span>
+    <div>I am also not visually hidden</div>
+  </SpacedGroup>
+</Playground>
+
+## Hidden from Screen Readers
+
+<Playground data-test="hidden-from-screenreaders">
+  <SpacedGroup>
+    <a href="">
+      <Hidden fromScreenReader>icon</Hidden>Save
+    </a>
+  </SpacedGroup>
+</Playground>
+
+## Component API
+
+<PropsTable of={Hidden} />

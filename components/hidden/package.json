@@ -1,0 +1,29 @@
+{
+  "name": "@andrew-codes/verdigris-hidden",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "main:src": "./src/index.js",
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "babel --root-mode upward src --out-dir dist"
+  },
+  "dependencies": {
+    "@andrew-codes/verdigris-style-container": "^0.0.0",
+    "@andrew-codes/verdigris-style-provider": "^0.0.0",
+    "lodash.isstring": "^4.0.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "@andrew-codes/verdigris-docz": "^0.0.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5"
+  }
+}

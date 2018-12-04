@@ -25,7 +25,7 @@ const Grow = ({ children, ...rest }) => {
 };
 
 Grow.propTypes = {
-  /** Single render-able node that should grow */
+  /** Single render-able node that should grow. */
   children: PropTypes.node.isRequired,
 };
 
