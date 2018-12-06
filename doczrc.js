@@ -22,6 +22,9 @@ export default {
       name: 'Layout',
     },
     {
+      name: 'Navigation',
+    },
+    {
       name: 'Data Entry',
     },
     {
