@@ -43,7 +43,7 @@ context('@andrew-codes/verdigris-spaced-group', () => {
       .next()
       .should('have.css', 'align-items', 'center');
   });
-  it.only('spaced groups respect breakpoints', () => {
+  it('spaced groups respect breakpoints', () => {
     cy.get('[data-test="breakpoints"]')
       .find('[data-component="SpacedGroup"]')
       .as('parentSpacedGroup');

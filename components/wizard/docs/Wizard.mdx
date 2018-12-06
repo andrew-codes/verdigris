@@ -21,7 +21,7 @@ Use to guide end-users through a series of steps; with each step often requiring
 The `Wizard` accepts a render prop as its children and provides the consumer with the `currentStep`, the `totalSteps` and functions to go back and go to the next step.
 
 <Playground data-test="linear-wizard">
-  <Wizard currentStep="step:1">
+  <Wizard startingStep="step:1">
     {({ currentStepId, currentStepIndex, goBack, goForward, totalSteps }) => (
       <div>
         <h1>Linear Wizard</h1>
@@ -35,7 +35,8 @@ The `Wizard` accepts a render prop as its children and provides the consumer wit
           <h2>Step 2</h2>
         </WizardStep>
         <WizardStep id="step:3">
-          <h2>You are finished!</h2>
+          <h2>Step 3</h2>
+          <p>Finished!</p>
         </WizardStep>
         <div>
           <button disabled={currentStepIndex === 0} onClick={goBack}>
@@ -70,7 +71,7 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
 
       render() {
         return (
-          <Wizard currentStep={1}>
+          <Wizard startingStep={1}>
           {({ currentStepId, currentStepIndex, isValid, goBack, goForward, totalSteps }) => (
             <div>
               <h1>Each Step's Input is Required to Progress</h1>
@@ -86,7 +87,7 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
                 <input placeholder="last name" type="text" onChange={this.update('lName')} value={this.state.lName} />*
               </WizardStep>
               <WizardStep id={3}>
-                <p>You are finished!</p>
+                <h2>Step 3</h2>
                 <p>Thank you for completing the Wizard, {this.state.fName} {this.state.lName}.</p>
               </WizardStep>
               <div>
@@ -131,7 +132,7 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
 
       render() {
         return (
-          <Wizard currentStep="step:1">
+          <Wizard startingStep="step:1">
           {({ currentStepId, currentStepIndex, isValid, goBack, goForward, totalSteps }) => (
             <div>
               <h1>Each Step's Input is Required to Progress</h1>
@@ -147,7 +148,7 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
                 <input placeholder="name" type="text" onChange={this.update('name')} value={this.state.name} />
               </WizardStep>
               <WizardStep id="step:3">
-                <p>You are finished!</p>
+                <h2>Step 3</h2>
                 <p>Thank you for completing the Wizard, {this.state.name}.</p>
               </WizardStep>
               <div>

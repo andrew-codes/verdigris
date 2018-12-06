@@ -16,7 +16,7 @@ context('@andrew-codes/verdigris-hidden', () => {
       })
       .should('have.css', 'position', 'static');
   });
-  it.only('can be hidden from screen readers', () => {
+  it('can be hidden from screen readers', () => {
     cy.get('[data-test="hidden-from-screenreaders"]')
       .find('a')
       .first()

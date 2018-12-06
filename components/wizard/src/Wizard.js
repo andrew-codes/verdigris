@@ -43,7 +43,7 @@ class Wizard extends Component {
     this.steps = {};
     this.stepIds = [];
     this.state = {
-      stepHistory: [props.currentStep],
+      stepHistory: [props.startingStep],
     };
 
     this.goBack = this.goBack.bind(this);
@@ -52,6 +52,7 @@ class Wizard extends Component {
     renderToString(
       <WizardImpl
         {...props}
+        currentStep={props.startingStep}
         isValid={false}
         steps={this.stepIds}
         registerStep={this.registerStep}
@@ -115,8 +116,8 @@ class Wizard extends Component {
 Wizard.propTypes = {
   /** Render prop; params: { currentStepId, currentStepIndex, goBack, goForward, isValid, totalSteps } */
   children: PropTypes.func.isRequired,
-  /** Current step's ID; typically to indicate which step to begin the Wizard. */
-  currentStep: PropTypes.number.isRequired,
+  /** Step to start the wizard process. */
+  startingStep: PropTypes.number.isRequired,
 };
 Wizard.defaultProps = {};
 
