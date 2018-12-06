@@ -9,7 +9,7 @@ const WizardImpl = ({
   children,
   currentStep,
   goBack,
-  goNext,
+  goForward,
   isValid,
   registerStep,
   steps,
@@ -26,7 +26,7 @@ const WizardImpl = ({
           currentStepId: currentStep,
           currentStepIndex: steps.indexOf(currentStep),
           goBack,
-          goNext,
+          goForward,
           isValid,
           totalSteps: steps.length,
         })}
@@ -74,7 +74,7 @@ class Wizard extends Component {
       <WizardImpl
         currentStep={currentStep}
         goBack={this.goBack}
-        goNext={() => this.goTo(nextStep)}
+        goForward={() => this.goTo(nextStep)}
         isValid={isValid}
         steps={this.stepIds}
         registerStep={this.registerStep}
@@ -113,7 +113,7 @@ class Wizard extends Component {
   }
 }
 Wizard.propTypes = {
-  /** Render prop; params: { currentStepId, currentStepIndex, goTo, goBack, isValid, totalSteps } */
+  /** Render prop; params: { currentStepId, currentStepIndex, goBack, goForward, isValid, totalSteps } */
   children: PropTypes.func.isRequired,
   /** Current step's ID; typically to indicate which step to begin the Wizard. */
   currentStep: PropTypes.number.isRequired,

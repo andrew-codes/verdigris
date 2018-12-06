@@ -22,7 +22,7 @@ The `Wizard` accepts a render prop as its children and provides the consumer wit
 
 <Playground data-test="linear-wizard">
   <Wizard currentStep="step:1">
-    {({ currentStepId, currentStepIndex, goBack, goNext, totalSteps }) => (
+    {({ currentStepId, currentStepIndex, goBack, goForward, totalSteps }) => (
       <div>
         <h1>Linear Wizard</h1>
         <div>
@@ -35,17 +35,17 @@ The `Wizard` accepts a render prop as its children and provides the consumer wit
           <h2>Step 2</h2>
         </WizardStep>
         <WizardStep id="step:3">
-          <p>You are finished!</p>
+          <h2>You are finished!</h2>
         </WizardStep>
         <div>
-          <button
-            disabled={currentStepIndex === totalSteps - 1}
-            onClick={goNext}
-          >
-            Next
-          </button>
           <button disabled={currentStepIndex === 0} onClick={goBack}>
             Previous
+          </button>
+          <button
+            disabled={currentStepIndex === totalSteps - 1}
+            onClick={goForward}
+          >
+            Next
           </button>
         </div>
       </div>
@@ -71,7 +71,7 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
       render() {
         return (
           <Wizard currentStep={1}>
-          {({ currentStepId, currentStepIndex, isValid, goBack, goNext, totalSteps }) => (
+          {({ currentStepId, currentStepIndex, isValid, goBack, goForward, totalSteps }) => (
             <div>
               <h1>Each Step's Input is Required to Progress</h1>
               <div>
@@ -90,14 +90,14 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
                 <p>Thank you for completing the Wizard, {this.state.fName} {this.state.lName}.</p>
               </WizardStep>
               <div>
-                <button
-                  disabled={(currentStepIndex === 1 && !isValid) || currentStepIndex === totalSteps - 1}
-                  onClick={goNext}
-                >
-                  Next
-                </button>
                 <button disabled={currentStepIndex === 0} onClick={goBack}>
                   Previous
+                </button>
+                <button
+                  disabled={(currentStepIndex === 1 && !isValid) || currentStepIndex === totalSteps - 1}
+                  onClick={goForward}
+                >
+                  Next
                 </button>
               </div>
             </div>
@@ -132,7 +132,7 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
       render() {
         return (
           <Wizard currentStep="step:1">
-          {({ currentStepId, currentStepIndex, isValid, goBack, goNext, totalSteps }) => (
+          {({ currentStepId, currentStepIndex, isValid, goBack, goForward, totalSteps }) => (
             <div>
               <h1>Each Step's Input is Required to Progress</h1>
               <div>
@@ -151,14 +151,14 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
                 <p>Thank you for completing the Wizard, {this.state.name}.</p>
               </WizardStep>
               <div>
-                <button
-                  disabled={(currentStepIndex === 1 && !isValid) || currentStepIndex === totalSteps - 1}
-                  onClick={goNext}
-                >
-                  Next
-                </button>
                 <button disabled={currentStepIndex === 0} onClick={goBack}>
                   Previous
+                </button>
+                <button
+                  disabled={(currentStepIndex === 1 && !isValid) || currentStepIndex === totalSteps - 1}
+                  onClick={goForward}
+                >
+                  Next
                 </button>
               </div>
             </div>
