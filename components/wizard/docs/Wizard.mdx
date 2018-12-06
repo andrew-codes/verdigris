@@ -1,0 +1,194 @@
+---
+name: Wizard
+route: /packages/wizard/components/Wizard
+menu: Navigation
+---
+
+import { Component, Fragment } from 'react';
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import Wizard, { WizardStep } from '../src';
+
+## Usage
+
+Use to guide end-users through a series of steps; with each step often requiring input from the end-user. Wizards can be either linear or contain branching of steps. All steps are actually declared in a linear fashion, but the navigation to the next step is in the consumer's complete control.
+
+## Linear Wizard
+
+The `Wizard` accepts a render prop as its children and provides the consumer with the `currentStep`, the `totalSteps` and functions to go back and go to the next step.
+
+<Playground data-test="linear-wizard">
+  <Wizard startingStep="step:1">
+    {({ currentStepId, currentStepIndex, goBack, goForward, totalSteps }) => (
+      <div>
+        <h1>Linear Wizard</h1>
+        <div>
+          Step {currentStepIndex + 1} of {totalSteps}
+        </div>
+        <WizardStep id="step:1">
+          <h2>Step 1</h2>
+        </WizardStep>
+        <WizardStep id="step:2">
+          <h2>Step 2</h2>
+        </WizardStep>
+        <WizardStep id="step:3">
+          <h2>Step 3</h2>
+          <p>Finished!</p>
+        </WizardStep>
+        <div>
+          <button disabled={currentStepIndex === 0} onClick={goBack}>
+            Previous
+          </button>
+          <button
+            disabled={currentStepIndex === totalSteps - 1}
+            onClick={goForward}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    )}
+  </Wizard>
+</Playground>
+
+## Step Validation
+
+Any `WizardStep` may specify an `onValidate` function prop. Returning false from this function will prevent the `Wizard` from progressing forward. There is also a parameter indicating the current step's validation value if the consumer wishes to disable the next button based on the validity of the step. In this example, we do not disable the next button on the first step, but disable the next button on the second step until the step is valid. This illustrates both uses cases; preventing going forward and reacting the validation of the step.
+
+> `onValidate` does not fire or prevent users from going back to a previous step.
+
+<Playground data-test="validation">
+  {() => {
+    class App extends Component {
+      constructor(props) {
+        super(props);
+        this.state = {};
+        this.update = this.update.bind(this);
+      }
+
+      render() {
+        return (
+          <Wizard startingStep={1}>
+          {({ currentStepId, currentStepIndex, isValid, goBack, goForward, totalSteps }) => (
+            <div>
+              <h1>Each Step's Input is Required to Progress</h1>
+              <div>
+                Step {currentStepId} of {totalSteps}
+              </div>
+              <WizardStep id={1} onValidate={() => !!this.state.fName}>
+                <h2>Step 1</h2>
+                <input placeholder="first name" type="text" onChange={this.update('fName')} value={this.state.fName} />*
+              </WizardStep>
+              <WizardStep id={2} onValidate={() => !!this.state.lName}>
+                <h2>Step 2</h2>
+                <input placeholder="last name" type="text" onChange={this.update('lName')} value={this.state.lName} />*
+              </WizardStep>
+              <WizardStep id={3}>
+                <h2>Step 3</h2>
+                <p>Thank you for completing the Wizard, {this.state.fName} {this.state.lName}.</p>
+              </WizardStep>
+              <div>
+                <button disabled={currentStepIndex === 0} onClick={goBack}>
+                  Previous
+                </button>
+                <button
+                  disabled={(currentStepIndex === 1 && !isValid) || currentStepIndex === totalSteps - 1}
+                  onClick={goForward}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
+          </Wizard>
+        );
+      }
+
+      update(id) {
+        return evt => this.setState({[id]: evt.target.value})
+      }
+    }
+
+    return <App />;
+
+}}
+
+</Playground>
+
+## Non-Linear Wizard
+
+<Playground data-test="non-linear">
+  {() => {
+    class App extends Component {
+      constructor(props) {
+        super(props);
+        this.state = {};
+        this.update = this.update.bind(this);
+        this.updateSkip = this.updateSkip.bind(this);
+      }
+
+      render() {
+        return (
+          <Wizard startingStep="step:1">
+          {({ currentStepId, currentStepIndex, isValid, goBack, goForward, totalSteps }) => (
+            <div>
+              <h1>Each Step's Input is Required to Progress</h1>
+              <div>
+                Step {currentStepIndex} of {totalSteps}
+              </div>
+              <WizardStep id="step:1" onNext={() => this.state.skipStep2 ? 'step:3' : 'step:2'}>
+                <h2>Step 1</h2>
+                Skip Step 2: <input placeholder="first name" type="checkbox" onChange={this.updateSkip('skipStep2')} checked={this.state.skipStep2} />
+              </WizardStep>
+              <WizardStep id="step:2" onValidate={() => !!this.state.name}>
+                <h2>Step 2</h2>
+                <input placeholder="name" type="text" onChange={this.update('name')} value={this.state.name} />
+              </WizardStep>
+              <WizardStep id="step:3">
+                <h2>Step 3</h2>
+                <p>Thank you for completing the Wizard, {this.state.name}.</p>
+              </WizardStep>
+              <div>
+                <button disabled={currentStepIndex === 0} onClick={goBack}>
+                  Previous
+                </button>
+                <button
+                  disabled={(currentStepIndex === 1 && !isValid) || currentStepIndex === totalSteps - 1}
+                  onClick={goForward}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
+          </Wizard>
+        );
+      }
+
+      update(id) {
+        return evt => this.setState({[id]: evt.target.value})
+      }
+
+      updateSkip(id) {
+        return evt => this.setState({[id]: evt.target.checked})
+      }
+    }
+
+    return <App />;
+
+}}
+
+</Playground>
+
+## Component API
+
+### Wizard
+
+<PropsTable of={Wizard} />
+
+### WizardStep
+
+<PropsTable of={WizardStep} />

@@ -1,0 +1,30 @@
+{
+  "name": "@andrew-codes/verdigris-wizard",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "main:src": "./src/index.js",
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "babel --root-mode upward src --out-dir dist"
+  },
+  "dependencies": {
+    "lodash.constant": "^3.0.0",
+    "lodash.last": "^3.0.0",
+    "lodash.noop": "^3.0.1",
+    "react-dom": "^16.6.3"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "@andrew-codes/verdigris-docz": "^0.0.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5"
+  }
+}
