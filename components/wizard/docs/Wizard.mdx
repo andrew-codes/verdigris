@@ -120,6 +120,8 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
 
 ## Non-Linear Wizard
 
+`WizardStep`s may be provided with an `onNext` prop which is used to calculate the next step. This is useful for non-linear workflows. In the example below, the second step is skipped based on user input in the first step. Non-linear history is managed by the `Wizard`, so that the `goBack` will return the user to the correct, previous step.
+
 <Playground data-test="non-linear">
   {() => {
     class App extends Component {
@@ -137,7 +139,7 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
             <div>
               <h1>Each Step's Input is Required to Progress</h1>
               <div>
-                Step {currentStepIndex} of {totalSteps}
+                Step {currentStepIndex + 1} of {totalSteps}
               </div>
               <WizardStep id="step:1" onNext={() => this.state.skipStep2 ? 'step:3' : 'step:2'}>
                 <h2>Step 1</h2>

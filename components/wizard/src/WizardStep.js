@@ -28,7 +28,7 @@ class WizardStep extends Component {
 WizardStep.propTypes = {
   /** Node to render as the step content. */
   children: PropTypes.node,
-  /** Numeric ID of the step; normally in sequence order. */
+  /** Unique identifier for the step. */
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** Function that returns the next step's ID. */
   onNext: PropTypes.func,
