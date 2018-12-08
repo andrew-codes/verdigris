@@ -32,7 +32,7 @@ export default {
     },
     {
       name: 'Other Packages',
-      menu: ['StyleProvider', 'StyleContainer'],
+      menu: ['StyleProvider', 'StyleContainer', 'Rect'],
     },
   ],
   modifyBundlerConfig: config => ({

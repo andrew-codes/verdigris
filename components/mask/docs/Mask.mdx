@@ -1,0 +1,31 @@
+---
+name: Mask
+route: /packages/mask/components/Mask
+menu: Data Display
+---
+
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import Mask from '../src';
+
+## Usage
+
+Provides a transparent window into underlying content.
+
+## Examples
+
+<Playground data-test="examples">
+  <Mask height={100} width={100}>
+    <div style={{ background: 'blue', height: '1000px', width: '1000px' }} />
+  </Mask>
+  <Mask circular height={100} width={100}>
+    <div style={{ background: 'blue', height: '1000px', width: '1000px' }} />
+  </Mask>
+</Playground>
+
+## Component API
+
+<PropsTable of={Mask} />

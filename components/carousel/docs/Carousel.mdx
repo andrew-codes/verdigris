@@ -1,0 +1,61 @@
+---
+name: Carousel
+route: /packages/carousel/components/Carousel
+menu: Navigation
+---
+
+import { Component, Fragment } from 'react';
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import Carousel, { CarouselItem, CarouselViewport } from '../src';
+
+## Usage
+
+Showing only a single item at a time, the `Carousel` provides the ability to navigate forward and backwards through a collection of items.
+
+## Basic Carousel
+
+<Playground data-test="basic">
+  <Carousel>
+    {({ currentIndex, goBack, goForward, totalItems }) => (
+      <Fragment>
+        <div>
+          {currentIndex + 1} of {totalItems}
+        </div>
+        <CarouselViewport>
+          <CarouselItem id="1">
+            <div style={{ background: 'lightblue' }}>Item 1</div>
+          </CarouselItem>
+          <CarouselItem id="2">
+            <div style={{ background: 'pink' }}>Item 2</div>
+          </CarouselItem>
+          <CarouselItem id="3">
+            <div style={{ background: 'lightgreen' }}>Item 3</div>
+          </CarouselItem>
+          <CarouselItem id="4">
+            <div style={{ background: 'thistle' }}>Item 4</div>
+          </CarouselItem>
+        </CarouselViewport>
+        <button onClick={goBack}>previous</button>
+        <button onClick={goForward}>next</button>
+      </Fragment>
+    )}
+  </Carousel>
+</Playground>
+
+## Component API
+
+### Carousel
+
+<PropsTable of={Carousel} />
+
+### CarouselViewport
+
+<PropsTable of={CarouselViewport} />
+
+### CarouselItem
+
+<PropsTable of={CarouselItem} />
