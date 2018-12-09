@@ -13,8 +13,8 @@
     "build": "babel --root-mode upward src --out-dir dist"
   },
   "dependencies": {
+    "@andrew-codes/verdigris-carousel": "^0.0.0",
     "lodash.constant": "^3.0.0",
-    "lodash.last": "^3.0.0",
     "lodash.noop": "^3.0.1",
     "react-dom": "^16.6.3"
   },

@@ -10,7 +10,7 @@ import {
   PropsTable,
   ThemeDefinitionTable,
 } from '@andrew-codes/verdigris-docz';
-import Wizard, { WizardStep } from '../src';
+import Wizard, { WizardStep, WizardSteps } from '../src';
 
 ## Usage
 
@@ -28,16 +28,18 @@ The `Wizard` accepts a render prop as its children and provides the consumer wit
         <div>
           Step {currentStepIndex + 1} of {totalSteps}
         </div>
-        <WizardStep id="step:1">
-          <h2>Step 1</h2>
-        </WizardStep>
-        <WizardStep id="step:2">
-          <h2>Step 2</h2>
-        </WizardStep>
-        <WizardStep id="step:3">
-          <h2>Step 3</h2>
-          <p>Finished!</p>
-        </WizardStep>
+        <WizardSteps>
+          <WizardStep id="step:1">
+            <h2>Step 1</h2>
+          </WizardStep>
+          <WizardStep id="step:2">
+            <h2>Step 2</h2>
+          </WizardStep>
+          <WizardStep id="step:3">
+            <h2>Step 3</h2>
+            <p>Finished!</p>
+          </WizardStep>
+        </WizardSteps>
         <div>
           <button disabled={currentStepIndex === 0} onClick={goBack}>
             Previous
@@ -78,18 +80,20 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
               <div>
                 Step {currentStepId} of {totalSteps}
               </div>
-              <WizardStep id={1} onValidate={() => !!this.state.fName}>
-                <h2>Step 1</h2>
-                <input placeholder="first name" type="text" onChange={this.update('fName')} value={this.state.fName} />*
-              </WizardStep>
-              <WizardStep id={2} onValidate={() => !!this.state.lName}>
-                <h2>Step 2</h2>
-                <input placeholder="last name" type="text" onChange={this.update('lName')} value={this.state.lName} />*
-              </WizardStep>
-              <WizardStep id={3}>
-                <h2>Step 3</h2>
-                <p>Thank you for completing the Wizard, {this.state.fName} {this.state.lName}.</p>
-              </WizardStep>
+              <WizardSteps>
+                <WizardStep id={1} onValidate={() => !!this.state.fName}>
+                  <h2>Step 1</h2>
+                  <input placeholder="first name" type="text" onChange={this.update('fName')} value={this.state.fName} />*
+                </WizardStep>
+                <WizardStep id={2} onValidate={() => !!this.state.lName}>
+                  <h2>Step 2</h2>
+                  <input placeholder="last name" type="text" onChange={this.update('lName')} value={this.state.lName} />*
+                </WizardStep>
+                <WizardStep id={3}>
+                  <h2>Step 3</h2>
+                  <p>Thank you for completing the Wizard, {this.state.fName} {this.state.lName}.</p>
+                </WizardStep>
+              </WizardSteps>
               <div>
                 <button disabled={currentStepIndex === 0} onClick={goBack}>
                   Previous
@@ -141,18 +145,20 @@ Any `WizardStep` may specify an `onValidate` function prop. Returning false from
               <div>
                 Step {currentStepIndex + 1} of {totalSteps}
               </div>
-              <WizardStep id="step:1" onNext={() => this.state.skipStep2 ? 'step:3' : 'step:2'}>
-                <h2>Step 1</h2>
-                Skip Step 2: <input placeholder="first name" type="checkbox" onChange={this.updateSkip('skipStep2')} checked={this.state.skipStep2} />
-              </WizardStep>
-              <WizardStep id="step:2" onValidate={() => !!this.state.name}>
-                <h2>Step 2</h2>
-                <input placeholder="name" type="text" onChange={this.update('name')} value={this.state.name} />
-              </WizardStep>
-              <WizardStep id="step:3">
-                <h2>Step 3</h2>
-                <p>Thank you for completing the Wizard, {this.state.name}.</p>
-              </WizardStep>
+              <WizardSteps>
+                <WizardStep id="step:1" onNext={() => this.state.skipStep2 ? 'step:3' : 'step:2'}>
+                  <h2>Step 1</h2>
+                  Skip Step 2: <input placeholder="first name" type="checkbox" onChange={this.updateSkip('skipStep2')} checked={this.state.skipStep2} />
+                </WizardStep>
+                <WizardStep id="step:2" onValidate={() => !!this.state.name}>
+                  <h2>Step 2</h2>
+                  <input placeholder="name" type="text" onChange={this.update('name')} value={this.state.name} />
+                </WizardStep>
+                <WizardStep id="step:3">
+                  <h2>Step 3</h2>
+                  <p>Thank you for completing the Wizard, {this.state.name}.</p>
+                </WizardStep>
+              </WizardSteps>
               <div>
                 <button disabled={currentStepIndex === 0} onClick={goBack}>
                   Previous

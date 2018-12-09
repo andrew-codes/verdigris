@@ -33,6 +33,8 @@ const Children = ({
         currentIndex,
         goBack,
         goForward,
+        itemIds,
+        items,
         totalItems: itemIds.length,
       })}
     </Provider>
@@ -97,7 +99,9 @@ class Carousel extends Component {
   }
 
   dispatch(action) {
-    return this.setState(state => reducer(state, action));
+    this.setState(state => {
+      return reducer(state, action);
+    });
   }
 
   goBack() {
@@ -126,7 +130,7 @@ class Carousel extends Component {
 Carousel.propTypes = {
   /** Render prop; params: { currentStepIndex, goBack, goForward, totalItems } */
   children: PropTypes.func.isRequired,
-  /** Animation component to apply to items. Receives { children, currentIndex, height, width } */
+  /** Direction of the progression of the Carousel; null is considered in-place. */
   direction: PropTypes.oneOf(directions),
 };
 Carousel.defaultProps = {

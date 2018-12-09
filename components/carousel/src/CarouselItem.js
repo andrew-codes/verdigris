@@ -5,7 +5,7 @@ import { createComponent } from '@andrew-codes/verdigris-style-container';
 import { Slide } from '@andrew-codes/verdigris-animation';
 import { Consumer } from './CarouselContext';
 import { Consumer as ViewportConsumer } from './CarouselViewportContext';
-import { horizontal, inPlace } from './CarouselDirections';
+import { horizontal } from './CarouselDirections';
 
 const Item = createComponent(
   ({ direction, height, width }) => ({
@@ -25,7 +25,7 @@ class CarouselItem extends Component {
           registerItem(this);
           const isCurrent = itemIds[currentIndex] === id;
 
-          return direction === inPlace && !isCurrent ? null : (
+          return !direction && !isCurrent ? null : (
             <StyleProvider>
               <ViewportConsumer>
                 {({ height, width }) => (
@@ -36,7 +36,7 @@ class CarouselItem extends Component {
                     isPrevious={itemIds.indexOf(id) < currentIndex}
                     width={width}
                   >
-                    {direction === inPlace ? (
+                    {!direction ? (
                       children
                     ) : (
                       <Slide

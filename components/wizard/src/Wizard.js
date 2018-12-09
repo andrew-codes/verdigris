@@ -1,37 +1,60 @@
-import last from 'lodash.last';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { renderToString } from 'react-dom/server';
-import { Provider } from './WizardContext';
+import Carousel from '@andrew-codes/verdigris-carousel';
 
 /* eslint-disable react/prop-types */
-const WizardImpl = ({
-  children,
-  currentStep,
-  goBack,
-  goForward,
-  isValid,
-  registerStep,
-  steps,
-}) => {
+const WizardImpl = ({ children, direction, goBack, goForwardTo }) => {
   return (
-    <Provider
-      value={{
-        currentStep,
-        registerStep,
+    <Carousel direction={direction}>
+      {({
+        currentIndex,
+        goBack: carouselGoBack,
+        goForward,
+        itemIds,
+        items,
+        totalItems,
+      }) => {
+        const currentItemId = itemIds[currentIndex];
+        const currentItem = items[currentItemId];
+        const computedNextItemId = currentItem
+          ? currentItem.props.onNext() || null
+          : null;
+
+        const computedNextIndex = computedNextItemId
+          ? itemIds.indexOf(computedNextItemId)
+          : -1;
+        const nextStepIndex =
+          computedNextIndex && computedNextIndex > currentIndex
+            ? computedNextIndex
+            : Math.min(totalItems - 1, currentIndex + 1);
+
+        const isValid = currentItem ? currentItem.props.onValidate() : true;
+
+        return (
+          <div>
+            {children({
+              currentStepIndex: currentIndex,
+              goBack: () => {
+                const lastIndex = goBack();
+                for (let index = currentIndex; index > lastIndex; index--) {
+                  setTimeout(carouselGoBack, 0);
+                }
+              },
+              goForward: () => {
+                if (!isValid) return;
+                goForwardTo(nextStepIndex);
+                for (let index = currentIndex; index < nextStepIndex; index++) {
+                  setTimeout(goForward, 0);
+                }
+              },
+              isValid,
+              totalSteps: totalItems,
+            })}
+          </div>
+        );
       }}
-    >
-      <div>
-        {children({
-          currentStepId: currentStep,
-          currentStepIndex: steps.indexOf(currentStep),
-          goBack,
-          goForward,
-          isValid,
-          totalSteps: steps.length,
-        })}
-      </div>
-    </Provider>
+    </Carousel>
   );
 };
 /* eslint-enable react/prop-types */
@@ -40,85 +63,51 @@ class Wizard extends Component {
   constructor(props) {
     super(props);
 
-    this.steps = {};
-    this.stepIds = [];
     this.state = {
-      stepHistory: [props.startingStep],
+      history: [0],
     };
-
+    renderToString(<WizardImpl {...props} />);
     this.goBack = this.goBack.bind(this);
-    this.goTo = this.goTo.bind(this);
-    this.registerStep = this.registerStep.bind(this);
-    renderToString(
-      <WizardImpl
-        {...props}
-        currentStep={props.startingStep}
-        isValid={false}
-        steps={this.stepIds}
-        registerStep={this.registerStep}
-      />,
-    );
+    this.goForwardTo = this.goForwardTo.bind(this);
   }
 
   render() {
     const { children } = this.props;
-    const { stepHistory } = this.state;
-    const currentStep = last(stepHistory);
-    const isValid = this.steps[currentStep].onValidate();
-    const nextStep =
-      this.steps[currentStep].onNext() ||
-      this.stepIds[
-        Math.min(this.stepIds.length - 1, this.stepIds.indexOf(currentStep) + 1)
-      ];
 
     return (
-      <WizardImpl
-        currentStep={currentStep}
-        goBack={this.goBack}
-        goForward={() => this.goTo(nextStep)}
-        isValid={isValid}
-        steps={this.stepIds}
-        registerStep={this.registerStep}
-      >
+      <WizardImpl goBack={this.goBack} goForwardTo={this.goForwardTo}>
         {children}
       </WizardImpl>
     );
   }
 
   goBack() {
-    this.setState(({ stepHistory }) => {
-      if (stepHistory.length > 1) {
-        stepHistory.pop();
-      }
-
-      return { stepHistory };
-    });
-  }
-
-  goTo(stepId) {
-    const { stepHistory } = this.state;
-    const currentStep = last(stepHistory);
-    if (!this.steps[currentStep].onValidate()) {
-      return;
+    const { history } = this.state;
+    if (history.length === 0) {
+      return 0;
     }
-    this.setState(({ stepHistory: history }) => ({
-      stepHistory: history.concat([stepId]),
+    const lastIndex = history.length - 1;
+    const lastStep = history[lastIndex - 1];
+    this.setState(({ history: stateHistory }) => ({
+      history: stateHistory.slice(0, lastIndex),
     }));
+    return lastStep;
   }
 
-  registerStep(step) {
-    if (!this.stepIds.includes(step.props.id)) {
-      this.stepIds.push(step.props.id);
-    }
-    this.steps[step.props.id] = step.props;
+  goForwardTo(nextIndex) {
+    this.setState(({ history }) => ({
+      history: history.concat([nextIndex]),
+    }));
   }
 }
 Wizard.propTypes = {
   /** Render prop; params: { currentStepId, currentStepIndex, goBack, goForward, isValid, totalSteps } */
   children: PropTypes.func.isRequired,
-  /** Step to start the wizard process. */
-  startingStep: PropTypes.number.isRequired,
+  /** Direction of the progression of the Wizard; null is considered in-place. */
+  direction: PropTypes.oneOf(['horizontal', 'vertical', null]),
 };
-Wizard.defaultProps = {};
+Wizard.defaultProps = {
+  direction: null,
+};
 
 export default Wizard;

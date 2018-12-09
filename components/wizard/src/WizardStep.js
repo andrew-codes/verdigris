@@ -2,27 +2,12 @@ import constant from 'lodash.constant';
 import noop from 'lodash.noop';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Consumer } from './WizardContext';
+import { CarouselItem } from '@andrew-codes/verdigris-carousel';
 
 class WizardStep extends Component {
-  componentDidUpdate(prevProps) {
-    const { onNext, onValidate } = this.props;
-    if (prevProps.onValidate !== onValidate || prevProps.onNext !== onNext) {
-      this.registerStep(this);
-    }
-  }
-
   render() {
-    const { children, id } = this.props;
-    return (
-      <Consumer>
-        {({ currentStep, registerStep }) => {
-          this.registerStep = registerStep;
-          registerStep(this);
-          return currentStep === id ? children : null;
-        }}
-      </Consumer>
-    );
+    const { children, ...rest } = this.props;
+    return <CarouselItem {...rest}>{children}</CarouselItem>;
   }
 }
 WizardStep.propTypes = {
