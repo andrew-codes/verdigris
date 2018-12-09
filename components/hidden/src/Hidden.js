@@ -1,41 +1,35 @@
-import isString from 'lodash.isstring';
 import PropTypes from 'prop-types';
 import React from 'react';
 import StyleProvider from '@andrew-codes/verdigris-style-provider';
-import { createComponent } from '@andrew-codes/verdigris-style-container';
+import ApplyStyleRule from '@andrew-codes/verdigris-apply-style-rule';
+
+const visuallyHidden = ({ 'aria-hidden': hiddenFromScreenReader }) =>
+  !hiddenFromScreenReader
+    ? {
+        clip: 'rect(1px, 1px, 1px, 1px)',
+        height: '1px',
+        overflow: 'hidden',
+        position: 'absolute',
+        width: '1px',
+        ':focus': {
+          height: 'auto',
+          position: 'static',
+          width: 'auto',
+        },
+      }
+    : {};
 
 const Hidden = ({ children, fromScreenReader, ...rest }) => {
-  const VisuallyHidden = createComponent(
-    ({ 'aria-hidden': hiddenFromScreenReader }) =>
-      !hiddenFromScreenReader
-        ? {
-            clip: 'rect(1px, 1px, 1px, 1px)',
-            height: '1px',
-            overflow: 'hidden',
-            position: 'absolute',
-            width: '1px',
-            ':focus': {
-              height: 'auto',
-              position: 'static',
-              width: 'auto',
-            },
-          }
-        : {},
-    'span',
-    ['aria-hidden'],
-  );
-  const instance = isString(children) ? false : React.Children.only(children);
-
   return (
     <StyleProvider>
-      <VisuallyHidden
+      <ApplyStyleRule
         {...rest}
         {...children.props}
         aria-hidden={fromScreenReader}
-        instance={instance}
+        styleRule={visuallyHidden}
       >
-        {instance ? children.props.children : children}
-      </VisuallyHidden>
+        {children}
+      </ApplyStyleRule>
     </StyleProvider>
   );
 };

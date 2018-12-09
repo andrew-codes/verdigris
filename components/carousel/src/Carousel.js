@@ -13,6 +13,7 @@ const Children = ({
   currentIndex,
   goBack,
   goForward,
+  itemIds,
   items,
   registerItem,
   transitionSpeed,
@@ -21,6 +22,7 @@ const Children = ({
     <Provider
       value={{
         currentIndex,
+        itemIds,
         items,
         registerItem,
         transitionSpeed,
@@ -30,7 +32,7 @@ const Children = ({
         currentIndex,
         goBack,
         goForward,
-        totalItems: items.length,
+        totalItems: itemIds.length,
       })}
     </Provider>
   );
@@ -56,7 +58,8 @@ class Carousel extends Component {
       currentIndex,
     };
 
-    this.items = [];
+    this.items = {};
+    this.itemIds = [];
     this.dispatch = this.dispatch.bind(this);
     this.goBack = this.goBack.bind(this);
     this.goForward = this.goForward.bind(this);
@@ -67,6 +70,7 @@ class Carousel extends Component {
         {...props}
         currentIndex={currentIndex}
         registerItem={this.registerItem}
+        itemIds={this.itemIds}
         items={this.items}
       />,
     );
@@ -81,6 +85,7 @@ class Carousel extends Component {
         currentIndex={currentIndex}
         goBack={this.goBack}
         goForward={this.goForward}
+        itemIds={this.itemIds}
         items={this.items}
         registerItem={this.registerItem}
         transitionSpeed={transitionSpeed}
@@ -98,7 +103,7 @@ class Carousel extends Component {
     const { currentIndex } = this.state;
     this.dispatch({
       type: 'goTo',
-      payload: getPreviousIndex(this.items, currentIndex),
+      payload: getPreviousIndex(this.itemIds, currentIndex),
     });
   }
 
@@ -106,14 +111,15 @@ class Carousel extends Component {
     const { currentIndex } = this.state;
     this.dispatch({
       type: 'goTo',
-      payload: getNextIndex(this.items, currentIndex),
+      payload: getNextIndex(this.itemIds, currentIndex),
     });
   }
 
   registerItem(item) {
-    if (!this.items.includes(item.props.id)) {
-      this.items.push(item.props.id);
+    if (!this.itemIds.includes(item.props.id)) {
+      this.itemIds.push(item.props.id);
     }
+    this.items[item.props.id] = item;
   }
 }
 Carousel.propTypes = {

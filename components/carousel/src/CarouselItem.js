@@ -19,7 +19,7 @@ class CarouselItem extends Component {
     const { children, id } = this.props;
     return (
       <Consumer>
-        {({ currentIndex, items, registerItem }) => {
+        {({ currentIndex, itemIds, registerItem }) => {
           registerItem(this);
 
           return (
@@ -28,8 +28,8 @@ class CarouselItem extends Component {
                 {({ height, width }) => (
                   <Item
                     height={height}
-                    isCurrent={items[currentIndex] === id}
-                    isPrevious={items.indexOf(id) < currentIndex}
+                    isCurrent={itemIds[currentIndex] === id}
+                    isPrevious={itemIds.indexOf(id) < currentIndex}
                     width={width}
                   >
                     {children}

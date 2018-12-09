@@ -25,7 +25,7 @@ class CarouselViewport extends Component {
     return (
       <StyleProvider>
         <Consumer>
-          {({ currentIndex, items, transitionSpeed }) => (
+          {({ currentIndex, itemIds, transitionSpeed }) => (
             <Rect>
               {({ ref, rect }) => (
                 <Mask height={rect.height} width={rect.width} innerRef={ref}>
@@ -39,7 +39,7 @@ class CarouselViewport extends Component {
                       height={rect.height}
                       offset={currentIndex * -rect.width}
                       transitionSpeed={transitionSpeed}
-                      width={items.length * rect.width}
+                      width={itemIds.length * rect.width}
                     >
                       {children}
                     </SliderTray>

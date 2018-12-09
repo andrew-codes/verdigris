@@ -1,0 +1,38 @@
+---
+name: ApplyStyleRule
+route: /packages/apply-style-rule/components/ApplyStyleRule
+menu: Other Packages
+---
+
+import { Fragment } from 'react';
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import ApplyStyleRule from '../src';
+
+## Usage
+
+Apply a style rule directly to children without rendering a parent element.
+
+## Examples
+
+<Playground data-test="examples">
+{()=>{
+const styleRule = ({color}) => ({color});
+return (
+  <Fragment>
+    <ApplyStyleRule color="coral" styleRule={styleRule}>I am coral.</ApplyStyleRule>
+    <ApplyStyleRule color="purple" styleRule={styleRule}>
+      <div>I am purple.</div>
+    </ApplyStyleRule>
+</Fragment>
+);
+}}
+
+</Playground>
+
+## Component API
+
+<PropsTable of={ApplyStyleRule} />
