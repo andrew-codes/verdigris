@@ -4,9 +4,10 @@ import React, { Component } from 'react';
 import Rect from '@andrew-codes/verdigris-rect';
 import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import { createComponent } from '@andrew-codes/verdigris-style-container';
+import CarouselItem from './CarouselItem';
 import { Provider } from './CarouselViewportContext';
 import { Consumer } from './CarouselContext';
-import CarouselItem from './CarouselItem';
+import { horizontal } from './CarouselDirections';
 
 const Tray = createComponent(
   ({ height, width }) => ({
@@ -35,12 +36,12 @@ class CarouselViewport extends Component {
                   >
                     <Tray
                       height={
-                        direction === 'horizontal'
+                        direction === horizontal
                           ? rect.height
                           : rect.height * itemIds.length
                       }
                       width={
-                        direction === 'horizontal'
+                        direction === horizontal
                           ? rect.width * itemIds.length
                           : rect.width
                       }

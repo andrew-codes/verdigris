@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from './CarouselContext';
+import directions, { horizontal } from './CarouselDirections';
 
 const getNextIndex = (items, currentIndex) =>
   Math.min(items.length - 1, currentIndex + 1);
@@ -126,10 +127,10 @@ Carousel.propTypes = {
   /** Render prop; params: { currentStepIndex, goBack, goForward, totalItems } */
   children: PropTypes.func.isRequired,
   /** Animation component to apply to items. Receives { children, currentIndex, height, width } */
-  direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  direction: PropTypes.oneOf(directions),
 };
 Carousel.defaultProps = {
-  direction: 'horizontal',
+  direction: horizontal,
 };
 
 export default Carousel;
