@@ -26,6 +26,7 @@ const Hidden = ({ children, fromScreenReader, ...rest }) => {
         {...rest}
         {...children.props}
         aria-hidden={fromScreenReader}
+        passThroughProps={['aria-hidden']}
         styleRule={visuallyHidden}
       >
         {children}
