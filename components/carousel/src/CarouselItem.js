@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import { createComponent } from '@andrew-codes/verdigris-style-container';
+import { Slide } from '@andrew-codes/verdigris-animation';
 import { Consumer } from './CarouselContext';
 import { Consumer as ViewportConsumer } from './CarouselViewportContext';
 
 const Item = createComponent(
-  ({ height, width }) => ({
-    display: 'inline-block',
+  ({ direction, height, width }) => ({
+    display: direction === 'horizontal' ? 'inline-block' : 'block',
     height,
     width,
   }),
@@ -19,7 +20,7 @@ class CarouselItem extends Component {
     const { children, id } = this.props;
     return (
       <Consumer>
-        {({ currentIndex, itemIds, registerItem }) => {
+        {({ currentIndex, direction, itemIds, registerItem }) => {
           registerItem(this);
 
           return (
@@ -27,12 +28,21 @@ class CarouselItem extends Component {
               <ViewportConsumer>
                 {({ height, width }) => (
                   <Item
+                    direction={direction}
                     height={height}
                     isCurrent={itemIds[currentIndex] === id}
                     isPrevious={itemIds.indexOf(id) < currentIndex}
                     width={width}
                   >
-                    {children}
+                    <Slide
+                      direction={direction === 'horizontal' ? 'left' : 'top'}
+                      distance={
+                        currentIndex *
+                        (direction === 'horizontal' ? width : height)
+                      }
+                    >
+                      {children}
+                    </Slide>
                   </Item>
                 )}
               </ViewportConsumer>

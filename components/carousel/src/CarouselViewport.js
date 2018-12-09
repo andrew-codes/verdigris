@@ -8,12 +8,10 @@ import { Provider } from './CarouselViewportContext';
 import { Consumer } from './CarouselContext';
 import CarouselItem from './CarouselItem';
 
-const SliderTray = createComponent(
-  ({ height, offset, transitionSpeed, width }) => ({
+const Tray = createComponent(
+  ({ height, width }) => ({
     height,
-    transform: `translateX(${offset}px)`,
     width,
-    transition: `${transitionSpeed}ms ease-in-out`,
   }),
   'div',
 );
@@ -25,7 +23,7 @@ class CarouselViewport extends Component {
     return (
       <StyleProvider>
         <Consumer>
-          {({ currentIndex, itemIds, transitionSpeed }) => (
+          {({ direction, itemIds }) => (
             <Rect>
               {({ ref, rect }) => (
                 <Mask height={rect.height} width={rect.width} innerRef={ref}>
@@ -35,14 +33,20 @@ class CarouselViewport extends Component {
                       width: rect.width,
                     }}
                   >
-                    <SliderTray
-                      height={rect.height}
-                      offset={currentIndex * -rect.width}
-                      transitionSpeed={transitionSpeed}
-                      width={itemIds.length * rect.width}
+                    <Tray
+                      height={
+                        direction === 'horizontal'
+                          ? rect.height
+                          : rect.height * itemIds.length
+                      }
+                      width={
+                        direction === 'horizontal'
+                          ? rect.width * itemIds.length
+                          : rect.width
+                      }
                     >
                       {children}
-                    </SliderTray>
+                    </Tray>
                   </Provider>
                 </Mask>
               )}
@@ -55,7 +59,7 @@ class CarouselViewport extends Component {
 }
 CarouselViewport.propTypes = {
   /** Items to be shown in the Carousel.  */
-  children: PropTypes.instanceOf(CarouselItem),
+  children: PropTypes.arrayOf(PropTypes.instanceOf(CarouselItem)),
 };
 CarouselViewport.defaultProps = {};
 

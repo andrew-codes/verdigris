@@ -11,21 +11,21 @@ const getPreviousIndex = (items, currentIndex) => Math.max(0, currentIndex - 1);
 const Children = ({
   children,
   currentIndex,
+  direction,
   goBack,
   goForward,
   itemIds,
   items,
   registerItem,
-  transitionSpeed,
 }) => {
   return (
     <Provider
       value={{
         currentIndex,
+        direction,
         itemIds,
         items,
         registerItem,
-        transitionSpeed,
       }}
     >
       {children({
@@ -77,18 +77,18 @@ class Carousel extends Component {
   }
 
   render() {
-    const { children, transitionSpeed } = this.props;
+    const { children, direction } = this.props;
     const { currentIndex } = this.state;
 
     return (
       <Children
         currentIndex={currentIndex}
+        direction={direction}
         goBack={this.goBack}
         goForward={this.goForward}
         itemIds={this.itemIds}
         items={this.items}
         registerItem={this.registerItem}
-        transitionSpeed={transitionSpeed}
       >
         {children}
       </Children>
@@ -125,11 +125,11 @@ class Carousel extends Component {
 Carousel.propTypes = {
   /** Render prop; params: { currentStepIndex, goBack, goForward, totalItems } */
   children: PropTypes.func.isRequired,
-  /** Time, in ms, to transition to the next item. */
-  transitionSpeed: PropTypes.number,
+  /** Animation component to apply to items. Receives { children, currentIndex, height, width } */
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 Carousel.defaultProps = {
-  transitionSpeed: 1000,
+  direction: 'horizontal',
 };
 
 export default Carousel;

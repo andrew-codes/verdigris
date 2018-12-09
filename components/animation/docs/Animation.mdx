@@ -1,0 +1,62 @@
+---
+name: Animation
+route: /packages/animation/components/Animation
+menu: Other Packages
+---
+
+import { Component, Fragment } from 'react';
+import {
+  Playground,
+  PropsTable,
+  ThemeDefinitionTable,
+} from '@andrew-codes/verdigris-docz';
+import { Slide } from '../src';
+
+## Usage
+
+Animate effects to apply to children.
+
+## Examples
+
+<Playground data-test="slide">
+  {() => {
+    class AnimateSlide extends Component {
+      constructor(props){
+        super(props);
+        this.state = {
+          distance: 0,
+        };
+      }
+
+      render() {
+        return (
+          <Fragment>
+            <button onClick={()=> this.setState(({distance})=> ({distance: distance + 5}))}>Slide 5px</button>
+            <Slide direction="right" distance={this.state.distance}>
+              right
+            </Slide>
+            <Slide direction="left" distance={this.state.distance}>
+              left
+            </Slide>
+            <Slide direction="top" distance={this.state.distance}>
+              up
+            </Slide>
+            <Slide direction="down" distance={this.state.distance}>
+              down
+            </Slide>
+
+          </Fragment>
+        );
+      }
+    }
+    return (<AnimateSlide/>)
+
+}}
+
+</Playground>
+
+## Component API
+
+### Slide
+
+<PropsTable of={Slide} />

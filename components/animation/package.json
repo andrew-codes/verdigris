@@ -1,5 +1,5 @@
 {
-  "name": "@andrew-codes/verdigris-carousel",
+  "name": "@andrew-codes/verdigris-animation",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -13,12 +13,8 @@
     "build": "babel --root-mode upward src --out-dir dist"
   },
   "dependencies": {
-    "@andrew-codes/verdigris-animation": "^0.0.0",
-    "@andrew-codes/verdigris-mask": "^0.0.0",
-    "@andrew-codes/verdigris-rect": "^0.0.0",
     "@andrew-codes/verdigris-style-container": "^0.0.0",
-    "@andrew-codes/verdigris-style-provider": "0.0.0",
-    "react-dom": "^16.6.3"
+    "@andrew-codes/verdigris-style-provider": "^0.0.0"
   },
   "peerDependencies": {
     "prop-types": "^15.6.2",
@@ -26,8 +22,6 @@
   },
   "devDependencies": {
     "@andrew-codes/verdigris-docz": "^0.0.0",
-    "@andrew-codes/verdigris-grid": "^0.0.0",
-    "@andrew-codes/verdigris-grow": "^0.0.0",
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5"
   }
