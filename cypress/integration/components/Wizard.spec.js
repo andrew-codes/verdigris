@@ -91,13 +91,13 @@ context('@andrew-codes/verdigris-wizard', () => {
         .contains('button', 'Previous')
         .as('previousButton');
     });
-    it.only('steps can dynamically indicate the next step', () => {
+    it('steps can dynamically indicate the next step', () => {
       assertOnStep(1);
       cy.get('@nextButton').click();
       assertOnStep(2);
       cy.get('@previousButton').click();
       cy.get('@playground')
-        .find('input')
+        .find('input[type="checkbox"]')
         .click();
       cy.get('@nextButton').click();
       assertOnStep(3);
