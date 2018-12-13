@@ -4,8 +4,8 @@ import StyleProvider from '@andrew-codes/verdigris-style-provider';
 import { createComponent } from '@andrew-codes/verdigris-style-container';
 
 const horizontal = ['left', 'right'];
-const negativeDistance = ['left', 'top'];
-const Slider = createComponent(({ direction, distance, speed }) => {
+const negativeDistance = ['left', 'up'];
+const Slider = createComponent(({ direction, distance, duration }) => {
   const actualDistance = negativeDistance.includes(direction)
     ? -distance
     : distance;
@@ -13,7 +13,8 @@ const Slider = createComponent(({ direction, distance, speed }) => {
     transform: horizontal.includes(direction)
       ? `translateX(${actualDistance}px)`
       : `translateY(${actualDistance}px)`,
-    transition: `${speed}ms ease-in-out`,
+    transitionTimingFunction: `ease-in-out`,
+    transitionDuration: `${duration}ms`,
   };
 }, 'div');
 
@@ -26,18 +27,14 @@ Slide.propTypes = {
   /** Node to animate. */
   children: PropTypes.node,
   /** Direction in which to slide children. */
-  direction: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
   /** Distance to slide children. */
-  distance: PropTypes.number,
-  /** Speed in which to animate. */
-  speed: PropTypes.number,
+  distance: PropTypes.number.isRequired,
+  /** Duration (in ms) for animation to occur. */
+  duration: PropTypes.number.isRequired,
 };
 Slide.defaultProps = {
   direction: 'right',
-  distance: 0,
-  speed: 1000,
 };
-Slide.themeDefinition = {};
-Slide.defaultThemeValues = {};
 
 export default Slide;

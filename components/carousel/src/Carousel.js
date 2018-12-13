@@ -1,95 +1,135 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import throttle from 'lodash.throttle';
 import { renderToString } from 'react-dom/server';
 import { Provider } from './CarouselContext';
-import directions, { horizontal } from './CarouselDirections';
 
-const getNextIndex = (items, currentIndex) =>
-  Math.min(items.length - 1, currentIndex + 1);
-const getPreviousIndex = (items, currentIndex) => Math.max(0, currentIndex - 1);
+const forward = 'forward';
+const back = 'back';
+
+const getCurrentIndex = (currentId, itemOrder) =>
+  currentId ? itemOrder.indexOf(currentId) : 0;
+const getCurrentId = (currentId, itemOrder) =>
+  itemOrder[getCurrentIndex(currentId, itemOrder)];
+const getNextId = (currentId, itemOrder) => {
+  const currentIndex = getCurrentIndex(currentId, itemOrder);
+  const nextIndex = currentIndex + 1;
+  return nextIndex < itemOrder.length ? itemOrder[nextIndex] : null;
+};
+const getPreviousId = (currentId, itemOrder) => {
+  const currentIndex = getCurrentIndex(currentId, itemOrder);
+  const previousIndex = currentIndex - 1;
+  return previousIndex >= 0 ? itemOrder[previousIndex] : null;
+};
 
 /* eslint-disable react/prop-types */
 const Children = ({
+  Animation,
+  animationDuration,
   children,
-  currentIndex,
-  direction,
+  currentId,
   goBack,
   goForward,
-  itemIds,
+  navigationDirection,
+  itemOrder,
   items,
   registerItem,
 }) => {
   return (
     <Provider
       value={{
-        currentIndex,
-        direction,
-        itemIds,
+        Animation,
+        currentId,
+        animationDuration,
+        itemOrder,
         items,
+        isNavigatingForward: navigationDirection === forward,
+        isNavigatingBack: navigationDirection === back,
+        navigationDirection,
+        nextId: getNextId(currentId, itemOrder),
+        previousId: getPreviousId(currentId, itemOrder),
         registerItem,
       }}
     >
       {children({
-        currentIndex,
+        currentId,
         goBack,
         goForward,
-        itemIds,
+        itemOrder,
         items,
-        totalItems: itemIds.length,
       })}
     </Provider>
   );
 };
 /* eslint-enable react/prop-types */
 
-const reducer = (state, { payload, type }) => {
-  if (type === 'goTo') {
+const reducer = (state, { payload: { currentId, itemOrder }, type }) => {
+  if (type === forward) {
+    const nextId = getNextId(currentId, itemOrder);
     return {
       ...state,
-      currentIndex: payload,
+      currentId: nextId || currentId,
+      navigationDirection: forward,
     };
   }
-  return state;
+  if (type === back) {
+    const previousId = getPreviousId(currentId, itemOrder);
+    return {
+      ...state,
+      currentId: previousId || currentId,
+      navigationDirection: back,
+    };
+  }
+  return {
+    ...state,
+    navigationDirection: null,
+  };
 };
 
 class Carousel extends Component {
   constructor(props) {
     super(props);
 
-    const currentIndex = 0;
+    const currentId = null;
     this.state = {
-      currentIndex,
+      currentId,
+      navigationDirection: null,
     };
 
     this.items = {};
-    this.itemIds = [];
+    this.itemOrder = [];
     this.dispatch = this.dispatch.bind(this);
-    this.goBack = this.goBack.bind(this);
-    this.goForward = this.goForward.bind(this);
+    this.goBack = throttle(this.goBack.bind(this), props.animationDuration);
+    this.goForward = throttle(
+      this.goForward.bind(this),
+      props.animationDuration,
+    );
     this.registerItem = this.registerItem.bind(this);
 
     renderToString(
       <Children
         {...props}
-        currentIndex={currentIndex}
+        currentId={currentId}
         registerItem={this.registerItem}
-        itemIds={this.itemIds}
+        itemOrder={this.itemOrder}
         items={this.items}
       />,
     );
   }
 
   render() {
-    const { children, direction } = this.props;
-    const { currentIndex } = this.state;
+    const { Animation, animationDuration, children } = this.props;
+    const { currentId, navigationDirection } = this.state;
 
     return (
       <Children
-        currentIndex={currentIndex}
-        direction={direction}
+        Animation={Animation}
+        animationDuration={animationDuration}
+        currentId={getCurrentId(currentId, this.itemOrder)}
         goBack={this.goBack}
         goForward={this.goForward}
-        itemIds={this.itemIds}
+        navigationDirection={navigationDirection}
+        itemOrder={this.itemOrder}
         items={this.items}
         registerItem={this.registerItem}
       >
@@ -105,36 +145,38 @@ class Carousel extends Component {
   }
 
   goBack() {
-    const { currentIndex } = this.state;
+    const { currentId } = this.state;
     this.dispatch({
-      type: 'goTo',
-      payload: getPreviousIndex(this.itemIds, currentIndex),
+      type: back,
+      payload: { currentId, itemOrder: this.itemOrder },
     });
   }
 
   goForward() {
-    const { currentIndex } = this.state;
+    const { currentId } = this.state;
     this.dispatch({
-      type: 'goTo',
-      payload: getNextIndex(this.itemIds, currentIndex),
+      type: forward,
+      payload: { currentId, itemOrder: this.itemOrder },
     });
   }
 
   registerItem(item) {
-    if (!this.itemIds.includes(item.props.id)) {
-      this.itemIds.push(item.props.id);
+    if (!this.itemOrder.includes(item.props.id)) {
+      this.itemOrder.push(item.props.id);
     }
     this.items[item.props.id] = item;
   }
 }
 Carousel.propTypes = {
+  Animation: PropTypes.func,
+  animationDuration: PropTypes.number,
   /** Render prop; params: { currentStepIndex, goBack, goForward, totalItems } */
   children: PropTypes.func.isRequired,
-  /** Direction of the progression of the Carousel; null is considered in-place. */
-  direction: PropTypes.oneOf(directions),
 };
 Carousel.defaultProps = {
-  direction: horizontal,
+  Animation: ({ children, currentId, id }) =>
+    currentId === id ? children : null,
+  animationDuration: 0,
 };
 
 export default Carousel;

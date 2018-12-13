@@ -5,11 +5,10 @@ import { createComponent } from '@andrew-codes/verdigris-style-container';
 import { Slide } from '@andrew-codes/verdigris-animation';
 import { Consumer } from './CarouselContext';
 import { Consumer as ViewportConsumer } from './CarouselViewportContext';
-import { horizontal } from './CarouselDirections';
 
 const Item = createComponent(
-  ({ direction, height, width }) => ({
-    display: direction === horizontal ? 'inline-block' : 'block',
+  ({ height, width }) => ({
+    display: 'block',
     height,
     width,
   }),
@@ -21,36 +20,46 @@ class CarouselItem extends Component {
     const { children, id } = this.props;
     return (
       <Consumer>
-        {({ currentIndex, direction, itemIds, registerItem }) => {
+        {({
+          Animation,
+          animationDuration,
+          currentId,
+          itemOrder,
+          isNavigatingBack,
+          isNavigatingForward,
+          nextId,
+          previousId,
+          registerItem,
+        }) => {
           registerItem(this);
-          const isCurrent = itemIds[currentIndex] === id;
-
-          return !direction && !isCurrent ? null : (
+          return (
             <StyleProvider>
               <ViewportConsumer>
-                {({ height, width }) => (
-                  <Item
-                    direction={direction}
-                    height={height}
-                    isCurrent={isCurrent}
-                    isPrevious={itemIds.indexOf(id) < currentIndex}
-                    width={width}
-                  >
-                    {!direction ? (
-                      children
-                    ) : (
+                {({ height, width }) => {
+                  return (
+                    <Item height={height} width={width}>
                       <Slide
-                        direction={direction === horizontal ? 'left' : 'top'}
-                        distance={
-                          currentIndex *
-                          (direction === horizontal ? width : height)
-                        }
+                        direction="up"
+                        distance={itemOrder.indexOf(id) * height}
+                        duration={0}
                       >
-                        {children}
+                        {Animation({
+                          animationDuration,
+                          children,
+                          currentId,
+                          height,
+                          id,
+                          itemOrder,
+                          isNavigatingBack,
+                          isNavigatingForward,
+                          nextId,
+                          previousId,
+                          width,
+                        })}
                       </Slide>
-                    )}
-                  </Item>
-                )}
+                    </Item>
+                  );
+                }}
               </ViewportConsumer>
             </StyleProvider>
           );
@@ -60,7 +69,7 @@ class CarouselItem extends Component {
   }
 }
 CarouselItem.propTypes = {
-  /** Node to render as the item content. */
+  /** Function to render as the item content. Function receives relevant values for rendering animations. */
   children: PropTypes.node,
   /** Unique identifier for the item. */
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,

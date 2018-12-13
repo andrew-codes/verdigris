@@ -7,10 +7,11 @@ import { createComponent } from '@andrew-codes/verdigris-style-container';
 import CarouselItem from './CarouselItem';
 import { Provider } from './CarouselViewportContext';
 import { Consumer } from './CarouselContext';
-import { horizontal } from './CarouselDirections';
 
 const Tray = createComponent(
   ({ height, width }) => ({
+    display: 'flex',
+    flexDirection: 'column',
     height,
     width,
   }),
@@ -24,7 +25,7 @@ class CarouselViewport extends Component {
     return (
       <StyleProvider>
         <Consumer>
-          {({ direction, itemIds }) => (
+          {({ itemOrder }) => (
             <Rect>
               {({ ref, rect }) => (
                 <Mask height={rect.height} width={rect.width} innerRef={ref}>
@@ -35,16 +36,8 @@ class CarouselViewport extends Component {
                     }}
                   >
                     <Tray
-                      height={
-                        direction === horizontal
-                          ? rect.height
-                          : rect.height * itemIds.length
-                      }
-                      width={
-                        direction === horizontal
-                          ? rect.width * itemIds.length
-                          : rect.width
-                      }
+                      height={rect.height * itemOrder.length}
+                      width={rect.width * itemOrder.length}
                     >
                       {children}
                     </Tray>
