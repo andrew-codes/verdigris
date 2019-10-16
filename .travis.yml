@@ -35,6 +35,7 @@ jobs:
     - stage: 'Verify'
       env:
         - NODE_ENV: test
+        - CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
       install:
         - ./scripts/bin/ci-install.sh
       script:
