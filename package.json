@@ -53,7 +53,7 @@
     "chalk-cli": "^4.1.0",
     "codemirror": "^5.42.0",
     "concurrently": "^4.1.0",
-    "cypress": "^3.1.2",
+    "cypress": "^3.4.1",
     "docz": "^0.12.13",
     "docz-plugin-netlify": "^1.1.4",
     "docz-theme-default": "^0.12.5",
