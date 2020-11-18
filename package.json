@@ -73,7 +73,7 @@
     "react-docgen-deprecation-handler": "^1.0.1",
     "react-dom": "^16.5.2",
     "regenerator-runtime": "^0.13.1",
-    "semantic-release": "^15.9.16",
+    "semantic-release": "^17.2.3",
     "start-server-and-test": "^1.7.11",
     "typescript": "^3.1.1",
     "webpack": "^4.20.2",
